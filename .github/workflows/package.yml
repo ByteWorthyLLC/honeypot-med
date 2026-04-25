@@ -126,6 +126,46 @@ jobs:
           \`\`\`
           EOF
 
+      - name: Collect release assets
+        id: release-assets
+        shell: bash
+        run: |
+          shopt -s nullglob
+          files=()
+
+          for file in dist/SHA256SUMS.txt dist/release-manifest.json; do
+            if [ -f "$file" ]; then
+              files+=("$file")
+            fi
+          done
+
+          for pattern in \
+            dist/linux/*.tar.gz \
+            dist/linux/*.deb \
+            dist/linux/*.rpm \
+            dist/macos/*.pkg \
+            dist/macos/*.tar.gz \
+            dist/windows/*.zip \
+            dist/windows/*.exe
+          do
+            for file in $pattern; do
+              if [ -f "$file" ]; then
+                files+=("$file")
+              fi
+            done
+          done
+
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "No release assets were found." >&2
+            exit 1
+          fi
+
+          {
+            echo "files<<EOF"
+            printf '%s\n' "${files[@]}"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
         with:
@@ -133,14 +173,4 @@ jobs:
           name: Honeypot Med ${{ github.ref_name }}
           body_path: RELEASE_NOTES.md
           draft: false
-          fail_on_unmatched_files: true
-          files: |
-            dist/SHA256SUMS.txt
-            dist/release-manifest.json
-            dist/linux/*.tar.gz
-            dist/linux/*.deb
-            dist/linux/*.rpm
-            dist/macos/*.pkg
-            dist/macos/*.tar.gz
-            dist/windows/*.zip
-            dist/windows/*.exe
+          files: ${{ steps.release-assets.outputs.files }}
