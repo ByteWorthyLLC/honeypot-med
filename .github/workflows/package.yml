@@ -132,10 +132,15 @@ jobs:
           tag_name: ${{ github.ref_name }}
           name: Honeypot Med ${{ github.ref_name }}
           body_path: RELEASE_NOTES.md
+          draft: false
           fail_on_unmatched_files: true
           files: |
             dist/SHA256SUMS.txt
             dist/release-manifest.json
-            dist/linux/*
-            dist/macos/*
-            dist/windows/*
+            dist/linux/*.tar.gz
+            dist/linux/*.deb
+            dist/linux/*.rpm
+            dist/macos/*.pkg
+            dist/macos/*.tar.gz
+            dist/windows/*.zip
+            dist/windows/*.exe
