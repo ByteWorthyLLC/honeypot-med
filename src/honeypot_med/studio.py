@@ -17,6 +17,7 @@ from .attack_packs import list_attack_packs, load_attack_pack_payload
 from .branding import load_default_hero_data_uri
 from .errors import ValidationError
 from .exports import write_share_bundle
+from .launchkit import PUBLIC_SITE_URL, REPO_URL
 from .models import InputPayload
 from .runtime import check_network, enrich_report_with_engine
 from .service import DEFAULT_RULES, analyze_prompts
@@ -125,6 +126,8 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
                 "markdown_url": f"/bundles/{bundle_id}/report.md",
                 "social_card_url": f"/bundles/{bundle_id}/social-card.svg",
                 "pdf_url": f"/bundles/{bundle_id}/summary.pdf",
+                "launch_markdown_url": f"/bundles/{bundle_id}/launch-kit.md",
+                "launch_json_url": f"/bundles/{bundle_id}/launch-kit.json",
             },
         }
 
@@ -164,6 +167,7 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
                     "view_url": f"/bundles/{bundle_id}/{artifacts.get('html', 'index.html')}",
                     "social_card_url": f"/bundles/{bundle_id}/{artifacts.get('social_card', 'social-card.svg')}",
                     "pdf_url": f"/bundles/{bundle_id}/{artifacts.get('pdf', 'summary.pdf')}",
+                    "launch_markdown_url": f"/bundles/{bundle_id}/{artifacts.get('launch_markdown', 'launch-kit.md')}",
                 }
             )
             if len(results) >= limit:
@@ -528,12 +532,16 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
 </head>
 <body>
   <main class="shell">
-    <section class="hero">
-      <article class="panel hero-copy">
-        <div class="eyebrow">Hosted Local Studio</div>
-        <h1>Paste a prompt. Get a launch verdict. Export the proof.</h1>
-        <p>Honeypot Med Studio turns prompt-injection review into a buyer-facing workflow. Inspect one prompt or run a curated healthcare attack pack, then export a share page, PDF brief, and social card in one pass.</p>
-      </article>
+	    <section class="hero">
+	      <article class="panel hero-copy">
+	        <div class="eyebrow">Hosted Local Studio</div>
+	        <h1>Paste a prompt. Get a launch verdict. Export the proof.</h1>
+	        <p>Honeypot Med Studio turns prompt-injection review into a buyer-facing workflow. Inspect one prompt or run a curated healthcare attack pack, then export a share page, PDF brief, social card, and launch kit in one pass.</p>
+	        <div class="links">
+	          <a href="{PUBLIC_SITE_URL}" target="_blank" rel="noreferrer">Open public site</a>
+	          <a href="{REPO_URL}" target="_blank" rel="noreferrer">Open GitHub repo</a>
+	        </div>
+	      </article>
       <aside class="panel hero-art">
         <div class="hero-note">Generated visual direction powered by `videoagent-image-studio` to give the product an actual visual identity instead of generic security gradients.</div>
       </aside>
@@ -669,13 +677,14 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
         '</div>',
         topMarkup,
         findingMarkup,
-        '<div class="links">',
-        '<a href="' + data.bundle.view_url + '" target="_blank" rel="noreferrer">Open share page</a>',
-        '<a href="' + data.bundle.pdf_url + '" target="_blank" rel="noreferrer">Open PDF brief</a>',
-        '<a href="' + data.bundle.social_card_url + '" target="_blank" rel="noreferrer">Open social card</a>',
-        '<a href="' + data.bundle.json_url + '" target="_blank" rel="noreferrer">Open JSON report</a>',
-        '</div>',
-      ].join('');
+	          '<div class="links">',
+	          '<a href="' + data.bundle.view_url + '" target="_blank" rel="noreferrer">Open share page</a>',
+	          '<a href="' + data.bundle.pdf_url + '" target="_blank" rel="noreferrer">Open PDF brief</a>',
+	          '<a href="' + data.bundle.social_card_url + '" target="_blank" rel="noreferrer">Open social card</a>',
+	          '<a href="' + data.bundle.launch_markdown_url + '" target="_blank" rel="noreferrer">Open launch kit</a>',
+	          '<a href="' + data.bundle.json_url + '" target="_blank" rel="noreferrer">Open JSON report</a>',
+	          '</div>',
+	      ].join('');
       await loadGallery();
     }});
 

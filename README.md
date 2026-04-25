@@ -6,6 +6,10 @@ Prompt-injection honeypot for healthcare AI workflows that is usable by non-deve
 
 The product angle is simple: paste the prompt you are worried about, get a verdict in seconds, and generate a shareable proof page for buyers, investors, or your security team.
 
+Public site:
+
+`https://byteworthyllc.github.io/honeypot-med/`
+
 The fastest path is now just:
 
 ```bash
@@ -177,6 +181,7 @@ Self-hosting guide: `docs/self-hosting.md`
 Launch framing: `docs/viral-product.md`
 Hosted studio notes: `docs/studio.md`
 Brand asset notes: `docs/brand-assets.md`
+Public surface notes: `docs/public-surface.md`
 
 ## Demo and Reports
 
@@ -192,6 +197,8 @@ Generated artifacts include:
 - `replay-report.json`
 - `replay-report.md`
 - `share/index.html`
+- `share/launch-kit.md`
+- `share/launch-kit.json`
 - `share/social-card.svg`
 - `share/summary.pdf`
 
@@ -208,6 +215,8 @@ python app.py share --pack claims --outdir reports/share
 Bundle outputs:
 - `bundle.json`
 - `index.html`
+- `launch-kit.md`
+- `launch-kit.json`
 - `report.json`
 - `report.md`
 - `social-card.svg`
@@ -229,8 +238,23 @@ python app.py studio
 Studio capabilities:
 - paste a single prompt and inspect it
 - run bundled healthcare attack packs
-- export share page, PDF brief, and social card from the browser
+- export share page, PDF brief, social card, and launch kit from the browser
 - browse recent exported bundles in a built-in gallery
+
+## Public Product Surface
+
+The repo now includes a crawlable static site in `site/` for search and answer-engine discovery.
+
+Surface artifacts:
+- `site/index.html`
+- `site/faq/index.html`
+- `site/use-cases/healthcare-ai/index.html`
+- `site/compare/prompt-guardrails-vs-honeypots/index.html`
+- `site/robots.txt`
+- `site/sitemap.xml`
+- `site/llms.txt`
+
+GitHub Pages deploys from `.github/workflows/pages.yml`.
 
 ## Attack Packs
 

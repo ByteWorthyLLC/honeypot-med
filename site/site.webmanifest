@@ -1,0 +1,17 @@
+{
+  "name": "Honeypot Med",
+  "short_name": "Honeypot Med",
+  "description": "Prompt-injection evidence for healthcare AI workflows.",
+  "start_url": "/honeypot-med/",
+  "display": "standalone",
+  "background_color": "#f6efe3",
+  "theme_color": "#c8472d",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

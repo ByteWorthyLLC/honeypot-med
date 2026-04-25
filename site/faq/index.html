@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Honeypot Med FAQ | Prompt-injection security for healthcare AI</title>
+  <meta name="description" content="Answers about Honeypot Med, prompt injection in healthcare AI, local-first setup, and why evidence bundles make security findings easier to share." />
+  <link rel="canonical" href="https://byteworthyllc.github.io/honeypot-med/faq/" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <meta property="og:title" content="Honeypot Med FAQ" />
+  <meta property="og:description" content="Direct answers about Honeypot Med, prompt injection, local-first setup, and healthcare AI security workflows." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://byteworthyllc.github.io/honeypot-med/faq/" />
+  <meta property="og:image" content="https://byteworthyllc.github.io/honeypot-med/assets/viral-hero.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "What does Honeypot Med do?", "acceptedAnswer": {"@type": "Answer", "text": "Honeypot Med inspects suspicious healthcare AI prompts and exports a verdict page, PDF brief, social card, Markdown report, JSON report, and launch kit."}},
+      {"@type": "Question", "name": "Why is prompt injection a healthcare AI problem?", "acceptedAnswer": {"@type": "Answer", "text": "Healthcare workflows often involve sensitive data, internal policy, claims logic, or triage decisions. Prompt injection can try to override safeguards and extract or manipulate those workflows."}},
+      {"@type": "Question", "name": "Does Honeypot Med require cloud keys?", "acceptedAnswer": {"@type": "Answer", "text": "No. The intended primary path is local-first and does not require API keys."}},
+      {"@type": "Question", "name": "Why does Honeypot Med focus on exports?", "acceptedAnswer": {"@type": "Answer", "text": "Because good security tooling should create artifacts that can be shared with buyers, security teams, and leadership instead of trapping the result in terminal output."}}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="../">
+        <span class="brand-mark">HM</span>
+        <span class="brand-copy">
+          <span class="brand-name">Honeypot Med</span>
+          <span class="brand-tagline">Prompt-injection evidence for healthcare AI</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="../">Home</a>
+        <a href="../use-cases/healthcare-ai/">Use Cases</a>
+        <a href="../compare/prompt-guardrails-vs-honeypots/">Compare</a>
+        <a href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="shell page-hero-grid">
+        <article class="panel page-hero-copy">
+          <div class="kicker">FAQ</div>
+          <h1 class="page-title">Answers built for search, buyers, and AI assistants.</h1>
+          <p>These are the questions people actually ask when they land on an open-source security project and are deciding whether it is real, usable, and worth sharing.</p>
+        </article>
+        <aside class="panel page-hero-side">
+          <strong>Fast answer</strong>
+          <p>Honeypot Med is a local-first prompt-injection honeypot for healthcare AI that exports proof bundles people can actually use in demos, reviews, and internal security conversations.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell faq-list">
+        <details class="panel faq-item" open>
+          <summary>What does Honeypot Med do?</summary>
+          <div class="faq-copy">Honeypot Med inspects suspicious prompts for healthcare AI workflows and turns the result into an evidence bundle: HTML page, PDF brief, social card, Markdown summary, JSON report, and launch kit.</div>
+        </details>
+        <details class="panel faq-item">
+          <summary>Who is Honeypot Med for?</summary>
+          <div class="faq-copy">It is for founders, product teams, security leads, researchers, and healthcare AI builders who need a lightweight way to demonstrate prompt-injection risk with clear outputs.</div>
+        </details>
+        <details class="panel faq-item">
+          <summary>Why is prompt injection a healthcare AI problem?</summary>
+          <div class="faq-copy">Healthcare AI often touches claims, prior auth, triage, intake, care navigation, or sensitive patient-facing flows. Prompt injection attempts to override the intended behavior of those systems and expose or manipulate sensitive logic.</div>
+        </details>
+        <details class="panel faq-item">
+          <summary>Does Honeypot Med require API keys?</summary>
+          <div class="faq-copy">No. The intended default path is local-first and works without API keys. Remote enrichment is optional, not required.</div>
+        </details>
+        <details class="panel faq-item">
+          <summary>What makes Honeypot Med different from a basic scanner?</summary>
+          <div class="faq-copy">The output is more public-facing. Instead of ending with a console score, each run becomes a package that can be reviewed by a founder, buyer, or security team without explanation.</div>
+        </details>
+        <details class="panel faq-item">
+          <summary>Is Honeypot Med only for healthcare?</summary>
+          <div class="faq-copy">The current positioning is healthcare-first because the threat model is concrete and the workflows are highly sensitive. The engine can generalize, but the strongest story today is in healthcare AI.</div>
+        </details>
+        <details class="panel faq-item">
+          <summary>What does a proof bundle contain?</summary>
+          <div class="faq-copy">A proof bundle includes an HTML evidence page, PDF summary, JSON report, Markdown summary, SVG social card, and launch-kit copy files.</div>
+        </details>
+        <details class="panel faq-item">
+          <summary>Why does a launch kit belong in a security tool?</summary>
+          <div class="faq-copy">Because open-source distribution is part of the product. If the output is clear enough to share, the tool spreads more easily and the findings are easier to communicate internally.</div>
+        </details>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="shell">
+        <article class="cta-card">
+          <div>
+            <div class="ribbon">Next step</div>
+            <h2>Open the repo, run the studio, and generate one proof page.</h2>
+            <p>That single experience explains the product better than paragraphs of positioning.</p>
+            <div class="hero-actions">
+              <a class="button" href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer">Open GitHub</a>
+              <a class="button-secondary" href="../">Back to home</a>
+            </div>
+          </div>
+          <div class="subtle-card">
+            <div class="small-caps">Default run path</div>
+            <h3>python app.py</h3>
+            <p>No key setup. No paid service dependency. The product is supposed to be usable the moment a person sees it.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div>
+        <p>Honeypot Med FAQ for GitHub Pages, search, and answer-engine discovery.</p>
+      </div>
+      <div class="footer-links">
+        <a href="../">Home</a>
+        <a href="../use-cases/healthcare-ai/">Use case</a>
+        <a href="../compare/prompt-guardrails-vs-honeypots/">Comparison</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../assets/app.js"></script>
+</body>
+</html>

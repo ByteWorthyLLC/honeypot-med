@@ -77,9 +77,11 @@ class StudioServerTest(unittest.TestCase):
         )
         self.assertEqual(payload["status"], "ok")
         self.assertIn("view_url", payload["bundle"])
+        self.assertIn("launch_markdown_url", payload["bundle"])
 
         share_page = self._get(payload["bundle"]["view_url"], text=True)
         self.assertIn("Honeypot Med Threat Snapshot", share_page)
+        self.assertIn("Launch-Ready Copy", share_page)
 
         bundles = self._get("/api/bundles")
         self.assertEqual(len(bundles["bundles"]), 1)

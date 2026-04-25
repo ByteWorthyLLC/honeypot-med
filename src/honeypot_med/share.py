@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+import json
 from datetime import datetime, timezone
 from html import escape
 
 from .branding import load_default_hero_data_uri
+from .launchkit import build_launch_kit
 
 
 def _verdict(report: dict) -> tuple[str, str]:
@@ -33,6 +35,20 @@ def _metric(label: str, value: str) -> str:
         f'<div class="metric-value">{escape(value)}</div>'
         f'<div class="metric-label">{escape(label)}</div>'
         "</div>"
+    )
+
+
+def _copy_card(label: str, value: str) -> str:
+    safe_value = escape(value)
+    attr_value = safe_value.replace("\n", "&#10;")
+    return (
+        '<article class="copy-card">'
+        f"<h3>{escape(label)}</h3>"
+        f'<p>{safe_value}</p>'
+        '<button class="copy-button" type="button" data-copy="'
+        f"{attr_value}"
+        '">Copy</button>'
+        "</article>"
     )
 
 
@@ -86,7 +102,35 @@ def build_share_html(report: dict, *, source_label: str, title: str | None = Non
     heading = title or "Honeypot Med Threat Snapshot"
     generated_at = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
     engine = report.get("engine", {})
+    launch_kit = build_launch_kit(report, title=heading, source_label=source_label)
     events_markup = "".join(_event_markup(event) for event in report.get("events", []))
+    launch_markup = "".join(
+        [
+            _copy_card("Headline", launch_kit["headline"]),
+            _copy_card("X Post", launch_kit["x_post"]),
+            _copy_card("LinkedIn Post", launch_kit["linkedin_post"]),
+            _copy_card("Hacker News Title", launch_kit["hacker_news_title"]),
+            _copy_card("Email Subject", launch_kit["email_subject"]),
+        ]
+    )
+    keywords = ", ".join(launch_kit["keywords"])
+    structured_data = {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": heading,
+        "description": launch_kit["meta_description"],
+        "keywords": launch_kit["keywords"],
+        "about": [
+            "prompt injection",
+            "healthcare AI security",
+            "open source security tooling",
+        ],
+        "publisher": {
+            "@type": "Organization",
+            "name": "ByteWorthy LLC",
+            "url": launch_kit["repo_url"],
+        },
+    }
     hero = load_default_hero_data_uri()
     verdict_background = (
         "background:"
@@ -104,6 +148,17 @@ def build_share_html(report: dict, *, source_label: str, title: str | None = Non
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{escape(heading)}</title>
+  <meta name="description" content="{escape(launch_kit['meta_description'])}" />
+  <meta name="keywords" content="{escape(keywords)}" />
+  <meta property="og:title" content="{escape(heading)}" />
+  <meta property="og:description" content="{escape(launch_kit['meta_description'])}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="social-card.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{escape(heading)}" />
+  <meta name="twitter:description" content="{escape(launch_kit['meta_description'])}" />
+  <meta name="twitter:image" content="social-card.svg" />
+  <script type="application/ld+json">{json.dumps(structured_data)}</script>
   <style>
     :root {{
       --bg: #f6efe3;
@@ -248,6 +303,7 @@ def build_share_html(report: dict, *, source_label: str, title: str | None = Non
     .events {{
       display: grid;
       gap: 16px;
+      margin-bottom: 18px;
     }}
     .event-card {{
       padding: 24px;
@@ -357,6 +413,87 @@ def build_share_html(report: dict, *, source_label: str, title: str | None = Non
       line-height: 1.6;
       text-align: center;
     }}
+    .launch-kit {{
+      display: grid;
+      gap: 16px;
+      margin-bottom: 18px;
+    }}
+    .launch-headline {{
+      padding: 24px;
+    }}
+    .launch-headline h2,
+    .launch-copy-grid h2 {{
+      margin: 0 0 8px;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }}
+    .launch-headline p {{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 16px;
+    }}
+    .launch-copy-grid {{
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }}
+    .copy-card {{
+      padding: 20px;
+      background: var(--panel-strong);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }}
+    .copy-card h3 {{
+      margin: 0;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }}
+    .copy-card p {{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      white-space: pre-wrap;
+      font-size: 14px;
+    }}
+    .copy-button {{
+      width: fit-content;
+      border: 0;
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: var(--accent);
+      color: white;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }}
+    .copy-button:hover {{
+      background: var(--accent-deep);
+    }}
+    .launch-links {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 14px;
+    }}
+    .launch-links a {{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.76);
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+    }}
     @media (max-width: 940px) {{
       .hero,
       .context,
@@ -406,6 +543,23 @@ def build_share_html(report: dict, *, source_label: str, title: str | None = Non
       </article>
     </section>
 
+    <section class="launch-kit">
+      <article class="panel launch-headline">
+        <h2>Launch-Ready Copy</h2>
+        <p>{escape(launch_kit['summary'])}</p>
+        <p>{escape(launch_kit['evidence_line'])}</p>
+        <div class="launch-links">
+          <a href="{escape(launch_kit['public_site_url'])}" target="_blank" rel="noreferrer">Public Site</a>
+          <a href="{escape(launch_kit['repo_url'])}" target="_blank" rel="noreferrer">GitHub Repo</a>
+          <a href="launch-kit.md" target="_blank" rel="noreferrer">Launch Kit Markdown</a>
+          <a href="launch-kit.json" target="_blank" rel="noreferrer">Launch Kit JSON</a>
+        </div>
+      </article>
+      <div class="launch-copy-grid">
+        {launch_markup}
+      </div>
+    </section>
+
     <section class="events">
       {events_markup}
     </section>
@@ -414,6 +568,23 @@ def build_share_html(report: dict, *, source_label: str, title: str | None = Non
       This page was generated locally. It is safe to publish as a proof artifact, screenshot, or buyer-facing security snapshot.
     </footer>
   </main>
+  <script>
+    Array.from(document.querySelectorAll(".copy-button")).forEach((button) => {{
+      button.addEventListener("click", async () => {{
+        const value = button.dataset.copy || "";
+        try {{
+          await navigator.clipboard.writeText(value);
+          const original = button.textContent;
+          button.textContent = "Copied";
+          setTimeout(() => {{
+            button.textContent = original;
+          }}, 1200);
+        }} catch (_error) {{
+          button.textContent = "Copy failed";
+        }}
+      }});
+    }});
+  </script>
 </body>
 </html>
 """

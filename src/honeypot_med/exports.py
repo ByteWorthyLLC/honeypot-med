@@ -9,6 +9,7 @@ from html import escape
 from pathlib import Path
 
 from .branding import load_default_hero_data_uri
+from .launchkit import build_launch_json, build_launch_kit, build_launch_markdown, bundle_verdict
 from .share import build_share_html
 
 
@@ -125,15 +126,6 @@ def _build_summary_pdf(report: dict, *, title: str, source_label: str) -> bytes:
     return bytes(pdf)
 
 
-def _bundle_verdict(report: dict) -> str:
-    severity = report.get("severity_counts", {})
-    if int(severity.get("critical", 0)) > 0 or int(severity.get("high", 0)) > 0:
-        return "BLOCK"
-    if int(severity.get("medium", 0)) > 0:
-        return "REVIEW"
-    return "PASS"
-
-
 def build_bundle_manifest(report: dict, *, title: str, source_label: str) -> dict:
     events = list(report.get("events", []))
     top_event = max(events, key=lambda event: int(event.get("risk_score", 0)), default={})
@@ -145,7 +137,7 @@ def build_bundle_manifest(report: dict, *, title: str, source_label: str) -> dic
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "title": title,
         "source_label": source_label,
-        "verdict": _bundle_verdict(report),
+        "verdict": bundle_verdict(report),
         "prompts_analyzed": int(report.get("total_prompts", 0)),
         "high_risk_count": int(report.get("high_risk_count", 0)),
         "proven_findings_count": int(report.get("proven_findings_count", 0)),
@@ -156,7 +148,7 @@ def build_bundle_manifest(report: dict, *, title: str, source_label: str) -> dic
 
 def build_social_card_svg(report: dict, *, title: str, source_label: str) -> str:
     hero = load_default_hero_data_uri()
-    verdict = _bundle_verdict(report)
+    verdict = bundle_verdict(report)
     top_score = max((int(event.get("risk_score", 0)) for event in report.get("events", [])), default=0)
     hero_markup = (
         f'<image href="{hero}" x="660" y="0" width="540" height="630" preserveAspectRatio="xMidYMid slice" />'
@@ -205,6 +197,8 @@ def write_share_bundle(report: dict, outdir: str, *, source_label: str, title: s
     html_path = bundle_dir / "index.html"
     social_path = bundle_dir / "social-card.svg"
     pdf_path = bundle_dir / "summary.pdf"
+    launch_markdown_path = bundle_dir / "launch-kit.md"
+    launch_json_path = bundle_dir / "launch-kit.json"
 
     json_path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     markdown_lines = [
@@ -233,6 +227,9 @@ def write_share_bundle(report: dict, outdir: str, *, source_label: str, title: s
             )
         )
     markdown_path.write_text("\n".join(markdown_lines) + "\n", encoding="utf-8")
+    launch_kit = build_launch_kit(report, title=bundle_title, source_label=source_label)
+    launch_markdown_path.write_text(build_launch_markdown(launch_kit), encoding="utf-8")
+    launch_json_path.write_text(build_launch_json(launch_kit), encoding="utf-8")
 
     html_path.write_text(
         build_share_html(report, source_label=source_label, title=bundle_title) + "\n",
@@ -250,6 +247,8 @@ def write_share_bundle(report: dict, outdir: str, *, source_label: str, title: s
         "markdown": markdown_path.name,
         "social_card": social_path.name,
         "pdf": pdf_path.name,
+        "launch_markdown": launch_markdown_path.name,
+        "launch_json": launch_json_path.name,
     }
     bundle_path.write_text(json.dumps(bundle_manifest, indent=2) + "\n", encoding="utf-8")
 
@@ -262,4 +261,6 @@ def write_share_bundle(report: dict, outdir: str, *, source_label: str, title: s
         "markdown_path": str(markdown_path),
         "social_card_path": str(social_path),
         "pdf_path": str(pdf_path),
+        "launch_markdown_path": str(launch_markdown_path),
+        "launch_json_path": str(launch_json_path),
     }
