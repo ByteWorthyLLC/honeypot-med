@@ -8,7 +8,7 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Build container image
         run: docker build -t honeypot-med:ci .
@@ -22,4 +22,3 @@ jobs:
           trap 'docker rm -f "$container_id" >/dev/null 2>&1 || true' EXIT
           sleep 5
           curl -fsS http://127.0.0.1:8899/health
-
