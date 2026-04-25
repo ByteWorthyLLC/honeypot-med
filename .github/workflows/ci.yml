@@ -30,6 +30,7 @@ jobs:
       - name: Share bundle smoke
         run: python app.py share --pack claims --outdir reports-ci/share
       - name: Security advisory replay
+        shell: bash
         run: |
           if python app.py replay --store examples/replay-fixture.jsonl --strict --pretty; then
             echo "Replay gate passed."
