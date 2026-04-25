@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="980" viewBox="0 0 1600 980" role="img" aria-label="Honeypot Med public launch site">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fcf7f0"/>
+      <stop offset="100%" stop-color="#efe3d0"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fffaf4"/>
+      <stop offset="100%" stop-color="#f6efe3"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="26" stdDeviation="28" flood-color="#572d11" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="980" fill="#f6efe3"/>
+  <circle cx="170" cy="150" r="250" fill="#c8472d" fill-opacity="0.1"/>
+  <circle cx="1400" cy="180" r="220" fill="#24695e" fill-opacity="0.12"/>
+  <rect x="60" y="60" width="1480" height="860" rx="38" fill="url(#bg)" filter="url(#shadow)"/>
+  <rect x="60" y="60" width="1480" height="90" rx="38" fill="#fffdf9"/>
+  <text x="110" y="116" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="24" font-weight="800" fill="#1f2630">HONEYPOT MED</text>
+  <text x="1220" y="116" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="18" fill="#5d666f">FAQ</text>
+  <text x="1292" y="116" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="18" fill="#5d666f">Media</text>
+  <text x="1378" y="116" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="18" fill="#5d666f">GitHub</text>
+  <rect x="100" y="188" width="752" height="312" rx="34" fill="#fffaf4" stroke="#1f2630" stroke-opacity="0.08"/>
+  <text x="146" y="242" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="18" letter-spacing="4" fill="#5d666f">LOCAL-FIRST. NO API KEYS. PUBLIC-PROOF ARTIFACTS.</text>
+  <text x="146" y="334" font-family="Iowan Old Style, Palatino Linotype, serif" font-size="72" font-weight="700" fill="#1f2630">Prompt-injection proof</text>
+  <text x="146" y="410" font-family="Iowan Old Style, Palatino Linotype, serif" font-size="72" font-weight="700" fill="#1f2630">pages for healthcare AI.</text>
+  <text x="146" y="464" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="24" fill="#5d666f">Static site, media kit, answer-engine copy, and open-source distribution surface.</text>
+  <rect x="146" y="526" width="164" height="56" rx="28" fill="#c8472d"/>
+  <text x="182" y="563" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="22" font-weight="800" fill="#fff">Open GitHub</text>
+  <rect x="888" y="188" width="556" height="312" rx="34" fill="#1f2630"/>
+  <text x="932" y="244" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="18" letter-spacing="4" fill="#f3ded2">PUBLIC PULSE</text>
+  <rect x="932" y="284" width="140" height="108" rx="24" fill="#fffaf4" fill-opacity="0.94"/>
+  <rect x="1094" y="284" width="140" height="108" rx="24" fill="#fffaf4" fill-opacity="0.94"/>
+  <rect x="1256" y="284" width="140" height="108" rx="24" fill="#fffaf4" fill-opacity="0.94"/>
+  <text x="962" y="326" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="15" fill="#5d666f">Home views</text>
+  <text x="962" y="372" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="38" font-weight="800" fill="#1f2630">1.2K</text>
+  <text x="1122" y="326" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="15" fill="#5d666f">GitHub opens</text>
+  <text x="1122" y="372" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="38" font-weight="800" fill="#1f2630">318</text>
+  <text x="1284" y="326" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="15" fill="#5d666f">Copy actions</text>
+  <text x="1284" y="372" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="38" font-weight="800" fill="#1f2630">97</text>
+  <text x="932" y="452" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="22" fill="#f3ded2">Search pages, comparison pages, launch media, and export bundles make the repo easier to discover and easier to repost.</text>
+  <rect x="100" y="546" width="430" height="284" rx="30" fill="url(#card)" stroke="#1f2630" stroke-opacity="0.08"/>
+  <image href="studio-surface.svg" x="118" y="564" width="394" height="178" preserveAspectRatio="xMidYMid slice"/>
+  <text x="136" y="782" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="16" letter-spacing="3" fill="#5d666f">STUDIO SHOT</text>
+  <text x="136" y="818" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="24" font-weight="800" fill="#1f2630">Local workflow with export deck</text>
+  <rect x="586" y="546" width="430" height="284" rx="30" fill="url(#card)" stroke="#1f2630" stroke-opacity="0.08"/>
+  <image href="share-surface.svg" x="604" y="564" width="394" height="178" preserveAspectRatio="xMidYMid slice"/>
+  <text x="622" y="782" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="16" letter-spacing="3" fill="#5d666f">SHARE SHOT</text>
+  <text x="622" y="818" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="24" font-weight="800" fill="#1f2630">Evidence page for buyers and teams</text>
+  <rect x="1072" y="546" width="372" height="284" rx="30" fill="url(#card)" stroke="#1f2630" stroke-opacity="0.08"/>
+  <text x="1110" y="594" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="16" letter-spacing="3" fill="#5d666f">LAUNCH ANGLES</text>
+  <text x="1110" y="648" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="24" font-weight="800" fill="#1f2630">Built to be reposted</text>
+  <text x="1110" y="694" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="20" fill="#5d666f">Open-source prompt-injection proof pages for healthcare AI.</text>
+  <text x="1110" y="744" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="20" fill="#5d666f">Local-first. No API keys required.</text>
+  <text x="1110" y="794" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="20" fill="#5d666f">Media kit, FAQ, comparisons, and share bundles included.</text>
+</svg>

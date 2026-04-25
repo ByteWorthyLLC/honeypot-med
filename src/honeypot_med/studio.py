@@ -221,14 +221,51 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
       color: var(--ink);
       font-family: "Avenir Next", "Helvetica Neue", Arial, sans-serif;
     }}
-    .shell {{
-      width: min(1180px, calc(100vw - 32px));
-      margin: 0 auto;
-      padding: 28px 0 48px;
-    }}
-    .hero {{
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
+	    .shell {{
+	      width: min(1180px, calc(100vw - 32px));
+	      margin: 0 auto;
+	      padding: 28px 0 48px;
+	    }}
+	    .masthead {{
+	      display: flex;
+	      align-items: center;
+	      justify-content: space-between;
+	      gap: 16px;
+	      margin-bottom: 18px;
+	    }}
+	    .brand {{
+	      display: inline-flex;
+	      align-items: center;
+	      gap: 12px;
+	    }}
+	    .brand-mark {{
+	      width: 42px;
+	      height: 42px;
+	      border-radius: 14px;
+	      display: grid;
+	      place-items: center;
+	      background: linear-gradient(135deg, #1f2630, #33414f);
+	      color: white;
+	      font-weight: 800;
+	      letter-spacing: 0.04em;
+	    }}
+	    .brand-copy {{
+	      display: grid;
+	      gap: 2px;
+	    }}
+	    .brand-name {{
+	      font-size: 15px;
+	      letter-spacing: 0.08em;
+	      text-transform: uppercase;
+	      font-weight: 800;
+	    }}
+	    .brand-tagline {{
+	      color: var(--muted);
+	      font-size: 13px;
+	    }}
+	    .hero {{
+	      display: grid;
+	      grid-template-columns: 1.05fr 0.95fr;
       gap: 18px;
       margin-bottom: 18px;
     }}
@@ -293,14 +330,36 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
       font-size: 16px;
       line-height: 1.5;
     }}
-    .grid {{
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }}
-    .composer {{
-      padding: 24px;
-    }}
+	    .steps, .grid {{
+	      display: grid;
+	      grid-template-columns: repeat(3, minmax(0, 1fr));
+	      gap: 18px;
+	    }}
+	    .grid {{
+	      grid-template-columns: 1fr 1fr;
+	    }}
+	    .step {{
+	      padding: 18px 20px;
+	      border-radius: 24px;
+	      background: rgba(255,255,255,0.82);
+	      border: 1px solid var(--line);
+	      box-shadow: var(--shadow);
+	    }}
+	    .step strong {{
+	      display: block;
+	      margin-bottom: 8px;
+	      font-size: 15px;
+	      letter-spacing: 0.08em;
+	      text-transform: uppercase;
+	    }}
+	    .step span {{
+	      color: var(--muted);
+	      line-height: 1.55;
+	      font-size: 14px;
+	    }}
+	    .composer {{
+	      padding: 24px;
+	    }}
     .composer h2, .results h2 {{
       margin: 0 0 12px;
       font-size: 20px;
@@ -498,19 +557,75 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
       color: var(--muted);
       font-size: 13px;
     }}
-    .links {{
-      display: grid;
-      gap: 10px;
-      margin-top: 18px;
-    }}
-    .links a {{
-      color: var(--accent-dark);
-      text-decoration: none;
-      font-weight: 700;
-    }}
-    .finding {{
-      padding: 14px;
-      border-radius: 18px;
+	    .hero-links {{
+	      display: grid;
+	      gap: 10px;
+	      margin-top: 18px;
+	    }}
+	    .hero-links a, .artifact-grid a {{
+	      color: var(--accent-dark);
+	      text-decoration: none;
+	      font-weight: 700;
+	    }}
+	    .result-summary {{
+	      display: grid;
+	      gap: 14px;
+	    }}
+	    .result-topline {{
+	      display: flex;
+	      align-items: center;
+	      justify-content: space-between;
+	      gap: 12px;
+	      flex-wrap: wrap;
+	    }}
+	    .bundle-pill {{
+	      display: inline-flex;
+	      padding: 8px 12px;
+	      border-radius: 999px;
+	      font-size: 12px;
+	      letter-spacing: 0.12em;
+	      text-transform: uppercase;
+	      background: rgba(31,38,48,0.08);
+	      color: var(--muted);
+	    }}
+	    .result-title {{
+	      margin: 0;
+	      font-family: "Iowan Old Style", "Palatino Linotype", serif;
+	      font-size: clamp(2rem, 3vw, 3rem);
+	      line-height: 0.94;
+	      letter-spacing: -0.04em;
+	    }}
+	    .result-copy {{
+	      color: var(--muted);
+	      line-height: 1.6;
+	    }}
+	    .artifact-grid {{
+	      display: grid;
+	      grid-template-columns: repeat(2, minmax(0, 1fr));
+	      gap: 12px;
+	      margin-top: 8px;
+	    }}
+	    .artifact-card {{
+	      padding: 16px;
+	      border-radius: 18px;
+	      background: rgba(255,255,255,0.88);
+	      border: 1px solid var(--line);
+	    }}
+	    .artifact-card strong {{
+	      display: block;
+	      margin-bottom: 6px;
+	      font-size: 15px;
+	    }}
+	    .artifact-card span {{
+	      display: block;
+	      color: var(--muted);
+	      line-height: 1.55;
+	      font-size: 13px;
+	      margin-bottom: 10px;
+	    }}
+	    .finding {{
+	      padding: 14px;
+	      border-radius: 18px;
       background: rgba(255,250,245,0.92);
       border: 1px solid var(--line);
       margin-top: 10px;
@@ -523,31 +638,55 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
       color: var(--muted);
       line-height: 1.6;
     }}
-    @media (max-width: 980px) {{
-      .hero, .grid, .pack-grid, .metrics, .gallery-grid {{
-        grid-template-columns: 1fr;
-      }}
-    }}
+	    @media (max-width: 980px) {{
+	      .hero, .steps, .grid, .pack-grid, .metrics, .gallery-grid, .artifact-grid {{
+	        grid-template-columns: 1fr;
+	      }}
+	    }}
   </style>
 </head>
 <body>
-  <main class="shell">
-	    <section class="hero">
-	      <article class="panel hero-copy">
-	        <div class="eyebrow">Hosted Local Studio</div>
-	        <h1>Paste a prompt. Get a launch verdict. Export the proof.</h1>
-	        <p>Honeypot Med Studio turns prompt-injection review into a buyer-facing workflow. Inspect one prompt or run a curated healthcare attack pack, then export a share page, PDF brief, social card, and launch kit in one pass.</p>
-	        <div class="links">
-	          <a href="{PUBLIC_SITE_URL}" target="_blank" rel="noreferrer">Open public site</a>
-	          <a href="{REPO_URL}" target="_blank" rel="noreferrer">Open GitHub repo</a>
+	  <main class="shell">
+	    <div class="masthead">
+	      <div class="brand">
+	        <div class="brand-mark">HM</div>
+	        <div class="brand-copy">
+	          <div class="brand-name">Honeypot Med</div>
+	          <div class="brand-tagline">Prompt-injection evidence for healthcare AI</div>
 	        </div>
-	      </article>
-      <aside class="panel hero-art">
-        <div class="hero-note">Generated visual direction powered by `videoagent-image-studio` to give the product an actual visual identity instead of generic security gradients.</div>
-      </aside>
-    </section>
+	      </div>
+	    </div>
+		    <section class="hero">
+		      <article class="panel hero-copy">
+		        <div class="eyebrow">Hosted Local Studio</div>
+		        <h1>Paste a prompt. Get a launch verdict. Export the proof.</h1>
+		        <p>Honeypot Med Studio turns prompt-injection review into a buyer-facing workflow. Inspect one prompt or run a curated healthcare attack pack, then export a share page, PDF brief, social card, and launch kit in one pass.</p>
+		        <div class="hero-links">
+		          <a href="{PUBLIC_SITE_URL}" target="_blank" rel="noreferrer">Open public site</a>
+		          <a href="{REPO_URL}" target="_blank" rel="noreferrer">Open GitHub repo</a>
+		        </div>
+		      </article>
+	      <aside class="panel hero-art">
+	        <div class="hero-note">Generated visual direction powered by `videoagent-image-studio` to give the product an actual visual identity instead of generic security gradients.</div>
+	      </aside>
+	    </section>
 
-    <section class="grid">
+	    <section class="steps">
+	      <article class="step">
+	        <strong>1. Compose</strong>
+	        <span>Paste one suspicious prompt or choose a healthcare attack pack.</span>
+	      </article>
+	      <article class="step">
+	        <strong>2. Inspect</strong>
+	        <span>Get a verdict, top findings, and a cleaner readout than raw logs.</span>
+	      </article>
+	      <article class="step">
+	        <strong>3. Export</strong>
+	        <span>Open the share page, PDF brief, social card, and launch kit immediately.</span>
+	      </article>
+	    </section>
+
+	    <section class="grid">
       <article class="panel composer">
         <h2>Compose Review</h2>
         <label for="title">Optional report title</label>
@@ -630,7 +769,7 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
       prompt.value = "";
       title.value = "";
       setPack(null);
-      results.innerHTML = '<div class="status">Ready</div><div class="muted">Run an inspection to produce a hosted verdict page, JSON report, Markdown summary, social card, and PDF brief.</div>';
+	          results.innerHTML = '<div class="status">Ready</div><div class="muted">Run an inspection to produce a hosted verdict page, JSON report, Markdown summary, launch kit, social card, and PDF brief.</div>';
     }});
 
     document.getElementById("analyze").addEventListener("click", async () => {{
@@ -645,7 +784,7 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
         return;
       }}
 
-      results.innerHTML = '<div class="status">Working</div><div class="muted">Generating verdict and export bundle...</div>';
+	        results.innerHTML = '<div class="status">Working</div><div class="muted">Generating verdict and export bundle...</div>';
 
       const response = await fetch("/api/analyze", {{
         method: "POST",
@@ -668,22 +807,27 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
       const findingMarkup = findings.map((finding) =>
         '<div class="finding"><strong>' + finding.rule_id + ' · ' + finding.attack_family + '</strong><div class="muted">' + finding.hit + '</div></div>'
       ).join('');
-      results.innerHTML = [
-        '<div class="status">Bundle Ready</div>',
-        '<div class="metrics">',
-        '<div class="metric"><div class="metric-value">' + data.report.total_prompts + '</div><div class="metric-label">Prompts</div></div>',
-        '<div class="metric"><div class="metric-value">' + data.report.high_risk_count + '</div><div class="metric-label">High Risk</div></div>',
-        '<div class="metric"><div class="metric-value">' + data.report.proven_findings_count + '</div><div class="metric-label">Proven</div></div>',
-        '</div>',
-        topMarkup,
-        findingMarkup,
-	          '<div class="links">',
-	          '<a href="' + data.bundle.view_url + '" target="_blank" rel="noreferrer">Open share page</a>',
-	          '<a href="' + data.bundle.pdf_url + '" target="_blank" rel="noreferrer">Open PDF brief</a>',
-	          '<a href="' + data.bundle.social_card_url + '" target="_blank" rel="noreferrer">Open social card</a>',
-	          '<a href="' + data.bundle.launch_markdown_url + '" target="_blank" rel="noreferrer">Open launch kit</a>',
-	          '<a href="' + data.bundle.json_url + '" target="_blank" rel="noreferrer">Open JSON report</a>',
-	          '</div>',
+	      const topSeverity = top ? String(top.severity || 'review').toUpperCase() : 'READY';
+	      results.innerHTML = [
+	        '<div class="status">Bundle Ready</div>',
+	        '<div class="result-summary">',
+	        '<div class="result-topline"><span class="bundle-pill">' + topSeverity + '</span><span class="bundle-pill">Top score ' + (top ? top.risk_score : 0) + '</span></div>',
+	        '<h3 class="result-title">' + (title.value.trim() || 'Honeypot Med Threat Snapshot') + '</h3>',
+	        '<div class="result-copy">Use the exported bundle as a buyer-facing proof artifact or internal launch review packet.</div>',
+	        '</div>',
+	        '<div class="metrics">',
+	        '<div class="metric"><div class="metric-value">' + data.report.total_prompts + '</div><div class="metric-label">Prompts</div></div>',
+	        '<div class="metric"><div class="metric-value">' + data.report.high_risk_count + '</div><div class="metric-label">High Risk</div></div>',
+	        '<div class="metric"><div class="metric-value">' + data.report.proven_findings_count + '</div><div class="metric-label">Proven</div></div>',
+	        '</div>',
+	        topMarkup,
+	        findingMarkup,
+	        '<div class="artifact-grid">',
+	        '<div class="artifact-card"><strong>Share page</strong><span>Clean verdict surface for buyers and teammates.</span><a href="' + data.bundle.view_url + '" target="_blank" rel="noreferrer">Open HTML</a></div>',
+	        '<div class="artifact-card"><strong>PDF brief</strong><span>Quick summary for launch reviews and attachments.</span><a href="' + data.bundle.pdf_url + '" target="_blank" rel="noreferrer">Open PDF</a></div>',
+	        '<div class="artifact-card"><strong>Social card</strong><span>Visual asset for public launch posts and docs.</span><a href="' + data.bundle.social_card_url + '" target="_blank" rel="noreferrer">Open SVG</a></div>',
+	        '<div class="artifact-card"><strong>Launch kit</strong><span>Copy blocks for posts, email, and release notes.</span><a href="' + data.bundle.launch_markdown_url + '" target="_blank" rel="noreferrer">Open Markdown</a></div>',
+	        '</div>',
 	      ].join('');
       await loadGallery();
     }});

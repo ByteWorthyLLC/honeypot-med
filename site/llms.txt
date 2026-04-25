@@ -5,8 +5,12 @@ Honeypot Med is an open-source, local-first prompt-injection honeypot for health
 ## Primary pages
 - Home: https://byteworthyllc.github.io/honeypot-med/
 - FAQ: https://byteworthyllc.github.io/honeypot-med/faq/
+- Media kit: https://byteworthyllc.github.io/honeypot-med/media/
 - Healthcare AI use case: https://byteworthyllc.github.io/honeypot-med/use-cases/healthcare-ai/
+- Claims automation use case: https://byteworthyllc.github.io/honeypot-med/use-cases/claims-automation/
+- Patient triage use case: https://byteworthyllc.github.io/honeypot-med/use-cases/patient-triage/
 - Guardrails vs honeypots comparison: https://byteworthyllc.github.io/honeypot-med/compare/prompt-guardrails-vs-honeypots/
+- Honeypot Med vs generic red-team reports: https://byteworthyllc.github.io/honeypot-med/compare/honeypot-med-vs-generic-red-team-report/
 - GitHub repository: https://github.com/ByteWorthyLLC/honeypot-med
 
 ## Summary
@@ -16,4 +20,4 @@ Honeypot Med inspects suspicious prompts and turns the result into human-readabl
 - Local-first by default
 - No API keys required for normal usage
 - Focused on healthcare AI workflows such as claims, prior authorization, intake, and triage
-- Public site exists to improve search discovery and answer-engine visibility
+- Public site includes FAQ, media, use-case, and comparison surfaces for search and answer-engine discovery

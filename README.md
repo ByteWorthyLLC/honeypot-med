@@ -248,8 +248,12 @@ The repo now includes a crawlable static site in `site/` for search and answer-e
 Surface artifacts:
 - `site/index.html`
 - `site/faq/index.html`
+- `site/media/index.html`
 - `site/use-cases/healthcare-ai/index.html`
+- `site/use-cases/claims-automation/index.html`
+- `site/use-cases/patient-triage/index.html`
 - `site/compare/prompt-guardrails-vs-honeypots/index.html`
+- `site/compare/honeypot-med-vs-generic-red-team-report/index.html`
 - `site/robots.txt`
 - `site/sitemap.xml`
 - `site/llms.txt`

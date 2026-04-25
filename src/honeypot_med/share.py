@@ -188,6 +188,62 @@ def build_share_html(report: dict, *, source_label: str, title: str | None = Non
       margin: 0 auto;
       padding: 40px 0 56px;
     }}
+    .masthead {{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }}
+    .brand {{
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }}
+    .brand-mark {{
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #1f2630, #33414f);
+      color: white;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+    }}
+    .brand-copy {{
+      display: grid;
+      gap: 2px;
+    }}
+    .brand-name {{
+      font-size: 15px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }}
+    .brand-tagline {{
+      color: var(--muted);
+      font-size: 13px;
+    }}
+    .masthead-links {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }}
+    .masthead-links a,
+    .artifact-links a {{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.78);
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+    }}
     .hero {{
       display: grid;
       grid-template-columns: 1.25fr 0.75fr;
@@ -482,22 +538,20 @@ def build_share_html(report: dict, *, source_label: str, title: str | None = Non
       gap: 12px;
       margin-top: 14px;
     }}
-    .launch-links a {{
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.76);
-      color: var(--ink);
-      text-decoration: none;
-      font-weight: 700;
+    .artifact-links {{
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }}
+    .artifact-links a {{
+      min-height: 56px;
     }}
     @media (max-width: 940px) {{
       .hero,
       .context,
-      .metrics {{
+      .metrics,
+      .artifact-links {{
         grid-template-columns: 1fr;
       }}
     }}
@@ -505,6 +559,19 @@ def build_share_html(report: dict, *, source_label: str, title: str | None = Non
 </head>
 <body>
   <main class="shell">
+    <div class="masthead">
+      <div class="brand">
+        <div class="brand-mark">HM</div>
+        <div class="brand-copy">
+          <div class="brand-name">Honeypot Med</div>
+          <div class="brand-tagline">Prompt-injection evidence for healthcare AI</div>
+        </div>
+      </div>
+      <div class="masthead-links">
+        <a href="{escape(launch_kit['public_site_url'])}" target="_blank" rel="noreferrer">Public site</a>
+        <a href="{escape(launch_kit['repo_url'])}" target="_blank" rel="noreferrer">GitHub repo</a>
+      </div>
+    </div>
     <section class="hero">
       <article class="panel hero-copy">
         <div class="eyebrow">Prompt Injection Evidence</div>
@@ -526,6 +593,13 @@ def build_share_html(report: dict, *, source_label: str, title: str | None = Non
       {_metric("High-Risk Events", str(int(report.get("high_risk_count", 0))))}
       {_metric("Proven Findings", str(int(report.get("proven_findings_count", 0))))}
       {_metric("Unproven Hypotheses", str(int(report.get("unproven_count", 0))))}
+    </section>
+
+    <section class="artifact-links">
+      <a href="report.json" target="_blank" rel="noreferrer">Open JSON report</a>
+      <a href="report.md" target="_blank" rel="noreferrer">Open Markdown summary</a>
+      <a href="summary.pdf" target="_blank" rel="noreferrer">Open PDF brief</a>
+      <a href="social-card.svg" target="_blank" rel="noreferrer">Open social card</a>
     </section>
 
     <section class="context">

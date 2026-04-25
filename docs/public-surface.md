@@ -13,8 +13,12 @@ Current pages:
 
 - `/`
 - `/faq/`
+- `/media/`
 - `/use-cases/healthcare-ai/`
+- `/use-cases/claims-automation/`
+- `/use-cases/patient-triage/`
 - `/compare/prompt-guardrails-vs-honeypots/`
+- `/compare/honeypot-med-vs-generic-red-team-report/`
 
 Discovery artifacts:
 
@@ -22,6 +26,12 @@ Discovery artifacts:
 - `site/sitemap.xml`
 - `site/llms.txt`
 - `site/site.webmanifest`
+
+Engagement layer:
+
+- zero-key public repo pulse via the GitHub REST API on the Pages surface
+- live stars, forks, open-issues, and last-push indicators
+- browser-native reel instead of a hosted video dependency
 
 Deployment:
 

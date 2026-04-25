@@ -94,7 +94,8 @@
         <a href="faq/">FAQ</a>
         <a href="use-cases/healthcare-ai/">Use Cases</a>
         <a href="compare/prompt-guardrails-vs-honeypots/">Compare</a>
-        <a href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="media/">Media</a>
+        <a href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer" data-track-action="click" data-track-key="github-repo">GitHub</a>
       </nav>
     </div>
   </header>
@@ -107,8 +108,8 @@
           <h1>Prompt-injection proof pages for healthcare AI.</h1>
           <p>Honeypot Med is an open-source security product surface, not just a scanner. Paste one prompt, get a verdict, and export an HTML evidence page, PDF brief, social card, JSON report, and launch kit that people can actually share.</p>
           <div class="hero-actions">
-            <a class="button" href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer">Open GitHub</a>
-            <a class="button-secondary" href="https://github.com/ByteWorthyLLC/honeypot-med#readme" target="_blank" rel="noreferrer">Read README</a>
+            <a class="button" href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer" data-track-action="click" data-track-key="github-repo">Open GitHub</a>
+            <a class="button-secondary" href="https://github.com/ByteWorthyLLC/honeypot-med#readme" target="_blank" rel="noreferrer" data-track-action="click" data-track-key="github-readme">Read README</a>
             <a class="button-ghost" href="#launch-loop">See the launch loop</a>
           </div>
         </article>
@@ -119,7 +120,12 @@
             <div class="evidence-grid">
               <div class="hero-stat"><strong>1</strong><span>command to launch: <code>python app.py</code></span></div>
               <div class="hero-stat"><strong>0</strong><span>API keys required for the default path</span></div>
-              <div class="hero-stat"><strong>5</strong><span>public-facing outputs from one analysis pass</span></div>
+              <div class="hero-stat"><strong>7</strong><span>surfaces now live across product, site, and launch media</span></div>
+            </div>
+            <div class="pulse-grid" aria-label="Public pulse counters">
+              <div class="pulse-card"><span>GitHub stars</span><strong data-repo-metric="stargazers_count">--</strong></div>
+              <div class="pulse-card"><span>Forks</span><strong data-repo-metric="forks_count">--</strong></div>
+              <div class="pulse-card"><span>Last push</span><strong data-repo-pushed>--</strong></div>
             </div>
           </div>
         </aside>
@@ -148,6 +154,40 @@
             <h3>Local-first lowers the demo barrier</h3>
             <p>People can run the studio without setting up billing, cloud keys, or a hosted backend. That matters for open-source spread.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-header">
+          <div>
+            <div class="ribbon">Proof surfaces</div>
+            <h2 class="section-title">The product now has a visual media layer.</h2>
+          </div>
+          <p>This keeps the repo from feeling like documentation-only open source. The screenshots, reel, and social assets make the project legible before anyone reads the code.</p>
+        </div>
+        <div class="visual-grid">
+          <article class="visual-card">
+            <img src="assets/studio-surface.svg" alt="Honeypot Med studio screenshot" />
+            <h3>Studio: paste prompt, export bundle</h3>
+            <p>The local workflow now has a corresponding launch visual so posts and screenshots point back to a coherent product story.</p>
+          </article>
+          <div class="visual-stack">
+            <article class="visual-card">
+              <img src="assets/share-surface.svg" alt="Honeypot Med share page screenshot" />
+              <h3>Share surface: evidence that reads cleanly</h3>
+              <p>The artifact is the wedge. It should look credible enough that buyers and teams take it seriously on first glance.</p>
+            </article>
+            <article class="visual-card">
+              <img src="assets/launch-surface.svg" alt="Honeypot Med public product surface screenshot" />
+              <h3>Launch surface: site, comparison pages, and media kit</h3>
+              <p>The Pages site now has a media layer and more indexable pages so the project isn’t trapped inside the README.</p>
+              <div class="inline-actions">
+                <a href="media/">Open media kit</a>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -188,7 +228,7 @@
             <div class="ribbon">Search surface</div>
             <h2 class="section-title">Built to be crawlable by search engines and answer engines.</h2>
           </div>
-          <p>This site ships with direct-answer copy, structured metadata, an FAQ surface, a comparison page, a use-case page, <code>robots.txt</code>, <code>sitemap.xml</code>, and <code>llms.txt</code> so the project is not trapped inside GitHub alone.</p>
+          <p>This site now ships with direct-answer copy, structured metadata, FAQ pages, media pages, multiple use-case pages, comparison pages, <code>robots.txt</code>, <code>sitemap.xml</code>, and <code>llms.txt</code> so the project is not trapped inside GitHub alone.</p>
         </div>
         <div class="page-grid">
           <article class="page-card">
@@ -197,14 +237,14 @@
             <div class="inline-actions"><a href="faq/">Open FAQ</a></div>
           </article>
           <article class="page-card">
-            <h3>Use-case page</h3>
+            <h3>Use-case pages</h3>
             <p>Focused content for healthcare AI security teams, founders, product leaders, and compliance-minded buyers.</p>
-            <div class="inline-actions"><a href="use-cases/healthcare-ai/">Open use case</a></div>
+            <div class="inline-cluster"><a class="badge-link" href="use-cases/healthcare-ai/">Healthcare AI</a><a class="badge-link" href="use-cases/claims-automation/">Claims</a><a class="badge-link" href="use-cases/patient-triage/">Triage</a></div>
           </article>
           <article class="page-card">
-            <h3>Comparison page</h3>
-            <p>A clearer explanation of where prompt guardrails help, where they fail, and where honeypots become useful proof.</p>
-            <div class="inline-actions"><a href="compare/prompt-guardrails-vs-honeypots/">Open comparison</a></div>
+            <h3>Comparison pages</h3>
+            <p>A clearer explanation of where guardrails help, where generic red-team reports stop, and where honeypots become useful proof.</p>
+            <div class="inline-cluster"><a class="badge-link" href="compare/prompt-guardrails-vs-honeypots/">Guardrails</a><a class="badge-link" href="compare/honeypot-med-vs-generic-red-team-report/">Red-team reports</a></div>
           </article>
         </div>
       </div>
@@ -282,8 +322,9 @@
             <h2>Launch the studio, generate a proof page, and publish the result.</h2>
             <p>The point is not to hoard findings in a notebook. The point is to generate a clean public-facing artifact fast enough that people actually use and share it.</p>
             <div class="hero-actions">
-              <a class="button" href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer">Star the repo</a>
-              <a class="button-secondary" href="https://github.com/ByteWorthyLLC/honeypot-med#zero-friction-quickstart" target="_blank" rel="noreferrer">Run the quickstart</a>
+              <a class="button" href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer" data-track-action="click" data-track-key="github-repo">Star the repo</a>
+              <a class="button-secondary" href="https://github.com/ByteWorthyLLC/honeypot-med#zero-friction-quickstart" target="_blank" rel="noreferrer" data-track-action="click" data-track-key="github-quickstart">Run the quickstart</a>
+              <a class="button-ghost" href="media/">Open the media kit</a>
             </div>
           </div>
           <div class="surface-card">
@@ -306,13 +347,14 @@
     <div class="shell footer-grid">
       <div>
         <p>Honeypot Med is maintained as an open-source security project by ByteWorthy LLC.</p>
-        <p><span data-year></span> Honeypot Med. Public site for GitHub Pages, search, and answer-engine discovery.</p>
+        <p><span data-year></span> Honeypot Med. Public site for GitHub Pages, search, answer-engine discovery, and launch distribution.</p>
       </div>
       <div class="footer-links">
         <a href="faq/">FAQ</a>
         <a href="use-cases/healthcare-ai/">Use case</a>
         <a href="compare/prompt-guardrails-vs-honeypots/">Comparison</a>
-        <a href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="media/">Media kit</a>
+        <a href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer" data-track-action="click" data-track-key="github-repo">GitHub</a>
       </div>
     </div>
   </footer>

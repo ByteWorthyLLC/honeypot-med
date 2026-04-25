@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://byteworthyllc.github.io/honeypot-med/</loc>
-  </url>
-  <url>
-    <loc>https://byteworthyllc.github.io/honeypot-med/faq/</loc>
-  </url>
-  <url>
-    <loc>https://byteworthyllc.github.io/honeypot-med/use-cases/healthcare-ai/</loc>
-  </url>
-  <url>
-    <loc>https://byteworthyllc.github.io/honeypot-med/compare/prompt-guardrails-vs-honeypots/</loc>
-  </url>
+  <url><loc>https://byteworthyllc.github.io/honeypot-med/</loc></url>
+  <url><loc>https://byteworthyllc.github.io/honeypot-med/faq/</loc></url>
+  <url><loc>https://byteworthyllc.github.io/honeypot-med/media/</loc></url>
+  <url><loc>https://byteworthyllc.github.io/honeypot-med/use-cases/healthcare-ai/</loc></url>
+  <url><loc>https://byteworthyllc.github.io/honeypot-med/use-cases/claims-automation/</loc></url>
+  <url><loc>https://byteworthyllc.github.io/honeypot-med/use-cases/patient-triage/</loc></url>
+  <url><loc>https://byteworthyllc.github.io/honeypot-med/compare/prompt-guardrails-vs-honeypots/</loc></url>
+  <url><loc>https://byteworthyllc.github.io/honeypot-med/compare/honeypot-med-vs-generic-red-team-report/</loc></url>
 </urlset>

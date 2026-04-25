@@ -626,3 +626,254 @@ h1,
     width: min(var(--max), calc(100vw - 20px));
   }
 }
+
+.pulse-grid,
+.visual-grid,
+.download-grid,
+.storyline-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.pulse-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.pulse-card {
+  padding: 14px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.pulse-card span,
+.visual-card p,
+.download-card p,
+.storyline-card p,
+.kpi-label,
+.metric-note {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.pulse-card strong {
+  display: block;
+  margin-top: 8px;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.visual-grid {
+  grid-template-columns: 1.15fr 0.85fr;
+}
+
+.visual-stack {
+  display: grid;
+  gap: 16px;
+}
+
+.visual-card,
+.download-card,
+.storyline-card,
+.reel-frame,
+.metric-card {
+  background: var(--panel-strong);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+}
+
+.visual-card,
+.download-card,
+.storyline-card,
+.metric-card {
+  padding: 20px;
+}
+
+.visual-card img,
+.download-card img {
+  width: 100%;
+  border-radius: 18px;
+  border: 1px solid rgba(31, 38, 48, 0.08);
+  background: #fff;
+}
+
+.visual-card h3,
+.download-card h3,
+.storyline-card h3,
+.metric-card h3 {
+  margin: 0 0 10px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+
+.visual-card p,
+.download-card p {
+  margin: 14px 0 0;
+}
+
+.media-strip {
+  overflow: hidden;
+  padding: 8px 0 0;
+}
+
+.reel {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: var(--shadow);
+}
+
+.reel::before,
+.reel::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 90px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.reel::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(246, 239, 227, 1), rgba(246, 239, 227, 0));
+}
+
+.reel::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(246, 239, 227, 1), rgba(246, 239, 227, 0));
+}
+
+.reel-track {
+  display: flex;
+  gap: 18px;
+  width: max-content;
+  padding: 20px;
+  animation: reel-drift 22s linear infinite;
+}
+
+.reel-frame {
+  width: min(620px, calc(100vw - 72px));
+  padding: 18px;
+}
+
+.reel-frame img {
+  width: 100%;
+  border-radius: 20px;
+}
+
+.reel-frame figcaption {
+  margin-top: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.download-grid,
+.storyline-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.download-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.download-tag,
+.metric-kicker {
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.metric-grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.metric-value {
+  display: block;
+  font-size: 40px;
+  line-height: 1;
+  font-weight: 800;
+  margin: 8px 0 6px;
+}
+
+.metric-note {
+  margin: 0;
+  font-size: 14px;
+}
+
+.storyline-card {
+  min-height: 100%;
+}
+
+.storyline-card .small-caps {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.badge-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 42px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.84);
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.badge-link:hover {
+  background: white;
+}
+
+.inline-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.media-notice {
+  padding: 18px 20px;
+  border-radius: 22px;
+  border: 1px solid rgba(36, 105, 94, 0.18);
+  background: rgba(36, 105, 94, 0.08);
+  color: var(--ink);
+}
+
+.media-notice p {
+  margin: 0;
+  line-height: 1.7;
+}
+
+@keyframes reel-drift {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 1024px) {
+  .pulse-grid,
+  .visual-grid,
+  .download-grid,
+  .storyline-grid,
+  .metric-grid {
+    grid-template-columns: 1fr;
+  }
+}
