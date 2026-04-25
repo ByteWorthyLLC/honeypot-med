@@ -6,18 +6,23 @@ Honeypot Med is an open-source, local-first prompt-injection honeypot for health
 - Home: https://byteworthyllc.github.io/honeypot-med/
 - FAQ: https://byteworthyllc.github.io/honeypot-med/faq/
 - Media kit: https://byteworthyllc.github.io/honeypot-med/media/
+- Releases and installers: https://byteworthyllc.github.io/honeypot-med/releases/
 - Healthcare AI use case: https://byteworthyllc.github.io/honeypot-med/use-cases/healthcare-ai/
 - Claims automation use case: https://byteworthyllc.github.io/honeypot-med/use-cases/claims-automation/
+- Prior authorization use case: https://byteworthyllc.github.io/honeypot-med/use-cases/prior-authorization/
 - Patient triage use case: https://byteworthyllc.github.io/honeypot-med/use-cases/patient-triage/
 - Guardrails vs honeypots comparison: https://byteworthyllc.github.io/honeypot-med/compare/prompt-guardrails-vs-honeypots/
+- Guardrails vs launch review: https://byteworthyllc.github.io/honeypot-med/compare/guardrails-vs-launch-review/
+- Evals vs proof bundles: https://byteworthyllc.github.io/honeypot-med/compare/evals-vs-proof-bundles/
 - Honeypot Med vs generic red-team reports: https://byteworthyllc.github.io/honeypot-med/compare/honeypot-med-vs-generic-red-team-report/
 - GitHub repository: https://github.com/ByteWorthyLLC/honeypot-med
 
 ## Summary
-Honeypot Med inspects suspicious prompts and turns the result into human-readable evidence bundles, including HTML proof pages, PDF summaries, social cards, JSON reports, Markdown summaries, and launch-kit copy.
+Honeypot Med inspects suspicious prompts and turns the result into human-readable evidence bundles, including HTML proof pages, PDF summaries, social cards, JSON reports, Markdown summaries, launch-kit copy, and a public installer surface.
 
 ## Key facts
 - Local-first by default
 - No API keys required for normal usage
+- Public releases and bootstrap scripts are free and GitHub-native
 - Focused on healthcare AI workflows such as claims, prior authorization, intake, and triage
-- Public site includes FAQ, media, use-case, and comparison surfaces for search and answer-engine discovery
+- Public site includes FAQ, release, media, use-case, and comparison surfaces for search and answer-engine discovery

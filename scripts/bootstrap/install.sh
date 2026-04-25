@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO="${HONEYPOT_MED_REPO:-upstreamcx/honeypot-med}"
+REPO="${HONEYPOT_MED_REPO:-ByteWorthyLLC/honeypot-med}"
 VERSION="${1:-latest}"
 INSTALL_DIR="${HONEYPOT_MED_INSTALL_DIR:-$HOME/.local/bin}"
 
@@ -36,7 +36,7 @@ if [[ "$OS" == "Darwin" ]]; then
   curl -fsSL "$URL" -o "$FILE"
   echo "[bootstrap] installing macOS package"
   sudo installer -pkg "$FILE" -target /
-  echo "[bootstrap] installed. Run: honeypot-med start"
+  echo "[bootstrap] installed. Run: honeypot-med"
   exit 0
 fi
 
@@ -63,7 +63,7 @@ if [[ "$OS" == "Linux" ]]; then
   chmod +x "$INSTALL_DIR/honeypot-med"
   echo "[bootstrap] installed to $INSTALL_DIR/honeypot-med"
   echo "[bootstrap] ensure $INSTALL_DIR is on PATH"
-  echo "[bootstrap] run: honeypot-med start"
+  echo "[bootstrap] run: honeypot-med"
   exit 0
 fi
 

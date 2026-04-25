@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.4.0 - 2026-04-25
 
 ### Added
 - Built-in bundle metadata (`bundle.json`) and a recent-bundles gallery in the hosted studio.
@@ -10,11 +10,17 @@
 - One-command local launch path via `python app.py`, `run.sh`, `run.ps1`, and `run.bat`.
 - GitHub automation for Docker smoke tests, CodeQL scanning, and Dependabot updates.
 - Support guide and release-manifest unit coverage.
+- A public releases and installers page on GitHub Pages with bootstrap commands and release hydration from the GitHub API.
+- New search surfaces for prior authorization, evals vs proof bundles, and guardrails vs launch review.
+- A dedicated 404 page for the public product surface.
 
 ### Changed
 - CI now byte-compiles the codebase and smoke-tests share bundle generation.
 - Packaging CI now smoke-tests packaged binaries before uploading artifacts.
 - CLI help and default entry behavior now prioritize the browser studio instead of legacy analyze mode.
+- Studio now supports prompt chips, keyboard submission, and clearer launch/release navigation.
+- Share bundles now include release/install copy so non-developers have a cleaner path from proof page to install.
+- Release publishing now creates GitHub releases from tag builds and publishes aggregated checksums and a manifest.
 
 ## 0.3.0 - 2026-04-24
 

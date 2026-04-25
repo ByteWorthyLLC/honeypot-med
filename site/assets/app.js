@@ -1,4 +1,13 @@
 const GITHUB_REPO_API = "https://api.github.com/repos/ByteWorthyLLC/honeypot-med";
+const GITHUB_RELEASE_API = `${GITHUB_REPO_API}/releases/latest`;
+const RELEASE_ASSET_MATCHERS = {
+  "macos-pkg": /-macos\.pkg$/i,
+  "macos-tar": /-macos\.tar\.gz$/i,
+  "linux-tar": /-linux-.*\.tar\.gz$/i,
+  "windows-zip": /-windows-portable\.zip$/i,
+  checksums: /SHA256SUMS\.txt$/i,
+  manifest: /release-manifest\.json$/i,
+};
 
 function formatCompactCount(value) {
   const numeric = Number(value);
@@ -52,6 +61,98 @@ async function hydrateRepoPulse() {
   }
 }
 
+function formatDate(value) {
+  if (!value) {
+    return "--";
+  }
+  return new Date(value).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
+function findReleaseAsset(release, key) {
+  const matcher = RELEASE_ASSET_MATCHERS[key];
+  const assets = Array.isArray(release.assets) ? release.assets : [];
+  if (!matcher) {
+    return null;
+  }
+  return assets.find((asset) => matcher.test(asset.name || "")) || null;
+}
+
+function setReleaseFallback() {
+  document.querySelectorAll("[data-release-version]").forEach((node) => {
+    node.textContent = "Pending";
+  });
+  document.querySelectorAll("[data-release-date]").forEach((node) => {
+    node.textContent = "--";
+  });
+  document.querySelectorAll("[data-release-assets-count]").forEach((node) => {
+    node.textContent = "0";
+  });
+  document.querySelectorAll("[data-release-asset-name]").forEach((node) => {
+    node.textContent = "Pending tag";
+  });
+}
+
+async function hydrateReleaseSurface() {
+  const versionNodes = Array.from(document.querySelectorAll("[data-release-version]"));
+  const assetLinks = Array.from(document.querySelectorAll("[data-release-asset]"));
+  const releaseLinks = Array.from(document.querySelectorAll("[data-release-link]"));
+  if (!versionNodes.length && !assetLinks.length && !releaseLinks.length) {
+    return;
+  }
+
+  try {
+    const response = await fetch(GITHUB_RELEASE_API, {
+      mode: "cors",
+      cache: "no-store",
+      headers: {
+        Accept: "application/vnd.github+json",
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Failed to load GitHub release data");
+    }
+    const release = await response.json();
+    const version = release.tag_name || "Pending";
+    const published = formatDate(release.published_at);
+    const assetCount = Array.isArray(release.assets) ? release.assets.length : 0;
+    const releaseUrl = release.html_url || "https://github.com/ByteWorthyLLC/honeypot-med/releases";
+
+    versionNodes.forEach((node) => {
+      node.textContent = version;
+    });
+    document.querySelectorAll("[data-release-date]").forEach((node) => {
+      node.textContent = published;
+    });
+    document.querySelectorAll("[data-release-assets-count]").forEach((node) => {
+      node.textContent = formatCompactCount(assetCount);
+    });
+    releaseLinks.forEach((node) => {
+      node.setAttribute("href", releaseUrl);
+    });
+    assetLinks.forEach((node) => {
+      const key = node.getAttribute("data-release-asset") || "";
+      const asset = findReleaseAsset(release, key);
+      const label = document.querySelector(`[data-release-asset-name="${key}"]`);
+      if (!asset) {
+        if (label) {
+          label.textContent = "Not published in latest tag";
+        }
+        return;
+      }
+      node.setAttribute("href", asset.browser_download_url);
+      if (label) {
+        label.textContent = asset.name;
+      }
+    });
+  } catch (_error) {
+    setReleaseFallback();
+  }
+}
+
 function wireCopyButtons() {
   document.querySelectorAll("[data-copy]").forEach((button) => {
     button.addEventListener("click", async () => {
@@ -76,3 +177,4 @@ document.querySelectorAll("[data-year]").forEach((node) => {
 
 wireCopyButtons();
 hydrateRepoPulse();
+hydrateReleaseSurface();

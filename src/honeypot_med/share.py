@@ -111,6 +111,9 @@ def build_share_html(report: dict, *, source_label: str, title: str | None = Non
             _copy_card("LinkedIn Post", launch_kit["linkedin_post"]),
             _copy_card("Hacker News Title", launch_kit["hacker_news_title"]),
             _copy_card("Email Subject", launch_kit["email_subject"]),
+            _copy_card("Releases Page", launch_kit["releases_url"]),
+            _copy_card("Install on macOS/Linux", launch_kit["install_macos_linux"]),
+            _copy_card("Install on Windows", launch_kit["install_windows"]),
         ]
     )
     keywords = ", ".join(launch_kit["keywords"])
@@ -569,6 +572,7 @@ def build_share_html(report: dict, *, source_label: str, title: str | None = Non
       </div>
       <div class="masthead-links">
         <a href="{escape(launch_kit['public_site_url'])}" target="_blank" rel="noreferrer">Public site</a>
+        <a href="{escape(launch_kit['releases_url'])}" target="_blank" rel="noreferrer">Releases</a>
         <a href="{escape(launch_kit['repo_url'])}" target="_blank" rel="noreferrer">GitHub repo</a>
       </div>
     </div>
@@ -624,6 +628,7 @@ def build_share_html(report: dict, *, source_label: str, title: str | None = Non
         <p>{escape(launch_kit['evidence_line'])}</p>
         <div class="launch-links">
           <a href="{escape(launch_kit['public_site_url'])}" target="_blank" rel="noreferrer">Public Site</a>
+          <a href="{escape(launch_kit['releases_url'])}" target="_blank" rel="noreferrer">Releases</a>
           <a href="{escape(launch_kit['repo_url'])}" target="_blank" rel="noreferrer">GitHub Repo</a>
           <a href="launch-kit.md" target="_blank" rel="noreferrer">Launch Kit Markdown</a>
           <a href="launch-kit.json" target="_blank" rel="noreferrer">Launch Kit JSON</a>

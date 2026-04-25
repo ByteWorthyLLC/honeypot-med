@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Guardrails vs Launch Review | Honeypot Med</title>
+  <meta name="description" content="Why runtime guardrails and launch-review proof bundles occupy different layers in healthcare AI security, and where Honeypot Med fits." />
+  <link rel="canonical" href="https://byteworthyllc.github.io/honeypot-med/compare/guardrails-vs-launch-review/" />
+  <link rel="icon" href="../../assets/favicon.svg" type="image/svg+xml" />
+  <meta property="og:title" content="Guardrails vs Launch Review | Honeypot Med" />
+  <meta property="og:description" content="Runtime guardrails and launch-review proof bundles solve different problems. This page explains the difference." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://byteworthyllc.github.io/honeypot-med/compare/guardrails-vs-launch-review/" />
+  <meta property="og:image" content="https://byteworthyllc.github.io/honeypot-med/assets/launch-surface.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Guardrails vs launch review for healthcare AI",
+    "about": ["guardrails", "launch review", "prompt injection", "healthcare AI security"],
+    "publisher": {"@type": "Organization", "name": "ByteWorthy LLC"},
+    "url": "https://byteworthyllc.github.io/honeypot-med/compare/guardrails-vs-launch-review/"
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="../../">
+        <span class="brand-mark">HM</span>
+        <span class="brand-copy">
+          <span class="brand-name">Honeypot Med</span>
+          <span class="brand-tagline">Prompt-injection evidence for healthcare AI</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="../../">Home</a>
+        <a href="../../faq/">FAQ</a>
+        <a href="../../releases/">Releases</a>
+        <a href="../../media/">Media</a>
+        <a href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="shell page-hero-grid">
+        <article class="panel page-hero-copy">
+          <div class="kicker">Comparison</div>
+          <h1 class="page-title">Guardrails defend runtime. Launch review defends the decision to ship.</h1>
+          <p>A lot of teams blur those two layers together. Runtime guardrails are for live policy enforcement. Honeypot Med is stronger earlier in the process, when a suspicious prompt needs to become a review artifact before a feature launches or before a buyer trusts the system.</p>
+        </article>
+        <aside class="panel page-hero-side">
+          <strong>Short version</strong>
+          <p>Guardrails try to stop bad behavior in flight. Launch review packages evidence so teams can decide whether the workflow is ready at all.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell surface-card compare-table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Question</th>
+              <th>Runtime guardrails</th>
+              <th>Launch review with Honeypot Med</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Can the live system block unsafe requests?</td>
+              <td class="good">Yes, if implemented well</td>
+              <td class="warn">Not the main purpose</td>
+            </tr>
+            <tr>
+              <td>Can leadership or a buyer review one scary prompt quickly?</td>
+              <td class="warn">Usually weak</td>
+              <td class="good">Core design goal</td>
+            </tr>
+            <tr>
+              <td>Does it produce proof artifacts for the launch packet?</td>
+              <td class="warn">Rarely</td>
+              <td class="good">Yes: HTML, PDF, social card, launch kit</td>
+            </tr>
+            <tr>
+              <td>Does it improve public open-source distribution?</td>
+              <td class="warn">Not usually</td>
+              <td class="good">Yes, because the output is shareable</td>
+            </tr>
+            <tr>
+              <td>Should you keep both?</td>
+              <td class="good">Yes</td>
+              <td class="good">Yes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell story-grid">
+        <article class="story-card">
+          <h3>Use guardrails for live controls</h3>
+          <p>That is where denial, sanitization, and policy enforcement belong.</p>
+        </article>
+        <article class="story-card">
+          <h3>Use launch review for trust decisions</h3>
+          <p>Before rollout, teams need a readable artifact that explains why a workflow still feels risky.</p>
+        </article>
+        <article class="story-card">
+          <h3>Use both in healthcare AI</h3>
+          <p>Healthcare workflows are too sensitive to choose only one layer. Prevention and proof both matter.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div>
+        <p>Comparison page for Honeypot Med on GitHub Pages.</p>
+      </div>
+      <div class="footer-links">
+        <a href="../../">Home</a>
+        <a href="../../releases/">Releases</a>
+        <a href="../prompt-guardrails-vs-honeypots/">Guardrails vs honeypots</a>
+        <a href="../../media/">Media</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../../assets/app.js"></script>
+</body>
+</html>

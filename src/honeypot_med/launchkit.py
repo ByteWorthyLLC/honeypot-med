@@ -8,6 +8,16 @@ from datetime import datetime, timezone
 
 PUBLIC_SITE_URL = "https://byteworthyllc.github.io/honeypot-med/"
 REPO_URL = "https://github.com/ByteWorthyLLC/honeypot-med"
+RELEASES_URL = f"{PUBLIC_SITE_URL}releases/"
+INSTALL_MACOS_LINUX = (
+    "curl -fsSL "
+    "https://raw.githubusercontent.com/ByteWorthyLLC/honeypot-med/main/scripts/bootstrap/install.sh | bash"
+)
+INSTALL_WINDOWS = (
+    'powershell -ExecutionPolicy Bypass -Command '
+    '"iwr https://raw.githubusercontent.com/ByteWorthyLLC/honeypot-med/main/scripts/bootstrap/install.ps1 '
+    '-UseBasicParsing | iex"'
+)
 
 
 def bundle_verdict(report: dict) -> str:
@@ -71,6 +81,7 @@ def build_launch_kit(report: dict, *, title: str, source_label: str) -> dict:
         f"- summary.pdf\n"
         f"- social-card.svg\n\n"
         f"Project site: {PUBLIC_SITE_URL}\n"
+        f"Install and releases: {RELEASES_URL}\n"
         f"Repository: {REPO_URL}\n"
     )
     keywords = [
@@ -111,6 +122,9 @@ def build_launch_kit(report: dict, *, title: str, source_label: str) -> dict:
         "faq": faq,
         "public_site_url": PUBLIC_SITE_URL,
         "repo_url": REPO_URL,
+        "releases_url": RELEASES_URL,
+        "install_macos_linux": INSTALL_MACOS_LINUX,
+        "install_windows": INSTALL_WINDOWS,
     }
 
 
@@ -156,6 +170,12 @@ def build_launch_markdown(launch_kit: dict) -> str:
         "## Email Body",
         "",
         launch_kit["email_body"],
+        "",
+        "## Install",
+        "",
+        f"- Releases page: {launch_kit['releases_url']}",
+        f"- macOS / Linux: `{launch_kit['install_macos_linux']}`",
+        f"- Windows: `{launch_kit['install_windows']}`",
         "",
         "## Keywords",
         "",

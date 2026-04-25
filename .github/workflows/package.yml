@@ -6,6 +6,12 @@ on:
     tags:
       - "v*"
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+permissions:
+  contents: read
+
 jobs:
   package:
     strategy:
@@ -59,3 +65,75 @@ jobs:
           name: honeypot-med-${{ runner.os }}
           path: dist/
           if-no-files-found: error
+
+  publish-release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: package
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+
+      - uses: actions/download-artifact@v7
+        with:
+          path: release-assets
+
+      - name: Assemble release assets
+        run: |
+          rm -rf dist
+          mkdir -p dist/linux dist/macos dist/windows
+          cp -R release-assets/honeypot-med-Linux/. dist/linux/
+          cp -R release-assets/honeypot-med-macOS/. dist/macos/
+          cp -R release-assets/honeypot-med-Windows/. dist/windows/
+          python scripts/release/generate-manifest.py --dist-dir dist
+
+      - name: Build release notes
+        run: |
+          cat > RELEASE_NOTES.md <<EOF
+          # Honeypot Med ${GITHUB_REF_NAME}
+
+          Prompt-injection evidence for healthcare AI with a zero-key local-first path.
+
+          ## Fast paths
+
+          - Public site: https://byteworthyllc.github.io/honeypot-med/
+          - Releases page: https://byteworthyllc.github.io/honeypot-med/releases/
+          - GitHub repo: https://github.com/ByteWorthyLLC/honeypot-med
+
+          ## Quickstart
+
+          \`\`\`bash
+          python app.py
+          \`\`\`
+
+          ## Bootstrap installers
+
+          macOS / Linux:
+
+          \`\`\`bash
+          curl -fsSL https://raw.githubusercontent.com/ByteWorthyLLC/honeypot-med/main/scripts/bootstrap/install.sh | bash
+          \`\`\`
+
+          Windows:
+
+          \`\`\`powershell
+          powershell -ExecutionPolicy Bypass -Command "iwr https://raw.githubusercontent.com/ByteWorthyLLC/honeypot-med/main/scripts/bootstrap/install.ps1 -UseBasicParsing | iex"
+          \`\`\`
+          EOF
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mapfile -t assets < <(find dist -type f | sort)
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" "${assets[@]}" --clobber
+            gh release edit "$GITHUB_REF_NAME" --title "Honeypot Med $GITHUB_REF_NAME" --notes-file RELEASE_NOTES.md
+          else
+            gh release create "$GITHUB_REF_NAME" "${assets[@]}" --title "Honeypot Med $GITHUB_REF_NAME" --notes-file RELEASE_NOTES.md
+          fi

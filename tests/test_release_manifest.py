@@ -36,7 +36,7 @@ class ReleaseManifestTest(unittest.TestCase):
         module = self._load_module()
         manifest = {
             "project": "honeypot-med",
-            "version": "0.3.0",
+            "version": "0.4.0",
             "generated_at": "2026-04-24T00:00:00+00:00",
             "artifact_count": 1,
             "artifacts": [

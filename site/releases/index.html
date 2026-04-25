@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Honeypot Med Releases | Free installers, bootstrap scripts, and tagged builds</title>
+  <meta name="description" content="Download the latest Honeypot Med release, copy one-command bootstrap scripts for macOS, Windows, and Linux, and verify release assets with checksums and a manifest." />
+  <link rel="canonical" href="https://byteworthyllc.github.io/honeypot-med/releases/" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <meta property="og:title" content="Honeypot Med Releases" />
+  <meta property="og:description" content="Free installers, bootstrap scripts, and tagged builds for Honeypot Med on GitHub." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://byteworthyllc.github.io/honeypot-med/releases/" />
+  <meta property="og:image" content="https://byteworthyllc.github.io/honeypot-med/assets/launch-surface.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "name": "Honeypot Med Releases",
+        "url": "https://byteworthyllc.github.io/honeypot-med/releases/",
+        "description": "Latest release assets, checksums, and bootstrap scripts for Honeypot Med.",
+        "publisher": {"@type": "Organization", "name": "ByteWorthy LLC"}
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Honeypot Med",
+        "applicationCategory": "SecurityApplication",
+        "operatingSystem": "macOS, Windows, Linux",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "downloadUrl": "https://github.com/ByteWorthyLLC/honeypot-med/releases",
+        "url": "https://byteworthyllc.github.io/honeypot-med/releases/"
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="../">
+        <span class="brand-mark">HM</span>
+        <span class="brand-copy">
+          <span class="brand-name">Honeypot Med</span>
+          <span class="brand-tagline">Prompt-injection evidence for healthcare AI</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="../">Home</a>
+        <a href="../faq/">FAQ</a>
+        <a href="../use-cases/healthcare-ai/">Use Cases</a>
+        <a href="../compare/prompt-guardrails-vs-honeypots/">Compare</a>
+        <a href="../media/">Media</a>
+        <a href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="shell page-hero-grid">
+        <article class="panel page-hero-copy">
+          <div class="kicker">Install and download</div>
+          <h1 class="page-title">Free installers and one-command bootstrap scripts.</h1>
+          <p>The product has to be runnable by someone who just discovered it. This page gives you the fastest paths: open the studio from source, bootstrap from a tagged GitHub release, or download the packaged assets directly.</p>
+          <div class="hero-actions">
+            <a class="button" href="https://github.com/ByteWorthyLLC/honeypot-med/releases" target="_blank" rel="noreferrer" data-release-link>Open latest GitHub release</a>
+            <a class="button-secondary" href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer">Open repository</a>
+            <a class="button-ghost" href="#install-paths">See install paths</a>
+          </div>
+        </article>
+        <aside class="panel page-hero-side">
+          <strong>Latest public build</strong>
+          <div class="metric-grid release-grid">
+            <article class="metric-card">
+              <div class="metric-kicker">Version</div>
+              <strong class="metric-value" data-release-version>Waiting</strong>
+              <p class="metric-note">Pulled from the latest GitHub release tag.</p>
+            </article>
+            <article class="metric-card">
+              <div class="metric-kicker">Published</div>
+              <strong class="metric-value metric-value-small" data-release-date>Waiting</strong>
+              <p class="metric-note">Useful for buyers who want to see current maintenance.</p>
+            </article>
+            <article class="metric-card">
+              <div class="metric-kicker">Assets</div>
+              <strong class="metric-value" data-release-assets-count>--</strong>
+              <p class="metric-note">Installers and archives listed on the GitHub release.</p>
+            </article>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="install-paths">
+      <div class="shell">
+        <div class="section-header">
+          <div>
+            <div class="ribbon">Stupid simple</div>
+            <h2 class="section-title">Pick the install path that matches your comfort level.</h2>
+          </div>
+          <p>Everything here is free and GitHub-native. The default experience is still local-first and zero-key.</p>
+        </div>
+        <div class="install-grid">
+          <article class="command-card">
+            <div class="small-caps">Easiest source path</div>
+            <h3>Open the studio directly</h3>
+            <p>This keeps the experience obvious: one command, browser opens, no key setup.</p>
+            <pre class="command-block">python app.py</pre>
+            <button class="copy-button" type="button" data-copy="python app.py">Copy command</button>
+          </article>
+          <article class="command-card">
+            <div class="small-caps">macOS and Linux</div>
+            <h3>Bootstrap from the latest tag</h3>
+            <p>Pulls the latest public release and installs the packaged binary.</p>
+            <pre class="command-block">curl -fsSL https://raw.githubusercontent.com/ByteWorthyLLC/honeypot-med/main/scripts/bootstrap/install.sh | bash</pre>
+            <button class="copy-button" type="button" data-copy="curl -fsSL https://raw.githubusercontent.com/ByteWorthyLLC/honeypot-med/main/scripts/bootstrap/install.sh | bash">Copy command</button>
+          </article>
+          <article class="command-card">
+            <div class="small-caps">Windows</div>
+            <h3>Bootstrap from PowerShell</h3>
+            <p>Downloads the latest tagged Windows package and adds it to the user path.</p>
+            <pre class="command-block">powershell -ExecutionPolicy Bypass -Command "iwr https://raw.githubusercontent.com/ByteWorthyLLC/honeypot-med/main/scripts/bootstrap/install.ps1 -UseBasicParsing | iex"</pre>
+            <button class="copy-button" type="button" data-copy='powershell -ExecutionPolicy Bypass -Command "iwr https://raw.githubusercontent.com/ByteWorthyLLC/honeypot-med/main/scripts/bootstrap/install.ps1 -UseBasicParsing | iex"'>Copy command</button>
+          </article>
+          <article class="command-card">
+            <div class="small-caps">Self-hosting</div>
+            <h3>Run the studio in Docker</h3>
+            <p>Useful when you want a clean demo environment without touching your local Python setup.</p>
+            <pre class="command-block">docker compose up --build studio</pre>
+            <button class="copy-button" type="button" data-copy="docker compose up --build studio">Copy command</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-header">
+          <div>
+            <div class="ribbon">Latest assets</div>
+            <h2 class="section-title">Download the current packaged release.</h2>
+          </div>
+          <p>The links below hydrate from the latest GitHub release. If a card still says pending, the tag has not finished publishing yet.</p>
+        </div>
+        <div class="download-grid">
+          <article class="download-card">
+            <h3>macOS installer</h3>
+            <p>The native package path for non-technical users who want a standard install flow.</p>
+            <div class="download-meta">
+              <span class="download-tag" data-release-asset-name="macos-pkg">Waiting for asset</span>
+              <a class="badge-link" href="https://github.com/ByteWorthyLLC/honeypot-med/releases" data-release-asset="macos-pkg" target="_blank" rel="noreferrer">Open asset</a>
+            </div>
+          </article>
+          <article class="download-card">
+            <h3>macOS tarball</h3>
+            <p>Archive download for operators who prefer to inspect or redistribute the package manually.</p>
+            <div class="download-meta">
+              <span class="download-tag" data-release-asset-name="macos-tar">Waiting for asset</span>
+              <a class="badge-link" href="https://github.com/ByteWorthyLLC/honeypot-med/releases" data-release-asset="macos-tar" target="_blank" rel="noreferrer">Open asset</a>
+            </div>
+          </article>
+          <article class="download-card">
+            <h3>Linux tarball</h3>
+            <p>Portable packaged binary for Linux hosts that want the public tagged build.</p>
+            <div class="download-meta">
+              <span class="download-tag" data-release-asset-name="linux-tar">Waiting for asset</span>
+              <a class="badge-link" href="https://github.com/ByteWorthyLLC/honeypot-med/releases" data-release-asset="linux-tar" target="_blank" rel="noreferrer">Open asset</a>
+            </div>
+          </article>
+          <article class="download-card">
+            <h3>Windows portable zip</h3>
+            <p>Portable Windows package when you do not want a full installer flow.</p>
+            <div class="download-meta">
+              <span class="download-tag" data-release-asset-name="windows-zip">Waiting for asset</span>
+              <a class="badge-link" href="https://github.com/ByteWorthyLLC/honeypot-med/releases" data-release-asset="windows-zip" target="_blank" rel="noreferrer">Open asset</a>
+            </div>
+          </article>
+          <article class="download-card">
+            <h3>Checksums</h3>
+            <p>Release checksums for verification before internal distribution or security review.</p>
+            <div class="download-meta">
+              <span class="download-tag" data-release-asset-name="checksums">Waiting for asset</span>
+              <a class="badge-link" href="https://github.com/ByteWorthyLLC/honeypot-med/releases" data-release-asset="checksums" target="_blank" rel="noreferrer">Open asset</a>
+            </div>
+          </article>
+          <article class="download-card">
+            <h3>Release manifest</h3>
+            <p>Machine-readable inventory of every published asset, size, and SHA256 value.</p>
+            <div class="download-meta">
+              <span class="download-tag" data-release-asset-name="manifest">Waiting for asset</span>
+              <a class="badge-link" href="https://github.com/ByteWorthyLLC/honeypot-med/releases" data-release-asset="manifest" target="_blank" rel="noreferrer">Open asset</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="page-grid">
+          <article class="page-card">
+            <h3>Local-first still matters</h3>
+            <p>The primary experience is unchanged: run locally, inspect the verdict, and export the proof bundle without API keys.</p>
+          </article>
+          <article class="page-card">
+            <h3>Checksums are part of the product surface</h3>
+            <p>Open-source distribution gets more credible when the release page includes machine-readable assets and verifiable hashes.</p>
+          </article>
+          <article class="page-card">
+            <h3>The release page is part of the marketing</h3>
+            <p>People deciding whether a project is real look for a public install path, recent tags, and clean downloads.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <div>
+        <p>Honeypot Med releases page for GitHub Pages, free distribution, and tagged installer discovery.</p>
+      </div>
+      <div class="footer-links">
+        <a href="../">Home</a>
+        <a href="../faq/">FAQ</a>
+        <a href="../media/">Media</a>
+        <a href="https://github.com/ByteWorthyLLC/honeypot-med/releases" target="_blank" rel="noreferrer">GitHub releases</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../assets/app.js"></script>
+</body>
+</html>

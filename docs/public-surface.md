@@ -7,17 +7,21 @@ Goals:
 - make the project discoverable outside GitHub search
 - expose direct-answer copy for answer engines
 - create a cleaner launch surface than a README alone
-- give the repo indexable pages for use cases and comparisons
+- give the repo indexable pages for use cases, comparisons, and installers
 
 Current pages:
 
 - `/`
 - `/faq/`
 - `/media/`
+- `/releases/`
 - `/use-cases/healthcare-ai/`
 - `/use-cases/claims-automation/`
+- `/use-cases/prior-authorization/`
 - `/use-cases/patient-triage/`
 - `/compare/prompt-guardrails-vs-honeypots/`
+- `/compare/guardrails-vs-launch-review/`
+- `/compare/evals-vs-proof-bundles/`
 - `/compare/honeypot-med-vs-generic-red-team-report/`
 
 Discovery artifacts:
@@ -30,8 +34,9 @@ Discovery artifacts:
 Engagement layer:
 
 - zero-key public repo pulse via the GitHub REST API on the Pages surface
-- live stars, forks, open-issues, and last-push indicators
+- live stars, forks, open-issues, last-push indicators, and latest release hydration
 - browser-native reel instead of a hosted video dependency
+- public installers, bootstrap commands, checksums, and release-manifest links
 
 Deployment:
 

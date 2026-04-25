@@ -1,6 +1,6 @@
 param(
   [string]$Version = "latest",
-  [string]$Repo = "upstreamcx/honeypot-med",
+  [string]$Repo = "ByteWorthyLLC/honeypot-med",
   [string]$InstallDir = "$env:LOCALAPPDATA\Programs\HoneypotMed"
 )
 
@@ -39,4 +39,4 @@ if (-not $userPath.Contains($InstallDir)) {
 }
 
 Write-Host "[bootstrap] installed to $InstallDir"
-Write-Host "[bootstrap] restart terminal, then run: honeypot-med.exe start"
+Write-Host "[bootstrap] restart terminal, then run: honeypot-med.exe"

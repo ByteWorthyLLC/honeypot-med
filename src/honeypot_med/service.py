@@ -186,7 +186,7 @@ def analyze_prompts(
     unproven_count = max(0, hypotheses_count - proven_findings_count)
 
     return {
-        "version": "0.3.0",
+        "version": "0.4.0",
         "pipeline": ["hypothesis_generation", "evidence_validation", "reporting"],
         "policy": {
             "min_high_risk": min_high_risk,

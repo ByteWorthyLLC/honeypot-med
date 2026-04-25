@@ -3,9 +3,13 @@
   <url><loc>https://byteworthyllc.github.io/honeypot-med/</loc></url>
   <url><loc>https://byteworthyllc.github.io/honeypot-med/faq/</loc></url>
   <url><loc>https://byteworthyllc.github.io/honeypot-med/media/</loc></url>
+  <url><loc>https://byteworthyllc.github.io/honeypot-med/releases/</loc></url>
   <url><loc>https://byteworthyllc.github.io/honeypot-med/use-cases/healthcare-ai/</loc></url>
   <url><loc>https://byteworthyllc.github.io/honeypot-med/use-cases/claims-automation/</loc></url>
+  <url><loc>https://byteworthyllc.github.io/honeypot-med/use-cases/prior-authorization/</loc></url>
   <url><loc>https://byteworthyllc.github.io/honeypot-med/use-cases/patient-triage/</loc></url>
   <url><loc>https://byteworthyllc.github.io/honeypot-med/compare/prompt-guardrails-vs-honeypots/</loc></url>
+  <url><loc>https://byteworthyllc.github.io/honeypot-med/compare/guardrails-vs-launch-review/</loc></url>
+  <url><loc>https://byteworthyllc.github.io/honeypot-med/compare/evals-vs-proof-bundles/</loc></url>
   <url><loc>https://byteworthyllc.github.io/honeypot-med/compare/honeypot-med-vs-generic-red-team-report/</loc></url>
 </urlset>

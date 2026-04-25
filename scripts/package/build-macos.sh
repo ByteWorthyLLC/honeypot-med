@@ -34,7 +34,7 @@ chmod +x "$BUILD_DIR/root/usr/local/bin/honeypot-med"
 PKG_PATH="$DIST_DIR/honeypot-med-${VERSION}-macos.pkg"
 pkgbuild \
   --root "$BUILD_DIR/root" \
-  --identifier "cx.upstream.honeypotmed" \
+  --identifier "com.byteworthyllc.honeypotmed" \
   --version "$VERSION" \
   "$PKG_PATH" >/dev/null
 

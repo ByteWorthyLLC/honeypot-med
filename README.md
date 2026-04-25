@@ -175,6 +175,7 @@ Single-command installer scripts:
 
 - macOS/Linux: `bash scripts/bootstrap/install.sh latest`
 - Windows: `powershell -ExecutionPolicy Bypass -File scripts/bootstrap/install.ps1 -Version latest`
+- Public install surface: `https://byteworthyllc.github.io/honeypot-med/releases/`
 
 Full distribution guide: `docs/distribution.md`
 Self-hosting guide: `docs/self-hosting.md`
@@ -249,10 +250,14 @@ Surface artifacts:
 - `site/index.html`
 - `site/faq/index.html`
 - `site/media/index.html`
+- `site/releases/index.html`
 - `site/use-cases/healthcare-ai/index.html`
 - `site/use-cases/claims-automation/index.html`
+- `site/use-cases/prior-authorization/index.html`
 - `site/use-cases/patient-triage/index.html`
 - `site/compare/prompt-guardrails-vs-honeypots/index.html`
+- `site/compare/guardrails-vs-launch-review/index.html`
+- `site/compare/evals-vs-proof-bundles/index.html`
 - `site/compare/honeypot-med-vs-generic-red-team-report/index.html`
 - `site/robots.txt`
 - `site/sitemap.xml`

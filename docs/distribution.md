@@ -51,7 +51,7 @@ curl -fsSL https://raw.githubusercontent.com/<org>/<repo>/main/scripts/bootstrap
 ```
 
 Environment variables:
-- `HONEYPOT_MED_REPO` (default: `upstreamcx/honeypot-med`)
+- `HONEYPOT_MED_REPO` (default: `ByteWorthyLLC/honeypot-med`)
 - `HONEYPOT_MED_INSTALL_DIR` (default: `~/.local/bin`)
 
 ### Windows
@@ -67,7 +67,7 @@ iwr https://raw.githubusercontent.com/<org>/<repo>/main/scripts/bootstrap/instal
 ```
 
 Parameters:
-- `-Repo` (default: `upstreamcx/honeypot-med`)
+- `-Repo` (default: `ByteWorthyLLC/honeypot-med`)
 - `-InstallDir` (default: `%LOCALAPPDATA%\Programs\HoneypotMed`)
 
 ## Post-Install

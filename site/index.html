@@ -94,6 +94,7 @@
         <a href="faq/">FAQ</a>
         <a href="use-cases/healthcare-ai/">Use Cases</a>
         <a href="compare/prompt-guardrails-vs-honeypots/">Compare</a>
+        <a href="releases/">Releases</a>
         <a href="media/">Media</a>
         <a href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer" data-track-action="click" data-track-key="github-repo">GitHub</a>
       </nav>
@@ -120,12 +121,13 @@
             <div class="evidence-grid">
               <div class="hero-stat"><strong>1</strong><span>command to launch: <code>python app.py</code></span></div>
               <div class="hero-stat"><strong>0</strong><span>API keys required for the default path</span></div>
-              <div class="hero-stat"><strong>7</strong><span>surfaces now live across product, site, and launch media</span></div>
+              <div class="hero-stat"><strong>12</strong><span>public surfaces now live across product, release, search, and media</span></div>
             </div>
             <div class="pulse-grid" aria-label="Public pulse counters">
               <div class="pulse-card"><span>GitHub stars</span><strong data-repo-metric="stargazers_count">--</strong></div>
               <div class="pulse-card"><span>Forks</span><strong data-repo-metric="forks_count">--</strong></div>
               <div class="pulse-card"><span>Last push</span><strong data-repo-pushed>--</strong></div>
+              <div class="pulse-card"><span>Latest release</span><strong data-release-version>Pending</strong></div>
             </div>
           </div>
         </aside>
@@ -153,6 +155,44 @@
           <article class="feature-card">
             <h3>Local-first lowers the demo barrier</h3>
             <p>People can run the studio without setting up billing, cloud keys, or a hosted backend. That matters for open-source spread.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-header">
+          <div>
+            <div class="ribbon">Release surface</div>
+            <h2 class="section-title">A real installer page makes the project feel complete.</h2>
+          </div>
+          <p>Public GitHub releases, bootstrap scripts, checksums, and a dedicated install page reduce friction for both curious developers and non-technical evaluators.</p>
+        </div>
+        <div class="page-grid">
+          <article class="page-card">
+            <h3>Latest public release</h3>
+            <p>The release page hydrates from GitHub and exposes the current tag, asset count, and direct download links without adding a paid service.</p>
+            <div class="inline-cluster">
+              <a class="badge-link" href="releases/">Open releases</a>
+              <a class="badge-link" href="https://github.com/ByteWorthyLLC/honeypot-med/releases" target="_blank" rel="noreferrer" data-release-link>Open GitHub release</a>
+            </div>
+          </article>
+          <article class="page-card">
+            <h3>Zero-friction install paths</h3>
+            <p>People can run the source path, bootstrap the latest release, or self-host with Docker without any API key ceremony.</p>
+            <div class="inline-cluster">
+              <a class="badge-link" href="releases/">Install page</a>
+              <a class="badge-link" href="https://github.com/ByteWorthyLLC/honeypot-med#zero-friction-quickstart" target="_blank" rel="noreferrer">Quickstart</a>
+            </div>
+          </article>
+          <article class="page-card">
+            <h3>Verification matters</h3>
+            <p>Checksums and a release manifest turn the public download surface into something security teams can actually trust.</p>
+            <div class="inline-cluster">
+              <span class="badge-link" data-release-asset-name="checksums">Pending tag</span>
+              <span class="badge-link" data-release-asset-name="manifest">Pending tag</span>
+            </div>
           </article>
         </div>
       </div>
@@ -239,12 +279,12 @@
           <article class="page-card">
             <h3>Use-case pages</h3>
             <p>Focused content for healthcare AI security teams, founders, product leaders, and compliance-minded buyers.</p>
-            <div class="inline-cluster"><a class="badge-link" href="use-cases/healthcare-ai/">Healthcare AI</a><a class="badge-link" href="use-cases/claims-automation/">Claims</a><a class="badge-link" href="use-cases/patient-triage/">Triage</a></div>
+            <div class="inline-cluster"><a class="badge-link" href="use-cases/healthcare-ai/">Healthcare AI</a><a class="badge-link" href="use-cases/claims-automation/">Claims</a><a class="badge-link" href="use-cases/prior-authorization/">Prior auth</a><a class="badge-link" href="use-cases/patient-triage/">Triage</a></div>
           </article>
           <article class="page-card">
             <h3>Comparison pages</h3>
             <p>A clearer explanation of where guardrails help, where generic red-team reports stop, and where honeypots become useful proof.</p>
-            <div class="inline-cluster"><a class="badge-link" href="compare/prompt-guardrails-vs-honeypots/">Guardrails</a><a class="badge-link" href="compare/honeypot-med-vs-generic-red-team-report/">Red-team reports</a></div>
+            <div class="inline-cluster"><a class="badge-link" href="compare/prompt-guardrails-vs-honeypots/">Guardrails</a><a class="badge-link" href="compare/guardrails-vs-launch-review/">Launch review</a><a class="badge-link" href="compare/evals-vs-proof-bundles/">Evals</a><a class="badge-link" href="compare/honeypot-med-vs-generic-red-team-report/">Red-team reports</a></div>
           </article>
         </div>
       </div>
@@ -324,7 +364,7 @@
             <div class="hero-actions">
               <a class="button" href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer" data-track-action="click" data-track-key="github-repo">Star the repo</a>
               <a class="button-secondary" href="https://github.com/ByteWorthyLLC/honeypot-med#zero-friction-quickstart" target="_blank" rel="noreferrer" data-track-action="click" data-track-key="github-quickstart">Run the quickstart</a>
-              <a class="button-ghost" href="media/">Open the media kit</a>
+              <a class="button-ghost" href="releases/">Open releases</a>
             </div>
           </div>
           <div class="surface-card">
@@ -353,6 +393,7 @@
         <a href="faq/">FAQ</a>
         <a href="use-cases/healthcare-ai/">Use case</a>
         <a href="compare/prompt-guardrails-vs-honeypots/">Comparison</a>
+        <a href="releases/">Releases</a>
         <a href="media/">Media kit</a>
         <a href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer" data-track-action="click" data-track-key="github-repo">GitHub</a>
       </div>

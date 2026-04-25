@@ -63,6 +63,8 @@ class StudioServerTest(unittest.TestCase):
         body = self._get("/", text=True)
         self.assertIn("Honeypot Med Studio", body)
         self.assertIn("Generate Verdict", body)
+        self.assertIn("Ctrl+Enter", body)
+        self.assertIn("Open releases", body)
 
     def test_api_packs_lists_bundled_packs(self):
         payload = self._get("/api/packs")
