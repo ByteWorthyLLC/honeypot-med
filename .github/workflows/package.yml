@@ -87,9 +87,9 @@ jobs:
         run: |
           rm -rf dist
           mkdir -p dist/linux dist/macos dist/windows
-          cp -R release-assets/honeypot-med-Linux/. dist/linux/
-          cp -R release-assets/honeypot-med-macOS/. dist/macos/
-          cp -R release-assets/honeypot-med-Windows/. dist/windows/
+          cp -R release-assets/honeypot-med-Linux/linux/. dist/linux/
+          cp -R release-assets/honeypot-med-macOS/macos/. dist/macos/
+          cp -R release-assets/honeypot-med-Windows/windows/. dist/windows/
           python scripts/release/generate-manifest.py --dist-dir dist
 
       - name: Build release notes
