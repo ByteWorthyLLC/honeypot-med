@@ -1,14 +1,27 @@
 version: 2
+
+multi-ecosystem-groups:
+  monthly-maintenance:
+    schedule:
+      interval: "monthly"
+
 updates:
   - package-ecosystem: "pip"
     directory: "/"
-    schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 5
+    patterns:
+      - "*"
+    multi-ecosystem-group: "monthly-maintenance"
+    open-pull-requests-limit: 1
+    labels:
+      - dependencies
+      - maintenance
 
   - package-ecosystem: "github-actions"
     directory: "/"
-    schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 5
-
+    patterns:
+      - "*"
+    multi-ecosystem-group: "monthly-maintenance"
+    open-pull-requests-limit: 1
+    labels:
+      - dependencies
+      - maintenance
