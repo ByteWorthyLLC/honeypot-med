@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://honeypot-med.local/schemas/event-v1.json",
+  "title": "Honeypot Med Event v1",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "event_id",
+    "trace_id",
+    "source",
+    "captured_at",
+    "policy_version",
+    "classification_version",
+    "redaction_status",
+    "prompt",
+    "tool_calls",
+    "model_output",
+    "response",
+    "metadata"
+  ],
+  "properties": {
+    "schema_version": {"const": "event.v1"},
+    "event_id": {"type": "string", "minLength": 1},
+    "trace_id": {"type": "string", "minLength": 1},
+    "source": {"type": "string", "minLength": 1},
+    "captured_at": {"type": "string", "minLength": 1},
+    "processed_at": {"type": ["string", "null"]},
+    "policy_version": {"type": "string", "minLength": 1},
+    "classification_version": {"type": "string", "minLength": 1},
+    "redaction_status": {"type": "string", "minLength": 1},
+    "prompt": {"type": "string", "minLength": 1},
+    "tool_calls": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "args"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1},
+          "args": {"type": "string"}
+        }
+      }
+    },
+    "model_output": {"type": "string"},
+    "response": {"type": "string"},
+    "metadata": {"type": "object"}
+  }
+}

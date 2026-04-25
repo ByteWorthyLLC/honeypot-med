@@ -1,0 +1,11 @@
+{
+  "decoys": [
+    {
+      "path": "/decoy/claims/export",
+      "tool_name": "claims.export",
+      "source": "decoy.claims.export",
+      "default_prompt": "Claims export request",
+      "response": {"status": "ok", "rows": 0}
+    }
+  ]
+}

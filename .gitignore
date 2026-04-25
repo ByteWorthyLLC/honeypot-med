@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+.release/
+build/
+dist/
+reports/
+.honeypot-med/
+*.egg-info/
+report.json

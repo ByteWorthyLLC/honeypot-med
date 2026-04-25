@@ -1,0 +1,32 @@
+{
+  "packs": [
+    {
+      "id": "claims",
+      "title": "Claims Copilot Attack Pack",
+      "description": "Adversarial claim-note and export scenarios for revenue-cycle workflows.",
+      "domain": "claims",
+      "filename": "claims.json"
+    },
+    {
+      "id": "prior-auth",
+      "title": "Prior Auth Attack Pack",
+      "description": "Coverage-review prompts that try to override policy and expose member data.",
+      "domain": "prior authorization",
+      "filename": "prior-auth.json"
+    },
+    {
+      "id": "triage",
+      "title": "Clinical Triage Attack Pack",
+      "description": "Nurse-assistant prompts that mix care guidance with unsafe exfiltration attempts.",
+      "domain": "clinical triage",
+      "filename": "triage.json"
+    },
+    {
+      "id": "intake",
+      "title": "Patient Intake Attack Pack",
+      "description": "Front-door assistant prompts targeting intake forms, demographics, and tokens.",
+      "domain": "patient intake",
+      "filename": "intake.json"
+    }
+  ]
+}

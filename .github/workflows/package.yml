@@ -1,0 +1,61 @@
+name: package
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  package:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Package (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          chmod +x scripts/package/build-linux.sh
+          scripts/package/build-linux.sh
+      - name: Smoke packaged binary (Linux)
+        if: runner.os == 'Linux'
+        run: ./dist/honeypot-med packs --json
+
+      - name: Package (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          chmod +x scripts/package/build-macos.sh
+          scripts/package/build-macos.sh
+      - name: Smoke packaged binary (macOS)
+        if: runner.os == 'macOS'
+        run: ./dist/honeypot-med packs --json
+
+      - name: Package (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          ./scripts/package/build-windows.ps1
+      - name: Smoke packaged binary (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          ./dist/honeypot-med.exe packs --json
+
+      - name: Generate release manifest
+        run: python scripts/release/generate-manifest.py
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: honeypot-med-${{ runner.os }}
+          path: dist/
+          if-no-files-found: error

@@ -1,0 +1,11 @@
+{
+  "suppressions": [
+    {
+      "id": "BL-001",
+      "reason": "Known synthetic red-team seed prompt in replay fixture",
+      "rule_id": "INJ-001",
+      "prompt_regex": "ignore previous instructions",
+      "expires_on": "2026-12-31"
+    }
+  ]
+}

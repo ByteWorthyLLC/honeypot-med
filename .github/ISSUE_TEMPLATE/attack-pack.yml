@@ -1,0 +1,34 @@
+name: Attack pack proposal
+description: Propose a new healthcare attack pack or decoy workflow.
+title: "[attack-pack] "
+labels:
+  - attack-pack
+body:
+  - type: input
+    id: workflow
+    attributes:
+      label: Workflow
+      description: Which healthcare workflow does this simulate?
+      placeholder: prior auth, triage, discharge, claims, intake
+    validations:
+      required: true
+  - type: textarea
+    id: scenario
+    attributes:
+      label: Attack scenario
+      description: Describe the adversarial prompt or tool misuse pattern.
+    validations:
+      required: true
+  - type: textarea
+    id: signals
+    attributes:
+      label: Signals
+      description: What findings or proof patterns should the project detect?
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why this is new
+      description: Explain what gap this covers beyond existing packs.
+

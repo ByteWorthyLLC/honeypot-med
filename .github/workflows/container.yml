@@ -1,0 +1,25 @@
+name: container
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build container image
+        run: docker build -t honeypot-med:ci .
+
+      - name: Smoke doctor command
+        run: docker run --rm honeypot-med:ci doctor
+
+      - name: Smoke studio health endpoint
+        run: |
+          container_id=$(docker run -d -p 8899:8899 honeypot-med:ci studio)
+          trap 'docker rm -f "$container_id" >/dev/null 2>&1 || true' EXIT
+          sleep 5
+          curl -fsS http://127.0.0.1:8899/health
+

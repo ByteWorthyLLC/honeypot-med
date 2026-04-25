@@ -1,0 +1,31 @@
+services:
+  studio:
+    build:
+      context: .
+    image: honeypot-med:local
+    command: ["studio"]
+    ports:
+      - "8899:8899"
+    environment:
+      HONEYPOT_MED_STUDIO_PORT: "8899"
+      HONEYPOT_MED_HEALTHCHECK_URL: "http://127.0.0.1:8899/health"
+    volumes:
+      - honeypot_med_home:/home/honeypot
+
+  capture:
+    build:
+      context: .
+    image: honeypot-med:local
+    command: ["serve"]
+    ports:
+      - "8787:8787"
+    environment:
+      HONEYPOT_MED_CAPTURE_PORT: "8787"
+      HONEYPOT_MED_STORE_PATH: "/home/honeypot/.honeypot-med/data/events.jsonl"
+      HONEYPOT_MED_HEALTHCHECK_URL: "http://127.0.0.1:8787/health"
+    volumes:
+      - honeypot_med_home:/home/honeypot
+
+volumes:
+  honeypot_med_home:
+

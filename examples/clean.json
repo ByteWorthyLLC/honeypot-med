@@ -1,0 +1,12 @@
+{
+  "events": [
+    {
+      "prompt": "Summarize this claim note for coding QA.",
+      "tool_calls": [
+        {"name": "claims.lookup", "args": "claim_id=C-999"}
+      ],
+      "model_output": "Summary complete.",
+      "response": "OK"
+    }
+  ]
+}
