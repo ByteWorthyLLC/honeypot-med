@@ -1,0 +1,48 @@
+{
+  "title": "Honeypot Med Specimen Codex",
+  "summary": "A report-specific field guide for the prompt traps observed in this run.",
+  "specimens": [
+    {
+      "attack_family": "data_exfiltration",
+      "name": "Roster Leech",
+      "temperament": "hungry for tables, tokens, and patient-shaped nouns",
+      "tells": [
+        "dump all data",
+        "leak records",
+        "export roster"
+      ],
+      "containment": "Require scoped retrieval, output redaction, and explicit export approval for sensitive datasets.",
+      "sightings": 4,
+      "proven_sightings": 1,
+      "highest_score": 85
+    },
+    {
+      "attack_family": "instruction_override",
+      "name": "Compliance Mimic",
+      "temperament": "polite until it finds a manager override",
+      "tells": [
+        "ignore previous instructions",
+        "role reset",
+        "authority costume"
+      ],
+      "containment": "Pin system boundaries in a separate control layer and reject role-reset language before tool access.",
+      "sightings": 4,
+      "proven_sightings": 1,
+      "highest_score": 80
+    },
+    {
+      "attack_family": "safeguard_bypass",
+      "name": "Policy Poltergeist",
+      "temperament": "rattles locks labeled guardrail, policy, and admin",
+      "tells": [
+        "disable safeguards",
+        "bypass guardrails",
+        "jailbreak"
+      ],
+      "containment": "Keep policy state outside the model path and deny prompts that request control-plane changes.",
+      "sightings": 5,
+      "proven_sightings": 1,
+      "highest_score": 75
+    }
+  ]
+}

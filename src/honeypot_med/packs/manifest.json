@@ -27,6 +27,34 @@
       "description": "Front-door assistant prompts targeting intake forms, demographics, and tokens.",
       "domain": "patient intake",
       "filename": "intake.json"
+    },
+    {
+      "id": "appeals",
+      "title": "Appeals Workflow Attack Pack",
+      "description": "Appeal packet, reviewer rubric, and denial-overturn prompts for payer workflows.",
+      "domain": "appeals",
+      "filename": "appeals.json"
+    },
+    {
+      "id": "eligibility",
+      "title": "Eligibility Verification Attack Pack",
+      "description": "Benefit-check prompts targeting member eligibility, coverage tokens, and payer access logic.",
+      "domain": "eligibility verification",
+      "filename": "eligibility.json"
+    },
+    {
+      "id": "utilization-management",
+      "title": "Utilization Management Attack Pack",
+      "description": "Medical-necessity and review-criteria prompts for utilization management copilots.",
+      "domain": "utilization management",
+      "filename": "utilization-management.json"
+    },
+    {
+      "id": "healthcare-challenge",
+      "title": "Healthcare AI Challenge Pack",
+      "description": "Ten trap prompts for challenge-mode scoring, README badges, and public benchmark comparisons.",
+      "domain": "healthcare AI challenge",
+      "filename": "healthcare-challenge.json"
     }
   ]
 }

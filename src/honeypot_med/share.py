@@ -8,6 +8,7 @@ from html import escape
 
 from .branding import load_default_hero_data_uri
 from .launchkit import build_launch_kit
+from .specimens import build_specimen_codex
 
 
 def _verdict(report: dict) -> tuple[str, str]:
@@ -96,6 +97,69 @@ def _event_markup(event: dict) -> str:
     )
 
 
+def _challenge_markup(challenge: object) -> str:
+    if not isinstance(challenge, dict):
+        return ""
+
+    baseline_markup = ""
+    for baseline in challenge.get("baselines", []):
+        if not isinstance(baseline, dict):
+            continue
+        delta = int(baseline.get("delta", 0))
+        delta_label = f"+{delta}" if delta > 0 else str(delta)
+        baseline_markup += (
+            '<article class="baseline-card">'
+            f'<div class="baseline-topline">{escape(str(baseline.get("label", "")))}</div>'
+            f'<strong>{int(baseline.get("survived", 0))}/{int(baseline.get("total", 10))} survived</strong>'
+            f'<span>{escape(delta_label)} vs this run</span>'
+            f'<p>{escape(str(baseline.get("notes", "")))}</p>'
+            "</article>"
+        )
+
+    return (
+        '<section class="challenge-panel panel">'
+        '<div class="challenge-copy">'
+        '<div class="eyebrow">Challenge Mode</div>'
+        f'<h2>{escape(str(challenge.get("question", "Can your healthcare AI survive the traps?")))}</h2>'
+        f'<p>This run scored <strong>{escape(str(challenge.get("score_label", "0/0 survived")))}</strong> with a {escape(str(challenge.get("verdict", "review")).replace("-", " "))} verdict. Use the badge artifact in a README, launch post, or release note.</p>'
+        '</div>'
+        '<div class="challenge-score">'
+        f'<strong>{escape(str(challenge.get("score_label", "0/0 survived")))}</strong>'
+        f'<span>{int(challenge.get("score_percent", 0))}% trap survival</span>'
+        '</div>'
+        f'<div class="baseline-grid">{baseline_markup}</div>'
+        "</section>"
+    )
+
+
+def _specimen_codex_markup(report: dict) -> str:
+    codex = build_specimen_codex(report)
+    cards = ""
+    for specimen in codex["specimens"]:
+        tells = ", ".join(str(item) for item in specimen.get("tells", []))
+        cards += (
+            '<article class="specimen-card">'
+            f'<div class="specimen-rune">{escape(str(specimen.get("name", "?"))[:1])}</div>'
+            f'<div class="specimen-topline">{escape(str(specimen.get("attack_family", "unknown")).replace("_", " "))}</div>'
+            f'<h3>{escape(str(specimen.get("name", "Unknown Specimen")))}</h3>'
+            f'<p>{escape(str(specimen.get("temperament", "")))}</p>'
+            f'<div class="specimen-meta"><span>{int(specimen.get("sightings", 0))} sightings</span><span>{int(specimen.get("proven_sightings", 0))} proven bites</span><span>top score {int(specimen.get("highest_score", 0))}</span></div>'
+            f'<p><strong>Tells:</strong> {escape(tells)}</p>'
+            f'<p><strong>Containment:</strong> {escape(str(specimen.get("containment", "")))}</p>'
+            "</article>"
+        )
+    return (
+        '<section class="codex-panel">'
+        '<div class="codex-header">'
+        '<div class="eyebrow">Specimen Codex</div>'
+        '<h2>Every boring finding gets a monster name.</h2>'
+        '<p>Security artifacts are easier to remember when the failure mode has a shape. This codex turns the report into a field guide for what tried to bite the workflow.</p>'
+        '</div>'
+        f'<div class="specimen-grid">{cards}</div>'
+        "</section>"
+    )
+
+
 def build_share_html(report: dict, *, source_label: str, title: str | None = None) -> str:
     """Render a single-file HTML artifact that is easy to publish or screenshot."""
     verdict, verdict_copy = _verdict(report)
@@ -104,12 +168,17 @@ def build_share_html(report: dict, *, source_label: str, title: str | None = Non
     engine = report.get("engine", {})
     launch_kit = build_launch_kit(report, title=heading, source_label=source_label)
     events_markup = "".join(_event_markup(event) for event in report.get("events", []))
+    challenge_markup = _challenge_markup(report.get("challenge"))
+    specimen_codex_markup = _specimen_codex_markup(report)
     launch_markup = "".join(
         [
             _copy_card("Headline", launch_kit["headline"]),
             _copy_card("X Post", launch_kit["x_post"]),
             _copy_card("LinkedIn Post", launch_kit["linkedin_post"]),
             _copy_card("Hacker News Title", launch_kit["hacker_news_title"]),
+            _copy_card("Product Hunt Tagline", launch_kit["product_hunt_tagline"]),
+            _copy_card("Product Hunt Description", launch_kit["product_hunt_description"]),
+            _copy_card("GitHub Release Blurb", launch_kit["github_release_blurb"]),
             _copy_card("Email Subject", launch_kit["email_subject"]),
             _copy_card("Releases Page", launch_kit["releases_url"]),
             _copy_card("Install on macOS/Linux", launch_kit["install_macos_linux"]),
@@ -150,6 +219,7 @@ def build_share_html(report: dict, *, source_label: str, title: str | None = Non
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%231f2630'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-size='22' font-family='Arial' font-weight='700' fill='white'%3EHM%3C/text%3E%3C/svg%3E" />
   <title>{escape(heading)}</title>
   <meta name="description" content="{escape(launch_kit['meta_description'])}" />
   <meta name="keywords" content="{escape(keywords)}" />
@@ -359,10 +429,181 @@ def build_share_html(report: dict, *, source_label: str, title: str | None = Non
       line-height: 1.6;
       font-size: 15px;
     }}
+    .challenge-panel {{
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(180px, 0.32fr);
+      gap: 18px;
+      padding: 24px;
+      margin-bottom: 18px;
+    }}
+    .challenge-copy h2 {{
+      margin: 12px 0;
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+    }}
+    .challenge-copy p {{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 16px;
+    }}
+    .challenge-score {{
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(37,115,84,0.16), rgba(206,64,39,0.12));
+      border: 1px solid var(--line);
+      padding: 22px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+    }}
+    .challenge-score strong {{
+      display: block;
+      font-size: 38px;
+      line-height: 1;
+    }}
+    .challenge-score span {{
+      color: var(--muted);
+      margin-top: 8px;
+    }}
+    .baseline-grid {{
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 12px;
+    }}
+    .baseline-card {{
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.72);
+    }}
+    .baseline-card strong {{
+      display: block;
+      margin: 8px 0 4px;
+      font-size: 20px;
+    }}
+    .baseline-card span,
+    .baseline-card p {{
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }}
+    .baseline-card p {{
+      margin: 8px 0 0;
+    }}
+    .baseline-topline {{
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }}
     .events {{
       display: grid;
       gap: 16px;
       margin-bottom: 18px;
+    }}
+    .codex-panel {{
+      margin-bottom: 18px;
+      display: grid;
+      gap: 16px;
+    }}
+    .codex-header {{
+      padding: 26px;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.14);
+      color: #fffaf4;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(206, 64, 39, 0.45), transparent 18rem),
+        radial-gradient(circle at 90% 10%, rgba(37, 115, 84, 0.32), transparent 18rem),
+        linear-gradient(135deg, #151a21 0%, #2a1612 100%);
+      box-shadow: var(--shadow);
+    }}
+    .codex-header .eyebrow {{
+      color: rgba(255,250,244,0.72);
+      background: rgba(255,255,255,0.09);
+    }}
+    .codex-header h2 {{
+      margin: 14px 0 10px;
+      max-width: 760px;
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", serif;
+      font-size: clamp(2rem, 4vw, 4.2rem);
+      line-height: 0.92;
+      letter-spacing: -0.05em;
+    }}
+    .codex-header p {{
+      margin: 0;
+      max-width: 760px;
+      color: rgba(255,250,244,0.72);
+      line-height: 1.7;
+      font-size: 17px;
+    }}
+    .specimen-grid {{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 14px;
+    }}
+    .specimen-card {{
+      position: relative;
+      overflow: hidden;
+      padding: 22px;
+      min-height: 300px;
+      border-radius: 26px;
+      border: 1px solid rgba(31, 38, 48, 0.18);
+      background:
+        linear-gradient(180deg, rgba(255,250,244,0.98), rgba(243,230,210,0.92));
+      box-shadow: var(--shadow);
+    }}
+    .specimen-card:nth-child(2n) {{
+      transform: translateY(8px) rotate(-0.7deg);
+    }}
+    .specimen-card:nth-child(3n) {{
+      transform: translateY(-4px) rotate(0.6deg);
+    }}
+    .specimen-rune {{
+      position: absolute;
+      right: -14px;
+      top: -26px;
+      font-size: 150px;
+      font-weight: 900;
+      line-height: 1;
+      color: rgba(206,64,39,0.09);
+    }}
+    .specimen-topline {{
+      color: var(--muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }}
+    .specimen-card h3 {{
+      margin: 12px 0 10px;
+      font-size: 26px;
+      line-height: 1;
+    }}
+    .specimen-card p {{
+      position: relative;
+      margin: 0 0 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }}
+    .specimen-card strong {{
+      color: var(--ink);
+    }}
+    .specimen-meta {{
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0;
+    }}
+    .specimen-meta span {{
+      padding: 7px 9px;
+      border-radius: 999px;
+      background: rgba(31,38,48,0.07);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
     }}
     .event-card {{
       padding: 24px;
@@ -553,6 +794,7 @@ def build_share_html(report: dict, *, source_label: str, title: str | None = Non
     @media (max-width: 940px) {{
       .hero,
       .context,
+      .challenge-panel,
       .metrics,
       .artifact-links {{
         grid-template-columns: 1fr;
@@ -604,6 +846,12 @@ def build_share_html(report: dict, *, source_label: str, title: str | None = Non
       <a href="report.md" target="_blank" rel="noreferrer">Open Markdown summary</a>
       <a href="summary.pdf" target="_blank" rel="noreferrer">Open PDF brief</a>
       <a href="social-card.svg" target="_blank" rel="noreferrer">Open social card</a>
+      <a href="badge.svg" target="_blank" rel="noreferrer">Open README badge</a>
+      <a href="honeypot-med.sarif" target="_blank" rel="noreferrer">Open SARIF export</a>
+      <a href="otel-logs.json" target="_blank" rel="noreferrer">Open OTEL logs</a>
+      <a href="inquiry-notebook.md" target="_blank" rel="noreferrer">Open inquiry notebook</a>
+      <a href="experiment-plan.md" target="_blank" rel="noreferrer">Open experiment plan</a>
+      <a href="eval-kit.md" target="_blank" rel="noreferrer">Open eval kit</a>
     </section>
 
     <section class="context">
@@ -620,6 +868,9 @@ def build_share_html(report: dict, *, source_label: str, title: str | None = Non
         <p>{escape(generated_at)}</p>
       </article>
     </section>
+
+    {challenge_markup}
+    {specimen_codex_markup}
 
     <section class="launch-kit">
       <article class="panel launch-headline">

@@ -641,6 +641,7 @@ h1,
 .pulse-grid,
 .visual-grid,
 .download-grid,
+.gallery-grid,
 .storyline-grid {
   display: grid;
   gap: 14px;
@@ -686,6 +687,7 @@ h1,
 
 .visual-card,
 .download-card,
+.gallery-card,
 .storyline-card,
 .reel-frame,
 .metric-card {
@@ -697,6 +699,7 @@ h1,
 
 .visual-card,
 .download-card,
+.gallery-card,
 .storyline-card,
 .metric-card {
   padding: 20px;
@@ -785,8 +788,74 @@ h1,
 }
 
 .download-grid,
+.gallery-grid,
 .storyline-grid {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.gallery-card {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.gallery-card h3 {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.25;
+}
+
+.gallery-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.verdict-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.verdict-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: rgba(200, 71, 45, 0.1);
+  color: var(--accent-dark);
+  border: 1px solid rgba(200, 71, 45, 0.18);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.verdict-pill.review {
+  background: rgba(36, 105, 94, 0.1);
+  color: var(--teal);
+  border-color: rgba(36, 105, 94, 0.2);
+}
+
+.proof-row {
+  padding: 13px 15px;
+  border-radius: 18px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(248,242,235,0.88));
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.source-list {
+  display: grid;
+  gap: 12px;
+}
+
+.source-list a {
+  color: var(--accent-dark);
+  font-weight: 800;
 }
 
 .download-meta {
@@ -913,6 +982,110 @@ h1,
   line-height: 1.65;
 }
 
+.trap-lab-hero {
+  padding: 48px 0 24px;
+}
+
+.trap-lab-panel {
+  position: relative;
+  overflow: hidden;
+  min-height: 520px;
+  padding: clamp(28px, 6vw, 72px);
+  border-radius: 38px;
+  color: #fffaf4;
+  background:
+    radial-gradient(circle at 14% 22%, rgba(200, 71, 45, 0.55), transparent 22rem),
+    radial-gradient(circle at 82% 12%, rgba(36, 105, 94, 0.42), transparent 24rem),
+    radial-gradient(circle at 88% 88%, rgba(246, 239, 227, 0.14), transparent 20rem),
+    linear-gradient(135deg, #10161e 0%, #28130f 62%, #12191b 100%);
+  border: 1px solid rgba(255, 250, 244, 0.14);
+  box-shadow: 0 36px 100px rgba(36, 16, 8, 0.24);
+}
+
+.trap-lab-panel::before {
+  content: "TRAP LAB";
+  position: absolute;
+  right: -0.15em;
+  bottom: -0.24em;
+  font-size: clamp(5rem, 16vw, 15rem);
+  line-height: 0.8;
+  font-weight: 900;
+  letter-spacing: -0.08em;
+  color: rgba(255, 250, 244, 0.055);
+  pointer-events: none;
+}
+
+.trap-lab-panel .kicker {
+  color: rgba(255, 250, 244, 0.72);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.trap-lab-panel h1 {
+  max-width: 850px;
+  color: #fffaf4;
+  font-size: clamp(3.8rem, 8vw, 8.8rem);
+}
+
+.trap-lab-panel p {
+  position: relative;
+  max-width: 720px;
+  color: rgba(255, 250, 244, 0.76);
+  font-size: 20px;
+  line-height: 1.7;
+}
+
+.codex-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.rune-card {
+  position: relative;
+  overflow: hidden;
+  min-height: 360px;
+  padding: 24px;
+  border-radius: 30px;
+  border: 1px solid rgba(31, 38, 48, 0.16);
+  background: linear-gradient(180deg, rgba(255, 250, 244, 0.98), rgba(241, 226, 205, 0.94));
+  box-shadow: var(--shadow);
+}
+
+.rune-card:nth-child(2n) {
+  transform: translateY(14px) rotate(-0.8deg);
+}
+
+.rune-card:nth-child(3n) {
+  transform: translateY(-8px) rotate(0.7deg);
+}
+
+.rune {
+  position: absolute;
+  top: -32px;
+  right: -12px;
+  font-size: 160px;
+  line-height: 1;
+  font-weight: 900;
+  color: rgba(200, 71, 45, 0.09);
+}
+
+.rune-card h3 {
+  position: relative;
+  margin: 14px 0 12px;
+  font-size: 34px;
+  line-height: 0.96;
+}
+
+.rune-card p {
+  position: relative;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.rune-card strong {
+  color: var(--ink);
+}
+
 .not-found-shell {
   min-height: 100vh;
   display: grid;
@@ -938,8 +1111,10 @@ h1,
   .pulse-grid,
   .visual-grid,
   .download-grid,
+  .gallery-grid,
   .storyline-grid,
   .metric-grid,
+  .codex-grid,
   .install-grid {
     grid-template-columns: 1fr;
   }

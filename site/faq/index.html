@@ -22,7 +22,8 @@
       {"@type": "Question", "name": "What does Honeypot Med do?", "acceptedAnswer": {"@type": "Answer", "text": "Honeypot Med inspects suspicious healthcare AI prompts and exports a verdict page, PDF brief, social card, Markdown report, JSON report, and launch kit."}},
       {"@type": "Question", "name": "Why is prompt injection a healthcare AI problem?", "acceptedAnswer": {"@type": "Answer", "text": "Healthcare workflows often involve sensitive data, internal policy, claims logic, or triage decisions. Prompt injection can try to override safeguards and extract or manipulate those workflows."}},
       {"@type": "Question", "name": "Does Honeypot Med require cloud keys?", "acceptedAnswer": {"@type": "Answer", "text": "No. The intended primary path is local-first and does not require API keys."}},
-      {"@type": "Question", "name": "Why does Honeypot Med focus on exports?", "acceptedAnswer": {"@type": "Answer", "text": "Because good security tooling should create artifacts that can be shared with buyers, security teams, and leadership instead of trapping the result in terminal output."}}
+      {"@type": "Question", "name": "Why does Honeypot Med focus on exports?", "acceptedAnswer": {"@type": "Answer", "text": "Because good security tooling should create artifacts that can be shared with buyers, security teams, and leadership instead of trapping the result in terminal output."}},
+      {"@type": "Question", "name": "Does the evidence gallery use real patient data?", "acceptedAnswer": {"@type": "Answer", "text": "No. The evidence gallery uses sanitized, synthetic examples designed to demonstrate workflow risk without exposing real patient data."}}
     ]
   }
   </script>
@@ -40,6 +41,7 @@
       <nav class="nav" aria-label="Primary">
         <a href="../">Home</a>
         <a href="../use-cases/healthcare-ai/">Use Cases</a>
+        <a href="../gallery/">Gallery</a>
         <a href="../compare/prompt-guardrails-vs-honeypots/">Compare</a>
         <a href="../releases/">Releases</a>
         <a href="../media/">Media</a>
@@ -94,6 +96,10 @@
           <div class="faq-copy">A proof bundle includes an HTML evidence page, PDF summary, JSON report, Markdown summary, SVG social card, and launch-kit copy files.</div>
         </details>
         <details class="panel faq-item">
+          <summary>Does the evidence gallery use real patient data?</summary>
+          <div class="faq-copy">No. The <a href="../gallery/">evidence gallery</a> uses sanitized, synthetic examples for healthcare AI workflows such as claims, prior auth, triage, appeals, eligibility, and utilization management.</div>
+        </details>
+        <details class="panel faq-item">
           <summary>How do I install Honeypot Med without extra setup?</summary>
           <div class="faq-copy">The simplest path is still <code>python app.py</code>. If you want packaged binaries instead, use the public <a href="../releases/">releases page</a> for GitHub-hosted installers and bootstrap commands.</div>
         </details>
@@ -135,6 +141,7 @@
       <div class="footer-links">
         <a href="../">Home</a>
         <a href="../use-cases/healthcare-ai/">Use case</a>
+        <a href="../gallery/">Gallery</a>
         <a href="../compare/prompt-guardrails-vs-honeypots/">Comparison</a>
         <a href="../releases/">Releases</a>
         <a href="../media/">Media</a>

@@ -1,0 +1,73 @@
+name: "Honeypot Med Challenge"
+author: "ByteWorthy LLC"
+description: "Run healthcare AI prompt-injection challenge mode and publish JSON, HTML, badge, SARIF, and OpenTelemetry artifacts."
+branding:
+  icon: "activity"
+  color: "red"
+inputs:
+  pack:
+    description: "Bundled attack pack id to run."
+    required: false
+    default: "healthcare-challenge"
+  input-file:
+    description: "Optional JSON payload file to run instead of a bundled pack."
+    required: false
+    default: ""
+  output-dir:
+    description: "Directory where report artifacts should be written."
+    required: false
+    default: "honeypot-med-report"
+  fail-under:
+    description: "Fail the action if challenge survival score is below this percentage."
+    required: false
+    default: "0"
+  report-url:
+    description: "URL used by the generated README badge."
+    required: false
+    default: "index.html"
+  upload-artifact:
+    description: "Upload the generated report directory as a workflow artifact."
+    required: false
+    default: "true"
+  upload-sarif:
+    description: "Upload Honeypot Med SARIF results to GitHub Code Scanning."
+    required: false
+    default: "false"
+outputs:
+  report-dir:
+    description: "Path to generated report artifacts."
+    value: ${{ inputs.output-dir }}
+  sarif-path:
+    description: "Path to the generated SARIF file."
+    value: ${{ inputs.output-dir }}/honeypot-med.sarif
+runs:
+  using: "composite"
+  steps:
+    - name: Install Honeypot Med
+      shell: bash
+      run: python -m pip install -e "$GITHUB_ACTION_PATH"
+    - name: Run challenge mode
+      shell: bash
+      run: |
+        SOURCE_ARGS=(--pack "${{ inputs.pack }}")
+        if [ -n "${{ inputs.input-file }}" ]; then
+          SOURCE_ARGS=(--input "${{ inputs.input-file }}")
+        fi
+        honeypot-med challenge \
+          "${SOURCE_ARGS[@]}" \
+          --outdir "${{ inputs.output-dir }}" \
+          --report-url "${{ inputs.report-url }}" \
+          --fail-under "${{ inputs.fail-under }}" \
+          --json
+    - name: Upload Honeypot Med artifacts
+      if: ${{ inputs.upload-artifact == 'true' }}
+      uses: actions/upload-artifact@v4
+      with:
+        name: honeypot-med-report
+        path: ${{ inputs.output-dir }}
+    - name: Upload SARIF to GitHub Code Scanning
+      if: ${{ inputs.upload-sarif == 'true' }}
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: ${{ inputs.output-dir }}/honeypot-med.sarif
+        category: honeypot-med

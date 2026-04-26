@@ -9,7 +9,12 @@ from html import escape
 from pathlib import Path
 
 from .branding import load_default_hero_data_uri
+from .eval_adapters import write_eval_adapter_artifacts
 from .launchkit import build_launch_json, build_launch_kit, build_launch_markdown, bundle_verdict
+from .lab import write_lab_artifacts
+from .outputs.badge import build_badge_markdown, build_report_badge_svg
+from .outputs.otel import report_to_otel_logs
+from .outputs.sarif import report_to_sarif
 from .share import build_share_html
 
 
@@ -110,10 +115,10 @@ def _build_summary_pdf(report: dict, *, title: str, source_label: str) -> bytes:
 
     xref_offset = len(pdf)
     pdf.extend(f"xref\n0 {max(ordered_ids) + 1}\n".encode("latin-1"))
-    pdf.extend(b"0000000000 65535 f \n")
+    pdf.extend(b"0000000000 65535 f\n")
     for obj_id in range(1, max(ordered_ids) + 1):
         offset = offsets.get(obj_id, 0)
-        pdf.extend(f"{offset:010d} 00000 n \n".encode("latin-1"))
+        pdf.extend(f"{offset:010d} 00000 n\n".encode("latin-1"))
     pdf.extend(
         (
             "trailer\n"
@@ -196,9 +201,13 @@ def write_share_bundle(report: dict, outdir: str, *, source_label: str, title: s
     markdown_path = bundle_dir / "report.md"
     html_path = bundle_dir / "index.html"
     social_path = bundle_dir / "social-card.svg"
+    badge_path = bundle_dir / "badge.svg"
+    badge_markdown_path = bundle_dir / "README-badge.md"
     pdf_path = bundle_dir / "summary.pdf"
     launch_markdown_path = bundle_dir / "launch-kit.md"
     launch_json_path = bundle_dir / "launch-kit.json"
+    sarif_path = bundle_dir / "honeypot-med.sarif"
+    otel_path = bundle_dir / "otel-logs.json"
 
     json_path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     markdown_lines = [
@@ -232,23 +241,73 @@ def write_share_bundle(report: dict, outdir: str, *, source_label: str, title: s
     launch_json_path.write_text(build_launch_json(launch_kit), encoding="utf-8")
 
     html_path.write_text(
-        build_share_html(report, source_label=source_label, title=bundle_title) + "\n",
+        build_share_html(report, source_label=source_label, title=bundle_title).rstrip() + "\n",
         encoding="utf-8",
     )
     social_path.write_text(
-        build_social_card_svg(report, title=bundle_title, source_label=source_label) + "\n",
+        build_social_card_svg(report, title=bundle_title, source_label=source_label).rstrip() + "\n",
+        encoding="utf-8",
+    )
+    badge_path.write_text(build_report_badge_svg(report), encoding="utf-8")
+    badge_markdown_path.write_text(
+        build_badge_markdown(report_url="index.html", badge_path=badge_path.name),
         encoding="utf-8",
     )
     pdf_path.write_bytes(_build_summary_pdf(report, title=bundle_title, source_label=source_label))
+    sarif_path.write_text(
+        json.dumps(report_to_sarif(report, source_label=source_label), indent=2) + "\n",
+        encoding="utf-8",
+    )
+    otel_path.write_text(
+        json.dumps(report_to_otel_logs(report, source_label=source_label), indent=2) + "\n",
+        encoding="utf-8",
+    )
+    lab_artifacts = write_lab_artifacts(
+        report,
+        str(bundle_dir),
+        source_label=source_label,
+        title=bundle_title,
+    )
+    eval_artifacts = write_eval_adapter_artifacts(
+        report,
+        str(bundle_dir),
+        source_label=source_label,
+        title=bundle_title,
+    )
     bundle_manifest["artifacts"] = {
         "bundle": bundle_path.name,
         "html": html_path.name,
         "json": json_path.name,
         "markdown": markdown_path.name,
         "social_card": social_path.name,
+        "badge": badge_path.name,
+        "badge_markdown": badge_markdown_path.name,
         "pdf": pdf_path.name,
         "launch_markdown": launch_markdown_path.name,
         "launch_json": launch_json_path.name,
+        "sarif": sarif_path.name,
+        "otel_logs": otel_path.name,
+        "specimen_codex": Path(lab_artifacts["specimen_codex"]).name,
+        "trap_ledger_json": Path(lab_artifacts["trap_ledger_json"]).name,
+        "trap_ledger_csv": Path(lab_artifacts["trap_ledger_csv"]).name,
+        "field_guide": Path(lab_artifacts["field_guide"]).name,
+        "offline_proof": Path(lab_artifacts["offline_proof"]).name,
+        "research_questions": Path(lab_artifacts["research_questions"]).name,
+        "inquiry_notebook": Path(lab_artifacts["inquiry_notebook"]).name,
+        "unknown_ledger": Path(lab_artifacts["unknown_ledger"]).name,
+        "counterfactual_prompts": Path(lab_artifacts["counterfactual_prompts"]).name,
+        "experiment_matrix": Path(lab_artifacts["experiment_matrix"]).name,
+        "question_atlas": Path(lab_artifacts["question_atlas"]).name,
+        "experiment_plan": Path(lab_artifacts["experiment_plan"]).name,
+        "ablation_ladder": Path(lab_artifacts["ablation_ladder"]).name,
+        "eval_samples": Path(eval_artifacts["eval_samples"]).name,
+        "inspect_dataset": Path(eval_artifacts["inspect_dataset"]).name,
+        "promptfoo_config": Path(eval_artifacts["promptfoo_config"]).name,
+        "promptfoo_tests": Path(eval_artifacts["promptfoo_tests"]).name,
+        "openai_evals_yaml": Path(eval_artifacts["openai_evals_yaml"]).name,
+        "openai_evals_samples": Path(eval_artifacts["openai_evals_samples"]).name,
+        "eval_kit": Path(eval_artifacts["eval_kit"]).name,
+        "eval_kit_manifest": Path(eval_artifacts["eval_kit_manifest"]).name,
     }
     bundle_path.write_text(json.dumps(bundle_manifest, indent=2) + "\n", encoding="utf-8")
 
@@ -260,7 +319,32 @@ def write_share_bundle(report: dict, outdir: str, *, source_label: str, title: s
         "json_path": str(json_path),
         "markdown_path": str(markdown_path),
         "social_card_path": str(social_path),
+        "badge_path": str(badge_path),
+        "badge_markdown_path": str(badge_markdown_path),
         "pdf_path": str(pdf_path),
         "launch_markdown_path": str(launch_markdown_path),
         "launch_json_path": str(launch_json_path),
+        "sarif_path": str(sarif_path),
+        "otel_logs_path": str(otel_path),
+        "specimen_codex_path": lab_artifacts["specimen_codex"],
+        "trap_ledger_json_path": lab_artifacts["trap_ledger_json"],
+        "trap_ledger_csv_path": lab_artifacts["trap_ledger_csv"],
+        "field_guide_path": lab_artifacts["field_guide"],
+        "offline_proof_path": lab_artifacts["offline_proof"],
+        "research_questions_path": lab_artifacts["research_questions"],
+        "inquiry_notebook_path": lab_artifacts["inquiry_notebook"],
+        "unknown_ledger_path": lab_artifacts["unknown_ledger"],
+        "counterfactual_prompts_path": lab_artifacts["counterfactual_prompts"],
+        "experiment_matrix_path": lab_artifacts["experiment_matrix"],
+        "question_atlas_path": lab_artifacts["question_atlas"],
+        "experiment_plan_path": lab_artifacts["experiment_plan"],
+        "ablation_ladder_path": lab_artifacts["ablation_ladder"],
+        "eval_samples_path": eval_artifacts["eval_samples"],
+        "inspect_dataset_path": eval_artifacts["inspect_dataset"],
+        "promptfoo_config_path": eval_artifacts["promptfoo_config"],
+        "promptfoo_tests_path": eval_artifacts["promptfoo_tests"],
+        "openai_evals_yaml_path": eval_artifacts["openai_evals_yaml"],
+        "openai_evals_samples_path": eval_artifacts["openai_evals_samples"],
+        "eval_kit_path": eval_artifacts["eval_kit"],
+        "eval_kit_manifest_path": eval_artifacts["eval_kit_manifest"],
     }

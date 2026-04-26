@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Honeypot Med Challenge | Can your healthcare AI survive 10 traps?</title>
+  <meta name="description" content="Run the Honeypot Med healthcare AI challenge: 10 prompt-injection traps, a survival score, README badge, share card, HTML report, SARIF, OTEL logs, JSON, and Markdown." />
+  <link rel="canonical" href="https://byteworthyllc.github.io/honeypot-med/challenge/" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <meta property="og:title" content="Can your healthcare AI survive 10 traps?" />
+  <meta property="og:description" content="A public challenge mode for healthcare AI prompt-injection testing with badges, reports, SARIF, and OpenTelemetry exports." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://byteworthyllc.github.io/honeypot-med/challenge/" />
+  <meta property="og:image" content="https://byteworthyllc.github.io/honeypot-med/assets/share-surface.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Honeypot Med Challenge Mode",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "macOS, Windows, Linux",
+    "url": "https://byteworthyllc.github.io/honeypot-med/challenge/",
+    "description": "A 10-trap healthcare AI prompt-injection challenge that exports shareable reports and integration artifacts."
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="../">
+        <span class="brand-mark">HM</span>
+        <span class="brand-copy">
+          <span class="brand-name">Honeypot Med</span>
+          <span class="brand-tagline">Playable healthcare AI challenge</span>
+        </span>
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="../">Home</a>
+        <a href="../gallery/">Gallery</a>
+        <a href="../field-notes/">Field Notes</a>
+        <a href="../reports/">Reports</a>
+        <a href="../launch-room/">Launch Room</a>
+        <a href="../integrations/">Integrations</a>
+        <a href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="shell page-hero-grid">
+        <article class="panel page-hero-copy">
+          <div class="kicker">Challenge mode</div>
+          <h1 class="page-title">Can your healthcare AI survive 10 traps?</h1>
+          <p>Run a local-first healthcare AI prompt-injection challenge, get a survival score, compare against baseline agent profiles, and publish the result as a report, badge, social card, SARIF file, OpenTelemetry log bundle, JSON, and Markdown.</p>
+          <div class="hero-actions">
+            <a class="button" href="https://github.com/ByteWorthyLLC/honeypot-med#zero-friction-quickstart" target="_blank" rel="noreferrer">Run challenge</a>
+            <a class="button-secondary" href="../reports/">Open report gallery</a>
+            <a class="button-ghost" href="../integrations/">Wire into CI</a>
+          </div>
+        </article>
+        <aside class="panel page-hero-side">
+          <strong>One command</strong>
+          <pre class="command-block">python app.py challenge --outdir reports/challenge</pre>
+          <p>Default output includes <code>index.html</code>, <code>badge.svg</code>, <code>social-card.svg</code>, <code>honeypot-med.sarif</code>, <code>otel-logs.json</code>, <code>report.json</code>, and <code>report.md</code>.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-header">
+          <div>
+            <div class="ribbon">Score loop</div>
+            <h2 class="section-title">The project now has a repeatable game mechanic.</h2>
+          </div>
+          <p>A viral developer tool needs an outcome people can screenshot, compare, and add to a README.</p>
+        </div>
+        <div class="page-grid">
+          <article class="page-card">
+            <h3>Survival score</h3>
+            <p>The default challenge pack returns a score like <strong>8/10 survived</strong>, with blocked traps called out as concrete report events.</p>
+          </article>
+          <article class="page-card">
+            <h3>README badge</h3>
+            <p>Every challenge bundle includes <code>badge.svg</code> and <code>README-badge.md</code> so other projects can show their score.</p>
+          </article>
+          <article class="page-card">
+            <h3>Baseline comparison</h3>
+            <p>Reports compare against OpenAI-compatible chat, RAG bot, claims copilot, prior-auth agent, and voice-agent baseline profiles.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-header">
+          <div>
+            <div class="ribbon">Baselines</div>
+            <h2 class="section-title">Compare against familiar agent shapes.</h2>
+          </div>
+          <p>These are representative profiles, not vendor claims. They make the challenge legible to builders who know their architecture.</p>
+        </div>
+        <div class="gallery-grid">
+          <article class="gallery-card"><div class="small-caps">OpenAI-compatible endpoint</div><h3>6/10 survived</h3><p>Generic chat wrapper with refusal copy but limited tool gating.</p></article>
+          <article class="gallery-card"><div class="small-caps">RAG bot</div><h3>5/10 survived</h3><p>Retrieval guardrails help on policy questions but not export attempts.</p></article>
+          <article class="gallery-card"><div class="small-caps">Claims copilot</div><h3>4/10 survived</h3><p>High tool reach makes export and token traps more dangerous.</p></article>
+          <article class="gallery-card"><div class="small-caps">Prior-auth agent</div><h3>7/10 survived</h3><p>Human-review routing helps, but policy override prompts still trip risk.</p></article>
+          <article class="gallery-card"><div class="small-caps">Voice agent</div><h3>8/10 survived</h3><p>Narrow tooling and refusal language reduce proven exploit paths.</p></article>
+          <article class="gallery-card"><div class="small-caps">Your workflow</div><h3>Run locally</h3><p>Use <code>--input</code> or <code>--pack</code> to generate your own score and badge.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-grid">
+      <p>Honeypot Med challenge mode turns scans into shareable proof artifacts.</p>
+      <div class="footer-links">
+        <a href="../">Home</a>
+        <a href="../reports/">Reports</a>
+        <a href="../launch-room/">Launch Room</a>
+        <a href="../integrations/">Integrations</a>
+        <a href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../assets/app.js"></script>
+</body>
+</html>

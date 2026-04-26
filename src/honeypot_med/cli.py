@@ -13,11 +13,19 @@ from pathlib import Path
 from .attack_packs import describe_attack_pack, list_attack_packs, load_attack_pack_payload
 from .audit import append_audit_event
 from .baseline import apply_suppressions, load_suppressions
+from .challenge import DEFAULT_CHALLENGE_PACK, write_challenge_bundle
 from .decoys import load_decoy_pack
+from .eval_adapters import write_eval_adapter_artifacts
 from .errors import ValidationError
 from .events import events_to_payload, normalize_event
+from .experiments import write_experiment_artifacts
 from .exports import write_share_bundle
+from .inquiry import write_inquiry_artifacts
+from .lab import write_lab_artifacts
 from .models import InputPayload
+from .outputs.badge import build_badge_markdown, build_report_badge_svg
+from .outputs.otel import report_to_otel_logs
+from .outputs.sarif import report_to_sarif
 from .redaction import redact_event
 from .runtime import (
     check_network,
@@ -52,6 +60,12 @@ COMMANDS = {
     "scan",
     "protect",
     "demo",
+    "challenge",
+    "export",
+    "lab",
+    "inquire",
+    "experiment",
+    "eval-kit",
     "config",
     "share",
     "packs",
@@ -142,10 +156,11 @@ def _add_source_flags(
 def _load_analysis_payload(args: argparse.Namespace) -> tuple[InputPayload, dict, str]:
     prompt = getattr(args, "prompt", None)
     explicit_input = getattr(args, "input", None)
-    pack_id = getattr(args, "pack", None)
+    explicit_pack_id = getattr(args, "pack", None)
+    default_pack_id = getattr(args, "_default_pack", None)
     default_input = getattr(args, "_default_input", None)
 
-    provided = [bool(prompt), bool(explicit_input), bool(pack_id)]
+    provided = [bool(prompt), bool(explicit_input), bool(explicit_pack_id)]
     if sum(1 for item in provided if item) > 1:
         raise ValidationError("Use only one source: --input, --prompt, or --pack.")
 
@@ -162,6 +177,7 @@ def _load_analysis_payload(args: argparse.Namespace) -> tuple[InputPayload, dict
         }
         return InputPayload.from_dict(payload_dict), payload_dict, "pasted prompt"
 
+    pack_id = explicit_pack_id or (default_pack_id if not prompt and not explicit_input else None)
     if pack_id:
         payload_dict = load_attack_pack_payload(str(pack_id))
         return InputPayload.from_dict(payload_dict), payload_dict, f"pack:{pack_id}"
@@ -366,6 +382,8 @@ def _build_command_parser() -> argparse.ArgumentParser:
     scan.add_argument("--json", action="store_true", help="Emit full JSON report")
     scan.add_argument("--output", default="-", help="JSON output path when --json is set")
     scan.add_argument("--pretty", action="store_true")
+    scan.add_argument("--bundle-dir", help="Also write HTML, SVG, JSON, Markdown, SARIF, and OTEL artifacts")
+    scan.add_argument("--title", help="Optional bundle title when --bundle-dir is set")
     _add_analysis_flags(scan)
     _add_runtime_flags(scan)
 
@@ -399,6 +417,85 @@ def _build_command_parser() -> argparse.ArgumentParser:
     share.add_argument("--json", action="store_true", help="Emit bundle metadata as JSON")
     _add_scoring_flags(share)
     _add_runtime_flags(share)
+
+    challenge = subparsers.add_parser("challenge", help="Run the public healthcare AI trap challenge")
+    _add_source_flags(
+        challenge,
+        input_help="Optional JSON payload; defaults to the bundled healthcare challenge pack",
+    )
+    challenge.set_defaults(_default_pack=DEFAULT_CHALLENGE_PACK)
+    challenge.add_argument("--outdir", default="reports/challenge")
+    challenge.add_argument("--title", default="Honeypot Med Healthcare AI Challenge")
+    challenge.add_argument("--report-url", default="index.html")
+    challenge.add_argument("--fail-under", type=int, default=0, help="Fail if survival score is below this percentage")
+    challenge.add_argument("--json", action="store_true", help="Emit challenge metadata as JSON")
+    _add_scoring_flags(challenge)
+    _add_runtime_flags(challenge)
+
+    export = subparsers.add_parser("export", help="Export a report in portable integration formats")
+    _add_source_flags(
+        export,
+        default_input="examples/sample.json",
+        input_help="JSON file with {events:[...]} or {prompts:[...]} payload",
+    )
+    export.add_argument(
+        "--format",
+        choices=["all", "html", "json", "markdown", "sarif", "otel", "badge", "eval-kit"],
+        default="all",
+    )
+    export.add_argument("--outdir", default="reports/export")
+    export.add_argument("--title", default="Honeypot Med Export")
+    export.add_argument("--json", action="store_true", help="Emit artifact metadata as JSON")
+    _add_scoring_flags(export)
+    _add_runtime_flags(export)
+
+    lab = subparsers.add_parser("lab", help="Generate weird offline Trap Lab artifacts")
+    _add_source_flags(
+        lab,
+        input_help="Optional JSON payload; defaults to the bundled healthcare challenge pack",
+    )
+    lab.set_defaults(_default_pack=DEFAULT_CHALLENGE_PACK)
+    lab.add_argument("--outdir", default="reports/lab")
+    lab.add_argument("--title", default="Honeypot Med Trap Lab")
+    lab.add_argument("--json", action="store_true", help="Emit lab artifact metadata as JSON")
+    _add_scoring_flags(lab)
+    _add_runtime_flags(lab)
+
+    inquire = subparsers.add_parser("inquire", help="Generate research questions and unknown ledgers")
+    _add_source_flags(
+        inquire,
+        input_help="Optional JSON payload; defaults to the bundled healthcare challenge pack",
+    )
+    inquire.set_defaults(_default_pack=DEFAULT_CHALLENGE_PACK)
+    inquire.add_argument("--outdir", default="reports/inquiry")
+    inquire.add_argument("--title", default="Honeypot Med Inquiry")
+    inquire.add_argument("--json", action="store_true", help="Emit inquiry artifact metadata as JSON")
+    _add_scoring_flags(inquire)
+    _add_runtime_flags(inquire)
+
+    experiment = subparsers.add_parser("experiment", help="Generate counterfactual prompts and ablation plans")
+    _add_source_flags(
+        experiment,
+        input_help="Optional JSON payload; defaults to the bundled healthcare challenge pack",
+    )
+    experiment.set_defaults(_default_pack=DEFAULT_CHALLENGE_PACK)
+    experiment.add_argument("--outdir", default="reports/experiments")
+    experiment.add_argument("--title", default="Honeypot Med Experiment")
+    experiment.add_argument("--json", action="store_true", help="Emit experiment artifact metadata as JSON")
+    _add_scoring_flags(experiment)
+    _add_runtime_flags(experiment)
+
+    eval_kit = subparsers.add_parser("eval-kit", help="Generate offline adapters for promptfoo, Inspect AI, and OpenAI Evals")
+    _add_source_flags(
+        eval_kit,
+        input_help="Optional JSON payload; defaults to the bundled healthcare challenge pack",
+    )
+    eval_kit.set_defaults(_default_pack=DEFAULT_CHALLENGE_PACK)
+    eval_kit.add_argument("--outdir", default="reports/eval-kit")
+    eval_kit.add_argument("--title", default="Honeypot Med Eval Kit")
+    eval_kit.add_argument("--json", action="store_true", help="Emit eval-kit artifact metadata as JSON")
+    _add_scoring_flags(eval_kit)
+    _add_runtime_flags(eval_kit)
 
     packs = subparsers.add_parser("packs", help="List or inspect bundled healthcare attack packs")
     packs.add_argument("--pack", help="Specific pack id to inspect")
@@ -817,7 +914,7 @@ def _scan_summary(report: dict) -> str:
 
 
 def _run_scan(args: argparse.Namespace) -> int:
-    payload, payload_dict, _ = _load_analysis_payload(args)
+    payload, payload_dict, source_label = _load_analysis_payload(args)
     report = _build_analysis_report(payload, payload_dict, args)
 
     if args.json:
@@ -828,6 +925,17 @@ def _run_scan(args: argparse.Namespace) -> int:
             _emit_json(report, args.output, True)
 
     _emit_markdown_report(report, args.markdown)
+    if getattr(args, "bundle_dir", None):
+        bundle = write_share_bundle(
+            report,
+            args.bundle_dir,
+            source_label=source_label,
+            title=getattr(args, "title", None),
+        )
+        if not args.json:
+            print(f"- Share bundle: {bundle['html_path']}")
+            print(f"- SARIF export: {bundle['sarif_path']}")
+            print(f"- OTEL logs: {bundle['otel_logs_path']}")
     return EXIT_OK
 
 
@@ -902,6 +1010,188 @@ def _run_share(args: argparse.Namespace) -> int:
     print(f"- Markdown report: {bundle['markdown_path']}")
     print(f"- Social card: {bundle['social_card_path']}")
     print(f"- PDF brief: {bundle['pdf_path']}")
+    print(f"- README badge: {bundle['badge_path']}")
+    print(f"- SARIF export: {bundle['sarif_path']}")
+    print(f"- OTEL logs: {bundle['otel_logs_path']}")
+    return EXIT_OK
+
+
+def _run_challenge(args: argparse.Namespace) -> int:
+    payload, payload_dict, source_label = _load_analysis_payload(args)
+    report = _build_analysis_report(payload, payload_dict, args)
+    bundle = write_challenge_bundle(
+        report,
+        args.outdir,
+        source_label=source_label,
+        title=args.title,
+        report_url=args.report_url,
+    )
+    challenge = bundle["challenge"]
+    status = EXIT_OK
+    if int(challenge["score_percent"]) < int(args.fail_under):
+        status = EXIT_GATE_VIOLATION
+
+    if args.json:
+        _emit_json({"bundle": bundle, "challenge": challenge, "report": report}, "-", True)
+        return status
+
+    print("Challenge complete.")
+    print(f"- Score: {challenge['score_label']}")
+    print(f"- Verdict: {challenge['verdict']}")
+    print(f"- Report: {bundle['html_path']}")
+    print(f"- Badge: {bundle['extra_artifacts']['badge']}")
+    print(f"- SARIF: {bundle['extra_artifacts']['sarif']}")
+    print(f"- OTEL logs: {bundle['extra_artifacts']['otel_logs']}")
+    if status != EXIT_OK:
+        print(f"- Gate: score {challenge['score_percent']} is below fail-under {args.fail_under}")
+    return status
+
+
+def _run_export(args: argparse.Namespace) -> int:
+    payload, payload_dict, source_label = _load_analysis_payload(args)
+    report = _build_analysis_report(payload, payload_dict, args)
+    outdir = Path(args.outdir)
+    outdir.mkdir(parents=True, exist_ok=True)
+
+    artifacts: dict[str, str] = {}
+    selected = args.format
+    if selected in {"all", "html"}:
+        bundle = write_share_bundle(report, str(outdir), source_label=source_label, title=args.title)
+        artifacts.update(
+            {
+                "html": bundle["html_path"],
+                "json": bundle["json_path"],
+                "markdown": bundle["markdown_path"],
+                "social_card": bundle["social_card_path"],
+                "badge": bundle["badge_path"],
+                "sarif": bundle["sarif_path"],
+                "otel_logs": bundle["otel_logs_path"],
+            }
+        )
+    else:
+        if selected == "json":
+            path = outdir / "report.json"
+            path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+            artifacts["json"] = str(path)
+        elif selected == "markdown":
+            path = outdir / "report.md"
+            path.write_text(_build_markdown_report(report) + "\n", encoding="utf-8")
+            artifacts["markdown"] = str(path)
+        elif selected == "sarif":
+            path = outdir / "honeypot-med.sarif"
+            path.write_text(
+                json.dumps(report_to_sarif(report, source_label=source_label), indent=2) + "\n",
+                encoding="utf-8",
+            )
+            artifacts["sarif"] = str(path)
+        elif selected == "otel":
+            path = outdir / "otel-logs.json"
+            path.write_text(
+                json.dumps(report_to_otel_logs(report, source_label=source_label), indent=2) + "\n",
+                encoding="utf-8",
+            )
+            artifacts["otel_logs"] = str(path)
+        elif selected == "badge":
+            badge_path = outdir / "badge.svg"
+            markdown_path = outdir / "README-badge.md"
+            badge_path.write_text(build_report_badge_svg(report), encoding="utf-8")
+            markdown_path.write_text(
+                build_badge_markdown(report_url="index.html", badge_path=badge_path.name),
+                encoding="utf-8",
+            )
+            artifacts["badge"] = str(badge_path)
+            artifacts["badge_markdown"] = str(markdown_path)
+        elif selected == "eval-kit":
+            artifacts.update(
+                write_eval_adapter_artifacts(
+                    report,
+                    str(outdir),
+                    source_label=source_label,
+                    title=args.title,
+                )
+            )
+
+    payload_out = {"status": "created", "format": selected, "outdir": str(outdir), "artifacts": artifacts}
+    if args.json:
+        _emit_json(payload_out, "-", True)
+        return EXIT_OK
+
+    print("Export complete.")
+    for name, path in artifacts.items():
+        print(f"- {name}: {path}")
+    return EXIT_OK
+
+
+def _run_lab(args: argparse.Namespace) -> int:
+    payload, payload_dict, source_label = _load_analysis_payload(args)
+    report = _build_analysis_report(payload, payload_dict, args)
+    artifacts = write_lab_artifacts(report, args.outdir, source_label=source_label, title=args.title)
+    payload_out = {"status": "created", "outdir": args.outdir, "artifacts": artifacts}
+    if args.json:
+        _emit_json(payload_out, "-", True)
+        return EXIT_OK
+
+    print("Trap Lab artifacts ready.")
+    print(f"- Specimen codex: {artifacts['specimen_codex']}")
+    print(f"- Field guide: {artifacts['field_guide']}")
+    print(f"- Trap ledger CSV: {artifacts['trap_ledger_csv']}")
+    print(f"- Offline proof: {artifacts['offline_proof']}")
+    return EXIT_OK
+
+
+def _run_inquire(args: argparse.Namespace) -> int:
+    payload, payload_dict, source_label = _load_analysis_payload(args)
+    report = _build_analysis_report(payload, payload_dict, args)
+    artifacts = write_inquiry_artifacts(report, args.outdir, source_label=source_label, title=args.title)
+    payload_out = {"status": "created", "outdir": args.outdir, "artifacts": artifacts}
+    if args.json:
+        _emit_json(payload_out, "-", True)
+        return EXIT_OK
+
+    print("Inquiry artifacts ready.")
+    print(f"- Research questions: {artifacts['research_questions']}")
+    print(f"- Inquiry notebook: {artifacts['inquiry_notebook']}")
+    print(f"- Unknown ledger: {artifacts['unknown_ledger']}")
+    print(f"- Experiment plan: {artifacts['experiment_plan']}")
+    return EXIT_OK
+
+
+def _run_experiment(args: argparse.Namespace) -> int:
+    payload, payload_dict, source_label = _load_analysis_payload(args)
+    report = _build_analysis_report(payload, payload_dict, args)
+    artifacts = write_experiment_artifacts(report, args.outdir, title=args.title)
+    payload_out = {"status": "created", "outdir": args.outdir, "source_label": source_label, "artifacts": artifacts}
+    if args.json:
+        _emit_json(payload_out, "-", True)
+        return EXIT_OK
+
+    print("Experiment artifacts ready.")
+    print(f"- Experiment plan: {artifacts['experiment_plan']}")
+    print(f"- Counterfactual prompts: {artifacts['counterfactual_prompts']}")
+    print(f"- Ablation ladder: {artifacts['ablation_ladder']}")
+    print(f"- Question atlas: {artifacts['question_atlas']}")
+    return EXIT_OK
+
+
+def _run_eval_kit(args: argparse.Namespace) -> int:
+    payload, payload_dict, source_label = _load_analysis_payload(args)
+    report = _build_analysis_report(payload, payload_dict, args)
+    artifacts = write_eval_adapter_artifacts(
+        report,
+        args.outdir,
+        source_label=source_label,
+        title=args.title,
+    )
+    payload_out = {"status": "created", "outdir": args.outdir, "source_label": source_label, "artifacts": artifacts}
+    if args.json:
+        _emit_json(payload_out, "-", True)
+        return EXIT_OK
+
+    print("Eval kit ready.")
+    print(f"- promptfoo config: {artifacts['promptfoo_config']}")
+    print(f"- Inspect dataset: {artifacts['inspect_dataset']}")
+    print(f"- OpenAI Evals samples: {artifacts['openai_evals_samples']}")
+    print(f"- Canonical samples: {artifacts['eval_samples']}")
     return EXIT_OK
 
 
@@ -1163,6 +1453,18 @@ def main(argv: list[str] | None = None) -> int:
                 exit_code = _run_protect(args)
             elif args.command == "demo":
                 exit_code = _run_demo(args)
+            elif args.command == "challenge":
+                exit_code = _run_challenge(args)
+            elif args.command == "export":
+                exit_code = _run_export(args)
+            elif args.command == "lab":
+                exit_code = _run_lab(args)
+            elif args.command == "inquire":
+                exit_code = _run_inquire(args)
+            elif args.command == "experiment":
+                exit_code = _run_experiment(args)
+            elif args.command == "eval-kit":
+                exit_code = _run_eval_kit(args)
             elif args.command == "config":
                 exit_code = _run_config(args)
             elif args.command == "share":

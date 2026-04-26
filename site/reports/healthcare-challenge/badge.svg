@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="231" height="28" viewBox="0 0 231 28" role="img" aria-label="Honeypot Med: 8/10 survived">
+  <linearGradient id="s" x2="0" y2="100%">
+    <stop offset="0" stop-color="#fff" stop-opacity=".16"/>
+    <stop offset="1" stop-color="#000" stop-opacity=".08"/>
+  </linearGradient>
+  <rect width="231" height="28" rx="8" fill="#1f2630"/>
+  <rect x="112" width="119" height="28" rx="8" fill="#b66a16"/>
+  <rect width="231" height="28" rx="8" fill="url(#s)"/>
+  <text x="56.0" y="18" text-anchor="middle" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="700" fill="#fff">Honeypot Med</text>
+  <text x="171.5" y="18" text-anchor="middle" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="12" font-weight="800" fill="#fff">8/10 survived</text>
+</svg>

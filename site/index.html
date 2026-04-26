@@ -3,20 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Honeypot Med | Prompt-injection evidence for healthcare AI</title>
-  <meta name="description" content="Honeypot Med is a local-first, open-source prompt-injection honeypot for healthcare AI. Paste one prompt, get a verdict, and export a buyer-ready evidence page." />
+  <title>Honeypot Med | Can your healthcare AI survive 10 traps?</title>
+  <meta name="description" content="Honeypot Med is a local-first healthcare AI challenge: run 10 prompt-injection traps, get a survival score, publish a badge, and export HTML, SARIF, OTEL, eval kits, JSON, and Markdown." />
   <meta name="keywords" content="prompt injection healthcare AI, healthcare AI security, prompt injection honeypot, open source prompt security, local-first AI security" />
   <link rel="canonical" href="https://byteworthyllc.github.io/honeypot-med/" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="manifest" href="site.webmanifest" />
-  <meta property="og:title" content="Honeypot Med | Prompt-injection evidence for healthcare AI" />
-  <meta property="og:description" content="Paste one prompt, get a verdict, and export an HTML proof page, PDF brief, social card, and launch kit. Local-first and open source." />
+  <meta property="og:title" content="Honeypot Med | Can your healthcare AI survive 10 traps?" />
+  <meta property="og:description" content="Run challenge mode, get a survival score, publish a badge, and export HTML, SARIF, OTEL, eval kits, JSON, Markdown, and share cards." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://byteworthyllc.github.io/honeypot-med/" />
   <meta property="og:image" content="https://byteworthyllc.github.io/honeypot-med/assets/viral-hero.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Honeypot Med | Prompt-injection evidence for healthcare AI" />
-  <meta name="twitter:description" content="Open-source prompt-injection proof pages for healthcare AI workflows. Local-first. No API keys required." />
+  <meta name="twitter:title" content="Honeypot Med | Can your healthcare AI survive 10 traps?" />
+  <meta name="twitter:description" content="Open-source healthcare AI prompt-injection challenge with score, badge, reports, SARIF, OTEL logs, eval kits, and share cards." />
   <meta name="twitter:image" content="https://byteworthyllc.github.io/honeypot-med/assets/viral-hero.jpg" />
   <link rel="stylesheet" href="assets/styles.css" />
   <script type="application/ld+json">
@@ -71,7 +71,7 @@
             "name": "Why is Honeypot Med useful for public demos?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Each run becomes an HTML proof page, PDF summary, social card, JSON report, and launch kit, which makes the output understandable and easy to share."
+              "text": "Each run becomes an HTML proof page, PDF summary, social card, JSON report, experiment plan, eval kit, and launch kit, which makes the output understandable and reusable."
             }
           }
         ]
@@ -91,11 +91,14 @@
         </span>
       </a>
       <nav class="nav" aria-label="Primary">
-        <a href="faq/">FAQ</a>
-        <a href="use-cases/healthcare-ai/">Use Cases</a>
+        <a href="challenge/">Challenge</a>
+        <a href="codex/">Codex</a>
+        <a href="field-notes/">Field Notes</a>
+        <a href="gallery/">Gallery</a>
+        <a href="reports/">Reports</a>
+        <a href="launch-room/">Launch Room</a>
+        <a href="integrations/">Integrations</a>
         <a href="compare/prompt-guardrails-vs-honeypots/">Compare</a>
-        <a href="releases/">Releases</a>
-        <a href="media/">Media</a>
         <a href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer" data-track-action="click" data-track-key="github-repo">GitHub</a>
       </nav>
     </div>
@@ -105,13 +108,16 @@
     <section class="hero">
       <div class="shell hero-grid">
         <article class="panel hero-copy">
-          <div class="kicker">Local-first. No API keys. Public-proof artifacts.</div>
-          <h1>Prompt-injection proof pages for healthcare AI.</h1>
-          <p>Honeypot Med is an open-source security product surface, not just a scanner. Paste one prompt, get a verdict, and export an HTML evidence page, PDF brief, social card, JSON report, and launch kit that people can actually share.</p>
+          <div class="kicker">Challenge mode. README badge. CI artifacts.</div>
+          <h1>Can your healthcare AI survive 10 traps?</h1>
+          <p>Prompt-injection proof pages for healthcare AI. Honeypot Med is now a free offline Trap Lab: run a 10-trap challenge, get a survival score, name the failure specimens, compare against baseline agents, and export an HTML report, README badge, social card, SARIF, OpenTelemetry logs, research questions, counterfactual prompts, ablation ladder, eval kit, JSON, Markdown, PDF, field guide, and launch kit.</p>
           <div class="hero-actions">
-            <a class="button" href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer" data-track-action="click" data-track-key="github-repo">Open GitHub</a>
-            <a class="button-secondary" href="https://github.com/ByteWorthyLLC/honeypot-med#readme" target="_blank" rel="noreferrer" data-track-action="click" data-track-key="github-readme">Read README</a>
-            <a class="button-ghost" href="#launch-loop">See the launch loop</a>
+            <a class="button" href="challenge/">Run challenge mode</a>
+            <a class="button-secondary" href="reports/">View generated reports</a>
+            <a class="button-ghost" href="codex/">Open Specimen Codex</a>
+            <a class="button-ghost" href="field-notes/">Field Notes</a>
+            <a class="button-ghost" href="launch-room/">Launch Room</a>
+            <a class="button-ghost" href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer" data-track-action="click" data-track-key="github-repo">Open GitHub</a>
           </div>
         </article>
         <aside class="panel hero-proof">
@@ -121,7 +127,7 @@
             <div class="evidence-grid">
               <div class="hero-stat"><strong>1</strong><span>command to launch: <code>python app.py</code></span></div>
               <div class="hero-stat"><strong>0</strong><span>API keys required for the default path</span></div>
-              <div class="hero-stat"><strong>12</strong><span>public surfaces now live across product, release, search, and media</span></div>
+              <div class="hero-stat"><strong>20+</strong><span>public surfaces across challenge, reports, experiments, integrations, gallery, release, search, and media</span></div>
             </div>
             <div class="pulse-grid" aria-label="Public pulse counters">
               <div class="pulse-card"><span>GitHub stars</span><strong data-repo-metric="stargazers_count">--</strong></div>
@@ -155,6 +161,108 @@
           <article class="feature-card">
             <h3>Local-first lowers the demo barrier</h3>
             <p>People can run the studio without setting up billing, cloud keys, or a hosted backend. That matters for open-source spread.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-header">
+          <div>
+            <div class="ribbon">Public experiment</div>
+            <h2 class="section-title">Challenge mode makes the product replayable.</h2>
+          </div>
+          <p>The wedge is no longer "read this scanner output." The wedge is "run the healthcare AI challenge and publish your score."</p>
+        </div>
+        <div class="page-grid">
+          <article class="page-card">
+            <h3>10-trap score</h3>
+            <p>Run <code>python app.py challenge</code> to get a survival score like <strong>8/10 survived</strong> plus baseline comparisons.</p>
+            <div class="inline-actions"><a href="challenge/">Open challenge mode</a></div>
+          </article>
+          <article class="page-card">
+            <h3>README badge</h3>
+            <p>Each challenge bundle includes <code>badge.svg</code> and <code>README-badge.md</code> so other projects can show their result.</p>
+            <div class="inline-actions"><a href="reports/healthcare-challenge/badge.svg">Open sample badge</a></div>
+          </article>
+          <article class="page-card">
+            <h3>Generated report gallery</h3>
+            <p>Public report examples make the output tangible before someone installs the tool or reads the source.</p>
+            <div class="inline-actions"><a href="reports/">Open reports</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="trap-lab-hero">
+      <div class="shell">
+        <article class="trap-lab-panel">
+          <div class="kicker">Specimen Codex</div>
+          <h1>Every boring finding gets a monster name.</h1>
+          <p>The creative direction is intentionally stranger: Compliance Mimic, Roster Leech, Policy Poltergeist, Quiet Chart Ghost. The generated report now reads like a field guide from a hospital basement where the prompts learned to open doors.</p>
+          <div class="hero-actions">
+            <a class="button" href="codex/">Open Codex</a>
+            <a class="button-secondary" href="reports/healthcare-challenge/field-guide.md">Read field guide</a>
+            <a class="button-ghost" href="reports/healthcare-challenge/offline-proof.txt">Offline proof</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-header">
+          <div>
+            <div class="ribbon">Inquiry mode</div>
+            <h2 class="section-title">Promotion is optional. Questions are the product.</h2>
+          </div>
+          <p>The project now generates research questions, unknown ledgers, and local experiments so a run can become a notebook instead of a pitch.</p>
+        </div>
+        <div class="page-grid">
+          <article class="page-card">
+            <h3>Inquiry notebook</h3>
+            <p>Every bundle can include <code>inquiry-notebook.md</code>, a curiosity-first readout of what to learn next.</p>
+            <div class="inline-actions"><a href="reports/healthcare-challenge/inquiry-notebook.md">Read sample</a></div>
+          </article>
+          <article class="page-card">
+            <h3>Research questions</h3>
+            <p>Machine-readable questions ask about authority boundaries, tool reach, near misses, evidence gaps, and healthcare specificity.</p>
+            <div class="inline-actions"><a href="reports/healthcare-challenge/research-questions.json">Open JSON</a></div>
+          </article>
+          <article class="page-card">
+            <h3>Unknown ledger</h3>
+            <p>Silent passes and unproven hypotheses become a small queue of local experiments instead of discarded noise.</p>
+            <div class="inline-actions"><a href="reports/healthcare-challenge/unknown-ledger.csv">Open CSV</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-header">
+          <div>
+            <div class="ribbon">Why now</div>
+            <h2 class="section-title">Prompt injection is now a workflow risk, not just a chatbot trick.</h2>
+          </div>
+          <p>Healthcare AI buyers do not need another abstract model-safety page. They need proof that claims, triage, prior-auth, eligibility, appeals, and utilization workflows have been tested against attacks that try to touch real systems.</p>
+        </div>
+        <div class="page-grid source-list">
+          <article class="page-card">
+            <h3>OWASP LLM01:2025</h3>
+            <p>OWASP names prompt injection as LLM01 and describes risks that include unauthorized access, sensitive information disclosure, and manipulated decisions.</p>
+            <a href="https://genai.owasp.org/llmrisk/llm01-prompt-injection/" target="_blank" rel="noreferrer">Read OWASP LLM01</a>
+          </article>
+          <article class="page-card">
+            <h3>NIST GenAI profile</h3>
+            <p>NIST AI 600-1 calls for adversarial testing, red-teaming, and resilience checks for attacks such as prompt injection.</p>
+            <a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf" target="_blank" rel="noreferrer">Read NIST AI 600-1</a>
+          </article>
+          <article class="page-card">
+            <h3>CIS 2026 warning</h3>
+            <p>CIS warned that prompt injection is a growing GenAI threat as AI tools gain access to documents, systems, and sensitive data.</p>
+            <a href="https://www.cisecurity.org/about-us/media/press-release/new-cis-report-warns-prompt-injection-attacks-pose-growing-risk-to-generative-ai" target="_blank" rel="noreferrer">Read CIS context</a>
           </article>
         </div>
       </div>
@@ -277,6 +385,31 @@
             <div class="inline-actions"><a href="faq/">Open FAQ</a></div>
           </article>
           <article class="page-card">
+            <h3>Evidence gallery</h3>
+            <p>Sanitized verdict examples for claims, prior auth, triage, appeals, eligibility, and utilization management workflows.</p>
+            <div class="inline-actions"><a href="gallery/">Open gallery</a></div>
+          </article>
+          <article class="page-card">
+            <h3>Challenge and reports</h3>
+            <p>A playable challenge page and generated report gallery turn the project into a public benchmark instead of static docs.</p>
+            <div class="inline-cluster"><a class="badge-link" href="challenge/">Challenge</a><a class="badge-link" href="reports/">Reports</a></div>
+          </article>
+          <article class="page-card">
+            <h3>Specimen Codex</h3>
+            <p>A stranger field-guide layer gives the traps names, tells, temperaments, and containment notes so the output is memorable.</p>
+            <div class="inline-actions"><a href="codex/">Open codex</a></div>
+          </article>
+          <article class="page-card">
+            <h3>Field Notes</h3>
+            <p>A curiosity-first surface for research questions, unknown ledgers, and local experiments.</p>
+            <div class="inline-actions"><a href="field-notes/">Open field notes</a></div>
+          </article>
+          <article class="page-card">
+            <h3>Launch and integrations</h3>
+            <p>Copy-ready launch assets, GitHub Action metadata, SARIF, OpenTelemetry logs, badges, JSON, and Markdown exports.</p>
+            <div class="inline-cluster"><a class="badge-link" href="launch-room/">Launch Room</a><a class="badge-link" href="integrations/">Integrations</a></div>
+          </article>
+          <article class="page-card">
             <h3>Use-case pages</h3>
             <p>Focused content for healthcare AI security teams, founders, product leaders, and compliance-minded buyers.</p>
             <div class="inline-cluster"><a class="badge-link" href="use-cases/healthcare-ai/">Healthcare AI</a><a class="badge-link" href="use-cases/claims-automation/">Claims</a><a class="badge-link" href="use-cases/prior-authorization/">Prior auth</a><a class="badge-link" href="use-cases/patient-triage/">Triage</a></div>
@@ -307,8 +440,8 @@
           </article>
           <article class="copy-card">
             <h3>X post</h3>
-            <p>I built Honeypot Med: an open-source, local-first prompt-injection honeypot for healthcare AI that turns a risky prompt into an evidence page, PDF, social card, and launch kit. No API keys required. https://byteworthyllc.github.io/honeypot-med/</p>
-            <button class="copy-button" type="button" data-copy="I built Honeypot Med: an open-source, local-first prompt-injection honeypot for healthcare AI that turns a risky prompt into an evidence page, PDF, social card, and launch kit. No API keys required. https://byteworthyllc.github.io/honeypot-med/">Copy</button>
+            <p>I built Honeypot Med: an open-source, local-first prompt-injection honeypot for healthcare AI with a public evidence gallery for claims, prior auth, triage, appeals, eligibility, and utilization management. No API keys required. https://byteworthyllc.github.io/honeypot-med/gallery/</p>
+            <button class="copy-button" type="button" data-copy="I built Honeypot Med: an open-source, local-first prompt-injection honeypot for healthcare AI with a public evidence gallery for claims, prior auth, triage, appeals, eligibility, and utilization management. No API keys required. https://byteworthyllc.github.io/honeypot-med/gallery/">Copy</button>
           </article>
           <article class="copy-card">
             <h3>Hacker News title</h3>
@@ -359,23 +492,24 @@
         <article class="cta-card">
           <div>
             <div class="ribbon">Start here</div>
-            <h2>Launch the studio, generate a proof page, and publish the result.</h2>
-            <p>The point is not to hoard findings in a notebook. The point is to generate a clean public-facing artifact fast enough that people actually use and share it.</p>
+            <h2>Run the challenge, publish the score, and let the artifact travel.</h2>
+            <p>The point is not to hoard findings in a notebook. The point is to generate a clean public-facing artifact fast enough that people actually use, compare, badge, and share it.</p>
             <div class="hero-actions">
-              <a class="button" href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer" data-track-action="click" data-track-key="github-repo">Star the repo</a>
-              <a class="button-secondary" href="https://github.com/ByteWorthyLLC/honeypot-med#zero-friction-quickstart" target="_blank" rel="noreferrer" data-track-action="click" data-track-key="github-quickstart">Run the quickstart</a>
-              <a class="button-ghost" href="releases/">Open releases</a>
+              <a class="button" href="challenge/">Run challenge</a>
+              <a class="button-secondary" href="reports/">Open reports</a>
+              <a class="button-ghost" href="integrations/">Wire into CI</a>
             </div>
           </div>
           <div class="surface-card">
             <div class="small-caps">Fastest path</div>
-            <h3>python app.py</h3>
-            <p>That opens the hosted local studio. From there, analyze a prompt or bundled pack and export the entire proof bundle.</p>
+            <h3>python app.py challenge</h3>
+            <p>That runs the default 10-trap healthcare challenge and exports the entire proof bundle.</p>
             <ul class="list-block">
               <li>HTML evidence page</li>
+              <li>README badge</li>
               <li>PDF brief</li>
               <li>SVG social card</li>
-              <li>Launch copy kit</li>
+              <li>SARIF and OTEL exports</li>
             </ul>
           </div>
         </article>
@@ -392,6 +526,14 @@
       <div class="footer-links">
         <a href="faq/">FAQ</a>
         <a href="use-cases/healthcare-ai/">Use case</a>
+        <a href="challenge/">Challenge</a>
+        <a href="codex/">Codex</a>
+        <a href="field-notes/">Field Notes</a>
+        <a href="gallery/">Gallery</a>
+        <a href="reports/">Reports</a>
+        <a href="launch-room/">Launch Room</a>
+        <a href="integrations/">Integrations</a>
+        <a href="contribute/">Contribute</a>
         <a href="compare/prompt-guardrails-vs-honeypots/">Comparison</a>
         <a href="releases/">Releases</a>
         <a href="media/">Media kit</a>

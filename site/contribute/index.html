@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Honeypot Med Contributor Quests | Packs, integrations, reports, benchmarks</title>
+  <meta name="description" content="High-leverage contributor quests for Honeypot Med: add a pack, add an integration, add a report template, or add a benchmark." />
+  <link rel="canonical" href="https://byteworthyllc.github.io/honeypot-med/contribute/" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <meta property="og:title" content="Honeypot Med Contributor Quests" />
+  <meta property="og:description" content="Concrete contribution paths for packs, integrations, report templates, and benchmarks." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://byteworthyllc.github.io/honeypot-med/contribute/" />
+  <meta property="og:image" content="https://byteworthyllc.github.io/honeypot-med/assets/launch-surface.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="../"><span class="brand-mark">HM</span><span class="brand-copy"><span class="brand-name">Honeypot Med</span><span class="brand-tagline">Contributor quests</span></span></a>
+      <nav class="nav" aria-label="Primary">
+        <a href="../">Home</a>
+        <a href="../challenge/">Challenge</a>
+        <a href="../field-notes/">Field Notes</a>
+        <a href="../integrations/">Integrations</a>
+        <a href="../reports/">Reports</a>
+        <a href="../launch-room/">Launch Room</a>
+        <a href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="page-hero">
+      <div class="shell page-hero-grid">
+        <article class="panel page-hero-copy">
+          <div class="kicker">Contributor quests</div>
+          <h1 class="page-title">Give contributors a concrete way to make the project bigger.</h1>
+          <p>Open-source projects grow when the next useful contribution is obvious. These quests map directly to project leverage: packs, integrations, report templates, and benchmarks.</p>
+          <div class="hero-actions">
+            <a class="button" href="https://github.com/ByteWorthyLLC/honeypot-med/issues" target="_blank" rel="noreferrer">Open issues</a>
+            <a class="button-secondary" href="../integrations/">Integration guide</a>
+            <a class="button-ghost" href="../challenge/">Challenge mode</a>
+          </div>
+        </article>
+        <aside class="panel page-hero-side">
+          <strong>Validation before PR</strong>
+          <pre class="command-block">python app.py challenge --outdir reports/challenge
+python app.py export --pack claims --format all --outdir reports/export
+python -m unittest discover -s tests</pre>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-header">
+          <div>
+            <div class="ribbon">Quest board</div>
+            <h2 class="section-title">Four high-leverage contribution tracks.</h2>
+          </div>
+          <p>Each track has a clear artifact and a simple test command.</p>
+        </div>
+        <div class="page-grid">
+          <article class="page-card"><h3>Add a pack</h3><p>Add a realistic workflow pack under <code>src/honeypot_med/packs/</code>, update the manifest, and include commands for the gallery.</p><a class="badge-link" href="../gallery/">See examples</a></article>
+          <article class="page-card"><h3>Add an integration</h3><p>Add an adapter or export target for a tool teams already use: eval traces, telemetry, PR comments, or dashboards.</p><a class="badge-link" href="../integrations/">See formats</a></article>
+          <article class="page-card"><h3>Add a report template</h3><p>Add a new share-card or HTML report layout that makes the output more publishable without changing detection logic.</p><a class="badge-link" href="../reports/">See reports</a></article>
+          <article class="page-card"><h3>Add a benchmark</h3><p>Add a baseline profile, challenge pack, or comparison fixture so users can understand whether their score is good.</p><a class="badge-link" href="../challenge/">See challenge</a></article>
+          <article class="page-card"><h3>Improve the studio</h3><p>Make the browser flow easier for non-developers: clearer copy, faster export paths, better screenshots, and recent bundles.</p><a class="badge-link" href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer">Open repo</a></article>
+          <article class="page-card"><h3>Publish a report</h3><p>Run a pack, generate a share bundle, and add it to the public report gallery with a concise explanation.</p><a class="badge-link" href="../reports/">Report gallery</a></article>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="shell footer-grid"><p>Contributor quests for Honeypot Med.</p><div class="footer-links"><a href="../challenge/">Challenge</a><a href="../integrations/">Integrations</a><a href="../reports/">Reports</a><a href="../launch-room/">Launch Room</a></div></div></footer>
+  <script src="../assets/app.js"></script>
+</body>
+</html>

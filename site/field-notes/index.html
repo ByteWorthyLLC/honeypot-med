@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Honeypot Med Field Notes | Intellectual curiosity over promotion</title>
+  <meta name="description" content="Honeypot Med field notes: research questions, unknown ledgers, local experiments, and inquiry notebooks for healthcare AI prompt-injection testing." />
+  <link rel="canonical" href="https://byteworthyllc.github.io/honeypot-med/field-notes/" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <meta property="og:title" content="Honeypot Med Field Notes" />
+  <meta property="og:description" content="A curiosity-first notebook layer for local healthcare AI prompt-injection experiments." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://byteworthyllc.github.io/honeypot-med/field-notes/" />
+  <meta property="og:image" content="https://byteworthyllc.github.io/honeypot-med/reports/healthcare-challenge/social-card.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Honeypot Med Field Notes",
+    "description": "Research questions, unknown ledgers, and local experiments generated from healthcare AI prompt-injection reports.",
+    "about": ["AI evaluation", "prompt injection", "healthcare AI", "local-first research tooling"]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="../"><span class="brand-mark">HM</span><span class="brand-copy"><span class="brand-name">Honeypot Med</span><span class="brand-tagline">Field Notes</span></span></a>
+      <nav class="nav" aria-label="Primary">
+        <a href="../">Home</a>
+        <a href="../challenge/">Challenge</a>
+        <a href="../codex/">Codex</a>
+        <a href="../reports/">Reports</a>
+        <a href="../integrations/">Integrations</a>
+        <a href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="trap-lab-hero">
+      <div class="shell">
+        <article class="trap-lab-panel">
+          <div class="kicker">Intellectual curiosity over promotion</div>
+          <h1>Good tools should leave better questions behind.</h1>
+          <p>The Field Notes layer turns a report into research questions, unknown ledgers, counterfactual prompt decks, ablation ladders, and local experiment plans. It is built for slow thinking: what did the workflow treat as authority, what evidence is missing, which traps are near misses, and what would falsify the finding?</p>
+          <div class="hero-actions">
+            <a class="button" href="../reports/healthcare-challenge/inquiry-notebook.md">Read inquiry notebook</a>
+            <a class="button-secondary" href="../reports/healthcare-challenge/research-questions.json">Open questions JSON</a>
+            <a class="button-ghost" href="../reports/healthcare-challenge/unknown-ledger.csv">Open unknown ledger</a>
+            <a class="button-ghost" href="../reports/healthcare-challenge/experiment-plan.md">Open experiment plan</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-header">
+          <div>
+            <div class="ribbon">Question bank</div>
+            <h2 class="section-title">The questions the tool should keep asking.</h2>
+          </div>
+          <p>These questions are generated locally in report bundles and can be rerun against any pack or input file.</p>
+        </div>
+        <div class="page-grid">
+          <article class="page-card"><h3>Authority boundary</h3><p>What did the workflow treat as authority that should not have authority?</p></article>
+          <article class="page-card"><h3>Tool reach</h3><p>Which tools make an ordinary prompt dangerous?</p></article>
+          <article class="page-card"><h3>Refusal vs containment</h3><p>Did the model refuse, or did the workflow actually contain the action?</p></article>
+          <article class="page-card"><h3>Near miss</h3><p>Which unproven findings are false positives, and which are near misses?</p></article>
+          <article class="page-card"><h3>Domain specificity</h3><p>What only becomes visible because this is healthcare?</p></article>
+          <article class="page-card"><h3>Instrumentation gap</h3><p>What evidence is missing from the transcript?</p></article>
+          <article class="page-card"><h3>Counterfactual deck</h3><p>Does the same request change risk when it wears patient, clinician, manager, auditor, or system-notice authority?</p></article>
+          <article class="page-card"><h3>Ablation ladder</h3><p>At which evidence depth does a hypothesis become useful enough to trust?</p></article>
+          <article class="page-card"><h3>Question atlas</h3><p>Which reusable research questions are linked to actual report events?</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-header">
+          <div>
+            <div class="ribbon">Local experiments</div>
+            <h2 class="section-title">No API calls, just better variations.</h2>
+          </div>
+          <p>Research mode is useful because it creates the next small local experiment instead of a louder claim.</p>
+        </div>
+        <div class="copy-grid">
+          <article class="copy-card">
+            <h3>Generate inquiry artifacts</h3>
+            <p><code>python app.py inquire --outdir reports/inquiry --engine-mode local --no-allow-network</code></p>
+            <button class="copy-button" type="button" data-copy="python app.py inquire --outdir reports/inquiry --engine-mode local --no-allow-network">Copy</button>
+          </article>
+          <article class="copy-card">
+            <h3>Generate experiment artifacts</h3>
+            <p><code>python app.py experiment --outdir reports/experiments --engine-mode local --no-allow-network</code></p>
+            <button class="copy-button" type="button" data-copy="python app.py experiment --outdir reports/experiments --engine-mode local --no-allow-network">Copy</button>
+          </article>
+          <article class="copy-card">
+            <h3>Compare evidence levels</h3>
+            <p>Run the same prompt with no tool calls, then with tool names, then with tool args, then with model output. Watch when a hypothesis becomes proven.</p>
+            <button class="copy-button" type="button" data-copy="Run the same prompt with no tool calls, then with tool names, then with tool args, then with model output. Watch when a hypothesis becomes proven.">Copy</button>
+          </article>
+          <article class="copy-card">
+            <h3>Open generated research files</h3>
+            <p><a class="badge-link" href="../reports/healthcare-challenge/counterfactual-prompts.json">Counterfactuals</a> <a class="badge-link" href="../reports/healthcare-challenge/experiment-matrix.json">Matrix</a> <a class="badge-link" href="../reports/healthcare-challenge/question-atlas.json">Atlas</a></p>
+            <button class="copy-button" type="button" data-copy="counterfactual-prompts.json experiment-matrix.json question-atlas.json ablation-ladder.csv">Copy artifact names</button>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-grid"><p>Field Notes for Honeypot Med: curiosity-first, local-first, free.</p><div class="footer-links"><a href="../challenge/">Challenge</a><a href="../codex/">Codex</a><a href="../reports/">Reports</a><a href="../integrations/">Integrations</a></div></div></footer>
+  <script src="../assets/app.js"></script>
+</body>
+</html>

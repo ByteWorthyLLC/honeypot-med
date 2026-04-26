@@ -70,7 +70,17 @@ def build_launch_kit(report: dict, *, title: str, source_label: str) -> dict:
         f"Site: {PUBLIC_SITE_URL}\nRepo: {REPO_URL}"
     )
     hacker_news_title = f"Honeypot Med: local-first prompt-injection proof pages for healthcare AI"
+    product_hunt_tagline = "Healthcare AI prompt-injection challenge with badges and proof reports"
+    product_hunt_description = (
+        "Run healthcare AI trap prompts locally, get a survival score, and export an HTML report, "
+        "README badge, social card, SARIF, OpenTelemetry logs, JSON, Markdown, and launch copy."
+    )
     reddit_title = f"I built Honeypot Med, an open-source prompt-injection honeypot for healthcare AI"
+    github_release_blurb = (
+        f"{title} produced a {verdict} verdict with {proven} proven findings. "
+        "This bundle includes HTML, PDF, SVG social card, README badge, SARIF, OTEL logs, JSON, "
+        "Markdown, and launch-kit copy."
+    )
     email_subject = f"{title} evidence pack: {verdict} verdict for {source_label}"
     email_body = (
         f"Team,\n\n"
@@ -115,7 +125,10 @@ def build_launch_kit(report: dict, *, title: str, source_label: str) -> dict:
         "x_post": x_post,
         "linkedin_post": linkedin_post,
         "hacker_news_title": hacker_news_title,
+        "product_hunt_tagline": product_hunt_tagline,
+        "product_hunt_description": product_hunt_description,
         "reddit_title": reddit_title,
+        "github_release_blurb": github_release_blurb,
         "email_subject": email_subject,
         "email_body": email_body,
         "keywords": keywords,
@@ -159,9 +172,19 @@ def build_launch_markdown(launch_kit: dict) -> str:
         "",
         launch_kit["hacker_news_title"],
         "",
+        "## Product Hunt",
+        "",
+        launch_kit["product_hunt_tagline"],
+        "",
+        launch_kit["product_hunt_description"],
+        "",
         "## Reddit Title",
         "",
         launch_kit["reddit_title"],
+        "",
+        "## GitHub Release Blurb",
+        "",
+        launch_kit["github_release_blurb"],
         "",
         "## Email Subject",
         "",

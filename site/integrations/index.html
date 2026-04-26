@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Honeypot Med Integrations | GitHub Action, SARIF, OTEL, eval kits</title>
+  <meta name="description" content="Honeypot Med integration formats for GitHub Actions, SARIF code scanning, OpenTelemetry logs, promptfoo, Inspect AI, OpenAI Evals, JSONL, Markdown, badges, and share bundles." />
+  <link rel="canonical" href="https://byteworthyllc.github.io/honeypot-med/integrations/" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <meta property="og:title" content="Honeypot Med Integrations" />
+  <meta property="og:description" content="Run healthcare AI prompt-injection challenge mode in CI and export SARIF, OTEL logs, promptfoo, Inspect AI, OpenAI Evals, JSONL, badges, and HTML reports." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://byteworthyllc.github.io/honeypot-med/integrations/" />
+  <meta property="og:image" content="https://byteworthyllc.github.io/honeypot-med/assets/studio-surface.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="../"><span class="brand-mark">HM</span><span class="brand-copy"><span class="brand-name">Honeypot Med</span><span class="brand-tagline">Integration formats</span></span></a>
+      <nav class="nav" aria-label="Primary">
+        <a href="../">Home</a>
+        <a href="../challenge/">Challenge</a>
+        <a href="../field-notes/">Field Notes</a>
+        <a href="../reports/">Reports</a>
+        <a href="../launch-room/">Launch Room</a>
+        <a href="../contribute/">Contribute</a>
+        <a href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="page-hero">
+      <div class="shell page-hero-grid">
+        <article class="panel page-hero-copy">
+          <div class="kicker">Integrations</div>
+          <h1 class="page-title">Make Honeypot Med fit existing eval and CI workflows.</h1>
+          <p>The project now exports formats that other tools already understand: GitHub Actions, SARIF, OpenTelemetry-style logs, promptfoo, Inspect AI, legacy OpenAI Evals, canonical JSONL, Markdown, SVG badges, and standalone HTML reports.</p>
+          <div class="hero-actions">
+            <a class="button" href="#github-action">Use GitHub Action</a>
+            <a class="button-secondary" href="../reports/">View generated report</a>
+            <a class="button-ghost" href="../contribute/">Add an integration</a>
+          </div>
+        </article>
+        <aside class="panel page-hero-side">
+          <strong>Portable export</strong>
+          <pre class="command-block">python app.py export --pack claims --format all --outdir reports/export</pre>
+          <p>Use <code>--format sarif</code>, <code>--format otel</code>, <code>--format markdown</code>, <code>--format badge</code>, or <code>--format eval-kit</code> for focused artifacts.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="github-action">
+      <div class="shell">
+        <div class="section-header">
+          <div>
+            <div class="ribbon">GitHub Action</div>
+            <h2 class="section-title">Run challenge mode in CI.</h2>
+          </div>
+          <p>The root <code>action.yml</code> installs the project, runs challenge mode, uploads artifacts, and can upload SARIF to GitHub Code Scanning.</p>
+        </div>
+        <article class="command-card">
+          <h3>Workflow snippet</h3>
+          <pre class="command-block">- uses: ByteWorthyLLC/honeypot-med@main
+  with:
+    pack: healthcare-challenge
+    output-dir: honeypot-med-report
+    fail-under: 70
+    upload-artifact: true
+    upload-sarif: true</pre>
+          <button class="copy-button" type="button" data-copy="- uses: ByteWorthyLLC/honeypot-med@main&#10;  with:&#10;    pack: healthcare-challenge&#10;    output-dir: honeypot-med-report&#10;    fail-under: 70&#10;    upload-artifact: true&#10;    upload-sarif: true">Copy workflow step</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-header">
+          <div>
+            <div class="ribbon">Export formats</div>
+            <h2 class="section-title">The artifact map.</h2>
+          </div>
+          <p>Each format exists because a different audience needs to consume the same result.</p>
+        </div>
+        <div class="page-grid">
+          <article class="page-card"><h3>HTML</h3><p>Human-readable proof page for buyers, leadership, screenshots, and public galleries.</p></article>
+          <article class="page-card"><h3>SARIF</h3><p>Static-analysis format that can be uploaded into GitHub Code Scanning.</p></article>
+          <article class="page-card"><h3>OpenTelemetry logs</h3><p>Operational log payload that maps report events into telemetry-style records.</p></article>
+          <article class="page-card"><h3>Eval kit</h3><p>Offline adapters for promptfoo, Inspect AI, legacy OpenAI Evals, and canonical JSONL workflows.</p></article>
+          <article class="page-card"><h3>JSON</h3><p>Stable machine-readable report for custom dashboards and downstream eval systems.</p></article>
+          <article class="page-card"><h3>Markdown</h3><p>PR comments, release notes, docs, and simple diffs.</p></article>
+          <article class="page-card"><h3>SVG badge</h3><p>README, docs, and launch posts that show the score without opening the report.</p></article>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="shell">
+        <div class="section-header">
+          <div>
+            <div class="ribbon">Eval kit</div>
+            <h2 class="section-title">Move traps into tools teams already use.</h2>
+          </div>
+          <p>The default generated promptfoo config uses the echo provider, so adapter generation and assertion checks can stay offline until a team intentionally swaps in a live provider.</p>
+        </div>
+        <article class="command-card">
+          <h3>Offline adapter command</h3>
+          <pre class="command-block">python app.py eval-kit --pack healthcare-challenge --outdir reports/eval-kit --engine-mode local --no-allow-network</pre>
+          <button class="copy-button" type="button" data-copy="python app.py eval-kit --pack healthcare-challenge --outdir reports/eval-kit --engine-mode local --no-allow-network">Copy eval-kit command</button>
+          <div class="inline-cluster">
+            <a class="badge-link" href="../reports/healthcare-challenge/promptfoo-config.yaml">promptfoo</a>
+            <a class="badge-link" href="../reports/healthcare-challenge/inspect-dataset.jsonl">Inspect JSONL</a>
+            <a class="badge-link" href="../reports/healthcare-challenge/openai-evals.yaml">OpenAI Evals</a>
+            <a class="badge-link" href="../reports/healthcare-challenge/eval-kit.md">Notes</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="shell footer-grid"><p>Integration surface for Honeypot Med.</p><div class="footer-links"><a href="../challenge/">Challenge</a><a href="../reports/">Reports</a><a href="../launch-room/">Launch Room</a><a href="../contribute/">Contribute</a></div></div></footer>
+  <script src="../assets/app.js"></script>
+</body>
+</html>

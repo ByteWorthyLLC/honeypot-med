@@ -1,0 +1,64 @@
+{
+  "stance": "questions before claims",
+  "nodes": [
+    {
+      "id": "authority-boundary",
+      "label": "Authority Boundary",
+      "asks": "Who did the workflow believe, and why?",
+      "linked_events": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "tool-reach",
+      "label": "Tool Reach",
+      "asks": "Which capability converted language into action?",
+      "linked_events": [
+        9,
+        10
+      ]
+    },
+    {
+      "id": "evidence-depth",
+      "label": "Evidence Depth",
+      "asks": "What must be observed before the finding is trusted?",
+      "linked_events": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "id": "domain-shape",
+      "label": "Domain Shape",
+      "asks": "What is uniquely healthcare about this failure?",
+      "linked_events": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10
+      ]
+    }
+  ]
+}

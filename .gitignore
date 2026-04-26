@@ -6,6 +6,8 @@ __pycache__/
 build/
 dist/
 reports/
+!site/reports/
+!site/reports/**
 .honeypot-med/
 *.egg-info/
 report.json

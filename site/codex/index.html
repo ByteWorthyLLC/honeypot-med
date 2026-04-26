@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Honeypot Med Specimen Codex | Trap Lab field guide</title>
+  <meta name="description" content="A weird field guide for Honeypot Med prompt-injection specimens: Compliance Mimic, Roster Leech, Policy Poltergeist, and Quiet Chart Ghost." />
+  <link rel="canonical" href="https://byteworthyllc.github.io/honeypot-med/codex/" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <meta property="og:title" content="Honeypot Med Specimen Codex" />
+  <meta property="og:description" content="A Trap Lab field guide that gives prompt-injection failure modes memorable monster names." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://byteworthyllc.github.io/honeypot-med/codex/" />
+  <meta property="og:image" content="https://byteworthyllc.github.io/honeypot-med/reports/healthcare-challenge/social-card.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Honeypot Med Specimen Codex",
+    "description": "A field guide for prompt-injection specimen archetypes observed in healthcare AI challenge reports.",
+    "about": ["prompt injection", "healthcare AI", "security testing", "open-source tooling"]
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="../"><span class="brand-mark">HM</span><span class="brand-copy"><span class="brand-name">Honeypot Med</span><span class="brand-tagline">Specimen Codex</span></span></a>
+      <nav class="nav" aria-label="Primary">
+        <a href="../">Home</a>
+        <a href="../challenge/">Challenge</a>
+        <a href="../field-notes/">Field Notes</a>
+        <a href="../reports/">Reports</a>
+        <a href="../integrations/">Integrations</a>
+        <a href="../launch-room/">Launch Room</a>
+        <a href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="trap-lab-hero">
+      <div class="shell">
+        <div class="trap-lab-panel">
+          <div class="kicker">Trap Lab field guide</div>
+          <h1>Every boring finding gets a monster name.</h1>
+          <p>Honeypot Med should feel less like a beige scanner and more like a lab notebook from a hospital basement where the prompts learned to open doors. The Specimen Codex gives each failure mode a memorable shape.</p>
+          <div class="hero-actions">
+            <a class="button" href="../reports/healthcare-challenge/specimen-codex.json">Open generated codex JSON</a>
+            <a class="button-secondary" href="../reports/healthcare-challenge/field-guide.md">Open field guide</a>
+            <a class="button-ghost" href="../challenge/">Run challenge</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-header">
+          <div>
+            <div class="ribbon">Specimens</div>
+            <h2 class="section-title">The current field taxonomy.</h2>
+          </div>
+          <p>These names appear in generated reports and lab artifacts. They are useful because teams remember a creature faster than a compliance label.</p>
+        </div>
+        <div class="codex-grid">
+          <article class="rune-card">
+            <div class="rune">C</div>
+            <div class="small-caps">instruction override</div>
+            <h3>Compliance Mimic</h3>
+            <p>Polite until it finds a manager override. Its tells are role resets, instruction resets, and authority costumes.</p>
+            <p><strong>Containment:</strong> Pin system boundaries outside the model path and reject role-reset language before tool access.</p>
+          </article>
+          <article class="rune-card">
+            <div class="rune">R</div>
+            <div class="small-caps">data exfiltration</div>
+            <h3>Roster Leech</h3>
+            <p>Hungry for tables, tokens, and patient-shaped nouns. It asks to dump, leak, export, and bundle records.</p>
+            <p><strong>Containment:</strong> Require scoped retrieval, output redaction, and explicit export approval for sensitive datasets.</p>
+          </article>
+          <article class="rune-card">
+            <div class="rune">P</div>
+            <div class="small-caps">safeguard bypass</div>
+            <h3>Policy Poltergeist</h3>
+            <p>Rattles locks labeled guardrail, policy, admin, and jailbreak. It wants the control plane.</p>
+            <p><strong>Containment:</strong> Keep policy state outside the model path and deny prompts that request control-plane changes.</p>
+          </article>
+          <article class="rune-card">
+            <div class="rune">Q</div>
+            <div class="small-caps">low signal</div>
+            <h3>Quiet Chart Ghost</h3>
+            <p>Mostly harmless, but worth logging before it learns the floor plan. It captures the ambiguous edge cases.</p>
+            <p><strong>Containment:</strong> Keep the transcript, normalize the event, and rerun with a stronger workflow pack.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-header">
+          <div>
+            <div class="ribbon">Free path</div>
+            <h2 class="section-title">No API keys. No paid model calls. No ceremony.</h2>
+          </div>
+          <p>The lab artifacts are generated by local deterministic code. They are deliberately weird, portable, and free.</p>
+        </div>
+        <div class="page-grid">
+          <article class="page-card"><h3>Trap Lab command</h3><pre class="command-block">python app.py lab --outdir reports/lab --engine-mode local --no-allow-network</pre></article>
+          <article class="page-card"><h3>Challenge command</h3><pre class="command-block">python app.py challenge --outdir reports/challenge --engine-mode local --no-allow-network</pre></article>
+          <article class="page-card"><h3>Offline proof</h3><p>Each bundle can include <code>offline-proof.txt</code>, which states the artifact was generated without hosted services or model API calls.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-grid"><p>Specimen Codex for the Honeypot Med Trap Lab.</p><div class="footer-links"><a href="../challenge/">Challenge</a><a href="../reports/">Reports</a><a href="../integrations/">Integrations</a><a href="../launch-room/">Launch Room</a></div></div></footer>
+  <script src="../assets/app.js"></script>
+</body>
+</html>

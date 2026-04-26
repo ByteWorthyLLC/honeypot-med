@@ -71,6 +71,7 @@ class StudioServerTest(unittest.TestCase):
         ids = {entry["id"] for entry in payload["packs"]}
         self.assertIn("claims", ids)
         self.assertIn("triage", ids)
+        self.assertIn("eligibility", ids)
 
     def test_api_analyze_creates_bundle(self):
         payload = self._post_json(
