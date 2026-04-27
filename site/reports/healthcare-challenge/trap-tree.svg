@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="700" viewBox="0 0 980 700" role="img">
+<rect width="100%" height="100%" fill="#f5ead6"/>
+<text x="36" y="50" font-size="28" font-weight="800" font-family="Avenir Next, Arial" fill="#211d17">Trap Phylogeny</text>
+<text x="36" y="78" font-size="14" font-family="Avenir Next, Arial" fill="#6f6252">Specimen families linked to observed traps</text>
+<rect x="36" y="92" width="280" height="46" rx="16" fill="#fff8ea" stroke="#d6c3a3"/>
+<text x="54" y="120" font-size="15" font-weight="800" font-family="Avenir Next, Arial" fill="#211d17">Roster Leech</text>
+<rect x="36" y="166" width="280" height="46" rx="16" fill="#fff8ea" stroke="#d6c3a3"/>
+<text x="54" y="194" font-size="15" font-weight="800" font-family="Avenir Next, Arial" fill="#211d17">Compliance Mimic</text>
+<rect x="36" y="240" width="280" height="46" rx="16" fill="#fff8ea" stroke="#d6c3a3"/>
+<text x="54" y="268" font-size="15" font-weight="800" font-family="Avenir Next, Arial" fill="#211d17">Policy Poltergeist</text>
+<circle cx="760" cy="120" r="18" fill="#23745b"/>
+<text x="790" y="125" font-size="14" font-family="Avenir Next, Arial" fill="#211d17">trap-001 survived</text>
+<path d="M316 194 C460 194, 560 120, 742 120" fill="none" stroke="#6f6252" stroke-opacity=".45" stroke-width="2"/>
+<circle cx="760" cy="178" r="18" fill="#23745b"/>
+<text x="790" y="183" font-size="14" font-family="Avenir Next, Arial" fill="#211d17">trap-002 survived</text>
+<path d="M316 268 C460 268, 560 178, 742 178" fill="none" stroke="#6f6252" stroke-opacity=".45" stroke-width="2"/>
+<circle cx="760" cy="236" r="18" fill="#23745b"/>
+<text x="790" y="241" font-size="14" font-family="Avenir Next, Arial" fill="#211d17">trap-003 survived</text>
+<path d="M316 120 C460 120, 560 236, 742 236" fill="none" stroke="#6f6252" stroke-opacity=".45" stroke-width="2"/>
+<circle cx="760" cy="294" r="18" fill="#23745b"/>
+<text x="790" y="299" font-size="14" font-family="Avenir Next, Arial" fill="#211d17">trap-004 survived</text>
+<path d="M316 268 C460 268, 560 294, 742 294" fill="none" stroke="#6f6252" stroke-opacity=".45" stroke-width="2"/>
+<circle cx="760" cy="352" r="18" fill="#23745b"/>
+<text x="790" y="357" font-size="14" font-family="Avenir Next, Arial" fill="#211d17">trap-005 survived</text>
+<path d="M316 194 C460 194, 560 352, 742 352" fill="none" stroke="#6f6252" stroke-opacity=".45" stroke-width="2"/>
+<circle cx="760" cy="410" r="18" fill="#23745b"/>
+<text x="790" y="415" font-size="14" font-family="Avenir Next, Arial" fill="#211d17">trap-006 survived</text>
+<path d="M316 268 C460 268, 560 410, 742 410" fill="none" stroke="#6f6252" stroke-opacity=".45" stroke-width="2"/>
+<circle cx="760" cy="468" r="18" fill="#23745b"/>
+<text x="790" y="473" font-size="14" font-family="Avenir Next, Arial" fill="#211d17">trap-007 survived</text>
+<path d="M316 194 C460 194, 560 468, 742 468" fill="none" stroke="#6f6252" stroke-opacity=".45" stroke-width="2"/>
+<path d="M316 120 C460 120, 560 468, 742 468" fill="none" stroke="#6f6252" stroke-opacity=".45" stroke-width="2"/>
+<circle cx="760" cy="526" r="18" fill="#23745b"/>
+<text x="790" y="531" font-size="14" font-family="Avenir Next, Arial" fill="#211d17">trap-008 survived</text>
+<path d="M316 120 C460 120, 560 526, 742 526" fill="none" stroke="#6f6252" stroke-opacity=".45" stroke-width="2"/>
+<path d="M316 268 C460 268, 560 526, 742 526" fill="none" stroke="#6f6252" stroke-opacity=".45" stroke-width="2"/>
+<circle cx="760" cy="584" r="18" fill="#bc432c"/>
+<text x="790" y="589" font-size="14" font-family="Avenir Next, Arial" fill="#211d17">trap-009 bitten</text>
+<path d="M316 194 C460 194, 560 584, 742 584" fill="none" stroke="#6f6252" stroke-opacity=".45" stroke-width="2"/>
+<circle cx="760" cy="642" r="18" fill="#bc432c"/>
+<text x="790" y="647" font-size="14" font-family="Avenir Next, Arial" fill="#211d17">trap-010 bitten</text>
+<path d="M316 120 C460 120, 560 642, 742 642" fill="none" stroke="#6f6252" stroke-opacity=".45" stroke-width="2"/>
+<path d="M316 268 C460 268, 560 642, 742 642" fill="none" stroke="#6f6252" stroke-opacity=".45" stroke-width="2"/>
+</svg>

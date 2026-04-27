@@ -10,11 +10,15 @@ This directory is generated locally by Honeypot Med. It contains adapter files f
 - `promptfoo-tests.json`: promptfoo test cases separated from config for teams that already have providers configured.
 - `openai-evals.yaml`: legacy open-source OpenAI Evals registry entry pointing at `openai-evals-samples.jsonl`.
 - `openai-evals-samples.jsonl`: simple `input` and `ideal` records for legacy eval import.
+- `README.dataset-card.md`: Hugging Face-ready dataset card text.
+- `system-card.md`: local system card for the evaluated workflow.
+- `leaderboard-row.json`: benchmark-style row for public comparisons.
 
 ## Local Commands
 
 ```bash
 promptfoo eval -c promptfoo-config.yaml
+python app.py eval-kit verify --dir .
 ```
 
 ## Notes

@@ -1,6 +1,6 @@
 name: "Honeypot Med Challenge"
 author: "ByteWorthy LLC"
-description: "Run healthcare AI prompt-injection challenge mode and publish JSON, HTML, badge, SARIF, and OpenTelemetry artifacts."
+description: "Run healthcare AI prompt-injection challenge mode and publish JSON, HTML, badge, SARIF, JUnit, casebook, eval, and OpenTelemetry artifacts."
 branding:
   icon: "activity"
   color: "red"
@@ -40,6 +40,12 @@ outputs:
   sarif-path:
     description: "Path to the generated SARIF file."
     value: ${{ inputs.output-dir }}/honeypot-med.sarif
+  junit-path:
+    description: "Path to the generated JUnit XML file."
+    value: ${{ inputs.output-dir }}/honeypot-med.junit.xml
+  casebook-path:
+    description: "Path to the generated casebook HTML file."
+    value: ${{ inputs.output-dir }}/casebook.html
 runs:
   using: "composite"
   steps:
@@ -59,6 +65,12 @@ runs:
           --report-url "${{ inputs.report-url }}" \
           --fail-under "${{ inputs.fail-under }}" \
           --json
+    - name: Publish step summary
+      shell: bash
+      run: |
+        if [ -f "${{ inputs.output-dir }}/github-summary.md" ]; then
+          cat "${{ inputs.output-dir }}/github-summary.md" >> "$GITHUB_STEP_SUMMARY"
+        fi
     - name: Upload Honeypot Med artifacts
       if: ${{ inputs.upload-artifact == 'true' }}
       uses: actions/upload-artifact@v4

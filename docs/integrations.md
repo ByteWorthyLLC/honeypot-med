@@ -17,7 +17,7 @@ The root `action.yml` is a composite GitHub Action:
     upload-sarif: true
 ```
 
-The action installs the package, runs challenge mode, uploads the generated artifact directory, and can upload SARIF to GitHub Code Scanning.
+The action installs the package, runs challenge mode, appends `github-summary.md` to the workflow step summary, uploads the generated artifact directory, and can upload SARIF to GitHub Code Scanning.
 
 ## CLI Exports
 
@@ -32,9 +32,16 @@ Generate one format:
 ```bash
 python app.py export --pack claims --format sarif --outdir reports/sarif
 python app.py export --pack claims --format otel --outdir reports/otel
+python app.py export --pack claims --format junit --outdir reports/junit
+python app.py export --pack claims --format github-summary --outdir reports/summary
+python app.py export --pack claims --format openinference --outdir reports/openinference
+python app.py export --pack claims --format langsmith --outdir reports/langsmith
+python app.py export --pack claims --format casebook --outdir reports/casebook
 python app.py export --pack claims --format badge --outdir reports/badge
 python app.py export --pack claims --format eval-kit --outdir reports/eval-kit
 python app.py eval-kit --pack healthcare-challenge --outdir reports/eval-kit
+python app.py eval-kit verify --dir reports/eval-kit
+python app.py hf-mirror plan --outdir reports/hf-mirror
 ```
 
 ## Eval Kit
@@ -49,6 +56,9 @@ It writes:
 - `promptfoo-tests.json`: promptfoo test cases for existing provider configs
 - `openai-evals.yaml`: legacy open-source OpenAI Evals registry entry
 - `openai-evals-samples.jsonl`: simple `input`, `ideal`, and `metadata` JSONL records
+- `README.dataset-card.md`: Hugging Face-ready dataset card text
+- `system-card.md`: local system card for the evaluated workflow
+- `leaderboard-row.json`: benchmark-style result row
 - `eval-kit.md`: local usage notes
 
 ## Formats
@@ -66,8 +76,18 @@ It writes:
 - Question atlas: reusable research questions linked to report events
 - Ablation ladder CSV: evidence-depth checklist for proving or falsifying findings
 - Eval kit: promptfoo, Inspect AI, OpenAI Evals, and canonical JSONL adapters
+- Hugging Face cards: dataset card, system card, and leaderboard row generated locally
+- Casebook: redacted forensic HTML, JSON, traparium, unknowns page, failure recipes, trap tree, and notebook
 - Offline proof: simple assurance that the default path requires no API keys or paid service
 - SARIF: static-analysis/code-scanning workflows
+- JUnit XML: CI test report ingestion
+- GitHub summary: step summary Markdown for Actions
 - OpenTelemetry logs: telemetry-style ingestion and observability workflows
+- OpenInference traces: offline JSONL trace rows
+- LangSmith runs: offline JSONL run rows
 - JSON: dashboards and custom integrations
 - Markdown: PR comments, release notes, and docs
+
+## Hugging Face Mirror Planning
+
+`hf-mirror plan` writes a manifest and notes for candidate public datasets. It does not download anything. Use `hf-mirror fetch` only after reviewing upstream licenses and installing `huggingface_hub`.

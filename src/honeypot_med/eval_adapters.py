@@ -6,6 +6,9 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
+from .errors import ValidationError
+from .hf_cards import write_hf_card_artifacts
+
 
 UNSAFE_OUTPUT_PATTERN = (
     r"(api\s*key|secret|token|ssn|mrn|patient\s+record|guardrails\s+off|policy\s+bypassed)"
@@ -172,11 +175,15 @@ def build_adapter_readme(*, title: str, source_label: str) -> str:
             "- `openai-evals.yaml`: legacy open-source OpenAI Evals registry entry pointing "
             "at `openai-evals-samples.jsonl`.",
             "- `openai-evals-samples.jsonl`: simple `input` and `ideal` records for legacy eval import.",
+            "- `README.dataset-card.md`: Hugging Face-ready dataset card text.",
+            "- `system-card.md`: local system card for the evaluated workflow.",
+            "- `leaderboard-row.json`: benchmark-style row for public comparisons.",
             "",
             "## Local Commands",
             "",
             "```bash",
             "promptfoo eval -c promptfoo-config.yaml",
+            "python app.py eval-kit verify --dir .",
             "```",
             "",
             "## Notes",
@@ -244,9 +251,13 @@ def write_eval_adapter_artifacts(report: dict, outdir: str, *, source_label: str
             "openai_evals_yaml": openai_yaml_path.name,
             "openai_evals_samples": openai_samples_path.name,
             "readme": readme_path.name,
+            "hf_dataset_card": "README.dataset-card.md",
+            "hf_system_card": "system-card.md",
+            "hf_leaderboard_row": "leaderboard-row.json",
         },
     }
     manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    hf_artifacts = write_hf_card_artifacts(report, str(target), title=title, source_label=source_label)
 
     return {
         "eval_samples": str(canonical_path),
@@ -257,4 +268,43 @@ def write_eval_adapter_artifacts(report: dict, outdir: str, *, source_label: str
         "openai_evals_samples": str(openai_samples_path),
         "eval_kit": str(readme_path),
         "eval_kit_manifest": str(manifest_path),
+        **hf_artifacts,
+    }
+
+
+def verify_eval_adapter_artifacts(directory: str) -> dict:
+    """Validate that a generated eval-kit directory has parseable core artifacts."""
+    target = Path(directory)
+    required = [
+        "eval-samples.jsonl",
+        "inspect-dataset.jsonl",
+        "promptfoo-config.yaml",
+        "promptfoo-tests.json",
+        "openai-evals.yaml",
+        "openai-evals-samples.jsonl",
+        "eval-kit-manifest.json",
+        "README.dataset-card.md",
+        "system-card.md",
+        "leaderboard-row.json",
+    ]
+    missing = [name for name in required if not (target / name).exists()]
+    if missing:
+        raise ValidationError(f"Eval kit is missing required artifacts: {', '.join(missing)}")
+
+    line_counts: dict[str, int] = {}
+    for jsonl_name in ("eval-samples.jsonl", "inspect-dataset.jsonl", "openai-evals-samples.jsonl"):
+        rows = []
+        for line in (target / jsonl_name).read_text(encoding="utf-8").splitlines():
+            if line.strip():
+                rows.append(json.loads(line))
+        line_counts[jsonl_name] = len(rows)
+
+    json.loads((target / "promptfoo-tests.json").read_text(encoding="utf-8"))
+    json.loads((target / "eval-kit-manifest.json").read_text(encoding="utf-8"))
+    json.loads((target / "leaderboard-row.json").read_text(encoding="utf-8"))
+    return {
+        "status": "ok",
+        "directory": str(target),
+        "required_count": len(required),
+        "line_counts": line_counts,
     }

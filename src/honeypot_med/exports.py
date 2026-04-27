@@ -9,9 +9,13 @@ from html import escape
 from pathlib import Path
 
 from .branding import load_default_hero_data_uri
+from .casebook import write_casebook_artifacts
 from .eval_adapters import write_eval_adapter_artifacts
+from .github_summary import write_github_summary
+from .junit import write_junit_xml
 from .launchkit import build_launch_json, build_launch_kit, build_launch_markdown, bundle_verdict
 from .lab import write_lab_artifacts
+from .observability import write_observability_artifacts
 from .outputs.badge import build_badge_markdown, build_report_badge_svg
 from .outputs.otel import report_to_otel_logs
 from .outputs.sarif import report_to_sarif
@@ -208,6 +212,8 @@ def write_share_bundle(report: dict, outdir: str, *, source_label: str, title: s
     launch_json_path = bundle_dir / "launch-kit.json"
     sarif_path = bundle_dir / "honeypot-med.sarif"
     otel_path = bundle_dir / "otel-logs.json"
+    junit_path = bundle_dir / "honeypot-med.junit.xml"
+    github_summary_path = bundle_dir / "github-summary.md"
 
     json_path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
     markdown_lines = [
@@ -262,6 +268,8 @@ def write_share_bundle(report: dict, outdir: str, *, source_label: str, title: s
         json.dumps(report_to_otel_logs(report, source_label=source_label), indent=2) + "\n",
         encoding="utf-8",
     )
+    write_junit_xml(report, str(junit_path), suite_name=bundle_title, source_label=source_label)
+    write_github_summary(report, str(github_summary_path), title=bundle_title, source_label=source_label)
     lab_artifacts = write_lab_artifacts(
         report,
         str(bundle_dir),
@@ -273,6 +281,17 @@ def write_share_bundle(report: dict, outdir: str, *, source_label: str, title: s
         str(bundle_dir),
         source_label=source_label,
         title=bundle_title,
+    )
+    casebook_artifacts = write_casebook_artifacts(
+        report,
+        str(bundle_dir),
+        source_label=source_label,
+        title=bundle_title,
+    )
+    observability_artifacts = write_observability_artifacts(
+        report,
+        str(bundle_dir),
+        source_label=source_label,
     )
     bundle_manifest["artifacts"] = {
         "bundle": bundle_path.name,
@@ -287,6 +306,8 @@ def write_share_bundle(report: dict, outdir: str, *, source_label: str, title: s
         "launch_json": launch_json_path.name,
         "sarif": sarif_path.name,
         "otel_logs": otel_path.name,
+        "junit": junit_path.name,
+        "github_summary": github_summary_path.name,
         "specimen_codex": Path(lab_artifacts["specimen_codex"]).name,
         "trap_ledger_json": Path(lab_artifacts["trap_ledger_json"]).name,
         "trap_ledger_csv": Path(lab_artifacts["trap_ledger_csv"]).name,
@@ -308,6 +329,19 @@ def write_share_bundle(report: dict, outdir: str, *, source_label: str, title: s
         "openai_evals_samples": Path(eval_artifacts["openai_evals_samples"]).name,
         "eval_kit": Path(eval_artifacts["eval_kit"]).name,
         "eval_kit_manifest": Path(eval_artifacts["eval_kit_manifest"]).name,
+        "hf_dataset_card": Path(eval_artifacts["hf_dataset_card"]).name,
+        "hf_system_card": Path(eval_artifacts["hf_system_card"]).name,
+        "hf_leaderboard_row": Path(eval_artifacts["hf_leaderboard_row"]).name,
+        "casebook_json": Path(casebook_artifacts["casebook_json"]).name,
+        "casebook_html": Path(casebook_artifacts["casebook_html"]).name,
+        "traparium_html": Path(casebook_artifacts["traparium_html"]).name,
+        "unknowns_html": Path(casebook_artifacts["unknowns_html"]).name,
+        "failure_recipes": Path(casebook_artifacts["failure_recipes"]).name,
+        "trap_tree": Path(casebook_artifacts["trap_tree"]).name,
+        "lab_notebook": Path(casebook_artifacts["lab_notebook"]).name,
+        "openinference_traces": Path(observability_artifacts["openinference_traces"]).name,
+        "langsmith_runs": Path(observability_artifacts["langsmith_runs"]).name,
+        "otel_collector_config": Path(observability_artifacts["otel_collector_config"]).name,
     }
     bundle_path.write_text(json.dumps(bundle_manifest, indent=2) + "\n", encoding="utf-8")
 
@@ -326,6 +360,8 @@ def write_share_bundle(report: dict, outdir: str, *, source_label: str, title: s
         "launch_json_path": str(launch_json_path),
         "sarif_path": str(sarif_path),
         "otel_logs_path": str(otel_path),
+        "junit_path": str(junit_path),
+        "github_summary_path": str(github_summary_path),
         "specimen_codex_path": lab_artifacts["specimen_codex"],
         "trap_ledger_json_path": lab_artifacts["trap_ledger_json"],
         "trap_ledger_csv_path": lab_artifacts["trap_ledger_csv"],
@@ -347,4 +383,17 @@ def write_share_bundle(report: dict, outdir: str, *, source_label: str, title: s
         "openai_evals_samples_path": eval_artifacts["openai_evals_samples"],
         "eval_kit_path": eval_artifacts["eval_kit"],
         "eval_kit_manifest_path": eval_artifacts["eval_kit_manifest"],
+        "hf_dataset_card_path": eval_artifacts["hf_dataset_card"],
+        "hf_system_card_path": eval_artifacts["hf_system_card"],
+        "hf_leaderboard_row_path": eval_artifacts["hf_leaderboard_row"],
+        "casebook_json_path": casebook_artifacts["casebook_json"],
+        "casebook_html_path": casebook_artifacts["casebook_html"],
+        "traparium_html_path": casebook_artifacts["traparium_html"],
+        "unknowns_html_path": casebook_artifacts["unknowns_html"],
+        "failure_recipes_path": casebook_artifacts["failure_recipes"],
+        "trap_tree_path": casebook_artifacts["trap_tree"],
+        "lab_notebook_path": casebook_artifacts["lab_notebook"],
+        "openinference_traces_path": observability_artifacts["openinference_traces"],
+        "langsmith_runs_path": observability_artifacts["langsmith_runs"],
+        "otel_collector_config_path": observability_artifacts["otel_collector_config"],
     }

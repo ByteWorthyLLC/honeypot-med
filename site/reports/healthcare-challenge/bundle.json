@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-26T23:45:10.466193+00:00",
+  "generated_at": "2026-04-27T00:33:36.509346+00:00",
   "title": "Honeypot Med Healthcare AI Challenge",
   "source_label": "pack:healthcare-challenge",
   "verdict": "BLOCK",
@@ -21,6 +21,8 @@
     "launch_json": "launch-kit.json",
     "sarif": "honeypot-med.sarif",
     "otel_logs": "otel-logs.json",
+    "junit": "honeypot-med.junit.xml",
+    "github_summary": "github-summary.md",
     "specimen_codex": "specimen-codex.json",
     "trap_ledger_json": "trap-ledger.json",
     "trap_ledger_csv": "trap-ledger.csv",
@@ -41,6 +43,23 @@
     "openai_evals_yaml": "openai-evals.yaml",
     "openai_evals_samples": "openai-evals-samples.jsonl",
     "eval_kit": "eval-kit.md",
-    "eval_kit_manifest": "eval-kit-manifest.json"
+    "eval_kit_manifest": "eval-kit-manifest.json",
+    "hf_dataset_card": "README.dataset-card.md",
+    "hf_system_card": "system-card.md",
+    "hf_leaderboard_row": "leaderboard-row.json",
+    "casebook_json": "casebook.json",
+    "casebook_html": "casebook.html",
+    "traparium_html": "traparium.html",
+    "unknowns_html": "unknowns.html",
+    "failure_recipes": "failure-recipes.md",
+    "trap_tree": "trap-tree.svg",
+    "lab_notebook": "lab-notebook.ipynb",
+    "openinference_traces": "openinference-traces.jsonl",
+    "langsmith_runs": "langsmith-runs.jsonl",
+    "otel_collector_config": "otel-collector.yaml",
+    "flags": "flags.json",
+    "hints": "hints.html",
+    "writeup": "writeup.md",
+    "ctf_score": "ctf-score.json"
   }
 }

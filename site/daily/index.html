@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Honeypot Med Daily Dungeon | Deterministic trap challenge</title>
+  <meta name="description" content="Run a deterministic daily healthcare AI prompt-injection challenge with seed, score, SVG map, badge, casebook, SARIF, JUnit, and eval artifacts." />
+  <link rel="canonical" href="https://byteworthyllc.github.io/honeypot-med/daily/" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="../"><span class="brand-mark">HM</span><span class="brand-copy"><span class="brand-name">Honeypot Med</span><span class="brand-tagline">Daily Dungeon</span></span></a>
+      <nav class="nav" aria-label="Primary">
+        <a href="../">Home</a>
+        <a href="../casebook/">Casebook</a>
+        <a href="../ctf/">CTF</a>
+        <a href="../reports/">Reports</a>
+        <a href="../integrations/">Integrations</a>
+        <a href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="shell hero-grid">
+        <article class="panel hero-copy">
+          <div class="kicker">Seeded replayability</div>
+          <h1>Every day gets a dungeon.</h1>
+          <p>The daily mode builds a deterministic 10-trap route from bundled packs, mutates prompts with realistic healthcare delivery contexts, then writes the normal challenge bundle plus <code>daily-seed.txt</code>, <code>score.json</code>, and <code>daily-map.svg</code>.</p>
+          <div class="hero-actions">
+            <a class="button" href="../reports/healthcare-challenge/index.html">View sample report</a>
+            <a class="button-secondary" href="../casebook/">Open casebook layer</a>
+          </div>
+        </article>
+        <aside class="panel hero-proof">
+          <div class="hero-proof-body">
+            <div class="hero-proof-title">Why this matters</div>
+            <div class="evidence-grid">
+              <div class="hero-stat"><strong>1</strong><span>seed creates a stable run</span></div>
+              <div class="hero-stat"><strong>10</strong><span>traps from multiple healthcare packs</span></div>
+              <div class="hero-stat"><strong>0</strong><span>API calls required</span></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="copy-grid">
+          <article class="copy-card">
+            <h3>Run today's dungeon</h3>
+            <p><code>python app.py daily --outdir reports/daily</code></p>
+            <button class="copy-button" type="button" data-copy="python app.py daily --outdir reports/daily">Copy</button>
+          </article>
+          <article class="copy-card">
+            <h3>Run a fixed date</h3>
+            <p><code>python app.py daily --date 2026-04-27 --outdir reports/daily-2026-04-27</code></p>
+            <button class="copy-button" type="button" data-copy="python app.py daily --date 2026-04-27 --outdir reports/daily-2026-04-27">Copy</button>
+          </article>
+          <article class="copy-card">
+            <h3>Run a weird seed</h3>
+            <p><code>python app.py daily --seed night-shift-ghost --count 10 --outdir reports/daily-ghost</code></p>
+            <button class="copy-button" type="button" data-copy="python app.py daily --seed night-shift-ghost --count 10 --outdir reports/daily-ghost">Copy</button>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-grid"><p>Daily Dungeon makes the challenge replayable without hosted infrastructure.</p><div class="footer-links"><a href="../challenge/">Challenge</a><a href="../casebook/">Casebook</a><a href="../ctf/">CTF</a></div></div></footer>
+  <script src="../assets/app.js"></script>
+</body>
+</html>

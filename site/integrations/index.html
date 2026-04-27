@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Honeypot Med Integrations | GitHub Action, SARIF, OTEL, eval kits</title>
-  <meta name="description" content="Honeypot Med integration formats for GitHub Actions, SARIF code scanning, OpenTelemetry logs, promptfoo, Inspect AI, OpenAI Evals, JSONL, Markdown, badges, and share bundles." />
+  <title>Honeypot Med Integrations | GitHub Action, SARIF, JUnit, OTEL, eval kits</title>
+  <meta name="description" content="Honeypot Med integration formats for GitHub Actions, SARIF code scanning, JUnit XML, OpenTelemetry logs, OpenInference traces, LangSmith JSONL, promptfoo, Inspect AI, OpenAI Evals, Hugging Face cards, Markdown, badges, and share bundles." />
   <link rel="canonical" href="https://byteworthyllc.github.io/honeypot-med/integrations/" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <meta property="og:title" content="Honeypot Med Integrations" />
-  <meta property="og:description" content="Run healthcare AI prompt-injection challenge mode in CI and export SARIF, OTEL logs, promptfoo, Inspect AI, OpenAI Evals, JSONL, badges, and HTML reports." />
+  <meta property="og:description" content="Run healthcare AI prompt-injection challenge mode in CI and export SARIF, JUnit, OTEL logs, OpenInference, LangSmith, promptfoo, Inspect AI, OpenAI Evals, Hugging Face cards, badges, and HTML reports." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://byteworthyllc.github.io/honeypot-med/integrations/" />
   <meta property="og:image" content="https://byteworthyllc.github.io/honeypot-med/assets/studio-surface.svg" />
@@ -22,7 +22,9 @@
       <nav class="nav" aria-label="Primary">
         <a href="../">Home</a>
         <a href="../challenge/">Challenge</a>
+        <a href="../casebook/">Casebook</a>
         <a href="../field-notes/">Field Notes</a>
+        <a href="../hf-lab/">HF Lab</a>
         <a href="../reports/">Reports</a>
         <a href="../launch-room/">Launch Room</a>
         <a href="../contribute/">Contribute</a>
@@ -36,7 +38,7 @@
         <article class="panel page-hero-copy">
           <div class="kicker">Integrations</div>
           <h1 class="page-title">Make Honeypot Med fit existing eval and CI workflows.</h1>
-          <p>The project now exports formats that other tools already understand: GitHub Actions, SARIF, OpenTelemetry-style logs, promptfoo, Inspect AI, legacy OpenAI Evals, canonical JSONL, Markdown, SVG badges, and standalone HTML reports.</p>
+          <p>The project now exports formats that other tools already understand: GitHub Actions, SARIF, JUnit XML, GitHub step summaries, OpenTelemetry-style logs, OpenInference traces, LangSmith JSONL, promptfoo, Inspect AI, legacy OpenAI Evals, Hugging Face-ready cards, canonical JSONL, Markdown, SVG badges, casebooks, and standalone HTML reports.</p>
           <div class="hero-actions">
             <a class="button" href="#github-action">Use GitHub Action</a>
             <a class="button-secondary" href="../reports/">View generated report</a>
@@ -46,7 +48,7 @@
         <aside class="panel page-hero-side">
           <strong>Portable export</strong>
           <pre class="command-block">python app.py export --pack claims --format all --outdir reports/export</pre>
-          <p>Use <code>--format sarif</code>, <code>--format otel</code>, <code>--format markdown</code>, <code>--format badge</code>, or <code>--format eval-kit</code> for focused artifacts.</p>
+          <p>Use <code>--format sarif</code>, <code>--format junit</code>, <code>--format github-summary</code>, <code>--format openinference</code>, <code>--format langsmith</code>, <code>--format casebook</code>, or <code>--format eval-kit</code> for focused artifacts.</p>
         </aside>
       </div>
     </section>
@@ -58,7 +60,7 @@
             <div class="ribbon">GitHub Action</div>
             <h2 class="section-title">Run challenge mode in CI.</h2>
           </div>
-          <p>The root <code>action.yml</code> installs the project, runs challenge mode, uploads artifacts, and can upload SARIF to GitHub Code Scanning.</p>
+          <p>The root <code>action.yml</code> installs the project, runs challenge mode, appends <code>github-summary.md</code> to the workflow summary, uploads artifacts, and can upload SARIF to GitHub Code Scanning.</p>
         </div>
         <article class="command-card">
           <h3>Workflow snippet</h3>
@@ -86,8 +88,13 @@
         <div class="page-grid">
           <article class="page-card"><h3>HTML</h3><p>Human-readable proof page for buyers, leadership, screenshots, and public galleries.</p></article>
           <article class="page-card"><h3>SARIF</h3><p>Static-analysis format that can be uploaded into GitHub Code Scanning.</p></article>
+          <article class="page-card"><h3>JUnit XML</h3><p>CI-friendly test report where each trap is a testcase and risky traps become failures.</p></article>
+          <article class="page-card"><h3>GitHub summary</h3><p>Copy-ready step summary for GitHub Actions runs.</p></article>
           <article class="page-card"><h3>OpenTelemetry logs</h3><p>Operational log payload that maps report events into telemetry-style records.</p></article>
+          <article class="page-card"><h3>OpenInference and LangSmith</h3><p>Offline JSONL trace shapes for teams that already inspect LLM runs in observability tools.</p></article>
           <article class="page-card"><h3>Eval kit</h3><p>Offline adapters for promptfoo, Inspect AI, legacy OpenAI Evals, and canonical JSONL workflows.</p></article>
+          <article class="page-card"><h3>Hugging Face cards</h3><p>Dataset card, system card, and leaderboard row templates generated without upload or API calls.</p></article>
+          <article class="page-card"><h3>Casebook</h3><p>Forensic HTML, traparium, unknowns page, failure recipes, trap tree, and notebook.</p></article>
           <article class="page-card"><h3>JSON</h3><p>Stable machine-readable report for custom dashboards and downstream eval systems.</p></article>
           <article class="page-card"><h3>Markdown</h3><p>PR comments, release notes, docs, and simple diffs.</p></article>
           <article class="page-card"><h3>SVG badge</h3><p>README, docs, and launch posts that show the score without opening the report.</p></article>
@@ -101,7 +108,7 @@
             <div class="ribbon">Eval kit</div>
             <h2 class="section-title">Move traps into tools teams already use.</h2>
           </div>
-          <p>The default generated promptfoo config uses the echo provider, so adapter generation and assertion checks can stay offline until a team intentionally swaps in a live provider.</p>
+          <p>The default generated promptfoo config uses the echo provider, so adapter generation and assertion checks can stay offline until a team intentionally swaps in a live provider. The verify command checks that the generated adapter directory is parseable.</p>
         </div>
         <article class="command-card">
           <h3>Offline adapter command</h3>
@@ -111,8 +118,16 @@
             <a class="badge-link" href="../reports/healthcare-challenge/promptfoo-config.yaml">promptfoo</a>
             <a class="badge-link" href="../reports/healthcare-challenge/inspect-dataset.jsonl">Inspect JSONL</a>
             <a class="badge-link" href="../reports/healthcare-challenge/openai-evals.yaml">OpenAI Evals</a>
+            <a class="badge-link" href="../reports/healthcare-challenge/README.dataset-card.md">HF card</a>
+            <a class="badge-link" href="../reports/healthcare-challenge/honeypot-med.junit.xml">JUnit</a>
             <a class="badge-link" href="../reports/healthcare-challenge/eval-kit.md">Notes</a>
           </div>
+        </article>
+        <article class="command-card">
+          <h3>Verify adapters and plan HF mirrors</h3>
+          <pre class="command-block">python app.py eval-kit verify --dir reports/eval-kit
+python app.py hf-mirror plan --outdir reports/hf-mirror</pre>
+          <button class="copy-button" type="button" data-copy="python app.py eval-kit verify --dir reports/eval-kit&#10;python app.py hf-mirror plan --outdir reports/hf-mirror">Copy verify commands</button>
         </article>
       </div>
     </section>

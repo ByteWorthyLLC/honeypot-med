@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Honeypot Med Casebook | Forensic prompt-injection notebooks</title>
+  <meta name="description" content="Generate redacted forensic casebooks, traparium museum pages, unknown ledgers, failure recipes, trap trees, and local notebooks from Honeypot Med reports." />
+  <link rel="canonical" href="https://byteworthyllc.github.io/honeypot-med/casebook/" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="../"><span class="brand-mark">HM</span><span class="brand-copy"><span class="brand-name">Honeypot Med</span><span class="brand-tagline">Casebook</span></span></a>
+      <nav class="nav" aria-label="Primary">
+        <a href="../">Home</a>
+        <a href="../challenge/">Challenge</a>
+        <a href="../daily/">Daily</a>
+        <a href="../ctf/">CTF</a>
+        <a href="../integrations/">Integrations</a>
+        <a href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="trap-lab-hero">
+      <div class="shell">
+        <article class="trap-lab-panel">
+          <div class="kicker">Research instrument, not scanner</div>
+          <h1>The report becomes a case file.</h1>
+          <p>Casebook mode turns one run into a redacted forensic notebook: trap-by-trap evidence, tool reach, findings, falsification questions, a traparium museum, unknowns page, failure recipes, trap tree, and a tiny Jupyter notebook.</p>
+          <div class="hero-actions">
+            <a class="button" href="../reports/healthcare-challenge/casebook.html">Open sample casebook</a>
+            <a class="button-secondary" href="../reports/healthcare-challenge/traparium.html">Open traparium</a>
+            <a class="button-ghost" href="../reports/healthcare-challenge/unknowns.html">Open unknowns</a>
+            <a class="button-ghost" href="../reports/healthcare-challenge/trap-tree.svg">Open trap tree</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-header">
+          <div>
+            <div class="ribbon">Artifacts</div>
+            <h2 class="section-title">A museum cabinet for ambiguity.</h2>
+          </div>
+          <p>The useful weirdness is not decoration. It creates handles people remember and concrete follow-up experiments.</p>
+        </div>
+        <div class="page-grid">
+          <article class="page-card"><h3><code>casebook.html</code></h3><p>Redacted trap cards with prompt excerpts, tool reach, findings, evidence, and next questions.</p></article>
+          <article class="page-card"><h3><code>traparium.html</code></h3><p>Specimen labels for Compliance Mimic, Roster Leech, Policy Poltergeist, and Quiet Chart Ghost.</p></article>
+          <article class="page-card"><h3><code>unknowns.html</code></h3><p>A ledger of quiet passes and unproven hypotheses that need better instrumentation.</p></article>
+          <article class="page-card"><h3><code>failure-recipes.md</code></h3><p>Retest recipes that change one variable at a time.</p></article>
+          <article class="page-card"><h3><code>trap-tree.svg</code></h3><p>A compact phylogeny connecting specimen families to observed traps.</p></article>
+          <article class="page-card"><h3><code>lab-notebook.ipynb</code></h3><p>A starter notebook for reproducible local investigation.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="copy-grid">
+          <article class="copy-card">
+            <h3>Generate the casebook</h3>
+            <p><code>python app.py casebook --pack healthcare-challenge --outdir reports/casebook</code></p>
+            <button class="copy-button" type="button" data-copy="python app.py casebook --pack healthcare-challenge --outdir reports/casebook">Copy</button>
+          </article>
+          <article class="copy-card">
+            <h3>Bundle it with every challenge</h3>
+            <p><code>python app.py challenge --pack healthcare-challenge --outdir reports/challenge</code></p>
+            <button class="copy-button" type="button" data-copy="python app.py challenge --pack healthcare-challenge --outdir reports/challenge">Copy</button>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-grid"><p>Casebook mode is local, redacted, and free.</p><div class="footer-links"><a href="../daily/">Daily</a><a href="../ctf/">CTF</a><a href="../hf-lab/">HF Lab</a></div></div></footer>
+  <script src="../assets/app.js"></script>
+</body>
+</html>

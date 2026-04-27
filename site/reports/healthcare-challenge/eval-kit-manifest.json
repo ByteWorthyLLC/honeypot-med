@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-26T23:45:10.474629+00:00",
+  "generated_at": "2026-04-27T00:33:36.518408+00:00",
   "title": "Honeypot Med Healthcare AI Challenge",
   "source_label": "pack:healthcare-challenge",
   "sample_count": 10,
@@ -10,6 +10,9 @@
     "promptfoo_tests": "promptfoo-tests.json",
     "openai_evals_yaml": "openai-evals.yaml",
     "openai_evals_samples": "openai-evals-samples.jsonl",
-    "readme": "eval-kit.md"
+    "readme": "eval-kit.md",
+    "hf_dataset_card": "README.dataset-card.md",
+    "hf_system_card": "system-card.md",
+    "hf_leaderboard_row": "leaderboard-row.json"
   }
 }

@@ -42,6 +42,18 @@ The project names failure modes as specimens so generated reports feel like fiel
 11. Eval-kit loop
 `honeypot-med eval-kit` exports canonical JSONL plus promptfoo, Inspect AI, and legacy OpenAI Evals adapter files so teams can reuse the traps in their existing eval stack.
 
+12. Casebook-loop
+`honeypot-med casebook` turns one run into a redacted forensic notebook, traparium museum, unknowns page, failure recipes, trap tree, and notebook.
+
+13. Daily-loop
+`honeypot-med daily` creates a deterministic seeded dungeon so the same local challenge can be replayed, shared, and compared without a hosted leaderboard.
+
+14. Prompt-CTF loop
+`honeypot-med ctf` turns evidence into flags that are predicates, not secrets: data exfiltration, safeguard bypass, authority costume, unsafe tool reach, and falsifiable unknowns.
+
+15. HF-Lab loop
+`honeypot-med hf-mirror plan` and eval-kit Hugging Face cards make the project easy to fold into public dataset/model-card workflows without default downloads or API calls.
+
 ## Launch Angles
 
 1. "We tested healthcare AI prompts that should never ship."
@@ -72,13 +84,19 @@ The project names failure modes as specimens so generated reports feel like fiel
 20. Field Notes page and `honeypot-med inquire` command for curiosity-first artifacts
 21. `honeypot-med experiment` command for counterfactuals, ablations, question atlas, and experiment plans
 22. `honeypot-med eval-kit` command for promptfoo, Inspect AI, OpenAI Evals, and canonical JSONL adapters
+23. `honeypot-med casebook` command and bundled casebook artifacts in challenge/share output
+24. `honeypot-med daily` deterministic daily dungeon with seed, score JSON, and SVG map
+25. `honeypot-med ctf` prompt CTF with evidence-predicate flags, hints, writeup, and score JSON
+26. JUnit XML and GitHub step-summary exports for CI hygiene
+27. OpenInference and LangSmith JSONL exports plus OTEL collector fixture
+28. Hugging Face-ready dataset card, system card, leaderboard row, and `hf-mirror` plan/transform workflow
 
 ## What To Prioritize Next
 
 1. Add one-click PNG raster export for badges and social cards.
-2. Add hosted deployment templates for Fly.io, Railway, and Render instead of Docker-only self-hosting.
-3. Publish generated challenge bundles as downloadable artifacts in releases.
-4. Add more adapter inputs for LangChain traces, OpenTelemetry collectors, promptfoo outputs, Inspect AI logs, and plain HTTP agent targets.
-5. Add a small leaderboard JSON file that can index community-submitted challenge scores.
-6. Add more specimen archetypes and visual skins for different healthcare workflows.
-7. Add local diff tooling that compares two experiment matrices and highlights evidence shifts.
+2. Add local diff tooling that compares two casebooks and highlights evidence shifts.
+3. Add more specimen archetypes and visual skins for different healthcare workflows.
+4. Publish generated challenge bundles as downloadable artifacts in releases.
+5. Add a small leaderboard JSON file that can index community-submitted daily seeds and challenge scores.
+6. Add hosted deployment templates for Fly.io, Railway, and Render instead of Docker-only self-hosting.
+7. Add more adapter inputs for LangChain traces, promptfoo outputs, Inspect AI logs, and plain HTTP agent targets.

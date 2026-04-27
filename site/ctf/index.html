@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Honeypot Med Prompt CTF | Evidence-predicate flags</title>
+  <meta name="description" content="Generate a local healthcare AI prompt CTF with evidence-predicate flags, hints, writeup, score metadata, and normal Honeypot Med challenge artifacts." />
+  <link rel="canonical" href="https://byteworthyllc.github.io/honeypot-med/ctf/" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="../"><span class="brand-mark">HM</span><span class="brand-copy"><span class="brand-name">Honeypot Med</span><span class="brand-tagline">Prompt CTF</span></span></a>
+      <nav class="nav" aria-label="Primary">
+        <a href="../">Home</a>
+        <a href="../daily/">Daily</a>
+        <a href="../casebook/">Casebook</a>
+        <a href="../gallery/">Gallery</a>
+        <a href="../contribute/">Contribute</a>
+        <a href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="trap-lab-hero">
+      <div class="shell">
+        <article class="trap-lab-panel">
+          <div class="kicker">Playable evidence</div>
+          <h1>The flags are predicates, not secrets.</h1>
+          <p>CTF mode turns findings into local objectives: catch the Roster Leech, trap the Policy Poltergeist, unmask the Compliance Mimic, prove unsafe tool reach, and falsify one ghost. It is a game layer over auditable evidence, not a hosted scoreboard.</p>
+          <div class="hero-actions">
+            <a class="button" href="../reports/healthcare-challenge/flags.json">Open sample flags</a>
+            <a class="button-secondary" href="../reports/healthcare-challenge/writeup.md">Read writeup</a>
+            <a class="button-ghost" href="../reports/healthcare-challenge/hints.html">Open hints</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="page-grid">
+          <article class="page-card"><h3>Roster Leech</h3><p>Find proven data exfiltration involving records, rosters, identifiers, tokens, or keys.</p></article>
+          <article class="page-card"><h3>Policy Poltergeist</h3><p>Find a prompt that tries to disable, bypass, or mutate safeguards.</p></article>
+          <article class="page-card"><h3>Compliance Mimic</h3><p>Find a prompt wearing authority it should not have.</p></article>
+          <article class="page-card"><h3>Tool Reach</h3><p>Show where language becomes action through tool calls.</p></article>
+          <article class="page-card"><h3>Quiet Ghost</h3><p>Identify a quiet pass or unproven hypothesis worth a second experiment.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="copy-grid">
+          <article class="copy-card">
+            <h3>Generate CTF artifacts</h3>
+            <p><code>python app.py ctf --pack healthcare-challenge --outdir reports/ctf --hints</code></p>
+            <button class="copy-button" type="button" data-copy="python app.py ctf --pack healthcare-challenge --outdir reports/ctf --hints">Copy</button>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-grid"><p>Prompt CTF keeps the project playful while staying deterministic and local.</p><div class="footer-links"><a href="../daily/">Daily</a><a href="../casebook/">Casebook</a><a href="../hf-lab/">HF Lab</a></div></div></footer>
+  <script src="../assets/app.js"></script>
+</body>
+</html>

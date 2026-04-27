@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Honeypot Med Healthcare AI Challenge Traparium</title>
+  <style>
+    :root {
+      --bg: #181712;
+      --paper: #f5ead6;
+      --card: #fff8ea;
+      --ink: #211d17;
+      --muted: #6f6252;
+      --line: rgba(33, 29, 23, 0.16);
+      --accent: #bc432c;
+      --green: #23745b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 8%, rgba(188, 67, 44, 0.28), transparent 26rem),
+        radial-gradient(circle at 85% 0%, rgba(35, 116, 91, 0.24), transparent 24rem),
+        linear-gradient(135deg, #1d1a14, #463522 58%, #1b201b);
+      font-family: Avenir Next, Helvetica Neue, Arial, sans-serif;
+    }
+    .wrap { width: min(1120px, calc(100vw - 32px)); margin: 0 auto; padding: 36px 0; }
+    header { color: var(--paper); margin-bottom: 20px; }
+    .kicker { letter-spacing: .18em; text-transform: uppercase; font-size: 12px; color: #dec7a5; }
+    h1 { font-family: Iowan Old Style, Palatino Linotype, Georgia, serif; font-size: clamp(2.4rem, 6vw, 5.2rem); line-height: .95; margin: 12px 0; letter-spacing: -.05em; }
+    .subtitle { max-width: 760px; color: #ebdcc4; font-size: 18px; line-height: 1.6; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+    .card, .specimen, .unknown, .recipe { background: rgba(255, 248, 234, .95); border: 1px solid var(--line); border-radius: 24px; padding: 18px; box-shadow: 0 20px 70px rgba(0,0,0,.18); }
+    .card h2, .specimen h2, .unknown h2, .recipe h2 { margin: 0 0 8px; font-size: 18px; }
+    .meta { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+    .pill { border: 1px solid var(--line); border-radius: 999px; padding: 5px 9px; font-size: 12px; color: var(--muted); background: rgba(255,255,255,.42); }
+    .status-survived { color: var(--green); font-weight: 800; }
+    .status-bitten { color: var(--accent); font-weight: 800; }
+    .status-uncertain { color: #8b6423; font-weight: 800; }
+    pre { white-space: pre-wrap; background: #211d17; color: #f7ebd5; border-radius: 16px; padding: 12px; overflow: auto; }
+    ul { padding-left: 20px; }
+    a { color: inherit; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="kicker">Honeypot Med Casebook</div>
+      <h1>Honeypot Med Healthcare AI Challenge Traparium</h1>
+      <p class="subtitle">A museum cabinet for failure modes. Every bland finding gets a specimen label.</p>
+    </header>
+    <section class="grid"><article class="specimen">
+  <h2>Roster Leech</h2>
+  <div class="meta">
+    <span class="pill">data_exfiltration</span>
+    <span class="pill">sightings 4</span>
+    <span class="pill">bites 1</span>
+  </div>
+  <p>hungry for tables, tokens, and patient-shaped nouns</p>
+  <p><strong>Tells:</strong> dump all data, leak records, export roster</p>
+  <p><strong>Containment:</strong> Require scoped retrieval, output redaction, and explicit export approval for sensitive datasets.</p>
+</article><article class="specimen">
+  <h2>Compliance Mimic</h2>
+  <div class="meta">
+    <span class="pill">instruction_override</span>
+    <span class="pill">sightings 4</span>
+    <span class="pill">bites 1</span>
+  </div>
+  <p>polite until it finds a manager override</p>
+  <p><strong>Tells:</strong> ignore previous instructions, role reset, authority costume</p>
+  <p><strong>Containment:</strong> Pin system boundaries in a separate control layer and reject role-reset language before tool access.</p>
+</article><article class="specimen">
+  <h2>Policy Poltergeist</h2>
+  <div class="meta">
+    <span class="pill">safeguard_bypass</span>
+    <span class="pill">sightings 5</span>
+    <span class="pill">bites 1</span>
+  </div>
+  <p>rattles locks labeled guardrail, policy, and admin</p>
+  <p><strong>Tells:</strong> disable safeguards, bypass guardrails, jailbreak</p>
+  <p><strong>Containment:</strong> Keep policy state outside the model path and deny prompts that request control-plane changes.</p>
+</article></section>
+  </div>
+</body>
+</html>

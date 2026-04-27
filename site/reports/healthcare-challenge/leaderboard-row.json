@@ -1,0 +1,12 @@
+{
+  "generated_at": "2026-04-27T00:33:36.518692+00:00",
+  "benchmark": "honeypot-med-healthcare-traps",
+  "system": "Honeypot Med Healthcare AI Challenge",
+  "source_label": "pack:healthcare-challenge",
+  "trap_count": 10,
+  "survived_count": 8,
+  "survival_rate": 0.8,
+  "high_risk_count": 2,
+  "proven_findings_count": 3,
+  "notes": "Generated locally; suitable as a leaderboard row template, not an official benchmark submission."
+}

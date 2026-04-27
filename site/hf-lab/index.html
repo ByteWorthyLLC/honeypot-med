@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Honeypot Med HF Lab | Hugging Face-ready local artifacts</title>
+  <meta name="description" content="Plan Hugging Face mirrors, generate dataset cards, system cards, leaderboard rows, and transform local JSONL into Honeypot Med packs without default API calls." />
+  <link rel="canonical" href="https://byteworthyllc.github.io/honeypot-med/hf-lab/" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="../"><span class="brand-mark">HM</span><span class="brand-copy"><span class="brand-name">Honeypot Med</span><span class="brand-tagline">HF Lab</span></span></a>
+      <nav class="nav" aria-label="Primary">
+        <a href="../">Home</a>
+        <a href="../integrations/">Integrations</a>
+        <a href="../casebook/">Casebook</a>
+        <a href="../reports/">Reports</a>
+        <a href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="shell hero-grid">
+        <article class="panel hero-copy">
+          <div class="kicker">No default downloads</div>
+          <h1>Hugging Face as a lab bench, not a dependency.</h1>
+          <p>HF Lab generates dataset cards, system cards, leaderboard rows, and a mirror plan locally. Fetching datasets is explicit, optional, and should happen only after license review.</p>
+          <div class="hero-actions">
+            <a class="button" href="../reports/healthcare-challenge/README.dataset-card.md">Dataset card</a>
+            <a class="button-secondary" href="../reports/healthcare-challenge/system-card.md">System card</a>
+            <a class="button-ghost" href="../reports/healthcare-challenge/leaderboard-row.json">Leaderboard row</a>
+          </div>
+        </article>
+        <aside class="panel hero-proof">
+          <div class="hero-proof-body">
+            <div class="hero-proof-title">Fold-ins researched</div>
+            <div class="evidence-grid">
+              <div class="hero-stat"><strong>HF</strong><span>dataset cards and leaderboard rows</span></div>
+              <div class="hero-stat"><strong>plan</strong><span>mirror manifest before fetch</span></div>
+              <div class="hero-stat"><strong>JSONL</strong><span>local transform into packs</span></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="copy-grid">
+          <article class="copy-card">
+            <h3>Generate eval cards</h3>
+            <p><code>python app.py eval-kit --pack healthcare-challenge --outdir reports/eval-kit</code></p>
+            <button class="copy-button" type="button" data-copy="python app.py eval-kit --pack healthcare-challenge --outdir reports/eval-kit">Copy</button>
+          </article>
+          <article class="copy-card">
+            <h3>Plan a mirror</h3>
+            <p><code>python app.py hf-mirror plan --outdir reports/hf-mirror</code></p>
+            <button class="copy-button" type="button" data-copy="python app.py hf-mirror plan --outdir reports/hf-mirror">Copy</button>
+          </article>
+          <article class="copy-card">
+            <h3>Transform local JSONL</h3>
+            <p><code>python app.py hf-mirror transform --input data/local-records.jsonl --outdir reports/hf-pack</code></p>
+            <button class="copy-button" type="button" data-copy="python app.py hf-mirror transform --input data/local-records.jsonl --outdir reports/hf-pack">Copy</button>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-grid"><p>HF Lab is optional and local-first by design.</p><div class="footer-links"><a href="../integrations/">Integrations</a><a href="../casebook/">Casebook</a><a href="../ctf/">CTF</a></div></div></footer>
+  <script src="../assets/app.js"></script>
+</body>
+</html>

@@ -16,6 +16,9 @@ class SiteSurfaceTest(unittest.TestCase):
         self.assertTrue((SITE / "llms.txt").exists())
         self.assertTrue((SITE / "site.webmanifest").exists())
         self.assertTrue((SITE / "challenge" / "index.html").exists())
+        self.assertTrue((SITE / "daily" / "index.html").exists())
+        self.assertTrue((SITE / "ctf" / "index.html").exists())
+        self.assertTrue((SITE / "casebook" / "index.html").exists())
         self.assertTrue((SITE / "codex" / "index.html").exists())
         self.assertTrue((SITE / "field-notes" / "index.html").exists())
         self.assertTrue((SITE / "gallery" / "index.html").exists())
@@ -23,6 +26,7 @@ class SiteSurfaceTest(unittest.TestCase):
         self.assertTrue((SITE / "media" / "index.html").exists())
         self.assertTrue((SITE / "reports" / "index.html").exists())
         self.assertTrue((SITE / "integrations" / "index.html").exists())
+        self.assertTrue((SITE / "hf-lab" / "index.html").exists())
         self.assertTrue((SITE / "contribute" / "index.html").exists())
         self.assertTrue((SITE / "releases" / "index.html").exists())
 
@@ -35,6 +39,11 @@ class SiteSurfaceTest(unittest.TestCase):
         self.assertIn("Every boring finding gets a monster name", html)
         self.assertIn("Promotion is optional. Questions are the product.", html)
         self.assertIn("counterfactual prompts", html)
+        self.assertIn("daily dungeon", html)
+        self.assertIn("prompt CTF", html)
+        self.assertIn("redacted casebook", html)
+        self.assertIn("OpenInference traces", html)
+        self.assertIn("Hugging Face cards", html)
         self.assertIn("eval kit", html)
         self.assertIn("Launch Room", html)
         self.assertIn("Evidence gallery", html)
@@ -48,12 +57,16 @@ class SiteSurfaceTest(unittest.TestCase):
     def test_subpages_exist(self):
         self.assertTrue((SITE / "faq" / "index.html").exists())
         self.assertTrue((SITE / "challenge" / "index.html").exists())
+        self.assertTrue((SITE / "daily" / "index.html").exists())
+        self.assertTrue((SITE / "ctf" / "index.html").exists())
+        self.assertTrue((SITE / "casebook" / "index.html").exists())
         self.assertTrue((SITE / "codex" / "index.html").exists())
         self.assertTrue((SITE / "field-notes" / "index.html").exists())
         self.assertTrue((SITE / "gallery" / "index.html").exists())
         self.assertTrue((SITE / "launch-room" / "index.html").exists())
         self.assertTrue((SITE / "reports" / "index.html").exists())
         self.assertTrue((SITE / "integrations" / "index.html").exists())
+        self.assertTrue((SITE / "hf-lab" / "index.html").exists())
         self.assertTrue((SITE / "contribute" / "index.html").exists())
         self.assertTrue((SITE / "use-cases" / "healthcare-ai" / "index.html").exists())
         self.assertTrue((SITE / "use-cases" / "claims-automation" / "index.html").exists())
@@ -89,6 +102,41 @@ class SiteSurfaceTest(unittest.TestCase):
         reports = (SITE / "reports" / "index.html").read_text(encoding="utf-8")
         self.assertIn("experiment-plan.md", reports)
         self.assertIn("eval-kit.md", reports)
+        self.assertIn("casebook.html", reports)
+        self.assertIn("honeypot-med.junit.xml", reports)
+        self.assertIn("openinference-traces.jsonl", reports)
+
+    def test_new_curiosity_surfaces_and_report_artifacts_exist(self):
+        report = SITE / "reports" / "healthcare-challenge"
+        for name in [
+            "casebook.html",
+            "traparium.html",
+            "unknowns.html",
+            "failure-recipes.md",
+            "trap-tree.svg",
+            "lab-notebook.ipynb",
+            "flags.json",
+            "hints.html",
+            "writeup.md",
+            "honeypot-med.junit.xml",
+            "github-summary.md",
+            "openinference-traces.jsonl",
+            "langsmith-runs.jsonl",
+            "otel-collector.yaml",
+            "README.dataset-card.md",
+            "system-card.md",
+            "leaderboard-row.json",
+        ]:
+            self.assertTrue((report / name).exists(), msg=name)
+
+        casebook = (SITE / "casebook" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("The report becomes a case file.", casebook)
+        daily = (SITE / "daily" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("Every day gets a dungeon.", daily)
+        ctf = (SITE / "ctf" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("The flags are predicates, not secrets.", ctf)
+        hf_lab = (SITE / "hf-lab" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("Hugging Face as a lab bench", hf_lab)
 
 
 if __name__ == "__main__":

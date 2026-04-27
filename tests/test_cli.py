@@ -3,6 +3,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -167,6 +168,161 @@ class CliTest(unittest.TestCase):
             self.assertTrue(markdown_path.exists())
             markdown = markdown_path.read_text(encoding="utf-8")
             self.assertIn("# Honeypot Med Report", markdown)
+
+    def test_casebook_daily_ctf_and_hf_mirror_commands(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp = Path(tmpdir)
+
+            casebook_dir = tmp / "casebook"
+            casebook = subprocess.run(
+                [
+                    sys.executable,
+                    "app.py",
+                    "casebook",
+                    "--pack",
+                    "healthcare-challenge",
+                    "--outdir",
+                    str(casebook_dir),
+                    "--json",
+                ],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(casebook.returncode, 0, msg=casebook.stderr)
+            casebook_payload = json.loads(casebook.stdout)
+            self.assertTrue(Path(casebook_payload["artifacts"]["casebook_html"]).exists())
+            self.assertTrue((casebook_dir / "traparium.html").exists())
+            self.assertTrue((casebook_dir / "unknowns.html").exists())
+
+            daily_dir = tmp / "daily"
+            daily = subprocess.run(
+                [
+                    sys.executable,
+                    "app.py",
+                    "daily",
+                    "--date",
+                    "2026-04-27",
+                    "--outdir",
+                    str(daily_dir),
+                    "--json",
+                ],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(daily.returncode, 0, msg=daily.stderr)
+            daily_payload = json.loads(daily.stdout)
+            self.assertEqual(daily_payload["daily"]["seed"], "2026-04-27")
+            self.assertTrue((daily_dir / "daily-map.svg").exists())
+            self.assertTrue((daily_dir / "casebook.html").exists())
+
+            ctf_dir = tmp / "ctf"
+            ctf = subprocess.run(
+                [
+                    sys.executable,
+                    "app.py",
+                    "ctf",
+                    "--pack",
+                    "healthcare-challenge",
+                    "--outdir",
+                    str(ctf_dir),
+                    "--hints",
+                    "--json",
+                ],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(ctf.returncode, 0, msg=ctf.stderr)
+            self.assertTrue((ctf_dir / "flags.json").exists())
+            flags = json.loads((ctf_dir / "flags.json").read_text(encoding="utf-8"))
+            self.assertIn("Flags are evidence predicates", flags["note"])
+
+            hf_dir = tmp / "hf"
+            hf = subprocess.run(
+                [
+                    sys.executable,
+                    "app.py",
+                    "hf-mirror",
+                    "plan",
+                    "--outdir",
+                    str(hf_dir),
+                    "--json",
+                ],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(hf.returncode, 0, msg=hf.stderr)
+            self.assertTrue((hf_dir / "hf-mirror-manifest.json").exists())
+
+    def test_new_export_formats_and_eval_verify(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            tmp = Path(tmpdir)
+            for fmt, expected in [
+                ("junit", "honeypot-med.junit.xml"),
+                ("github-summary", "github-summary.md"),
+                ("openinference", "openinference-traces.jsonl"),
+                ("langsmith", "langsmith-runs.jsonl"),
+                ("casebook", "casebook.html"),
+            ]:
+                outdir = tmp / fmt
+                proc = subprocess.run(
+                    [
+                        sys.executable,
+                        "app.py",
+                        "export",
+                        "--pack",
+                        "healthcare-challenge",
+                        "--format",
+                        fmt,
+                        "--outdir",
+                        str(outdir),
+                        "--json",
+                    ],
+                    cwd=ROOT,
+                    capture_output=True,
+                    text=True,
+                )
+                self.assertEqual(proc.returncode, 0, msg=proc.stderr)
+                self.assertTrue((outdir / expected).exists())
+                if fmt == "junit":
+                    ET.parse(outdir / expected)
+
+            eval_dir = tmp / "eval"
+            generate = subprocess.run(
+                [
+                    sys.executable,
+                    "app.py",
+                    "eval-kit",
+                    "--pack",
+                    "healthcare-challenge",
+                    "--outdir",
+                    str(eval_dir),
+                    "--json",
+                ],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(generate.returncode, 0, msg=generate.stderr)
+            verify = subprocess.run(
+                [
+                    sys.executable,
+                    "app.py",
+                    "eval-kit",
+                    "verify",
+                    "--dir",
+                    str(eval_dir),
+                    "--json",
+                ],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(verify.returncode, 0, msg=verify.stderr)
+            self.assertEqual(json.loads(verify.stdout)["status"], "ok")
 
     def test_purge_dry_run_and_apply(self):
         with tempfile.TemporaryDirectory() as tmpdir:

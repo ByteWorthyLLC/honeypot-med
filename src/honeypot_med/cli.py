@@ -13,16 +13,23 @@ from pathlib import Path
 from .attack_packs import describe_attack_pack, list_attack_packs, load_attack_pack_payload
 from .audit import append_audit_event
 from .baseline import apply_suppressions, load_suppressions
+from .casebook import write_casebook_artifacts
 from .challenge import DEFAULT_CHALLENGE_PACK, write_challenge_bundle
+from .ctf import write_ctf_artifacts
+from .daily import build_daily_payload, write_daily_artifacts
 from .decoys import load_decoy_pack
-from .eval_adapters import write_eval_adapter_artifacts
+from .eval_adapters import verify_eval_adapter_artifacts, write_eval_adapter_artifacts
 from .errors import ValidationError
 from .events import events_to_payload, normalize_event
 from .experiments import write_experiment_artifacts
 from .exports import write_share_bundle
+from .github_summary import write_github_summary
+from .hf_mirror import fetch_hf_mirror, transform_jsonl_to_pack, write_hf_mirror_plan
 from .inquiry import write_inquiry_artifacts
+from .junit import write_junit_xml
 from .lab import write_lab_artifacts
 from .models import InputPayload
+from .observability import write_observability_artifacts
 from .outputs.badge import build_badge_markdown, build_report_badge_svg
 from .outputs.otel import report_to_otel_logs
 from .outputs.sarif import report_to_sarif
@@ -61,7 +68,11 @@ COMMANDS = {
     "protect",
     "demo",
     "challenge",
+    "daily",
+    "ctf",
+    "casebook",
     "export",
+    "hf-mirror",
     "lab",
     "inquire",
     "experiment",
@@ -432,6 +443,42 @@ def _build_command_parser() -> argparse.ArgumentParser:
     _add_scoring_flags(challenge)
     _add_runtime_flags(challenge)
 
+    daily = subparsers.add_parser("daily", help="Generate a deterministic daily challenge dungeon")
+    daily.add_argument("--date", dest="daily_date", help="YYYY-MM-DD daily seed date; defaults to today")
+    daily.add_argument("--seed", help="Explicit deterministic seed; overrides --date")
+    daily.add_argument("--count", type=int, default=10, help="Number of traps to include")
+    daily.add_argument("--outdir", default="reports/daily")
+    daily.add_argument("--title", default="Honeypot Med Daily Dungeon")
+    daily.add_argument("--report-url", default="index.html")
+    daily.add_argument("--json", action="store_true", help="Emit daily metadata as JSON")
+    _add_scoring_flags(daily)
+    _add_runtime_flags(daily)
+
+    ctf = subparsers.add_parser("ctf", help="Generate a local prompt CTF from challenge evidence")
+    _add_source_flags(
+        ctf,
+        input_help="Optional JSON payload; defaults to the bundled healthcare challenge pack",
+    )
+    ctf.set_defaults(_default_pack=DEFAULT_CHALLENGE_PACK)
+    ctf.add_argument("--outdir", default="reports/ctf")
+    ctf.add_argument("--title", default="Honeypot Med Prompt CTF")
+    ctf.add_argument("--hints", action="store_true", help="Include clue text in hints.html")
+    ctf.add_argument("--json", action="store_true", help="Emit CTF metadata as JSON")
+    _add_scoring_flags(ctf)
+    _add_runtime_flags(ctf)
+
+    casebook = subparsers.add_parser("casebook", help="Generate forensic casebook, traparium, unknowns, and trap tree")
+    _add_source_flags(
+        casebook,
+        input_help="Optional JSON payload; defaults to the bundled healthcare challenge pack",
+    )
+    casebook.set_defaults(_default_pack=DEFAULT_CHALLENGE_PACK)
+    casebook.add_argument("--outdir", default="reports/casebook")
+    casebook.add_argument("--title", default="Honeypot Med Casebook")
+    casebook.add_argument("--json", action="store_true", help="Emit casebook artifact metadata as JSON")
+    _add_scoring_flags(casebook)
+    _add_runtime_flags(casebook)
+
     export = subparsers.add_parser("export", help="Export a report in portable integration formats")
     _add_source_flags(
         export,
@@ -440,7 +487,21 @@ def _build_command_parser() -> argparse.ArgumentParser:
     )
     export.add_argument(
         "--format",
-        choices=["all", "html", "json", "markdown", "sarif", "otel", "badge", "eval-kit"],
+        choices=[
+            "all",
+            "html",
+            "json",
+            "markdown",
+            "sarif",
+            "otel",
+            "badge",
+            "eval-kit",
+            "junit",
+            "github-summary",
+            "openinference",
+            "langsmith",
+            "casebook",
+        ],
         default="all",
     )
     export.add_argument("--outdir", default="reports/export")
@@ -485,17 +546,37 @@ def _build_command_parser() -> argparse.ArgumentParser:
     _add_scoring_flags(experiment)
     _add_runtime_flags(experiment)
 
-    eval_kit = subparsers.add_parser("eval-kit", help="Generate offline adapters for promptfoo, Inspect AI, and OpenAI Evals")
+    eval_kit = subparsers.add_parser("eval-kit", help="Generate or verify offline eval adapters")
+    eval_kit.add_argument("eval_action", nargs="?", choices=["generate", "verify"], default="generate")
     _add_source_flags(
         eval_kit,
         input_help="Optional JSON payload; defaults to the bundled healthcare challenge pack",
     )
     eval_kit.set_defaults(_default_pack=DEFAULT_CHALLENGE_PACK)
+    eval_kit.add_argument("--dir", dest="verify_dir", default="reports/eval-kit", help="Directory to verify")
     eval_kit.add_argument("--outdir", default="reports/eval-kit")
     eval_kit.add_argument("--title", default="Honeypot Med Eval Kit")
     eval_kit.add_argument("--json", action="store_true", help="Emit eval-kit artifact metadata as JSON")
     _add_scoring_flags(eval_kit)
     _add_runtime_flags(eval_kit)
+
+    hf_mirror = subparsers.add_parser("hf-mirror", help="Plan, fetch, or transform optional Hugging Face mirror assets")
+    hf_sub = hf_mirror.add_subparsers(dest="hf_action", required=True)
+
+    hf_plan = hf_sub.add_parser("plan", help="Write a no-network Hugging Face mirror plan")
+    hf_plan.add_argument("--outdir", default="reports/hf-mirror")
+    hf_plan.add_argument("--json", action="store_true")
+
+    hf_fetch = hf_sub.add_parser("fetch", help="Fetch a previously reviewed mirror manifest")
+    hf_fetch.add_argument("--manifest", required=True)
+    hf_fetch.add_argument("--outdir", default="data/hf-cache")
+    hf_fetch.add_argument("--json", action="store_true")
+
+    hf_transform = hf_sub.add_parser("transform", help="Transform local JSONL into a Honeypot Med pack")
+    hf_transform.add_argument("--input", required=True)
+    hf_transform.add_argument("--outdir", default="reports/hf-pack")
+    hf_transform.add_argument("--title", default="HF Mirror Local Pack")
+    hf_transform.add_argument("--json", action="store_true")
 
     packs = subparsers.add_parser("packs", help="List or inspect bundled healthcare attack packs")
     packs.add_argument("--pack", help="Specific pack id to inspect")
@@ -1013,6 +1094,9 @@ def _run_share(args: argparse.Namespace) -> int:
     print(f"- README badge: {bundle['badge_path']}")
     print(f"- SARIF export: {bundle['sarif_path']}")
     print(f"- OTEL logs: {bundle['otel_logs_path']}")
+    print(f"- JUnit XML: {bundle['junit_path']}")
+    print(f"- Casebook: {bundle['casebook_html_path']}")
+    print(f"- GitHub summary: {bundle['github_summary_path']}")
     return EXIT_OK
 
 
@@ -1042,9 +1126,98 @@ def _run_challenge(args: argparse.Namespace) -> int:
     print(f"- Badge: {bundle['extra_artifacts']['badge']}")
     print(f"- SARIF: {bundle['extra_artifacts']['sarif']}")
     print(f"- OTEL logs: {bundle['extra_artifacts']['otel_logs']}")
+    print(f"- JUnit XML: {bundle['extra_artifacts']['junit']}")
+    print(f"- Casebook: {bundle['extra_artifacts']['casebook_html']}")
     if status != EXIT_OK:
         print(f"- Gate: score {challenge['score_percent']} is below fail-under {args.fail_under}")
     return status
+
+
+def _merge_bundle_manifest_artifacts(bundle: dict, artifacts: dict[str, str]) -> None:
+    manifest_path = Path(bundle.get("bundle_manifest_path", ""))
+    if not manifest_path.exists():
+        return
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    manifest.setdefault("artifacts", {})
+    for name, path in artifacts.items():
+        manifest["artifacts"][name] = Path(path).name
+    manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+
+
+def _run_daily(args: argparse.Namespace) -> int:
+    payload_dict, daily_meta = build_daily_payload(
+        run_date=args.daily_date,
+        seed=args.seed,
+        count=args.count,
+    )
+    payload = InputPayload.from_dict(payload_dict)
+    source_label = f"daily:{daily_meta['seed']}"
+    report = _build_analysis_report(payload, payload_dict, args)
+    bundle = write_challenge_bundle(
+        report,
+        args.outdir,
+        source_label=source_label,
+        title=args.title,
+        report_url=args.report_url,
+    )
+    daily_artifacts = write_daily_artifacts(report, args.outdir, daily_meta=daily_meta)
+    bundle["extra_artifacts"].update(daily_artifacts)
+    _merge_bundle_manifest_artifacts(bundle, daily_artifacts)
+    payload_out = {"bundle": bundle, "daily": daily_meta, "challenge": bundle["challenge"], "report": report}
+    if args.json:
+        _emit_json(payload_out, "-", True)
+        return EXIT_OK
+
+    print("Daily dungeon complete.")
+    print(f"- Seed: {daily_meta['seed']}")
+    print(f"- Daily ID: {daily_meta['daily_id']}")
+    print(f"- Score: {bundle['challenge']['score_label']}")
+    print(f"- Map: {daily_artifacts['daily_map']}")
+    print(f"- Report: {bundle['html_path']}")
+    return EXIT_OK
+
+
+def _run_ctf(args: argparse.Namespace) -> int:
+    payload, payload_dict, source_label = _load_analysis_payload(args)
+    report = _build_analysis_report(payload, payload_dict, args)
+    bundle = write_challenge_bundle(
+        report,
+        args.outdir,
+        source_label=source_label,
+        title=args.title,
+        report_url="index.html",
+    )
+    ctf_artifacts = write_ctf_artifacts(report, args.outdir, include_hints=args.hints)
+    bundle["extra_artifacts"].update(ctf_artifacts)
+    _merge_bundle_manifest_artifacts(bundle, ctf_artifacts)
+    payload_out = {"bundle": bundle, "artifacts": ctf_artifacts, "report": report}
+    if args.json:
+        _emit_json(payload_out, "-", True)
+        return EXIT_OK
+
+    print("Prompt CTF ready.")
+    print(f"- Flags: {ctf_artifacts['flags']}")
+    print(f"- Hints: {ctf_artifacts['hints']}")
+    print(f"- Writeup: {ctf_artifacts['writeup']}")
+    print(f"- Report: {bundle['html_path']}")
+    return EXIT_OK
+
+
+def _run_casebook(args: argparse.Namespace) -> int:
+    payload, payload_dict, source_label = _load_analysis_payload(args)
+    report = _build_analysis_report(payload, payload_dict, args)
+    artifacts = write_casebook_artifacts(report, args.outdir, source_label=source_label, title=args.title)
+    payload_out = {"status": "created", "outdir": args.outdir, "source_label": source_label, "artifacts": artifacts}
+    if args.json:
+        _emit_json(payload_out, "-", True)
+        return EXIT_OK
+
+    print("Casebook artifacts ready.")
+    print(f"- Casebook: {artifacts['casebook_html']}")
+    print(f"- Traparium: {artifacts['traparium_html']}")
+    print(f"- Unknowns: {artifacts['unknowns_html']}")
+    print(f"- Trap tree: {artifacts['trap_tree']}")
+    return EXIT_OK
 
 
 def _run_export(args: argparse.Namespace) -> int:
@@ -1066,6 +1239,14 @@ def _run_export(args: argparse.Namespace) -> int:
                 "badge": bundle["badge_path"],
                 "sarif": bundle["sarif_path"],
                 "otel_logs": bundle["otel_logs_path"],
+                "junit": bundle["junit_path"],
+                "github_summary": bundle["github_summary_path"],
+                "casebook": bundle["casebook_html_path"],
+                "traparium": bundle["traparium_html_path"],
+                "unknowns": bundle["unknowns_html_path"],
+                "openinference_traces": bundle["openinference_traces_path"],
+                "langsmith_runs": bundle["langsmith_runs_path"],
+                "hf_dataset_card": bundle["hf_dataset_card_path"],
             }
         )
     else:
@@ -1104,6 +1285,38 @@ def _run_export(args: argparse.Namespace) -> int:
         elif selected == "eval-kit":
             artifacts.update(
                 write_eval_adapter_artifacts(
+                    report,
+                    str(outdir),
+                    source_label=source_label,
+                    title=args.title,
+                )
+            )
+        elif selected == "junit":
+            path = outdir / "honeypot-med.junit.xml"
+            artifacts["junit"] = write_junit_xml(report, str(path), suite_name=args.title, source_label=source_label)
+        elif selected == "github-summary":
+            path = outdir / "github-summary.md"
+            artifacts["github_summary"] = write_github_summary(
+                report,
+                str(path),
+                title=args.title,
+                source_label=source_label,
+            )
+        elif selected == "openinference":
+            artifacts["openinference_traces"] = write_observability_artifacts(
+                report,
+                str(outdir),
+                source_label=source_label,
+            )["openinference_traces"]
+        elif selected == "langsmith":
+            artifacts["langsmith_runs"] = write_observability_artifacts(
+                report,
+                str(outdir),
+                source_label=source_label,
+            )["langsmith_runs"]
+        elif selected == "casebook":
+            artifacts.update(
+                write_casebook_artifacts(
                     report,
                     str(outdir),
                     source_label=source_label,
@@ -1174,6 +1387,16 @@ def _run_experiment(args: argparse.Namespace) -> int:
 
 
 def _run_eval_kit(args: argparse.Namespace) -> int:
+    if args.eval_action == "verify":
+        result = verify_eval_adapter_artifacts(args.verify_dir)
+        if args.json:
+            _emit_json(result, "-", True)
+            return EXIT_OK
+        print("Eval kit verified.")
+        print(f"- Directory: {result['directory']}")
+        print(f"- Required artifacts: {result['required_count']}")
+        return EXIT_OK
+
     payload, payload_dict, source_label = _load_analysis_payload(args)
     report = _build_analysis_report(payload, payload_dict, args)
     artifacts = write_eval_adapter_artifacts(
@@ -1192,6 +1415,32 @@ def _run_eval_kit(args: argparse.Namespace) -> int:
     print(f"- Inspect dataset: {artifacts['inspect_dataset']}")
     print(f"- OpenAI Evals samples: {artifacts['openai_evals_samples']}")
     print(f"- Canonical samples: {artifacts['eval_samples']}")
+    return EXIT_OK
+
+
+def _run_hf_mirror(args: argparse.Namespace) -> int:
+    if args.hf_action == "plan":
+        artifacts = write_hf_mirror_plan(args.outdir)
+        payload_out = {"status": "created", "outdir": args.outdir, "artifacts": artifacts}
+    elif args.hf_action == "fetch":
+        artifacts = fetch_hf_mirror(args.manifest, args.outdir)
+        payload_out = {"status": "fetched", "outdir": args.outdir, "artifacts": artifacts}
+    elif args.hf_action == "transform":
+        artifacts = transform_jsonl_to_pack(args.input, args.outdir, title=args.title)
+        payload_out = {"status": "transformed", "outdir": args.outdir, "artifacts": artifacts}
+    else:
+        raise ValidationError(f"Unsupported hf-mirror action: {args.hf_action}")
+
+    if args.json:
+        _emit_json(payload_out, "-", True)
+        return EXIT_OK
+
+    print(f"HF mirror {args.hf_action} complete.")
+    for name, path in payload_out["artifacts"].items():
+        if isinstance(path, list):
+            print(f"- {name}: {len(path)} entries")
+        else:
+            print(f"- {name}: {path}")
     return EXIT_OK
 
 
@@ -1455,6 +1704,12 @@ def main(argv: list[str] | None = None) -> int:
                 exit_code = _run_demo(args)
             elif args.command == "challenge":
                 exit_code = _run_challenge(args)
+            elif args.command == "daily":
+                exit_code = _run_daily(args)
+            elif args.command == "ctf":
+                exit_code = _run_ctf(args)
+            elif args.command == "casebook":
+                exit_code = _run_casebook(args)
             elif args.command == "export":
                 exit_code = _run_export(args)
             elif args.command == "lab":
@@ -1465,6 +1720,8 @@ def main(argv: list[str] | None = None) -> int:
                 exit_code = _run_experiment(args)
             elif args.command == "eval-kit":
                 exit_code = _run_eval_kit(args)
+            elif args.command == "hf-mirror":
+                exit_code = _run_hf_mirror(args)
             elif args.command == "config":
                 exit_code = _run_config(args)
             elif args.command == "share":
