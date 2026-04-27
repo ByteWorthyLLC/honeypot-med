@@ -11,3 +11,4 @@ reports/
 .honeypot-med/
 *.egg-info/
 report.json
+uv.lock
