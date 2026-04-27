@@ -84,7 +84,7 @@ REQUIRED_TEXT = {
         "UI mockup",
     ],
     "site/faq/index.html": [
-        "No. The intended default path is local-first",
+        "No. The default path is local",
         "visual proof dossier",
     ],
     "site/readiness/index.html": [
