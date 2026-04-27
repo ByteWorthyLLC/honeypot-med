@@ -192,6 +192,8 @@ class CliTest(unittest.TestCase):
             self.assertEqual(casebook.returncode, 0, msg=casebook.stderr)
             casebook_payload = json.loads(casebook.stdout)
             self.assertTrue(Path(casebook_payload["artifacts"]["casebook_html"]).exists())
+            self.assertTrue((casebook_dir / "casebook-xray.html").exists())
+            self.assertTrue((casebook_dir / "casebook-ledger.html").exists())
             self.assertTrue((casebook_dir / "traparium.html").exists())
             self.assertTrue((casebook_dir / "unknowns.html").exists())
 
@@ -257,12 +259,56 @@ class CliTest(unittest.TestCase):
             self.assertEqual(hf.returncode, 0, msg=hf.stderr)
             self.assertTrue((hf_dir / "hf-mirror-manifest.json").exists())
 
+            diff_dir = tmp / "diff"
+            diff = subprocess.run(
+                [
+                    sys.executable,
+                    "app.py",
+                    "casebook-diff",
+                    "--base",
+                    str(casebook_dir),
+                    "--target",
+                    str(daily_dir),
+                    "--outdir",
+                    str(diff_dir),
+                    "--json",
+                ],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(diff.returncode, 0, msg=diff.stderr)
+            self.assertTrue((diff_dir / "casebook-diff.html").exists())
+
+            release_dir = tmp / "release"
+            release = subprocess.run(
+                [
+                    sys.executable,
+                    "app.py",
+                    "release-kit",
+                    "--source-dir",
+                    str(daily_dir),
+                    "--outdir",
+                    str(release_dir),
+                    "--name",
+                    "daily-test",
+                    "--json",
+                ],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(release.returncode, 0, msg=release.stderr)
+            self.assertTrue((release_dir / "daily-test.zip").exists())
+            self.assertTrue((release_dir / "daily-test.manifest.json").exists())
+
     def test_new_export_formats_and_eval_verify(self):
         with tempfile.TemporaryDirectory() as tmpdir:
             tmp = Path(tmpdir)
             for fmt, expected in [
                 ("junit", "honeypot-med.junit.xml"),
                 ("github-summary", "github-summary.md"),
+                ("png", "social-card.png"),
                 ("openinference", "openinference-traces.jsonl"),
                 ("langsmith", "langsmith-runs.jsonl"),
                 ("casebook", "casebook.html"),
@@ -289,6 +335,9 @@ class CliTest(unittest.TestCase):
                 self.assertTrue((outdir / expected).exists())
                 if fmt == "junit":
                     ET.parse(outdir / expected)
+                if fmt == "png":
+                    self.assertTrue((outdir / "badge.png").exists())
+                    self.assertEqual((outdir / "social-card.png").read_bytes()[:8], b"\x89PNG\r\n\x1a\n")
 
             eval_dir = tmp / "eval"
             generate = subprocess.run(

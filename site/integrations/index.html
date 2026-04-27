@@ -48,7 +48,7 @@
         <aside class="panel page-hero-side">
           <strong>Portable export</strong>
           <pre class="command-block">python app.py export --pack claims --format all --outdir reports/export</pre>
-          <p>Use <code>--format sarif</code>, <code>--format junit</code>, <code>--format github-summary</code>, <code>--format openinference</code>, <code>--format langsmith</code>, <code>--format casebook</code>, or <code>--format eval-kit</code> for focused artifacts.</p>
+          <p>Use <code>--format sarif</code>, <code>--format junit</code>, <code>--format png</code>, <code>--format github-summary</code>, <code>--format openinference</code>, <code>--format langsmith</code>, <code>--format casebook</code>, or <code>--format eval-kit</code> for focused artifacts.</p>
         </aside>
       </div>
     </section>
@@ -93,8 +93,10 @@
           <article class="page-card"><h3>OpenTelemetry logs</h3><p>Operational log payload that maps report events into telemetry-style records.</p></article>
           <article class="page-card"><h3>OpenInference and LangSmith</h3><p>Offline JSONL trace shapes for teams that already inspect LLM runs in observability tools.</p></article>
           <article class="page-card"><h3>Eval kit</h3><p>Offline adapters for promptfoo, Inspect AI, legacy OpenAI Evals, and canonical JSONL workflows.</p></article>
-          <article class="page-card"><h3>Hugging Face cards</h3><p>Dataset card, system card, and leaderboard row templates generated without upload or API calls.</p></article>
+          <article class="page-card"><h3>Hugging Face cards</h3><p>Dataset card, system card, and artifact manifest generated without upload or API calls.</p></article>
           <article class="page-card"><h3>Casebook</h3><p>Forensic HTML, traparium, unknowns page, failure recipes, trap tree, and notebook.</p></article>
+          <article class="page-card"><h3>PNG cards</h3><p>Raster social card and badge generated with the Python standard library.</p></article>
+          <article class="page-card"><h3>Release kit</h3><p>Zip archive, SHA-256 checksum file, manifest, and release notes for generated report directories.</p></article>
           <article class="page-card"><h3>JSON</h3><p>Stable machine-readable report for custom dashboards and downstream eval systems.</p></article>
           <article class="page-card"><h3>Markdown</h3><p>PR comments, release notes, docs, and simple diffs.</p></article>
           <article class="page-card"><h3>SVG badge</h3><p>README, docs, and launch posts that show the score without opening the report.</p></article>
@@ -128,6 +130,11 @@
           <pre class="command-block">python app.py eval-kit verify --dir reports/eval-kit
 python app.py hf-mirror plan --outdir reports/hf-mirror</pre>
           <button class="copy-button" type="button" data-copy="python app.py eval-kit verify --dir reports/eval-kit&#10;python app.py hf-mirror plan --outdir reports/hf-mirror">Copy verify commands</button>
+        </article>
+        <article class="command-card">
+          <h3>Package report artifacts for a release</h3>
+          <pre class="command-block">python app.py release-kit --source-dir reports/export --outdir dist/release-bundles --name claims-export</pre>
+          <button class="copy-button" type="button" data-copy="python app.py release-kit --source-dir reports/export --outdir dist/release-bundles --name claims-export">Copy release command</button>
         </article>
       </div>
     </section>

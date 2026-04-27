@@ -19,6 +19,7 @@ from .observability import write_observability_artifacts
 from .outputs.badge import build_badge_markdown, build_report_badge_svg
 from .outputs.otel import report_to_otel_logs
 from .outputs.sarif import report_to_sarif
+from .png_cards import write_png_card_artifacts
 from .share import build_share_html
 
 
@@ -260,6 +261,7 @@ def write_share_bundle(report: dict, outdir: str, *, source_label: str, title: s
         encoding="utf-8",
     )
     pdf_path.write_bytes(_build_summary_pdf(report, title=bundle_title, source_label=source_label))
+    png_artifacts = write_png_card_artifacts(report, str(bundle_dir), title=bundle_title, source_label=source_label)
     sarif_path.write_text(
         json.dumps(report_to_sarif(report, source_label=source_label), indent=2) + "\n",
         encoding="utf-8",
@@ -299,7 +301,9 @@ def write_share_bundle(report: dict, outdir: str, *, source_label: str, title: s
         "json": json_path.name,
         "markdown": markdown_path.name,
         "social_card": social_path.name,
+        "social_card_png": Path(png_artifacts["social_card_png"]).name,
         "badge": badge_path.name,
+        "badge_png": Path(png_artifacts["badge_png"]).name,
         "badge_markdown": badge_markdown_path.name,
         "pdf": pdf_path.name,
         "launch_markdown": launch_markdown_path.name,
@@ -331,9 +335,11 @@ def write_share_bundle(report: dict, outdir: str, *, source_label: str, title: s
         "eval_kit_manifest": Path(eval_artifacts["eval_kit_manifest"]).name,
         "hf_dataset_card": Path(eval_artifacts["hf_dataset_card"]).name,
         "hf_system_card": Path(eval_artifacts["hf_system_card"]).name,
-        "hf_leaderboard_row": Path(eval_artifacts["hf_leaderboard_row"]).name,
+        "hf_artifact_manifest": Path(eval_artifacts["hf_artifact_manifest"]).name,
         "casebook_json": Path(casebook_artifacts["casebook_json"]).name,
         "casebook_html": Path(casebook_artifacts["casebook_html"]).name,
+        "casebook_xray_html": Path(casebook_artifacts["casebook_xray_html"]).name,
+        "casebook_ledger_html": Path(casebook_artifacts["casebook_ledger_html"]).name,
         "traparium_html": Path(casebook_artifacts["traparium_html"]).name,
         "unknowns_html": Path(casebook_artifacts["unknowns_html"]).name,
         "failure_recipes": Path(casebook_artifacts["failure_recipes"]).name,
@@ -353,7 +359,9 @@ def write_share_bundle(report: dict, outdir: str, *, source_label: str, title: s
         "json_path": str(json_path),
         "markdown_path": str(markdown_path),
         "social_card_path": str(social_path),
+        "social_card_png_path": png_artifacts["social_card_png"],
         "badge_path": str(badge_path),
+        "badge_png_path": png_artifacts["badge_png"],
         "badge_markdown_path": str(badge_markdown_path),
         "pdf_path": str(pdf_path),
         "launch_markdown_path": str(launch_markdown_path),
@@ -385,9 +393,11 @@ def write_share_bundle(report: dict, outdir: str, *, source_label: str, title: s
         "eval_kit_manifest_path": eval_artifacts["eval_kit_manifest"],
         "hf_dataset_card_path": eval_artifacts["hf_dataset_card"],
         "hf_system_card_path": eval_artifacts["hf_system_card"],
-        "hf_leaderboard_row_path": eval_artifacts["hf_leaderboard_row"],
+        "hf_artifact_manifest_path": eval_artifacts["hf_artifact_manifest"],
         "casebook_json_path": casebook_artifacts["casebook_json"],
         "casebook_html_path": casebook_artifacts["casebook_html"],
+        "casebook_xray_html_path": casebook_artifacts["casebook_xray_html"],
+        "casebook_ledger_html_path": casebook_artifacts["casebook_ledger_html"],
         "traparium_html_path": casebook_artifacts["traparium_html"],
         "unknowns_html_path": casebook_artifacts["unknowns_html"],
         "failure_recipes_path": casebook_artifacts["failure_recipes"],

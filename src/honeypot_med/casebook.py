@@ -129,7 +129,48 @@ def build_casebook(report: dict, *, source_label: str, title: str) -> dict:
     }
 
 
-def _html_shell(*, title: str, body: str, subtitle: str) -> str:
+SKINS = {
+    "apothecary": {
+        "bg": "#181712",
+        "paper": "#f5ead6",
+        "card": "#fff8ea",
+        "ink": "#211d17",
+        "muted": "#6f6252",
+        "accent": "#bc432c",
+        "green": "#23745b",
+        "glow_a": "rgba(188, 67, 44, 0.28)",
+        "glow_b": "rgba(35, 116, 91, 0.24)",
+        "grad": "#1d1a14, #463522 58%, #1b201b",
+    },
+    "xray": {
+        "bg": "#07191d",
+        "paper": "#d6fff7",
+        "card": "#eafffb",
+        "ink": "#092124",
+        "muted": "#356067",
+        "accent": "#1f9fba",
+        "green": "#218763",
+        "glow_a": "rgba(31, 159, 186, 0.32)",
+        "glow_b": "rgba(214, 255, 247, 0.18)",
+        "grad": "#07191d, #12343a 58%, #071f20",
+    },
+    "ledger": {
+        "bg": "#201b16",
+        "paper": "#f4e7c3",
+        "card": "#fff5d4",
+        "ink": "#231a12",
+        "muted": "#705d43",
+        "accent": "#8e5a20",
+        "green": "#4f7a39",
+        "glow_a": "rgba(142, 90, 32, 0.25)",
+        "glow_b": "rgba(244, 231, 195, 0.14)",
+        "grad": "#201b16, #4a351d 58%, #171a12",
+    },
+}
+
+
+def _html_shell(*, title: str, body: str, subtitle: str, skin: str = "apothecary") -> str:
+    palette = SKINS.get(skin, SKINS["apothecary"])
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -138,23 +179,23 @@ def _html_shell(*, title: str, body: str, subtitle: str) -> str:
   <title>{escape(title)}</title>
   <style>
     :root {{
-      --bg: #181712;
-      --paper: #f5ead6;
-      --card: #fff8ea;
-      --ink: #211d17;
-      --muted: #6f6252;
+      --bg: {palette['bg']};
+      --paper: {palette['paper']};
+      --card: {palette['card']};
+      --ink: {palette['ink']};
+      --muted: {palette['muted']};
       --line: rgba(33, 29, 23, 0.16);
-      --accent: #bc432c;
-      --green: #23745b;
+      --accent: {palette['accent']};
+      --green: {palette['green']};
     }}
     * {{ box-sizing: border-box; }}
     body {{
       margin: 0;
       color: var(--ink);
       background:
-        radial-gradient(circle at 15% 8%, rgba(188, 67, 44, 0.28), transparent 26rem),
-        radial-gradient(circle at 85% 0%, rgba(35, 116, 91, 0.24), transparent 24rem),
-        linear-gradient(135deg, #1d1a14, #463522 58%, #1b201b);
+        radial-gradient(circle at 15% 8%, {palette['glow_a']}, transparent 26rem),
+        radial-gradient(circle at 85% 0%, {palette['glow_b']}, transparent 24rem),
+        linear-gradient(135deg, {palette['grad']});
       font-family: Avenir Next, Helvetica Neue, Arial, sans-serif;
     }}
     .wrap {{ width: min(1120px, calc(100vw - 32px)); margin: 0 auto; padding: 36px 0; }}
@@ -189,7 +230,7 @@ def _html_shell(*, title: str, body: str, subtitle: str) -> str:
 """
 
 
-def build_casebook_html(casebook: dict) -> str:
+def build_casebook_html(casebook: dict, *, skin: str = "apothecary") -> str:
     cards = []
     for event in casebook["events"]:
         findings = "".join(
@@ -226,6 +267,7 @@ def build_casebook_html(casebook: dict) -> str:
         title=str(casebook["title"]) + " Casebook",
         subtitle="A redacted forensic notebook: prompts, tool reach, findings, unknowns, and falsification questions.",
         body=body,
+        skin=skin,
     )
 
 
@@ -380,6 +422,8 @@ def write_casebook_artifacts(report: dict, outdir: str, *, source_label: str, ti
 
     casebook_json_path = target / "casebook.json"
     casebook_html_path = target / "casebook.html"
+    casebook_xray_path = target / "casebook-xray.html"
+    casebook_ledger_path = target / "casebook-ledger.html"
     traparium_path = target / "traparium.html"
     unknowns_path = target / "unknowns.html"
     recipes_path = target / "failure-recipes.md"
@@ -388,6 +432,8 @@ def write_casebook_artifacts(report: dict, outdir: str, *, source_label: str, ti
 
     casebook_json_path.write_text(json.dumps(casebook, indent=2) + "\n", encoding="utf-8")
     casebook_html_path.write_text(build_casebook_html(casebook), encoding="utf-8")
+    casebook_xray_path.write_text(build_casebook_html(casebook, skin="xray"), encoding="utf-8")
+    casebook_ledger_path.write_text(build_casebook_html(casebook, skin="ledger"), encoding="utf-8")
     traparium_path.write_text(build_traparium_html(casebook), encoding="utf-8")
     unknowns_path.write_text(build_unknowns_html(casebook), encoding="utf-8")
     recipes_path.write_text(build_failure_recipes_markdown(casebook), encoding="utf-8")
@@ -397,6 +443,8 @@ def write_casebook_artifacts(report: dict, outdir: str, *, source_label: str, ti
     return {
         "casebook_json": str(casebook_json_path),
         "casebook_html": str(casebook_html_path),
+        "casebook_xray_html": str(casebook_xray_path),
+        "casebook_ledger_html": str(casebook_ledger_path),
         "traparium_html": str(traparium_path),
         "unknowns_html": str(unknowns_path),
         "failure_recipes": str(recipes_path),

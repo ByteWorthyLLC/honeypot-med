@@ -110,6 +110,8 @@ class SiteSurfaceTest(unittest.TestCase):
         report = SITE / "reports" / "healthcare-challenge"
         for name in [
             "casebook.html",
+            "casebook-xray.html",
+            "casebook-ledger.html",
             "traparium.html",
             "unknowns.html",
             "failure-recipes.md",
@@ -120,12 +122,14 @@ class SiteSurfaceTest(unittest.TestCase):
             "writeup.md",
             "honeypot-med.junit.xml",
             "github-summary.md",
+            "social-card.png",
+            "badge.png",
             "openinference-traces.jsonl",
             "langsmith-runs.jsonl",
             "otel-collector.yaml",
             "README.dataset-card.md",
             "system-card.md",
-            "leaderboard-row.json",
+            "hf-artifact-manifest.md",
         ]:
             self.assertTrue((report / name).exists(), msg=name)
 

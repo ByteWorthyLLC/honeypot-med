@@ -31,7 +31,7 @@ Honeypot Med is an open-source, local-first prompt-injection honeypot for health
 - GitHub repository: https://github.com/ByteWorthyLLC/honeypot-med
 
 ## Summary
-Honeypot Med inspects suspicious prompts and turns the result into human-readable evidence bundles, including challenge scores, daily dungeons, prompt CTF flags, redacted casebooks, traparium pages, README badges, HTML proof pages, PDF summaries, social cards, SARIF reports, JUnit XML, GitHub step summaries, OpenTelemetry log payloads, OpenInference traces, LangSmith JSONL, Hugging Face-ready cards, specimen codex files, trap ledgers, field guides, inquiry notebooks, research-question JSON, unknown ledgers, counterfactual prompt decks, ablation ladders, experiment plans, eval-kit adapters, offline proof files, JSON reports, Markdown summaries, launch-kit copy, and a public installer surface.
+Honeypot Med inspects suspicious prompts and turns the result into human-readable evidence bundles, including challenge scores, daily dungeons, prompt CTF flags, redacted casebooks, traparium pages, README badges, HTML proof pages, PDF summaries, SVG and PNG social cards, SARIF reports, JUnit XML, GitHub step summaries, OpenTelemetry log payloads, OpenInference traces, LangSmith JSONL, Hugging Face-ready cards, specimen codex files, trap ledgers, field guides, inquiry notebooks, research-question JSON, unknown ledgers, counterfactual prompt decks, ablation ladders, experiment plans, eval-kit adapters, casebook diffs, release bundles, offline proof files, JSON reports, Markdown summaries, launch-kit copy, and a public installer surface.
 
 ## Key facts
 - Local-first by default
@@ -40,6 +40,9 @@ Honeypot Med inspects suspicious prompts and turns the result into human-readabl
 - Daily Dungeon generates deterministic seeded trap routes from bundled packs
 - Prompt CTF uses evidence predicates instead of secret strings
 - Casebook mode generates `casebook.html`, `traparium.html`, `unknowns.html`, `failure-recipes.md`, `trap-tree.svg`, and `lab-notebook.ipynb`
+- Casebook mode also generates X-ray and ledger visual skins
+- Casebook diff mode compares two local runs as evidence shifts
+- Release kit mode zips generated report directories with SHA-256 manifests
 - Specimen Codex names failure modes as Compliance Mimic, Roster Leech, Policy Poltergeist, and Quiet Chart Ghost
 - Field Notes shifts the project stance toward intellectual curiosity over promotion
 - Default challenge output includes an 8/10 survived sample report, badge, SARIF file, OTEL logs, specimen codex, trap ledger, field guide, inquiry notebook, unknown ledger, experiment plan, promptfoo config, Inspect AI dataset, OpenAI Evals adapter, offline proof, JSON, Markdown, PDF, and social card

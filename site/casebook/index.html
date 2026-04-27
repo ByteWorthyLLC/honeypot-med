@@ -35,6 +35,7 @@
             <a class="button" href="../reports/healthcare-challenge/casebook.html">Open sample casebook</a>
             <a class="button-secondary" href="../reports/healthcare-challenge/traparium.html">Open traparium</a>
             <a class="button-ghost" href="../reports/healthcare-challenge/unknowns.html">Open unknowns</a>
+            <a class="button-ghost" href="../reports/healthcare-challenge/casebook-xray.html">X-ray skin</a>
             <a class="button-ghost" href="../reports/healthcare-challenge/trap-tree.svg">Open trap tree</a>
           </div>
         </article>
@@ -57,6 +58,8 @@
           <article class="page-card"><h3><code>failure-recipes.md</code></h3><p>Retest recipes that change one variable at a time.</p></article>
           <article class="page-card"><h3><code>trap-tree.svg</code></h3><p>A compact phylogeny connecting specimen families to observed traps.</p></article>
           <article class="page-card"><h3><code>lab-notebook.ipynb</code></h3><p>A starter notebook for reproducible local investigation.</p></article>
+          <article class="page-card"><h3><code>casebook-xray.html</code></h3><p>An alternate skin for demos that need a clinical imaging feel.</p></article>
+          <article class="page-card"><h3><code>casebook-ledger.html</code></h3><p>An alternate skin for audit and evidence-review contexts.</p></article>
         </div>
       </div>
     </section>
@@ -73,6 +76,11 @@
             <h3>Bundle it with every challenge</h3>
             <p><code>python app.py challenge --pack healthcare-challenge --outdir reports/challenge</code></p>
             <button class="copy-button" type="button" data-copy="python app.py challenge --pack healthcare-challenge --outdir reports/challenge">Copy</button>
+          </article>
+          <article class="copy-card">
+            <h3>Compare two casebooks</h3>
+            <p><code>python app.py casebook-diff --base reports/old --target reports/new --outdir reports/diff</code></p>
+            <button class="copy-button" type="button" data-copy="python app.py casebook-diff --base reports/old --target reports/new --outdir reports/diff">Copy</button>
           </article>
         </div>
       </div>

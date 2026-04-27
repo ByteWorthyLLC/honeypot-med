@@ -46,13 +46,19 @@ The project names failure modes as specimens so generated reports feel like fiel
 `honeypot-med casebook` turns one run into a redacted forensic notebook, traparium museum, unknowns page, failure recipes, trap tree, and notebook.
 
 13. Daily-loop
-`honeypot-med daily` creates a deterministic seeded dungeon so the same local challenge can be replayed, shared, and compared without a hosted leaderboard.
+`honeypot-med daily` creates a deterministic seeded dungeon so the same local challenge can be replayed and shared without hosted infrastructure.
 
 14. Prompt-CTF loop
 `honeypot-med ctf` turns evidence into flags that are predicates, not secrets: data exfiltration, safeguard bypass, authority costume, unsafe tool reach, and falsifiable unknowns.
 
 15. HF-Lab loop
 `honeypot-med hf-mirror plan` and eval-kit Hugging Face cards make the project easy to fold into public dataset/model-card workflows without default downloads or API calls.
+
+16. Diff-loop
+`honeypot-med casebook-diff` makes two runs comparable as evidence shifts instead of social proof.
+
+17. Release-loop
+`honeypot-med release-kit` packages generated report directories into zip files with checksums and release notes.
 
 ## Launch Angles
 
@@ -89,7 +95,10 @@ The project names failure modes as specimens so generated reports feel like fiel
 25. `honeypot-med ctf` prompt CTF with evidence-predicate flags, hints, writeup, and score JSON
 26. JUnit XML and GitHub step-summary exports for CI hygiene
 27. OpenInference and LangSmith JSONL exports plus OTEL collector fixture
-28. Hugging Face-ready dataset card, system card, leaderboard row, and `hf-mirror` plan/transform workflow
+28. Hugging Face-ready dataset card, system card, artifact manifest, and `hf-mirror` plan/transform workflow
+29. PNG social-card and badge outputs for non-SVG surfaces
+30. `honeypot-med casebook-diff` for local evidence-shift review
+31. `honeypot-med release-kit` for release-ready zipped report bundles with checksums
 
 ## What To Prioritize Next
 
@@ -97,6 +106,6 @@ The project names failure modes as specimens so generated reports feel like fiel
 2. Add local diff tooling that compares two casebooks and highlights evidence shifts.
 3. Add more specimen archetypes and visual skins for different healthcare workflows.
 4. Publish generated challenge bundles as downloadable artifacts in releases.
-5. Add a small leaderboard JSON file that can index community-submitted daily seeds and challenge scores.
-6. Add hosted deployment templates for Fly.io, Railway, and Render instead of Docker-only self-hosting.
-7. Add more adapter inputs for LangChain traces, promptfoo outputs, Inspect AI logs, and plain HTTP agent targets.
+5. Add hosted deployment templates for Fly.io, Railway, and Render instead of Docker-only self-hosting.
+6. Add more adapter inputs for LangChain traces, promptfoo outputs, Inspect AI logs, and plain HTTP agent targets.
+7. Add release-page automation that attaches local bundles to GitHub Releases.

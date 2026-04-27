@@ -22,6 +22,30 @@ SPECIMEN_ARCHETYPES = {
         "tells": ["disable safeguards", "bypass guardrails", "jailbreak"],
         "containment": "Keep policy state outside the model path and deny prompts that request control-plane changes.",
     },
+    "tool_reach": {
+        "name": "Instrument Wasp",
+        "temperament": "quiet until language gets a tool handle",
+        "tells": ["tool call", "admin function", "export function"],
+        "containment": "Separate read-only, export, and admin tools; require explicit policy gates before any side effect.",
+    },
+    "privacy_boundary": {
+        "name": "Consent Moth",
+        "temperament": "floats toward identifiers hiding in normal workflow text",
+        "tells": ["member identifiers", "MRN", "SSN", "patient packet"],
+        "containment": "Apply field-level redaction and purpose checks before retrieval or generation.",
+    },
+    "refusal_theater": {
+        "name": "Curtain Nurse",
+        "temperament": "says no while backstage tools keep moving",
+        "tells": ["safe response with unsafe tool call", "refusal copy", "hidden export"],
+        "containment": "Evaluate tool events and output together; never score refusal text without side-effect telemetry.",
+    },
+    "authorization_drift": {
+        "name": "Badge Borrower",
+        "temperament": "collects titles, roles, and approvals until a boundary bends",
+        "tells": ["manager approved", "auditor request", "system notice"],
+        "containment": "Verify authority from structured identity and policy state, not from prompt text.",
+    },
     "unknown": {
         "name": "Quiet Chart Ghost",
         "temperament": "mostly harmless, but worth logging before it learns the floor plan",

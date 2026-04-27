@@ -33,6 +33,7 @@ Generate one format:
 python app.py export --pack claims --format sarif --outdir reports/sarif
 python app.py export --pack claims --format otel --outdir reports/otel
 python app.py export --pack claims --format junit --outdir reports/junit
+python app.py export --pack claims --format png --outdir reports/png
 python app.py export --pack claims --format github-summary --outdir reports/summary
 python app.py export --pack claims --format openinference --outdir reports/openinference
 python app.py export --pack claims --format langsmith --outdir reports/langsmith
@@ -42,6 +43,7 @@ python app.py export --pack claims --format eval-kit --outdir reports/eval-kit
 python app.py eval-kit --pack healthcare-challenge --outdir reports/eval-kit
 python app.py eval-kit verify --dir reports/eval-kit
 python app.py hf-mirror plan --outdir reports/hf-mirror
+python app.py release-kit --source-dir reports/export --outdir dist/release-bundles --name claims-export
 ```
 
 ## Eval Kit
@@ -58,7 +60,7 @@ It writes:
 - `openai-evals-samples.jsonl`: simple `input`, `ideal`, and `metadata` JSONL records
 - `README.dataset-card.md`: Hugging Face-ready dataset card text
 - `system-card.md`: local system card for the evaluated workflow
-- `leaderboard-row.json`: benchmark-style result row
+- `hf-artifact-manifest.md`: Hugging Face packaging manifest
 - `eval-kit.md`: local usage notes
 
 ## Formats
@@ -76,8 +78,10 @@ It writes:
 - Question atlas: reusable research questions linked to report events
 - Ablation ladder CSV: evidence-depth checklist for proving or falsifying findings
 - Eval kit: promptfoo, Inspect AI, OpenAI Evals, and canonical JSONL adapters
-- Hugging Face cards: dataset card, system card, and leaderboard row generated locally
+- Hugging Face cards: dataset card, system card, and artifact manifest generated locally
 - Casebook: redacted forensic HTML, JSON, traparium, unknowns page, failure recipes, trap tree, and notebook
+- PNG cards: raster social card and badge for places that do not render SVG reliably
+- Release kit: zip archive, SHA-256 checksum file, release notes, and manifest
 - Offline proof: simple assurance that the default path requires no API keys or paid service
 - SARIF: static-analysis/code-scanning workflows
 - JUnit XML: CI test report ingestion

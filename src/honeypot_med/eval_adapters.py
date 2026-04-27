@@ -177,7 +177,7 @@ def build_adapter_readme(*, title: str, source_label: str) -> str:
             "- `openai-evals-samples.jsonl`: simple `input` and `ideal` records for legacy eval import.",
             "- `README.dataset-card.md`: Hugging Face-ready dataset card text.",
             "- `system-card.md`: local system card for the evaluated workflow.",
-            "- `leaderboard-row.json`: benchmark-style row for public comparisons.",
+            "- `hf-artifact-manifest.md`: manifest for Hugging Face packaging.",
             "",
             "## Local Commands",
             "",
@@ -253,7 +253,7 @@ def write_eval_adapter_artifacts(report: dict, outdir: str, *, source_label: str
             "readme": readme_path.name,
             "hf_dataset_card": "README.dataset-card.md",
             "hf_system_card": "system-card.md",
-            "hf_leaderboard_row": "leaderboard-row.json",
+            "hf_artifact_manifest": "hf-artifact-manifest.md",
         },
     }
     manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
@@ -285,7 +285,7 @@ def verify_eval_adapter_artifacts(directory: str) -> dict:
         "eval-kit-manifest.json",
         "README.dataset-card.md",
         "system-card.md",
-        "leaderboard-row.json",
+        "hf-artifact-manifest.md",
     ]
     missing = [name for name in required if not (target / name).exists()]
     if missing:
@@ -301,7 +301,6 @@ def verify_eval_adapter_artifacts(directory: str) -> dict:
 
     json.loads((target / "promptfoo-tests.json").read_text(encoding="utf-8"))
     json.loads((target / "eval-kit-manifest.json").read_text(encoding="utf-8"))
-    json.loads((target / "leaderboard-row.json").read_text(encoding="utf-8"))
     return {
         "status": "ok",
         "directory": str(target),

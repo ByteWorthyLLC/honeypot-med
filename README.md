@@ -93,10 +93,13 @@ python app.py export --pack claims --format all --outdir reports/export
 python app.py export --pack claims --format sarif --outdir reports/sarif
 python app.py export --pack claims --format otel --outdir reports/otel
 python app.py export --pack claims --format junit --outdir reports/junit
+python app.py export --pack claims --format png --outdir reports/png
 python app.py export --pack claims --format openinference --outdir reports/openinference
 python app.py eval-kit --pack healthcare-challenge --outdir reports/eval-kit
 python app.py eval-kit verify --dir reports/eval-kit
 python app.py hf-mirror plan --outdir reports/hf-mirror
+python app.py casebook-diff --base reports/casebook-a --target reports/casebook-b --outdir reports/diff
+python app.py release-kit --source-dir reports/challenge --outdir dist/release-bundles --name challenge-report
 ```
 
 7. Run a safe release check:
@@ -116,12 +119,14 @@ python app.py protect --input examples/clean.json
 - `daily`: deterministic daily challenge dungeon with seed, score, SVG map, and normal challenge artifacts
 - `ctf`: local prompt CTF with evidence-predicate flags, hints, writeup, and challenge bundle
 - `casebook`: redacted forensic casebook, traparium museum, unknowns page, failure recipes, trap tree, and notebook
+- `casebook-diff`: compare two casebooks and produce HTML, Markdown, and JSON evidence-shift artifacts
 - `export`: portable output formats for CI, code scanning, telemetry, docs, badges, JUnit, OpenInference, LangSmith, and casebooks
 - `lab`: weird offline Trap Lab artifacts: specimen codex, field guide, trap ledger, and offline proof
 - `inquire`: research questions, inquiry notebook, unknown ledger, experiment matrix, counterfactuals, and question atlas
 - `experiment`: counterfactual prompt deck, one-variable-at-a-time experiment matrix, question atlas, and ablation ladder
 - `eval-kit`: offline adapters for promptfoo, Inspect AI datasets, legacy OpenAI Evals JSONL, Hugging Face-ready cards, and canonical eval samples
 - `hf-mirror`: plan optional Hugging Face dataset mirrors, or explicitly fetch/transform after license review
+- `release-kit`: zip a generated report directory with SHA-256 checksums and release notes
 - `config`: show/update runtime settings (engine/network/paths)
 - `share`: standalone HTML proof page for easy sharing
 - `packs`: bundled healthcare attack packs for instant demos

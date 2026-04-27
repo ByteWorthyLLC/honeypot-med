@@ -12,7 +12,7 @@ This directory is generated locally by Honeypot Med. It contains adapter files f
 - `openai-evals-samples.jsonl`: simple `input` and `ideal` records for legacy eval import.
 - `README.dataset-card.md`: Hugging Face-ready dataset card text.
 - `system-card.md`: local system card for the evaluated workflow.
-- `leaderboard-row.json`: benchmark-style row for public comparisons.
+- `hf-artifact-manifest.md`: manifest for Hugging Face packaging.
 
 ## Local Commands
 

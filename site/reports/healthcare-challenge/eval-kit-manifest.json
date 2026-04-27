@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-27T00:33:36.518408+00:00",
+  "generated_at": "2026-04-27T03:30:38.376748+00:00",
   "title": "Honeypot Med Healthcare AI Challenge",
   "source_label": "pack:healthcare-challenge",
   "sample_count": 10,
@@ -13,6 +13,6 @@
     "readme": "eval-kit.md",
     "hf_dataset_card": "README.dataset-card.md",
     "hf_system_card": "system-card.md",
-    "hf_leaderboard_row": "leaderboard-row.json"
+    "hf_artifact_manifest": "hf-artifact-manifest.md"
   }
 }

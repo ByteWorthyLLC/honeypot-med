@@ -14,6 +14,7 @@ from .attack_packs import describe_attack_pack, list_attack_packs, load_attack_p
 from .audit import append_audit_event
 from .baseline import apply_suppressions, load_suppressions
 from .casebook import write_casebook_artifacts
+from .casebook_diff import write_casebook_diff_artifacts
 from .challenge import DEFAULT_CHALLENGE_PACK, write_challenge_bundle
 from .ctf import write_ctf_artifacts
 from .daily import build_daily_payload, write_daily_artifacts
@@ -33,7 +34,9 @@ from .observability import write_observability_artifacts
 from .outputs.badge import build_badge_markdown, build_report_badge_svg
 from .outputs.otel import report_to_otel_logs
 from .outputs.sarif import report_to_sarif
+from .png_cards import write_png_card_artifacts
 from .redaction import redact_event
+from .release_bundle import write_release_bundle
 from .runtime import (
     check_network,
     ensure_runtime_dirs,
@@ -71,8 +74,10 @@ COMMANDS = {
     "daily",
     "ctf",
     "casebook",
+    "casebook-diff",
     "export",
     "hf-mirror",
+    "release-kit",
     "lab",
     "inquire",
     "experiment",
@@ -479,6 +484,12 @@ def _build_command_parser() -> argparse.ArgumentParser:
     _add_scoring_flags(casebook)
     _add_runtime_flags(casebook)
 
+    casebook_diff = subparsers.add_parser("casebook-diff", help="Diff two generated casebook.json files")
+    casebook_diff.add_argument("--base", required=True, help="Base casebook.json path or report directory")
+    casebook_diff.add_argument("--target", required=True, help="Target casebook.json path or report directory")
+    casebook_diff.add_argument("--outdir", default="reports/casebook-diff")
+    casebook_diff.add_argument("--json", action="store_true", help="Emit diff artifact metadata as JSON")
+
     export = subparsers.add_parser("export", help="Export a report in portable integration formats")
     _add_source_flags(
         export,
@@ -495,6 +506,7 @@ def _build_command_parser() -> argparse.ArgumentParser:
             "sarif",
             "otel",
             "badge",
+            "png",
             "eval-kit",
             "junit",
             "github-summary",
@@ -577,6 +589,12 @@ def _build_command_parser() -> argparse.ArgumentParser:
     hf_transform.add_argument("--outdir", default="reports/hf-pack")
     hf_transform.add_argument("--title", default="HF Mirror Local Pack")
     hf_transform.add_argument("--json", action="store_true")
+
+    release_kit = subparsers.add_parser("release-kit", help="Zip a generated report directory with checksums")
+    release_kit.add_argument("--source-dir", required=True, help="Generated report directory to package")
+    release_kit.add_argument("--outdir", default="dist/release-bundles")
+    release_kit.add_argument("--name", default="honeypot-med-report")
+    release_kit.add_argument("--json", action="store_true")
 
     packs = subparsers.add_parser("packs", help="List or inspect bundled healthcare attack packs")
     packs.add_argument("--pack", help="Specific pack id to inspect")
@@ -1220,6 +1238,20 @@ def _run_casebook(args: argparse.Namespace) -> int:
     return EXIT_OK
 
 
+def _run_casebook_diff(args: argparse.Namespace) -> int:
+    artifacts = write_casebook_diff_artifacts(args.base, args.target, args.outdir)
+    payload_out = {"status": "created", "outdir": args.outdir, "artifacts": artifacts}
+    if args.json:
+        _emit_json(payload_out, "-", True)
+        return EXIT_OK
+
+    print("Casebook diff ready.")
+    print(f"- HTML: {artifacts['casebook_diff_html']}")
+    print(f"- Markdown: {artifacts['casebook_diff_markdown']}")
+    print(f"- JSON: {artifacts['casebook_diff_json']}")
+    return EXIT_OK
+
+
 def _run_export(args: argparse.Namespace) -> int:
     payload, payload_dict, source_label = _load_analysis_payload(args)
     report = _build_analysis_report(payload, payload_dict, args)
@@ -1236,7 +1268,9 @@ def _run_export(args: argparse.Namespace) -> int:
                 "json": bundle["json_path"],
                 "markdown": bundle["markdown_path"],
                 "social_card": bundle["social_card_path"],
+                "social_card_png": bundle["social_card_png_path"],
                 "badge": bundle["badge_path"],
+                "badge_png": bundle["badge_png_path"],
                 "sarif": bundle["sarif_path"],
                 "otel_logs": bundle["otel_logs_path"],
                 "junit": bundle["junit_path"],
@@ -1282,6 +1316,15 @@ def _run_export(args: argparse.Namespace) -> int:
             )
             artifacts["badge"] = str(badge_path)
             artifacts["badge_markdown"] = str(markdown_path)
+        elif selected == "png":
+            artifacts.update(
+                write_png_card_artifacts(
+                    report,
+                    str(outdir),
+                    title=args.title,
+                    source_label=source_label,
+                )
+            )
         elif selected == "eval-kit":
             artifacts.update(
                 write_eval_adapter_artifacts(
@@ -1441,6 +1484,21 @@ def _run_hf_mirror(args: argparse.Namespace) -> int:
             print(f"- {name}: {len(path)} entries")
         else:
             print(f"- {name}: {path}")
+    return EXIT_OK
+
+
+def _run_release_kit(args: argparse.Namespace) -> int:
+    artifacts = write_release_bundle(args.source_dir, args.outdir, name=args.name)
+    payload_out = {"status": "created", "outdir": args.outdir, "source_dir": args.source_dir, "artifacts": artifacts}
+    if args.json:
+        _emit_json(payload_out, "-", True)
+        return EXIT_OK
+
+    print("Release bundle ready.")
+    print(f"- Zip: {artifacts['zip']}")
+    print(f"- Manifest: {artifacts['manifest']}")
+    print(f"- SHA-256: {artifacts['sha256']}")
+    print(f"- Notes: {artifacts['release_notes']}")
     return EXIT_OK
 
 
@@ -1710,6 +1768,8 @@ def main(argv: list[str] | None = None) -> int:
                 exit_code = _run_ctf(args)
             elif args.command == "casebook":
                 exit_code = _run_casebook(args)
+            elif args.command == "casebook-diff":
+                exit_code = _run_casebook_diff(args)
             elif args.command == "export":
                 exit_code = _run_export(args)
             elif args.command == "lab":
@@ -1722,6 +1782,8 @@ def main(argv: list[str] | None = None) -> int:
                 exit_code = _run_eval_kit(args)
             elif args.command == "hf-mirror":
                 exit_code = _run_hf_mirror(args)
+            elif args.command == "release-kit":
+                exit_code = _run_release_kit(args)
             elif args.command == "config":
                 exit_code = _run_config(args)
             elif args.command == "share":
