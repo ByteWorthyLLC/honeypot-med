@@ -175,6 +175,70 @@ document.querySelectorAll("[data-year]").forEach((node) => {
   node.textContent = String(new Date().getFullYear());
 });
 
+function wireScrollHeader() {
+  const header = document.querySelector(".site-header");
+  if (!header) return;
+  let ticking = false;
+  const update = () => {
+    header.classList.toggle("scrolled", window.scrollY > 8);
+    ticking = false;
+  };
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
+  update();
+}
+
+function wireScrollReveal() {
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const targets = document.querySelectorAll(
+    ".section, .hero, .page-hero, .trap-lab-hero, .cta-band, .feature-card, .page-card, .copy-card, .story-card, .visual-card, .download-card, .gallery-card, .metric-card, .rune-card, .command-card, .faq-item"
+  );
+  if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+    targets.forEach((el) => el.classList.add("is-visible"));
+    return;
+  }
+  targets.forEach((el) => el.setAttribute("data-reveal", ""));
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          io.unobserve(entry.target);
+        }
+      });
+    },
+    { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
+  );
+  targets.forEach((el) => io.observe(el));
+}
+
+function markCurrentNav() {
+  const links = document.querySelectorAll(".site-header .nav a");
+  if (!links.length) return;
+  const here = window.location.pathname.replace(/\/+$/, "/");
+  links.forEach((a) => {
+    try {
+      const href = new URL(a.href, window.location.origin).pathname.replace(/\/+$/, "/");
+      if (href && href !== "/" && here.endsWith(href)) {
+        a.setAttribute("aria-current", "page");
+      }
+    } catch (_e) {
+      /* no-op */
+    }
+  });
+}
+
 wireCopyButtons();
+wireScrollHeader();
+wireScrollReveal();
+markCurrentNav();
 hydrateRepoPulse();
 hydrateReleaseSurface();
