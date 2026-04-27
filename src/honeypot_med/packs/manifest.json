@@ -52,7 +52,7 @@
     {
       "id": "healthcare-challenge",
       "title": "Healthcare AI Challenge Pack",
-      "description": "Ten trap prompts for challenge-mode scoring, README badges, and public benchmark comparisons.",
+      "description": "Ten trap prompts for challenge-mode verdicts, README markers, and baseline context.",
       "domain": "healthcare AI challenge",
       "filename": "healthcare-challenge.json"
     }

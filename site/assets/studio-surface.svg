@@ -36,7 +36,7 @@
   <rect x="824" y="166" width="620" height="320" rx="32" fill="#fff" fill-opacity="0.08"/>
   <text x="870" y="218" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="18" letter-spacing="4" fill="#f3ded2">BUNDLE READY</text>
   <text x="870" y="308" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="82" font-weight="800" fill="#fff">BLOCK</text>
-  <text x="870" y="356" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="24" fill="#f3ded2">Top score 92 · 3 proven findings · 1 high-risk prompt</text>
+  <text x="870" y="356" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="24" fill="#f3ded2">Verdict confidence 92 · 3 proven findings · 1 high-risk prompt</text>
   <rect x="870" y="408" width="162" height="58" rx="29" fill="#fffaf4" fill-opacity="0.92"/>
   <text x="906" y="445" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" font-size="22" font-weight="800" fill="#8f2818">Open share page</text>
   <rect x="96" y="530" width="690" height="330" rx="32" fill="#fffaf4" stroke="#1f2630" stroke-opacity="0.08"/>

@@ -45,20 +45,20 @@ def build_launch_kit(report: dict, *, title: str, source_label: str) -> dict:
         f"{title} analyzed {total_prompts} prompt"
         f"{'' if total_prompts == 1 else 's'} from {source_label} and returned a {verdict} verdict "
         f"with {proven} proven finding"
-        f"{'' if proven == 1 else 's'} and a top score of {top_score}."
+        f"{'' if proven == 1 else 's'} and a risk peak of {top_score}."
     )
     evidence_line = (
-        f"Top finding score: {top_score}. High-risk events: {high_risk}. "
+        f"Peak finding risk: {top_score}. High-risk events: {high_risk}. "
         f"Representative prompt: \"{prompt_excerpt or 'No prompt excerpt available.'}\""
     )
     headline = f"{title}: prompt-injection evidence for healthcare AI"
     meta_description = (
         f"{title} is a local-first prompt-injection proof page for healthcare AI. "
-        f"Verdict: {verdict}. Top score: {top_score}. Proven findings: {proven}."
+        f"Verdict: {verdict}. Risk peak: {top_score}. Proven findings: {proven}."
     )
     x_post = (
         f"{title} just produced a {verdict} verdict for a healthcare AI workflow. "
-        f"{proven} proven findings, top score {top_score}, visual dossier, PDF proof, UI mockup, and social card. "
+        f"{proven} proven findings, risk peak {top_score}, visual dossier, PDF proof, UI mockup, and social card. "
         f"Open source, local-first, no API keys. {PUBLIC_SITE_URL}"
     )
     linkedin_post = (
@@ -70,16 +70,16 @@ def build_launch_kit(report: dict, *, title: str, source_label: str) -> dict:
         f"Site: {PUBLIC_SITE_URL}\nRepo: {REPO_URL}"
     )
     hacker_news_title = f"Honeypot Med: local-first prompt-injection proof pages for healthcare AI"
-    product_hunt_tagline = "Healthcare AI prompt-injection challenge with badges and proof reports"
+    product_hunt_tagline = "Healthcare AI prompt-injection challenge with proof packets"
     product_hunt_description = (
-        "Run healthcare AI trap prompts locally, get a survival score, and export a visual proof dossier, "
-        "offline proof PDF, UI mockup, HTML report, README badge, social card, SARIF, JSON, Markdown, and launch copy."
+        "Run healthcare AI trap prompts locally, get a survival verdict, and export a visual proof dossier, "
+        "offline proof PDF, UI mockup, HTML report, README marker, social card, SARIF, JSON, Markdown, and launch copy."
     )
     reddit_title = f"I built Honeypot Med, an open-source prompt-injection honeypot for healthcare AI"
     github_release_blurb = (
         f"{title} produced a {verdict} verdict with {proven} proven findings. "
         "This bundle includes visual proof dossier, offline proof PDF, generated UI mockup, HTML, PDF, SVG social card, "
-        "README badge, SARIF, OTEL logs, JSON, Markdown, and launch-kit copy."
+        "README marker, SARIF, OTEL logs, JSON, Markdown, and launch-kit copy."
     )
     email_subject = f"{title} evidence pack: {verdict} verdict for {source_label}"
     email_body = (

@@ -4,7 +4,7 @@ Prompt-injection honeypot for healthcare AI workflows that is usable by non-deve
 
 `honeypot-med` runs local-first by default (CPU mode), and that zero-key path is the intended primary experience. Hybrid or remote-engine mode is optional only.
 
-The product angle is simple: run a healthcare AI challenge, get a survival score, and generate proof artifacts that can be shared, badged, attached to releases, or wired into CI.
+The product angle is simple: run a healthcare AI challenge, get a survival verdict, and generate proof artifacts that can be shared, linked, attached to releases, or wired into CI.
 
 Public site:
 
@@ -100,13 +100,17 @@ python app.py eval-kit verify --dir reports/eval-kit
 python app.py hf-mirror plan --outdir reports/hf-mirror
 python app.py casebook-diff --base reports/casebook-a --target reports/casebook-b --outdir reports/diff
 python app.py release-kit --source-dir reports/challenge --outdir dist/release-bundles --name challenge-report
+python app.py readiness --outdir reports/readiness --strict
 ```
 
 7. Run a safe release check:
 
 ```bash
 python app.py protect --input examples/clean.json
+python app.py readiness --strict
 ```
+
+`readiness` writes `launch-readiness.json` and `launch-readiness.md` so launch state is measurable instead of vibes.
 
 ## Beginner Commands
 
@@ -115,18 +119,19 @@ python app.py protect --input examples/clean.json
 - `scan`: plain-English risk summary
 - `protect`: CI-style gate check with strict defaults
 - `demo`: one-command showcase and report generation
-- `challenge`: 10-trap healthcare AI challenge with score, badge, report, SARIF, OTEL, JSON, and Markdown
-- `daily`: deterministic daily challenge dungeon with seed, score, SVG map, and normal challenge artifacts
+- `challenge`: 10-trap healthcare AI challenge with verdict, README marker, report, SARIF, OTEL, JSON, and Markdown
+- `daily`: deterministic daily challenge dungeon with seed, result data, SVG map, and normal challenge artifacts
 - `ctf`: local prompt CTF with evidence-predicate flags, hints, writeup, and challenge bundle
 - `casebook`: redacted forensic casebook, traparium museum, unknowns page, failure recipes, trap tree, and notebook
 - `casebook-diff`: compare two casebooks and produce HTML, Markdown, and JSON evidence-shift artifacts
-- `export`: portable output formats for CI, code scanning, telemetry, docs, badges, JUnit, OpenInference, LangSmith, and casebooks
+- `export`: portable output formats for CI, code scanning, telemetry, docs, README markers, JUnit, OpenInference, LangSmith, and casebooks
 - `lab`: weird offline Trap Lab artifacts: specimen codex, field guide, trap ledger, visual proof dossier, PDF proof, UI mockup, and text proof
 - `inquire`: research questions, inquiry notebook, unknown ledger, experiment matrix, counterfactuals, and question atlas
 - `experiment`: counterfactual prompt deck, one-variable-at-a-time experiment matrix, question atlas, and ablation ladder
 - `eval-kit`: offline adapters for promptfoo, Inspect AI datasets, legacy OpenAI Evals JSONL, Hugging Face-ready cards, and canonical eval samples
 - `hf-mirror`: plan optional Hugging Face dataset mirrors, or explicitly fetch/transform after license review
 - `release-kit`: zip a generated report directory with SHA-256 checksums and release notes
+- `readiness`: verify launch-critical repo, site, workflow, copy, and generated artifact surfaces
 - `config`: show/update runtime settings (engine/network/paths)
 - `share`: standalone HTML proof page for easy sharing
 - `packs`: bundled healthcare attack packs for instant demos
@@ -291,13 +296,13 @@ Challenge output includes:
 - `launch-kit.md`
 - `launch-kit.json`
 
-Use the badge in another README:
+Use the evidence marker in another README:
 
 ```markdown
-[![Honeypot Med score](reports/challenge/badge.svg)](reports/challenge/index.html)
+[![Honeypot Med result](reports/challenge/badge.svg)](reports/challenge/index.html)
 ```
 
-Fail CI if the survival score is too low:
+Fail CI if the challenge pass percentage is too low:
 
 ```bash
 python app.py challenge --fail-under 70 --outdir reports/challenge

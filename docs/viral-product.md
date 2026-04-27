@@ -25,7 +25,7 @@ Every scan can become a standalone HTML artifact that is easy to forward interna
 Bundled healthcare attack packs let users test real categories without crafting their own payloads.
 
 6. Challenge-loop
-`honeypot-med challenge` asks "Can your healthcare AI survive 10 traps?", then outputs a score, badge, generated report, baseline comparison, SARIF, OTEL logs, JSON, Markdown, PDF, and social card.
+`honeypot-med challenge` asks "Can your healthcare AI survive 10 traps?", then outputs a verdict, evidence marker, generated report, baseline context, SARIF, OTEL logs, JSON, Markdown, PDF, and social card.
 
 7. CI-loop
 The root GitHub Action lets another repo run the challenge and publish artifacts without writing custom glue code.
@@ -34,7 +34,7 @@ The root GitHub Action lets another repo run the challenge and publish artifacts
 The project names failure modes as specimens so generated reports feel like field guides instead of compliance PDFs.
 
 9. Inquiry-loop
-`honeypot-med inquire` produces research questions, unknown ledgers, and local experiment prompts so curiosity can outrank promotion.
+`honeypot-med inquire` produces research questions, unknown ledgers, and local experiment prompts so curiosity can move ahead of promotion.
 
 10. Experiment-loop
 `honeypot-med experiment` turns one report into counterfactual prompt decks, ablation ladders, experiment matrices, and a question atlas.
@@ -82,7 +82,7 @@ Every run now surfaces a proof dossier, offline proof PDF, and generated UI mock
 9. Public evidence gallery with sanitized verdict examples
 10. Added appeals, eligibility, and utilization management attack packs
 11. Challenge mode with default 10-trap healthcare AI pack
-12. README badge output for score sharing
+12. README evidence marker output for proof sharing
 13. SARIF and OpenTelemetry log exports
 14. Root GitHub Action metadata for CI use
 15. Launch Room with copy-ready Product Hunt, Show HN, X, LinkedIn, Reddit, newsletter, and release copy
@@ -94,12 +94,12 @@ Every run now surfaces a proof dossier, offline proof PDF, and generated UI mock
 21. `honeypot-med experiment` command for counterfactuals, ablations, question atlas, and experiment plans
 22. `honeypot-med eval-kit` command for promptfoo, Inspect AI, OpenAI Evals, and canonical JSONL adapters
 23. `honeypot-med casebook` command and bundled casebook artifacts in challenge/share output
-24. `honeypot-med daily` deterministic daily dungeon with seed, score JSON, and SVG map
-25. `honeypot-med ctf` prompt CTF with evidence-predicate flags, hints, writeup, and score JSON
+24. `honeypot-med daily` deterministic daily dungeon with seed, result JSON, and SVG map
+25. `honeypot-med ctf` prompt CTF with evidence-predicate flags, hints, writeup, and result JSON
 26. JUnit XML and GitHub step-summary exports for CI hygiene
 27. OpenInference and LangSmith JSONL exports plus OTEL collector fixture
 28. Hugging Face-ready dataset card, system card, artifact manifest, and `hf-mirror` plan/transform workflow
-29. PNG social-card and badge outputs for non-SVG surfaces
+29. PNG social-card and README marker outputs for non-SVG surfaces
 30. `honeypot-med casebook-diff` for local evidence-shift review
 31. `honeypot-med release-kit` for release-ready zipped report bundles with checksums
 32. Visual proof dossier, offline proof PDF, and generated UI mockup surfaced in Studio, share pages, docs, and public site copy

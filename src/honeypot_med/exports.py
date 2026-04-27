@@ -159,7 +159,7 @@ def build_bundle_manifest(report: dict, *, title: str, source_label: str) -> dic
 def build_social_card_svg(report: dict, *, title: str, source_label: str) -> str:
     hero = load_default_hero_data_uri()
     verdict = bundle_verdict(report)
-    top_score = max((int(event.get("risk_score", 0)) for event in report.get("events", [])), default=0)
+    risk_peak = max((int(event.get("risk_score", 0)) for event in report.get("events", [])), default=0)
     hero_markup = (
         f'<image href="{hero}" x="660" y="0" width="540" height="630" preserveAspectRatio="xMidYMid slice" />'
         if hero
@@ -185,8 +185,8 @@ def build_social_card_svg(report: dict, *, title: str, source_label: str) -> str
   <text x="80" y="382" font-size="16" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" fill="#7b7268">Launch Verdict</text>
   <text x="80" y="432" font-size="42" font-weight="800" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" fill="#9c321f">{escape(verdict)}</text>
   <rect x="338" y="340" width="174" height="112" rx="24" fill="#fffaf4" stroke="#1f2630" stroke-opacity="0.12"/>
-  <text x="362" y="382" font-size="16" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" fill="#7b7268">Top Score</text>
-  <text x="362" y="432" font-size="42" font-weight="800" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" fill="#1f2630">{top_score}</text>
+  <text x="362" y="382" font-size="16" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" fill="#7b7268">Risk Peak</text>
+  <text x="362" y="432" font-size="42" font-weight="800" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" fill="#1f2630">{risk_peak}</text>
   <rect x="534" y="340" width="174" height="112" rx="24" fill="#fffaf4" stroke="#1f2630" stroke-opacity="0.12"/>
   <text x="558" y="382" font-size="16" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" fill="#7b7268">Findings</text>
   <text x="558" y="432" font-size="42" font-weight="800" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" fill="#1f2630">{int(report.get("proven_findings_count", 0))}</text>

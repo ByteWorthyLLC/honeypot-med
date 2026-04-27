@@ -35,6 +35,7 @@ from .outputs.badge import build_badge_markdown, build_report_badge_svg
 from .outputs.otel import report_to_otel_logs
 from .outputs.sarif import report_to_sarif
 from .png_cards import write_png_card_artifacts
+from .readiness import write_readiness_artifacts
 from .redaction import redact_event
 from .release_bundle import write_release_bundle
 from .runtime import (
@@ -78,6 +79,7 @@ COMMANDS = {
     "export",
     "hf-mirror",
     "release-kit",
+    "readiness",
     "lab",
     "inquire",
     "experiment",
@@ -443,7 +445,7 @@ def _build_command_parser() -> argparse.ArgumentParser:
     challenge.add_argument("--outdir", default="reports/challenge")
     challenge.add_argument("--title", default="Honeypot Med Healthcare AI Challenge")
     challenge.add_argument("--report-url", default="index.html")
-    challenge.add_argument("--fail-under", type=int, default=0, help="Fail if survival score is below this percentage")
+    challenge.add_argument("--fail-under", type=int, default=0, help="Fail if challenge pass percentage is below this percentage")
     challenge.add_argument("--json", action="store_true", help="Emit challenge metadata as JSON")
     _add_scoring_flags(challenge)
     _add_runtime_flags(challenge)
@@ -595,6 +597,12 @@ def _build_command_parser() -> argparse.ArgumentParser:
     release_kit.add_argument("--outdir", default="dist/release-bundles")
     release_kit.add_argument("--name", default="honeypot-med-report")
     release_kit.add_argument("--json", action="store_true")
+
+    readiness = subparsers.add_parser("readiness", help="Verify launch-critical repo, site, and artifact surfaces")
+    readiness.add_argument("--root", default=".", help="Repository root to verify")
+    readiness.add_argument("--outdir", default="reports/readiness")
+    readiness.add_argument("--strict", action="store_true", help="Return a non-zero exit code if any check fails")
+    readiness.add_argument("--json", action="store_true", help="Emit readiness metadata as JSON")
 
     packs = subparsers.add_parser("packs", help="List or inspect bundled healthcare attack packs")
     packs.add_argument("--pack", help="Specific pack id to inspect")
@@ -1112,7 +1120,7 @@ def _run_share(args: argparse.Namespace) -> int:
     print(f"- Visual proof dossier: {bundle['proof_dossier_html_path']}")
     print(f"- Offline proof PDF: {bundle['proof_dossier_pdf_path']}")
     print(f"- UI mockup: {bundle['ui_mockup_path']}")
-    print(f"- README badge: {bundle['badge_path']}")
+    print(f"- README marker: {bundle['badge_path']}")
     print(f"- SARIF export: {bundle['sarif_path']}")
     print(f"- OTEL logs: {bundle['otel_logs_path']}")
     print(f"- JUnit XML: {bundle['junit_path']}")
@@ -1508,6 +1516,33 @@ def _run_release_kit(args: argparse.Namespace) -> int:
     return EXIT_OK
 
 
+def _run_readiness(args: argparse.Namespace) -> int:
+    artifacts = write_readiness_artifacts(args.root, args.outdir)
+    payload_out = {
+        "status": artifacts["status"],
+        "outdir": args.outdir,
+        "artifacts": {
+            "json": artifacts["json"],
+            "markdown": artifacts["markdown"],
+        },
+        "summary": artifacts["summary"],
+    }
+    if args.json:
+        _emit_json(payload_out, "-", True)
+    else:
+        summary = artifacts["summary"]
+        print("Launch readiness report ready.")
+        print(f"- Status: {str(artifacts['status']).upper()}")
+        print(f"- Passed: {summary['passed']}")
+        print(f"- Failed: {summary['failed']}")
+        print(f"- JSON: {artifacts['json']}")
+        print(f"- Markdown: {artifacts['markdown']}")
+
+    if args.strict and artifacts["status"] != "pass":
+        return EXIT_GATE_VIOLATION
+    return EXIT_OK
+
+
 def _run_packs(args: argparse.Namespace) -> int:
     if args.pack:
         payload = describe_attack_pack(args.pack)
@@ -1790,6 +1825,8 @@ def main(argv: list[str] | None = None) -> int:
                 exit_code = _run_hf_mirror(args)
             elif args.command == "release-kit":
                 exit_code = _run_release_kit(args)
+            elif args.command == "readiness":
+                exit_code = _run_readiness(args)
             elif args.command == "config":
                 exit_code = _run_config(args)
             elif args.command == "share":

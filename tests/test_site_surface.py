@@ -24,6 +24,7 @@ class SiteSurfaceTest(unittest.TestCase):
         self.assertTrue((SITE / "gallery" / "index.html").exists())
         self.assertTrue((SITE / "launch-room" / "index.html").exists())
         self.assertTrue((SITE / "media" / "index.html").exists())
+        self.assertTrue((SITE / "readiness" / "index.html").exists())
         self.assertTrue((SITE / "reports" / "index.html").exists())
         self.assertTrue((SITE / "integrations" / "index.html").exists())
         self.assertTrue((SITE / "hf-lab" / "index.html").exists())
@@ -54,6 +55,7 @@ class SiteSurfaceTest(unittest.TestCase):
         self.assertIn("Open releases", html)
         self.assertIn("Public pulse counters", html)
         self.assertIn("Media kit", html)
+        self.assertIn("Readiness Check", html)
 
     def test_subpages_exist(self):
         self.assertTrue((SITE / "faq" / "index.html").exists())
@@ -65,6 +67,7 @@ class SiteSurfaceTest(unittest.TestCase):
         self.assertTrue((SITE / "field-notes" / "index.html").exists())
         self.assertTrue((SITE / "gallery" / "index.html").exists())
         self.assertTrue((SITE / "launch-room" / "index.html").exists())
+        self.assertTrue((SITE / "readiness" / "index.html").exists())
         self.assertTrue((SITE / "reports" / "index.html").exists())
         self.assertTrue((SITE / "integrations" / "index.html").exists())
         self.assertTrue((SITE / "hf-lab" / "index.html").exists())
@@ -148,6 +151,9 @@ class SiteSurfaceTest(unittest.TestCase):
         self.assertIn("The flags are predicates, not secrets.", ctf)
         hf_lab = (SITE / "hf-lab" / "index.html").read_text(encoding="utf-8")
         self.assertIn("Hugging Face as a lab bench", hf_lab)
+        readiness = (SITE / "readiness" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("python app.py readiness --strict", readiness)
+        self.assertIn("Launch state should be measurable", readiness)
 
 
 if __name__ == "__main__":

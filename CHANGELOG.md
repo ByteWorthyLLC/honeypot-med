@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.4.1 - 2026-04-26
+
+### Added
+- Visual proof packet generation for every share/challenge/lab bundle: `proof-dossier.html`, `offline-proof.pdf`, and `ui-mockup.html`.
+- Studio result cards and recent-bundle gallery links for the visual dossier, offline proof PDF, UI mockup, share page, social card, and launch kit.
+- Public report-gallery links and regenerated healthcare challenge sample artifacts for the new visual packet outputs.
+- `readiness` command for launch-critical repo, site, workflow, copy, and generated artifact checks.
+
+### Changed
+- README, docs, launch copy, FAQ, media kit, public site, and generated launch kits now describe the visual proof packet instead of only plain proof text.
+- Self-hosting docs explicitly keep Railway and other hosted environments optional; the default product remains local-first and free.
+
 ## 0.4.0 - 2026-04-25
 
 ### Added

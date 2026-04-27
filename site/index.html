@@ -4,19 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Honeypot Med | Can your healthcare AI survive 10 traps?</title>
-  <meta name="description" content="Honeypot Med is a local-first healthcare AI challenge: run 10 prompt-injection traps, get a survival score, publish a badge, and export HTML, SARIF, OTEL, eval kits, JSON, and Markdown." />
+  <meta name="description" content="Honeypot Med is a free local healthcare AI proof lab: run prompt-injection traps, open a visual proof packet, verify launch readiness, and export CI-ready artifacts." />
   <meta name="keywords" content="prompt injection healthcare AI, healthcare AI security, prompt injection honeypot, open source prompt security, local-first AI security" />
   <link rel="canonical" href="https://byteworthyllc.github.io/honeypot-med/" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="manifest" href="site.webmanifest" />
   <meta property="og:title" content="Honeypot Med | Can your healthcare AI survive 10 traps?" />
-  <meta property="og:description" content="Run challenge mode, get a survival score, publish a badge, and export HTML, SARIF, OTEL, eval kits, JSON, Markdown, and share cards." />
+  <meta property="og:description" content="Run challenge mode, open a visual proof packet, verify launch readiness, and export CI-ready healthcare AI prompt-injection artifacts." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://byteworthyllc.github.io/honeypot-med/" />
   <meta property="og:image" content="https://byteworthyllc.github.io/honeypot-med/assets/viral-hero.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Honeypot Med | Can your healthcare AI survive 10 traps?" />
-  <meta name="twitter:description" content="Open-source healthcare AI prompt-injection challenge with score, badge, reports, SARIF, OTEL logs, eval kits, and share cards." />
+  <meta name="twitter:description" content="Open-source healthcare AI prompt-injection proof lab with visual packets, readiness checks, reports, SARIF, eval kits, and share cards." />
   <meta name="twitter:image" content="https://byteworthyllc.github.io/honeypot-med/assets/viral-hero.jpg" />
   <link rel="stylesheet" href="assets/styles.css" />
   <script type="application/ld+json">
@@ -102,6 +102,7 @@
         <a href="launch-room/">Launch Room</a>
         <a href="integrations/">Integrations</a>
         <a href="hf-lab/">HF Lab</a>
+        <a href="readiness/">Readiness</a>
         <a href="compare/prompt-guardrails-vs-honeypots/">Compare</a>
         <a href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer" data-track-action="click" data-track-key="github-repo">GitHub</a>
       </nav>
@@ -112,9 +113,9 @@
     <section class="hero">
       <div class="shell hero-grid">
         <article class="panel hero-copy">
-          <div class="kicker">Visual proof packet. README badge. CI artifacts.</div>
+          <div class="kicker">Free local proof lab. Visual packet. CI artifacts.</div>
           <h1>Can your healthcare AI produce proof people can actually read?</h1>
-          <p>Honeypot Med is a free offline Trap Lab for healthcare AI. Run a 10-trap challenge, get a survival score, play a daily dungeon, generate a prompt CTF, turn the result into a redacted casebook and traparium, and export a visual proof dossier, offline proof PDF, generated UI mockup, HTML report, README badge, social card, SARIF, JUnit, OpenTelemetry logs, OpenInference traces, LangSmith JSONL, Hugging Face cards, research questions, counterfactual prompts, ablation ladder, eval kit, JSON, Markdown, field guide, and launch kit.</p>
+          <p>Honeypot Med turns healthcare AI prompt-injection review into a complete local artifact loop. Run the challenge, open a visual proof dossier, attach the offline proof PDF, show the generated UI mockup, publish the share page, and verify readiness before launch. No API keys, no paid backend, and no required hosted service.</p>
           <div class="hero-actions">
             <a class="button" href="challenge/">Run challenge mode</a>
             <a class="button-secondary" href="daily/">Run daily dungeon</a>
@@ -123,6 +124,7 @@
             <a class="button-secondary" href="reports/">View generated reports</a>
             <a class="button-ghost" href="codex/">Open Specimen Codex</a>
             <a class="button-ghost" href="field-notes/">Field Notes</a>
+            <a class="button-secondary" href="readiness/">Readiness Check</a>
             <a class="button-ghost" href="launch-room/">Launch Room</a>
             <a class="button-ghost" href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer" data-track-action="click" data-track-key="github-repo">Open GitHub</a>
           </div>
@@ -158,7 +160,7 @@
         </div>
         <div class="card-grid">
           <article class="feature-card">
-            <h3>Readable evidence, not just scores</h3>
+            <h3>Readable evidence, not just terminal numbers</h3>
             <p>Each scan produces a visual dossier, PDF proof, UI mockup, and clean verdict page with visible findings, evidence snippets, severity, and export-ready presentation.</p>
           </article>
           <article class="feature-card">
@@ -166,8 +168,8 @@
             <p>Studio surfaces the dossier, PDF, mockup, share page, social card, and launch kit as direct buttons the moment a run finishes.</p>
           </article>
           <article class="feature-card">
-            <h3>Local-first lowers the demo barrier</h3>
-            <p>People can run the studio without setting up billing, cloud keys, or a hosted backend. That matters for open-source spread.</p>
+            <h3>Free by default lowers the demo barrier</h3>
+            <p>People can run the studio without billing, cloud keys, Railway, a database, or a paid backend. The optional hosted path stays optional.</p>
           </article>
         </div>
       </div>
@@ -180,22 +182,22 @@
             <div class="ribbon">Public experiment</div>
             <h2 class="section-title">Challenge mode makes the product replayable.</h2>
           </div>
-          <p>The wedge is no longer "read this scanner output." The wedge is "run the healthcare AI challenge and publish your score."</p>
+          <p>The wedge is no longer "read this scanner output." The wedge is "run the healthcare AI challenge and publish the evidence packet."</p>
         </div>
         <div class="page-grid">
           <article class="page-card">
-            <h3>10-trap score</h3>
-            <p>Run <code>python app.py challenge</code> to get a survival score like <strong>8/10 survived</strong> plus baseline comparisons.</p>
+            <h3>10-trap verdict</h3>
+            <p>Run <code>python app.py challenge</code> to get an evidence verdict, visible findings, and baseline context.</p>
             <div class="inline-actions"><a href="challenge/">Open challenge mode</a></div>
           </article>
           <article class="page-card">
-            <h3>README badge</h3>
+            <h3>README marker</h3>
             <p>Each challenge bundle includes <code>badge.svg</code> and <code>README-badge.md</code> so other projects can show their result.</p>
             <div class="inline-actions"><a href="reports/healthcare-challenge/badge.svg">Open sample badge</a></div>
           </article>
           <article class="page-card">
             <h3>Generated report gallery</h3>
-            <p>Public report examples make the output tangible before someone installs the tool or reads the source.</p>
+            <p>Public report examples make the output tangible before someone installs the tool or reads the source, including prompt CTF flags, redacted casebook pages, OpenInference traces, Hugging Face cards, eval kit adapters, and writeups.</p>
             <div class="inline-actions"><a href="reports/">Open reports</a></div>
           </article>
         </div>
@@ -225,7 +227,7 @@
             <div class="ribbon">Inquiry mode</div>
             <h2 class="section-title">Promotion is optional. Questions are the product.</h2>
           </div>
-          <p>The project now generates research questions, unknown ledgers, and local experiments so a run can become a notebook instead of a pitch.</p>
+          <p>The project now generates research questions, unknown ledgers, counterfactual prompts, and local experiments so a run can become a notebook instead of a pitch.</p>
         </div>
         <div class="page-grid">
           <article class="page-card">
@@ -399,7 +401,7 @@
           </article>
           <article class="page-card">
             <h3>Challenge and reports</h3>
-            <p>A playable challenge page and generated report gallery turn the project into a public benchmark instead of static docs.</p>
+            <p>A playable challenge page and generated report gallery turn the project into a replayable proof artifact instead of static docs.</p>
             <div class="inline-cluster"><a class="badge-link" href="challenge/">Challenge</a><a class="badge-link" href="reports/">Reports</a></div>
           </article>
           <article class="page-card">
@@ -414,7 +416,7 @@
           </article>
           <article class="page-card">
             <h3>Launch and integrations</h3>
-            <p>Copy-ready launch assets, GitHub Action metadata, SARIF, OpenTelemetry logs, badges, JSON, and Markdown exports.</p>
+            <p>Copy-ready launch assets, GitHub Action metadata, SARIF, OpenTelemetry logs, README markers, JSON, and Markdown exports.</p>
             <div class="inline-cluster"><a class="badge-link" href="launch-room/">Launch Room</a><a class="badge-link" href="integrations/">Integrations</a></div>
           </article>
           <article class="page-card">
@@ -477,7 +479,7 @@
         <div class="faq-list">
           <details class="panel faq-item" open>
             <summary>What is Honeypot Med?</summary>
-            <div class="faq-copy">Honeypot Med is an open-source prompt-injection honeypot for healthcare AI workflows. It analyzes suspicious prompts, scores the risk, and exports a proof bundle that is easier to understand than terminal output.</div>
+            <div class="faq-copy">Honeypot Med is an open-source prompt-injection honeypot for healthcare AI workflows. It analyzes suspicious prompts, calculates risk, and exports a proof bundle that is easier to understand than terminal output.</div>
           </details>
           <details class="panel faq-item">
             <summary>Does Honeypot Med require API keys?</summary>
@@ -500,8 +502,8 @@
         <article class="cta-card">
           <div>
             <div class="ribbon">Start here</div>
-            <h2>Run the challenge, publish the score, and let the artifact travel.</h2>
-            <p>The point is not to hoard findings in a notebook. The point is to generate a clean public-facing artifact fast enough that people actually use, compare, badge, and share it.</p>
+            <h2>Run the challenge, publish the proof, and let the artifact travel.</h2>
+            <p>The point is not to hoard findings in a notebook. The point is to generate a clean public-facing artifact fast enough that people actually review, cite, and share it.</p>
             <div class="hero-actions">
               <a class="button" href="challenge/">Run challenge</a>
               <a class="button-secondary" href="reports/">Open reports</a>
@@ -517,7 +519,7 @@
               <li>Offline proof PDF</li>
               <li>Generated UI mockup</li>
               <li>HTML evidence page</li>
-              <li>README badge</li>
+              <li>README marker</li>
               <li>SVG social card</li>
               <li>SARIF and OTEL exports</li>
             </ul>

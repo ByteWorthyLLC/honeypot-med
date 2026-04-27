@@ -10,3 +10,5 @@
 - [x] Docker image builds and the studio `/health` endpoint responds
 - [x] Release manifest and SHA256 checksum files can be generated
 - [x] Default `python app.py` launch path works without API keys
+- [x] Launch readiness report passes (`python app.py readiness --strict`)
+- [x] Visual proof packet exists in generated sample report (`proof-dossier.html`, `offline-proof.pdf`, `ui-mockup.html`)

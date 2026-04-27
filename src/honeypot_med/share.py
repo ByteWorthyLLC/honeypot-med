@@ -121,7 +121,7 @@ def _challenge_markup(challenge: object) -> str:
         '<div class="challenge-copy">'
         '<div class="eyebrow">Challenge Mode</div>'
         f'<h2>{escape(str(challenge.get("question", "Can your healthcare AI survive the traps?")))}</h2>'
-        f'<p>This run scored <strong>{escape(str(challenge.get("score_label", "0/0 survived")))}</strong> with a {escape(str(challenge.get("verdict", "review")).replace("-", " "))} verdict. Use the badge artifact in a README, launch post, or release note.</p>'
+        f'<p>This run returned <strong>{escape(str(challenge.get("score_label", "0/0 survived")))}</strong> with a {escape(str(challenge.get("verdict", "review")).replace("-", " "))} verdict. Use the README marker artifact in a README, launch post, or release note.</p>'
         '</div>'
         '<div class="challenge-score">'
         f'<strong>{escape(str(challenge.get("score_label", "0/0 survived")))}</strong>'
@@ -143,7 +143,7 @@ def _specimen_codex_markup(report: dict) -> str:
             f'<div class="specimen-topline">{escape(str(specimen.get("attack_family", "unknown")).replace("_", " "))}</div>'
             f'<h3>{escape(str(specimen.get("name", "Unknown Specimen")))}</h3>'
             f'<p>{escape(str(specimen.get("temperament", "")))}</p>'
-            f'<div class="specimen-meta"><span>{int(specimen.get("sightings", 0))} sightings</span><span>{int(specimen.get("proven_sightings", 0))} proven bites</span><span>top score {int(specimen.get("highest_score", 0))}</span></div>'
+            f'<div class="specimen-meta"><span>{int(specimen.get("sightings", 0))} sightings</span><span>{int(specimen.get("proven_sightings", 0))} proven bites</span><span>risk peak {int(specimen.get("highest_score", 0))}</span></div>'
             f'<p><strong>Tells:</strong> {escape(tells)}</p>'
             f'<p><strong>Containment:</strong> {escape(str(specimen.get("containment", "")))}</p>'
             "</article>"
@@ -849,7 +849,7 @@ def build_share_html(report: dict, *, source_label: str, title: str | None = Non
       <a href="report.md" target="_blank" rel="noreferrer">Open Markdown summary</a>
       <a href="summary.pdf" target="_blank" rel="noreferrer">Open PDF brief</a>
       <a href="social-card.svg" target="_blank" rel="noreferrer">Open social card</a>
-      <a href="badge.svg" target="_blank" rel="noreferrer">Open README badge</a>
+      <a href="badge.svg" target="_blank" rel="noreferrer">Open README marker</a>
       <a href="honeypot-med.sarif" target="_blank" rel="noreferrer">Open SARIF export</a>
       <a href="otel-logs.json" target="_blank" rel="noreferrer">Open OTEL logs</a>
       <a href="inquiry-notebook.md" target="_blank" rel="noreferrer">Open inquiry notebook</a>

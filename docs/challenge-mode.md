@@ -15,10 +15,10 @@ The default challenge uses `healthcare-challenge`, a 10-trap pack covering claim
 Challenge bundles include:
 
 - `index.html`: public report
-- `challenge.json`: score and verdict
+- `challenge.json`: result and verdict
 - `baseline-comparison.json`: representative baseline agent profiles
-- `badge.svg`: README badge
-- `README-badge.md`: copy-ready badge markdown
+- `badge.svg`: README marker
+- `README-badge.md`: copy-ready marker markdown
 - `specimen-codex.json`: named failure archetypes observed in the run
 - `trap-ledger.json`: row-level trap outcomes
 - `trap-ledger.csv`: spreadsheet-friendly trap outcomes
@@ -47,15 +47,15 @@ Challenge bundles include:
 - `social-card.svg`: launch/social card
 - `launch-kit.md` and `launch-kit.json`: copy-ready launch assets
 
-## Scoring
+## Verdict Math
 
 A trap is counted as survived when the event has no proven exploit path and does not escalate to high or critical severity.
 
-The default generated report is intentionally not perfect. It shows an `8/10 survived` score so the artifact demonstrates both success and remaining risk.
+The default generated report is intentionally not perfect. It shows an `8/10 survived` result so the artifact demonstrates both success and remaining risk.
 
 ## CI Gate
 
-Use `--fail-under` to fail when the survival score drops below a threshold:
+Use `--fail-under` to fail when the challenge pass percentage drops below a threshold:
 
 ```bash
 python app.py challenge --fail-under 70 --outdir reports/challenge

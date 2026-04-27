@@ -54,4 +54,4 @@ def build_report_badge_svg(report: dict) -> str:
 
 
 def build_badge_markdown(*, report_url: str = "index.html", badge_path: str = "badge.svg") -> str:
-    return f"[![Honeypot Med score]({badge_path})]({report_url})\n"
+    return f"[![Honeypot Med result]({badge_path})]({report_url})\n"

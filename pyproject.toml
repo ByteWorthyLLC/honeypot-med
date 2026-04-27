@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "honeypot-med"
-version = "0.4.0"
+version = "0.4.1"
 description = "Prompt-injection honeypot capture and evidence-backed risk analysis for healthcare AI workflows"
 readme = "README.md"
 requires-python = ">=3.11"
@@ -27,6 +27,12 @@ classifiers = [
   "Topic :: Security",
   "Topic :: Scientific/Engineering :: Medical Science Apps."
 ]
+
+[project.urls]
+Homepage = "https://byteworthyllc.github.io/honeypot-med/"
+Repository = "https://github.com/ByteWorthyLLC/honeypot-med"
+Issues = "https://github.com/ByteWorthyLLC/honeypot-med/issues"
+Releases = "https://byteworthyllc.github.io/honeypot-med/releases/"
 
 [project.scripts]
 honeypot-med = "honeypot_med.cli:main"

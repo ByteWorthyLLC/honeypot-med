@@ -9,7 +9,7 @@ Goals:
 - create a cleaner launch surface than a README alone
 - give the repo indexable pages for use cases, comparisons, and installers
 - publish sanitized evidence examples that visitors can understand before running the tool
-- publish generated reports, badges, and integration artifacts that visitors can inspect before installing
+- publish generated reports, README markers, and integration artifacts that visitors can inspect before installing
 
 Current pages:
 
@@ -25,6 +25,7 @@ Current pages:
 - `/integrations/`
 - `/contribute/`
 - `/media/`
+- `/readiness/`
 - `/releases/`
 - `/use-cases/healthcare-ai/`
 - `/use-cases/claims-automation/`
@@ -48,15 +49,16 @@ Engagement layer:
 - live stars, forks, open-issues, last-push indicators, and latest release hydration
 - browser-native reel instead of a hosted video dependency
 - sanitized evidence gallery with copy-ready pack commands
-- challenge-mode public page with a 10-trap score loop
+- challenge-mode public page with a 10-trap evidence loop
 - specimen codex page with named failure archetypes and offline Trap Lab framing
 - field notes page for research questions, unknown ledgers, and local experiments
-- generated report gallery with sample badge, SARIF, OTEL, experiment plans, eval-kit adapters, JSON, Markdown, PDF, and social-card outputs
+- generated report gallery with sample README marker, SARIF, OTEL, experiment plans, eval-kit adapters, JSON, Markdown, PDF, and social-card outputs
 - generated visual packet links for proof dossier HTML, offline proof PDF, and static UI mockup outputs
 - launch room with copy-ready channel snippets
-- integrations page for GitHub Action, SARIF, OpenTelemetry logs, promptfoo, Inspect AI, OpenAI Evals, JSONL, JSON, Markdown, badges, and HTML reports
+- integrations page for GitHub Action, SARIF, OpenTelemetry logs, promptfoo, Inspect AI, OpenAI Evals, JSONL, JSON, Markdown, README markers, and HTML reports
 - contributor quest page for packs, integrations, report templates, and benchmarks
 - public installers, bootstrap commands, checksums, and release-manifest links
+- launch-readiness page that explains `python app.py readiness --strict`
 
 Deployment:
 

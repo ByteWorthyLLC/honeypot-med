@@ -835,7 +835,7 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
           '<h3>' + bundle.title + '</h3>',
           '<p>' + (bundle.prompt_excerpt || 'Threat summary ready for review.') + '</p>',
           '<div class="gallery-stats">',
-          '<div class="gallery-stat"><strong>' + bundle.top_risk_score + '</strong><span>Top Score</span></div>',
+          '<div class="gallery-stat"><strong>' + bundle.top_risk_score + '</strong><span>Risk Peak</span></div>',
           '<div class="gallery-stat"><strong>' + bundle.high_risk_count + '</strong><span>High Risk</span></div>',
           '<div class="gallery-stat"><strong>' + bundle.proven_findings_count + '</strong><span>Proven</span></div>',
           '</div>',
@@ -917,7 +917,7 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
         const top = events[0] || null;
         const findings = top && top.findings ? top.findings.slice(0, 3) : [];
         const topMarkup = top
-          ? '<div class="finding"><strong>' + top.severity.toUpperCase() + ' | score ' + top.risk_score + '</strong><div class="muted">' + top.prompt + '</div></div>'
+          ? '<div class="finding"><strong>' + top.severity.toUpperCase() + ' | risk ' + top.risk_score + '</strong><div class="muted">' + top.prompt + '</div></div>'
           : '';
         const findingMarkup = findings.map((finding) =>
           '<div class="finding"><strong>' + finding.rule_id + ' · ' + finding.attack_family + '</strong><div class="muted">' + finding.hit + '</div></div>'
@@ -926,7 +926,7 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
 	        results.innerHTML = [
 	          '<div class="status">Bundle Ready</div>',
 	          '<div class="result-summary">',
-	          '<div class="result-topline"><span class="bundle-pill">' + topSeverity + '</span><span class="bundle-pill">Top score ' + (top ? top.risk_score : 0) + '</span></div>',
+		          '<div class="result-topline"><span class="bundle-pill">' + topSeverity + '</span><span class="bundle-pill">Risk peak ' + (top ? top.risk_score : 0) + '</span></div>',
 	          '<h3 class="result-title">' + (title.value.trim() || 'Honeypot Med Threat Snapshot') + '</h3>',
 	          '<div class="result-copy">Use the exported bundle as a visual proof artifact, design mockup, or internal launch review packet.</div>',
 	          '</div>',

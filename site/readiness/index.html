@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Honeypot Med Readiness | Launch completeness checks</title>
+  <meta name="description" content="Honeypot Med readiness checks verify launch-critical repo, site, workflow, copy, and generated visual packet surfaces without paid services." />
+  <link rel="canonical" href="https://byteworthyllc.github.io/honeypot-med/readiness/" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <meta property="og:title" content="Honeypot Med Launch Readiness" />
+  <meta property="og:description" content="A free local readiness command for verifying the repo, public site, workflows, and generated proof packet are complete." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://byteworthyllc.github.io/honeypot-med/readiness/" />
+  <meta property="og:image" content="https://byteworthyllc.github.io/honeypot-med/assets/studio-surface.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell">
+      <a class="brand" href="../"><span class="brand-mark">HM</span><span class="brand-copy"><span class="brand-name">Honeypot Med</span><span class="brand-tagline">Launch readiness</span></span></a>
+      <nav class="nav" aria-label="Primary">
+        <a href="../">Home</a>
+        <a href="../reports/">Reports</a>
+        <a href="../integrations/">Integrations</a>
+        <a href="../releases/">Releases</a>
+        <a href="../launch-room/">Launch Room</a>
+        <a href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="page-hero">
+      <div class="shell page-hero-grid">
+        <article class="panel page-hero-copy">
+          <div class="kicker">Completion you can run</div>
+          <h1 class="page-title">Launch state should be measurable, not vibes.</h1>
+          <p>The readiness command checks the repo, workflows, public site, generated visual packet, and free/local-first copy. It writes JSON and Markdown reports without API calls, Railway, databases, or paid services.</p>
+          <div class="hero-actions">
+            <a class="button" href="https://github.com/ByteWorthyLLC/honeypot-med#zero-friction-quickstart" target="_blank" rel="noreferrer">Run locally</a>
+            <a class="button-secondary" href="../reports/">Open report gallery</a>
+            <a class="button-ghost" href="../releases/">Open releases</a>
+          </div>
+        </article>
+        <aside class="panel page-hero-side">
+          <strong>Readiness command</strong>
+          <pre class="command-block">python app.py readiness --strict</pre>
+          <p>Use <code>--outdir reports/readiness</code> to write <code>launch-readiness.json</code> and <code>launch-readiness.md</code>.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-header">
+          <div>
+            <div class="ribbon">Checked surfaces</div>
+            <h2 class="section-title">The command checks the parts users actually touch.</h2>
+          </div>
+          <p>It is intentionally boring: no network, no SaaS dependency, just concrete files and copy that should exist before launch.</p>
+        </div>
+        <div class="page-grid">
+          <article class="page-card"><h3>Governance</h3><p>License, security policy, contribution guide, code of conduct, changelog, issue templates, and PR template.</p></article>
+          <article class="page-card"><h3>Automation</h3><p>CI, CodeQL, container, Pages, package workflow, and GitHub Action metadata.</p></article>
+          <article class="page-card"><h3>Runtime</h3><p>App entrypoints, scripts, Docker, Compose, and package metadata.</p></article>
+          <article class="page-card"><h3>Public site</h3><p>Home, FAQ, challenge, reports, integrations, launch room, media kit, releases, sitemap, robots, and llms.txt.</p></article>
+          <article class="page-card"><h3>Visual packet</h3><p>Generated proof dossier, offline proof PDF, UI mockup, share page, report JSON, SARIF, JUnit, telemetry, eval kit, and HF manifest.</p></article>
+          <article class="page-card"><h3>Free path copy</h3><p>Confirms the public surfaces state the no-key local path and do not imply a required hosted backend.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="shell footer-grid"><p>Launch readiness for Honeypot Med: free, local-first, and measurable.</p><div class="footer-links"><a href="../">Home</a><a href="../reports/">Reports</a><a href="../launch-room/">Launch Room</a><a href="../integrations/">Integrations</a></div></div></footer>
+  <script src="../assets/app.js"></script>
+</body>
+</html>

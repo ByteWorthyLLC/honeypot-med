@@ -1,1 +1,1 @@
-[![Honeypot Med score](badge.svg)](index.html)
+[![Honeypot Med result](badge.svg)](https://byteworthyllc.github.io/honeypot-med/reports/healthcare-challenge/)

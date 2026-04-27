@@ -1,6 +1,6 @@
 name: "Honeypot Med Challenge"
 author: "ByteWorthy LLC"
-description: "Run healthcare AI prompt-injection challenge mode and publish JSON, HTML, badge, SARIF, JUnit, casebook, eval, and OpenTelemetry artifacts."
+description: "Run healthcare AI prompt-injection challenge mode and publish JSON, HTML, README marker, SARIF, JUnit, casebook, eval, and OpenTelemetry artifacts."
 branding:
   icon: "activity"
   color: "red"
@@ -18,11 +18,11 @@ inputs:
     required: false
     default: "honeypot-med-report"
   fail-under:
-    description: "Fail the action if challenge survival score is below this percentage."
+    description: "Fail the action if challenge pass percentage is below this percentage."
     required: false
     default: "0"
   report-url:
-    description: "URL used by the generated README badge."
+    description: "URL used by the generated README marker."
     required: false
     default: "index.html"
   upload-artifact:

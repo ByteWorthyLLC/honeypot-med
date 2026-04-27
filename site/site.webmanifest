@@ -1,7 +1,7 @@
 {
   "name": "Honeypot Med",
   "short_name": "Honeypot Med",
-  "description": "Prompt-injection evidence for healthcare AI workflows.",
+  "description": "Free local healthcare AI proof lab with visual packets, readiness checks, and CI-ready prompt-injection artifacts.",
   "start_url": "/honeypot-med/",
   "display": "standalone",
   "background_color": "#f6efe3",

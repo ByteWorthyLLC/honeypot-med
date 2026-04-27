@@ -8,7 +8,7 @@
   "trap_count": 10,
   "score_percent": 80,
   "verdict": "needs-work",
-  "readme_badge": "[![Honeypot Med score](badge.svg)](index.html)",
+  "readme_badge": "[![Honeypot Med result](badge.svg)](index.html)",
   "baselines": [
     {
       "id": "openai-compatible-chat",

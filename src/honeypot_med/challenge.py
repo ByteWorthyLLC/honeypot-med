@@ -86,7 +86,7 @@ def build_challenge_result(report: dict, *, source_label: str, title: str) -> di
         "trap_count": total,
         "score_percent": score_percent,
         "verdict": verdict,
-        "readme_badge": "[![Honeypot Med score](badge.svg)](index.html)",
+        "readme_badge": "[![Honeypot Med result](badge.svg)](index.html)",
         "baselines": baselines,
     }
 

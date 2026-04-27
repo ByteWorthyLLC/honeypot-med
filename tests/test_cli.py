@@ -923,6 +923,31 @@ class CliTest(unittest.TestCase):
         }:
             self.assertIn(expected, ids)
 
+    def test_readiness_command_generates_launch_reports(self):
+        with tempfile.TemporaryDirectory() as tmpdir:
+            proc = subprocess.run(
+                [
+                    sys.executable,
+                    "app.py",
+                    "readiness",
+                    "--outdir",
+                    tmpdir,
+                    "--strict",
+                    "--json",
+                ],
+                cwd=ROOT,
+                capture_output=True,
+                text=True,
+            )
+            self.assertEqual(proc.returncode, 0, msg=proc.stderr)
+            payload = json.loads(proc.stdout)
+            self.assertEqual(payload["status"], "pass")
+            self.assertEqual(payload["summary"]["failed"], 0)
+            self.assertTrue((Path(tmpdir) / "launch-readiness.json").exists())
+            self.assertTrue((Path(tmpdir) / "launch-readiness.md").exists())
+            markdown = (Path(tmpdir) / "launch-readiness.md").read_text(encoding="utf-8")
+            self.assertIn("Honeypot Med Launch Readiness", markdown)
+
 
 if __name__ == "__main__":
     unittest.main()

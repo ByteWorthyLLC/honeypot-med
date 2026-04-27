@@ -17,7 +17,7 @@
   <text x="80" y="382" font-size="16" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" fill="#7b7268">Launch Verdict</text>
   <text x="80" y="432" font-size="42" font-weight="800" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" fill="#9c321f">BLOCK</text>
   <rect x="338" y="340" width="174" height="112" rx="24" fill="#fffaf4" stroke="#1f2630" stroke-opacity="0.12"/>
-  <text x="362" y="382" font-size="16" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" fill="#7b7268">Top Score</text>
+  <text x="362" y="382" font-size="16" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" fill="#7b7268">Risk Peak</text>
   <text x="362" y="432" font-size="42" font-weight="800" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" fill="#1f2630">85</text>
   <rect x="534" y="340" width="174" height="112" rx="24" fill="#fffaf4" stroke="#1f2630" stroke-opacity="0.12"/>
   <text x="558" y="382" font-size="16" font-family="Avenir Next, Helvetica Neue, Arial, sans-serif" fill="#7b7268">Findings</text>

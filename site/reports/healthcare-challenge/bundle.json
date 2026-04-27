@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-27T03:53:24.006679+00:00",
+  "generated_at": "2026-04-27T04:16:53.913883+00:00",
   "title": "Honeypot Med Healthcare AI Challenge",
   "source_label": "pack:healthcare-challenge",
   "verdict": "BLOCK",
@@ -63,10 +63,6 @@
     "lab_notebook": "lab-notebook.ipynb",
     "openinference_traces": "openinference-traces.jsonl",
     "langsmith_runs": "langsmith-runs.jsonl",
-    "otel_collector_config": "otel-collector.yaml",
-    "flags": "flags.json",
-    "hints": "hints.html",
-    "writeup": "writeup.md",
-    "ctf_score": "ctf-score.json"
+    "otel_collector_config": "otel-collector.yaml"
   }
 }
