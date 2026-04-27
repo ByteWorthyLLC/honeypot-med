@@ -52,6 +52,7 @@ Engagement layer:
 - specimen codex page with named failure archetypes and offline Trap Lab framing
 - field notes page for research questions, unknown ledgers, and local experiments
 - generated report gallery with sample badge, SARIF, OTEL, experiment plans, eval-kit adapters, JSON, Markdown, PDF, and social-card outputs
+- generated visual packet links for proof dossier HTML, offline proof PDF, and static UI mockup outputs
 - launch room with copy-ready channel snippets
 - integrations page for GitHub Action, SARIF, OpenTelemetry logs, promptfoo, Inspect AI, OpenAI Evals, JSONL, JSON, Markdown, badges, and HTML reports
 - contributor quest page for packs, integrations, report templates, and benchmarks

@@ -6,48 +6,48 @@
   "challenge_url": "https://byteworthyllc.github.io/honeypot-med/challenge/",
   "gallery_url": "https://byteworthyllc.github.io/honeypot-med/reports/",
   "tagline": "Can your healthcare AI survive 10 prompt-injection traps?",
-  "one_liner": "Honeypot Med turns healthcare AI prompt-injection tests into public proof artifacts: score, badge, HTML report, SARIF, OpenTelemetry logs, JSON, Markdown, and share cards.",
+  "one_liner": "Honeypot Med turns healthcare AI prompt-injection tests into public proof artifacts: visual dossier, offline proof PDF, UI mockup, score, badge, HTML report, SARIF, JSON, Markdown, and share cards.",
   "channels": [
     {
       "channel": "Product Hunt",
       "headline": "Honeypot Med - challenge mode for healthcare AI prompt injection",
-      "copy": "Run 10 healthcare AI prompt-injection traps, get a survival score, and publish a report with a README badge, share card, JSON, Markdown, SARIF, and OpenTelemetry logs.",
+      "copy": "Run 10 healthcare AI prompt-injection traps, get a survival score, and publish a visual proof dossier, offline proof PDF, UI mockup, README badge, share card, JSON, Markdown, and SARIF.",
       "cta": "Run the challenge"
     },
     {
       "channel": "Show HN",
       "headline": "Show HN: Honeypot Med - can your healthcare AI survive 10 traps?",
-      "copy": "I built a local-first challenge mode for healthcare AI workflows. It runs 10 prompt-injection traps and exports a shareable report, README badge, SARIF, OTEL logs, JSON, Markdown, and launch copy.",
+      "copy": "I built a local-first challenge mode for healthcare AI workflows. It runs 10 prompt-injection traps and exports a visual proof dossier, offline proof PDF, UI mockup, README badge, SARIF, JSON, Markdown, and launch copy.",
       "cta": "Try the one-command challenge"
     },
     {
       "channel": "X",
       "headline": "Can your healthcare AI survive 10 traps?",
-      "copy": "I turned Honeypot Med into a public challenge: 10 healthcare AI prompt-injection traps, a survival score, README badge, share card, SARIF, OTEL logs, JSON, Markdown, and an HTML report. No API keys required.",
+      "copy": "I turned Honeypot Med into a public challenge: 10 healthcare AI prompt-injection traps, a survival score, visual proof dossier, PDF proof, UI mockup, README badge, share card, SARIF, JSON, Markdown, and an HTML report. No API keys required.",
       "cta": "Run: python app.py challenge"
     },
     {
       "channel": "LinkedIn",
       "headline": "Healthcare AI needs proof artifacts, not just terminal output.",
-      "copy": "Honeypot Med now has challenge mode: run 10 healthcare AI prompt-injection traps, compare against baseline agent profiles, and export buyer-readable evidence plus SARIF and OpenTelemetry logs for engineering workflows.",
+      "copy": "Honeypot Med now has challenge mode: run 10 healthcare AI prompt-injection traps, compare against baseline agent profiles, and export a buyer-readable visual dossier, PDF proof, UI mockup, plus SARIF and OpenTelemetry logs for engineering workflows.",
       "cta": "Open the challenge page"
     },
     {
       "channel": "Reddit",
       "headline": "I built a local-first healthcare AI prompt-injection challenge with shareable reports",
-      "copy": "The project runs offline, ships bundled healthcare workflow traps, and outputs HTML, badge SVG, SARIF, OTEL logs, JSON, Markdown, PDF, and copy-ready launch text.",
+      "copy": "The project runs offline, ships bundled healthcare workflow traps, and outputs a visual proof dossier, PDF proof, UI mockup, HTML, badge SVG, SARIF, JSON, Markdown, and copy-ready launch text.",
       "cta": "Ask for feedback, not votes"
     },
     {
       "channel": "GitHub Release",
       "headline": "Challenge mode, GitHub Action, SARIF, and public report gallery",
-      "copy": "This release adds a 10-trap healthcare AI challenge, README badges, GitHub Action metadata, SARIF export, OpenTelemetry log export, launch room copy, and generated report gallery surfaces.",
+      "copy": "This release adds visual proof dossiers, offline proof PDFs, UI mockups, a 10-trap healthcare AI challenge, README badges, GitHub Action metadata, SARIF export, launch room copy, and generated report gallery surfaces.",
       "cta": "Attach generated artifacts"
     },
     {
       "channel": "Newsletter",
       "headline": "A playable prompt-injection benchmark for healthcare AI workflows",
-      "copy": "Honeypot Med can now be used as a lightweight benchmark. Run a challenge, compare against baseline agents, and publish the result as a proof page instead of a raw red-team note.",
+      "copy": "Honeypot Med can now be used as a lightweight benchmark. Run a challenge, compare against baseline agents, and publish the result as a visual proof packet instead of a raw red-team note.",
       "cta": "Feature the report screenshot"
     }
   ]

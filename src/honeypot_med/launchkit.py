@@ -58,7 +58,7 @@ def build_launch_kit(report: dict, *, title: str, source_label: str) -> dict:
     )
     x_post = (
         f"{title} just produced a {verdict} verdict for a healthcare AI workflow. "
-        f"{proven} proven findings, top score {top_score}, exportable evidence page, PDF, and social card. "
+        f"{proven} proven findings, top score {top_score}, visual dossier, PDF proof, UI mockup, and social card. "
         f"Open source, local-first, no API keys. {PUBLIC_SITE_URL}"
     )
     linkedin_post = (
@@ -66,20 +66,20 @@ def build_launch_kit(report: dict, *, title: str, source_label: str) -> dict:
         f"{short_summary}\n"
         f"{evidence_line}\n\n"
         f"Honeypot Med is open source, local-first, and built so teams can paste a risky prompt, "
-        f"inspect the evidence, and export a buyer-ready proof page without wiring API keys.\n\n"
+        f"inspect the evidence, and export a buyer-ready visual proof packet without wiring API keys.\n\n"
         f"Site: {PUBLIC_SITE_URL}\nRepo: {REPO_URL}"
     )
     hacker_news_title = f"Honeypot Med: local-first prompt-injection proof pages for healthcare AI"
     product_hunt_tagline = "Healthcare AI prompt-injection challenge with badges and proof reports"
     product_hunt_description = (
-        "Run healthcare AI trap prompts locally, get a survival score, and export an HTML report, "
-        "README badge, social card, SARIF, OpenTelemetry logs, JSON, Markdown, and launch copy."
+        "Run healthcare AI trap prompts locally, get a survival score, and export a visual proof dossier, "
+        "offline proof PDF, UI mockup, HTML report, README badge, social card, SARIF, JSON, Markdown, and launch copy."
     )
     reddit_title = f"I built Honeypot Med, an open-source prompt-injection honeypot for healthcare AI"
     github_release_blurb = (
         f"{title} produced a {verdict} verdict with {proven} proven findings. "
-        "This bundle includes HTML, PDF, SVG social card, README badge, SARIF, OTEL logs, JSON, "
-        "Markdown, and launch-kit copy."
+        "This bundle includes visual proof dossier, offline proof PDF, generated UI mockup, HTML, PDF, SVG social card, "
+        "README badge, SARIF, OTEL logs, JSON, Markdown, and launch-kit copy."
     )
     email_subject = f"{title} evidence pack: {verdict} verdict for {source_label}"
     email_body = (
@@ -87,6 +87,9 @@ def build_launch_kit(report: dict, *, title: str, source_label: str) -> dict:
         f"{short_summary}\n"
         f"{evidence_line}\n\n"
         f"Suggested attachments from the bundle:\n"
+        f"- proof-dossier.html\n"
+        f"- offline-proof.pdf\n"
+        f"- ui-mockup.html\n"
         f"- index.html\n"
         f"- summary.pdf\n"
         f"- social-card.svg\n\n"
@@ -105,7 +108,7 @@ def build_launch_kit(report: dict, *, title: str, source_label: str) -> dict:
     faq = [
         {
             "question": "What does Honeypot Med do?",
-            "answer": "It inspects suspicious prompts and generates evidence-backed verdict pages, PDFs, JSON reports, and social cards for healthcare AI workflows.",
+            "answer": "It inspects suspicious prompts and generates visual proof dossiers, offline proof PDFs, UI mockups, verdict pages, JSON reports, and social cards for healthcare AI workflows.",
         },
         {
             "question": "Does Honeypot Med need API keys?",
@@ -113,7 +116,7 @@ def build_launch_kit(report: dict, *, title: str, source_label: str) -> dict:
         },
         {
             "question": "Why is Honeypot Med shareable?",
-            "answer": "Every run exports a public-facing proof bundle with a verdict, evidence summary, social card, and launch-ready copy.",
+            "answer": "Every run exports a public-facing proof bundle with a visual dossier, PDF proof, UI mockup, verdict summary, social card, and launch-ready copy.",
         },
     ]
     return {

@@ -121,7 +121,7 @@ python app.py protect --input examples/clean.json
 - `casebook`: redacted forensic casebook, traparium museum, unknowns page, failure recipes, trap tree, and notebook
 - `casebook-diff`: compare two casebooks and produce HTML, Markdown, and JSON evidence-shift artifacts
 - `export`: portable output formats for CI, code scanning, telemetry, docs, badges, JUnit, OpenInference, LangSmith, and casebooks
-- `lab`: weird offline Trap Lab artifacts: specimen codex, field guide, trap ledger, and offline proof
+- `lab`: weird offline Trap Lab artifacts: specimen codex, field guide, trap ledger, visual proof dossier, PDF proof, UI mockup, and text proof
 - `inquire`: research questions, inquiry notebook, unknown ledger, experiment matrix, counterfactuals, and question atlas
 - `experiment`: counterfactual prompt deck, one-variable-at-a-time experiment matrix, question atlas, and ablation ladder
 - `eval-kit`: offline adapters for promptfoo, Inspect AI datasets, legacy OpenAI Evals JSONL, Hugging Face-ready cards, and canonical eval samples
@@ -240,6 +240,9 @@ Generated artifacts include:
 - `share/launch-kit.json`
 - `share/social-card.svg`
 - `share/summary.pdf`
+- `share/proof-dossier.html`
+- `share/offline-proof.pdf`
+- `share/ui-mockup.html`
 
 ## Challenge Mode
 
@@ -263,6 +266,9 @@ Challenge output includes:
 - `trap-ledger.csv`
 - `field-guide.md`
 - `offline-proof.txt`
+- `proof-dossier.html`
+- `offline-proof.pdf`
+- `ui-mockup.html`
 - `research-questions.json`
 - `inquiry-notebook.md`
 - `unknown-ledger.csv`
@@ -326,6 +332,9 @@ It writes:
 - `specimen-codex.json`: named failure archetypes such as Compliance Mimic, Roster Leech, Policy Poltergeist, and Quiet Chart Ghost
 - `field-guide.md`: a report-specific lab notebook
 - `trap-ledger.csv`: row-level trap outcome ledger
+- `proof-dossier.html`: aesthetic, print-friendly proof surface for humans
+- `offline-proof.pdf`: attachment-ready PDF proof generated with standard-library code
+- `ui-mockup.html`: static product UI mockup generated from the run
 - `offline-proof.txt`: plain-language proof that the free path needs no API keys or paid service
 
 For curiosity-only output:
@@ -377,6 +386,9 @@ Bundle outputs:
 - `trap-ledger.csv`
 - `field-guide.md`
 - `offline-proof.txt`
+- `proof-dossier.html`
+- `offline-proof.pdf`
+- `ui-mockup.html`
 - `research-questions.json`
 - `experiment-plan.md`
 - `eval-kit.md`
@@ -392,8 +404,11 @@ Bundle outputs:
 - `report.md`
 - `social-card.svg`
 - `summary.pdf`
+- `proof-dossier.html`
+- `offline-proof.pdf`
+- `ui-mockup.html`
 
-This is the fastest path for product demos, customer trust reviews, and social screenshots.
+This is the fastest path for product demos, customer trust reviews, visual mockups, PDF handoffs, and social screenshots.
 
 ## Hosted Studio
 
@@ -409,8 +424,8 @@ python app.py studio
 Studio capabilities:
 - paste a single prompt and inspect it
 - run bundled healthcare attack packs
-- export share page, PDF brief, social card, and launch kit from the browser
-- browse recent exported bundles in a built-in gallery
+- export visual proof dossier, offline proof PDF, UI mockup, share page, PDF brief, social card, and launch kit from the browser
+- browse recent exported bundles in a built-in gallery with direct Dossier/PDF/Mockup/Share links
 
 ## Public Product Surface
 

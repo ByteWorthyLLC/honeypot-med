@@ -1109,6 +1109,9 @@ def _run_share(args: argparse.Namespace) -> int:
     print(f"- Markdown report: {bundle['markdown_path']}")
     print(f"- Social card: {bundle['social_card_path']}")
     print(f"- PDF brief: {bundle['pdf_path']}")
+    print(f"- Visual proof dossier: {bundle['proof_dossier_html_path']}")
+    print(f"- Offline proof PDF: {bundle['proof_dossier_pdf_path']}")
+    print(f"- UI mockup: {bundle['ui_mockup_path']}")
     print(f"- README badge: {bundle['badge_path']}")
     print(f"- SARIF export: {bundle['sarif_path']}")
     print(f"- OTEL logs: {bundle['otel_logs_path']}")
@@ -1392,6 +1395,9 @@ def _run_lab(args: argparse.Namespace) -> int:
     print(f"- Field guide: {artifacts['field_guide']}")
     print(f"- Trap ledger CSV: {artifacts['trap_ledger_csv']}")
     print(f"- Offline proof: {artifacts['offline_proof']}")
+    print(f"- Visual proof dossier: {artifacts['proof_dossier_html']}")
+    print(f"- Offline proof PDF: {artifacts['proof_dossier_pdf']}")
+    print(f"- UI mockup: {artifacts['ui_mockup']}")
     return EXIT_OK
 
 

@@ -842,6 +842,9 @@ def build_share_html(report: dict, *, source_label: str, title: str | None = Non
     </section>
 
     <section class="artifact-links">
+      <a href="proof-dossier.html" target="_blank" rel="noreferrer">Open visual proof dossier</a>
+      <a href="offline-proof.pdf" target="_blank" rel="noreferrer">Open offline proof PDF</a>
+      <a href="ui-mockup.html" target="_blank" rel="noreferrer">Open UI mockup</a>
       <a href="report.json" target="_blank" rel="noreferrer">Open JSON report</a>
       <a href="report.md" target="_blank" rel="noreferrer">Open Markdown summary</a>
       <a href="summary.pdf" target="_blank" rel="noreferrer">Open PDF brief</a>

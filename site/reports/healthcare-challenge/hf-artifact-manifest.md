@@ -2,7 +2,7 @@
 
 This manifest is for documentation and dataset-card packaging only.
 
-- Generated: 2026-04-27T03:30:38.377172+00:00
+- Generated: 2026-04-27T03:53:25.062420+00:00
 - Source: `pack:healthcare-challenge`
 - Events: 10
 - High-risk events: 2

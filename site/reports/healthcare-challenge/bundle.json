@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-27T03:30:37.948744+00:00",
+  "generated_at": "2026-04-27T03:53:24.006679+00:00",
   "title": "Honeypot Med Healthcare AI Challenge",
   "source_label": "pack:healthcare-challenge",
   "verdict": "BLOCK",
@@ -30,6 +30,9 @@
     "trap_ledger_csv": "trap-ledger.csv",
     "field_guide": "field-guide.md",
     "offline_proof": "offline-proof.txt",
+    "proof_dossier_html": "proof-dossier.html",
+    "proof_dossier_pdf": "offline-proof.pdf",
+    "ui_mockup": "ui-mockup.html",
     "research_questions": "research-questions.json",
     "inquiry_notebook": "inquiry-notebook.md",
     "unknown_ledger": "unknown-ledger.csv",

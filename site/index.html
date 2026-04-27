@@ -45,7 +45,7 @@
         },
         "url": "https://byteworthyllc.github.io/honeypot-med/",
         "downloadUrl": "https://github.com/ByteWorthyLLC/honeypot-med",
-        "description": "Local-first prompt-injection honeypot for healthcare AI workflows that exports HTML proof pages, PDFs, JSON reports, social cards, and launch kits."
+        "description": "Local-first prompt-injection honeypot for healthcare AI workflows that exports visual proof dossiers, offline proof PDFs, UI mockups, HTML proof pages, JSON reports, social cards, and launch kits."
       },
       {
         "@type": "FAQPage",
@@ -71,7 +71,7 @@
             "name": "Why is Honeypot Med useful for public demos?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Each run becomes an HTML proof page, PDF summary, social card, JSON report, experiment plan, eval kit, and launch kit, which makes the output understandable and reusable."
+              "text": "Each run becomes a visual proof dossier, offline proof PDF, UI mockup, HTML proof page, social card, JSON report, experiment plan, eval kit, and launch kit, which makes the output understandable and reusable."
             }
           }
         ]
@@ -112,9 +112,9 @@
     <section class="hero">
       <div class="shell hero-grid">
         <article class="panel hero-copy">
-          <div class="kicker">Challenge mode. README badge. CI artifacts.</div>
-          <h1>Can your healthcare AI survive 10 traps?</h1>
-          <p>Prompt-injection proof pages for healthcare AI. Honeypot Med is now a free offline Trap Lab: run a 10-trap challenge, get a survival score, play a daily dungeon, generate a prompt CTF, turn the result into a redacted casebook and traparium, compare against baseline agents, and export HTML, README badge, social card, SARIF, JUnit, OpenTelemetry logs, OpenInference traces, LangSmith JSONL, Hugging Face cards, research questions, counterfactual prompts, ablation ladder, eval kit, JSON, Markdown, PDF, field guide, and launch kit.</p>
+          <div class="kicker">Visual proof packet. README badge. CI artifacts.</div>
+          <h1>Can your healthcare AI produce proof people can actually read?</h1>
+          <p>Honeypot Med is a free offline Trap Lab for healthcare AI. Run a 10-trap challenge, get a survival score, play a daily dungeon, generate a prompt CTF, turn the result into a redacted casebook and traparium, and export a visual proof dossier, offline proof PDF, generated UI mockup, HTML report, README badge, social card, SARIF, JUnit, OpenTelemetry logs, OpenInference traces, LangSmith JSONL, Hugging Face cards, research questions, counterfactual prompts, ablation ladder, eval kit, JSON, Markdown, field guide, and launch kit.</p>
           <div class="hero-actions">
             <a class="button" href="challenge/">Run challenge mode</a>
             <a class="button-secondary" href="daily/">Run daily dungeon</a>
@@ -134,7 +134,7 @@
             <div class="evidence-grid">
               <div class="hero-stat"><strong>1</strong><span>command to launch: <code>python app.py</code></span></div>
               <div class="hero-stat"><strong>0</strong><span>API keys required for the default path</span></div>
-              <div class="hero-stat"><strong>20+</strong><span>public surfaces across challenge, reports, experiments, integrations, gallery, release, search, and media</span></div>
+              <div class="hero-stat"><strong>3</strong><span>visual outputs every run: dossier, PDF proof, and UI mockup</span></div>
             </div>
             <div class="pulse-grid" aria-label="Public pulse counters">
               <div class="pulse-card"><span>GitHub stars</span><strong data-repo-metric="stargazers_count">--</strong></div>
@@ -159,11 +159,11 @@
         <div class="card-grid">
           <article class="feature-card">
             <h3>Readable evidence, not just scores</h3>
-            <p>Each scan produces a clean verdict page with visible findings, evidence snippets, severity, and export-ready presentation.</p>
+            <p>Each scan produces a visual dossier, PDF proof, UI mockup, and clean verdict page with visible findings, evidence snippets, severity, and export-ready presentation.</p>
           </article>
           <article class="feature-card">
-            <h3>Launch kit built into the output</h3>
-            <p>Every bundle can include copy for X, LinkedIn, email, Hacker News, and other channels so the artifact has its own distribution fuel.</p>
+            <h3>Nothing important is hidden</h3>
+            <p>Studio surfaces the dossier, PDF, mockup, share page, social card, and launch kit as direct buttons the moment a run finishes.</p>
           </article>
           <article class="feature-card">
             <h3>Local-first lowers the demo barrier</h3>
@@ -211,7 +211,8 @@
           <div class="hero-actions">
             <a class="button" href="codex/">Open Codex</a>
             <a class="button-secondary" href="reports/healthcare-challenge/field-guide.md">Read field guide</a>
-            <a class="button-ghost" href="reports/healthcare-challenge/offline-proof.txt">Offline proof</a>
+            <a class="button-ghost" href="reports/healthcare-challenge/proof-dossier.html">Visual proof</a>
+            <a class="button-ghost" href="reports/healthcare-challenge/ui-mockup.html">UI mockup</a>
           </div>
         </article>
       </div>
@@ -484,7 +485,7 @@
           </details>
           <details class="panel faq-item">
             <summary>Why is Honeypot Med more marketable than a typical scanner?</summary>
-            <div class="faq-copy">Because each run becomes a human-readable artifact: an HTML proof page, PDF brief, social card, JSON report, Markdown summary, and launch kit. That makes the output legible to both technical and non-technical audiences.</div>
+            <div class="faq-copy">Because each run becomes a human-readable artifact: a visual proof dossier, offline proof PDF, UI mockup, HTML proof page, social card, JSON report, Markdown summary, and launch kit. That makes the output legible to both technical and non-technical audiences.</div>
           </details>
           <details class="panel faq-item">
             <summary>Who is this for?</summary>
@@ -512,9 +513,11 @@
             <h3>python app.py challenge</h3>
             <p>That runs the default 10-trap healthcare challenge and exports the entire proof bundle.</p>
             <ul class="list-block">
+              <li>Visual proof dossier</li>
+              <li>Offline proof PDF</li>
+              <li>Generated UI mockup</li>
               <li>HTML evidence page</li>
               <li>README badge</li>
-              <li>PDF brief</li>
               <li>SVG social card</li>
               <li>SARIF and OTEL exports</li>
             </ul>

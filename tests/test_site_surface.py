@@ -33,8 +33,9 @@ class SiteSurfaceTest(unittest.TestCase):
     def test_homepage_contains_metadata_and_calls_to_action(self):
         html = (SITE / "index.html").read_text(encoding="utf-8")
         self.assertIn("application/ld+json", html)
-        self.assertIn("Prompt-injection proof pages for healthcare AI.", html)
-        self.assertIn("Can your healthcare AI survive 10 traps?", html)
+        self.assertIn("visual proof dossier", html)
+        self.assertIn("offline proof PDF", html)
+        self.assertIn("UI mockup", html)
         self.assertIn("Challenge mode", html)
         self.assertIn("Every boring finding gets a monster name", html)
         self.assertIn("Promotion is optional. Questions are the product.", html)
@@ -105,6 +106,9 @@ class SiteSurfaceTest(unittest.TestCase):
         self.assertIn("casebook.html", reports)
         self.assertIn("honeypot-med.junit.xml", reports)
         self.assertIn("openinference-traces.jsonl", reports)
+        self.assertIn("proof-dossier.html", reports)
+        self.assertIn("offline-proof.pdf", reports)
+        self.assertIn("ui-mockup.html", reports)
 
     def test_new_curiosity_surfaces_and_report_artifacts_exist(self):
         report = SITE / "reports" / "healthcare-challenge"
@@ -122,6 +126,9 @@ class SiteSurfaceTest(unittest.TestCase):
             "writeup.md",
             "honeypot-med.junit.xml",
             "github-summary.md",
+            "proof-dossier.html",
+            "offline-proof.pdf",
+            "ui-mockup.html",
             "social-card.png",
             "badge.png",
             "openinference-traces.jsonl",

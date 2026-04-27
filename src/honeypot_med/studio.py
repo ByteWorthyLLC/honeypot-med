@@ -115,19 +115,27 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
         bundle_dir = self._bundle_dir()
         bundle = write_share_bundle(report, str(bundle_dir), source_label=source_label, title=title)
         bundle_id = bundle_dir.name
+
+        def artifact_url(path_key: str, fallback_name: str) -> str:
+            artifact_name = Path(str(bundle.get(path_key, bundle_dir / fallback_name))).name
+            return f"/bundles/{bundle_id}/{artifact_name}"
+
         return {
             "status": "ok",
             "report": report,
             "bundle": {
                 "id": bundle_id,
-                "manifest_url": f"/bundles/{bundle_id}/bundle.json",
-                "view_url": f"/bundles/{bundle_id}/index.html",
-                "json_url": f"/bundles/{bundle_id}/report.json",
-                "markdown_url": f"/bundles/{bundle_id}/report.md",
-                "social_card_url": f"/bundles/{bundle_id}/social-card.svg",
-                "pdf_url": f"/bundles/{bundle_id}/summary.pdf",
-                "launch_markdown_url": f"/bundles/{bundle_id}/launch-kit.md",
-                "launch_json_url": f"/bundles/{bundle_id}/launch-kit.json",
+                "manifest_url": artifact_url("bundle_manifest_path", "bundle.json"),
+                "view_url": artifact_url("html_path", "index.html"),
+                "json_url": artifact_url("json_path", "report.json"),
+                "markdown_url": artifact_url("markdown_path", "report.md"),
+                "social_card_url": artifact_url("social_card_path", "social-card.svg"),
+                "pdf_url": artifact_url("pdf_path", "summary.pdf"),
+                "proof_dossier_url": artifact_url("proof_dossier_html_path", "proof-dossier.html"),
+                "proof_pdf_url": artifact_url("proof_dossier_pdf_path", "offline-proof.pdf"),
+                "ui_mockup_url": artifact_url("ui_mockup_path", "ui-mockup.html"),
+                "launch_markdown_url": artifact_url("launch_markdown_path", "launch-kit.md"),
+                "launch_json_url": artifact_url("launch_json_path", "launch-kit.json"),
             },
         }
 
@@ -167,6 +175,9 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
                     "view_url": f"/bundles/{bundle_id}/{artifacts.get('html', 'index.html')}",
                     "social_card_url": f"/bundles/{bundle_id}/{artifacts.get('social_card', 'social-card.svg')}",
                     "pdf_url": f"/bundles/{bundle_id}/{artifacts.get('pdf', 'summary.pdf')}",
+                    "proof_dossier_url": f"/bundles/{bundle_id}/{artifacts.get('proof_dossier_html', 'proof-dossier.html')}",
+                    "proof_pdf_url": f"/bundles/{bundle_id}/{artifacts.get('proof_dossier_pdf', 'offline-proof.pdf')}",
+                    "ui_mockup_url": f"/bundles/{bundle_id}/{artifacts.get('ui_mockup', 'ui-mockup.html')}",
                     "launch_markdown_url": f"/bundles/{bundle_id}/{artifacts.get('launch_markdown', 'launch-kit.md')}",
                 }
             )
@@ -357,6 +368,31 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
 	      line-height: 1.55;
 	      font-size: 14px;
 	    }}
+	    .surface-strip {{
+	      display: grid;
+	      grid-template-columns: repeat(6, minmax(0, 1fr));
+	      gap: 12px;
+	      margin: 18px 0;
+	    }}
+	    .surface-chip {{
+	      min-height: 112px;
+	      padding: 16px;
+	      border-radius: 22px;
+	      background: rgba(255,255,255,0.78);
+	      border: 1px solid var(--line);
+	      box-shadow: 0 14px 32px rgba(31,38,48,0.06);
+	    }}
+	    .surface-chip strong {{
+	      display: block;
+	      margin-bottom: 8px;
+	      font-size: 14px;
+	    }}
+	    .surface-chip span {{
+	      display: block;
+	      color: var(--muted);
+	      line-height: 1.45;
+	      font-size: 12px;
+	    }}
 	    .composer {{
 	      padding: 24px;
 	    }}
@@ -484,9 +520,6 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
       gap: 14px;
     }}
     .gallery-card {{
-      display: block;
-      text-decoration: none;
-      color: inherit;
       padding: 18px;
       border-radius: 22px;
       background: rgba(255,255,255,0.82);
@@ -541,6 +574,21 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 0.08em;
+    }}
+    .gallery-actions {{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }}
+    .gallery-actions a {{
+      color: var(--accent-dark);
+      text-decoration: none;
+      border-radius: 999px;
+      padding: 8px 10px;
+      background: rgba(200, 71, 45, 0.08);
+      font-size: 12px;
+      font-weight: 800;
     }}
     .result-shell {{
       min-height: 440px;
@@ -670,7 +718,7 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
       line-height: 1.5;
     }}
 	    @media (max-width: 980px) {{
-	      .hero, .steps, .grid, .pack-grid, .metrics, .gallery-grid, .artifact-grid {{
+	      .hero, .steps, .grid, .pack-grid, .metrics, .gallery-grid, .artifact-grid, .surface-strip {{
 	        grid-template-columns: 1fr;
 	      }}
 	    }}
@@ -690,8 +738,8 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
 		    <section class="hero">
 		      <article class="panel hero-copy">
 		        <div class="eyebrow">Hosted Local Studio</div>
-		        <h1>Paste a prompt. Get a launch verdict. Export the proof.</h1>
-		        <p>Honeypot Med Studio turns prompt-injection review into a buyer-facing workflow. Inspect one prompt or run a curated healthcare attack pack, then export a share page, PDF brief, social card, and launch kit in one pass.</p>
+		        <h1>Paste a prompt. Get a visual proof packet.</h1>
+		        <p>Honeypot Med Studio turns prompt-injection review into a one-click artifact factory. Inspect one prompt or run a curated healthcare attack pack, then open a visual dossier, PDF proof, UI mockup, share page, social card, and launch kit in one pass.</p>
 	        <div class="hero-links">
 	          <a href="{PUBLIC_SITE_URL}" target="_blank" rel="noreferrer">Open public site</a>
 	          <a href="{RELEASES_URL}" target="_blank" rel="noreferrer">Open releases</a>
@@ -710,12 +758,21 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
 	      </article>
 	      <article class="step">
 	        <strong>2. Inspect</strong>
-	        <span>Get a verdict, top findings, and a cleaner readout than raw logs.</span>
+	        <span>Get a verdict, top findings, and a visual readout that is easier to explain than raw logs.</span>
 	      </article>
 	      <article class="step">
 	        <strong>3. Export</strong>
-	        <span>Open the share page, PDF brief, social card, and launch kit immediately.</span>
+	        <span>Open the proof dossier, PDF document, UI mockup, share page, social card, and launch kit immediately.</span>
 	      </article>
+	    </section>
+
+	    <section class="surface-strip" aria-label="Generated output surfaces">
+	      <article class="surface-chip"><strong>Proof dossier</strong><span>A polished HTML packet with print styles.</span></article>
+	      <article class="surface-chip"><strong>Offline PDF</strong><span>No-API proof document for attachments.</span></article>
+	      <article class="surface-chip"><strong>UI mockup</strong><span>Static product surface generated from the run.</span></article>
+	      <article class="surface-chip"><strong>Share page</strong><span>Local verdict page for stakeholders.</span></article>
+	      <article class="surface-chip"><strong>Social card</strong><span>SVG and PNG launch visuals.</span></article>
+	      <article class="surface-chip"><strong>Launch kit</strong><span>Copy-ready posts, email, and release notes.</span></article>
 	    </section>
 
 	    <section class="grid">
@@ -734,7 +791,7 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
         <div class="muted">Or use a built-in pack to generate a richer artifact immediately.</div>
         <div class="pack-grid">{pack_cards}</div>
         <div class="actions">
-          <button class="primary" id="analyze">Generate Verdict</button>
+          <button class="primary" id="analyze">Generate Visual Packet</button>
           <button class="secondary" id="clear">Clear</button>
         </div>
       </article>
@@ -742,7 +799,7 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
         <h2>Launch Output</h2>
         <div class="result-shell" id="results">
           <div class="status">Ready</div>
-          <div class="muted">Run an inspection to produce a hosted verdict page, JSON report, Markdown summary, social card, and PDF brief.</div>
+          <div class="muted">Run an inspection to produce a visual proof dossier, PDF proof, UI mockup, local share page, social card, and launch kit.</div>
         </div>
       </article>
     </section>
@@ -773,7 +830,7 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
 
       gallery.innerHTML = bundles.map((bundle) => {{
         return [
-          '<a class="gallery-card" href="' + bundle.view_url + '" target="_blank" rel="noreferrer">',
+          '<article class="gallery-card">',
           '<div class="gallery-meta"><span>' + bundle.verdict + '</span><span>' + bundle.source_label + '</span></div>',
           '<h3>' + bundle.title + '</h3>',
           '<p>' + (bundle.prompt_excerpt || 'Threat summary ready for review.') + '</p>',
@@ -782,7 +839,13 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
           '<div class="gallery-stat"><strong>' + bundle.high_risk_count + '</strong><span>High Risk</span></div>',
           '<div class="gallery-stat"><strong>' + bundle.proven_findings_count + '</strong><span>Proven</span></div>',
           '</div>',
-          '</a>',
+          '<div class="gallery-actions">',
+          '<a href="' + bundle.proof_dossier_url + '" target="_blank" rel="noreferrer">Dossier</a>',
+          '<a href="' + bundle.proof_pdf_url + '" target="_blank" rel="noreferrer">PDF</a>',
+          '<a href="' + bundle.ui_mockup_url + '" target="_blank" rel="noreferrer">Mockup</a>',
+          '<a href="' + bundle.view_url + '" target="_blank" rel="noreferrer">Share</a>',
+          '</div>',
+          '</article>',
         ].join('');
       }}).join('');
     }}
@@ -817,7 +880,7 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
       prompt.value = "";
       title.value = "";
       setPack(null);
-	          results.innerHTML = '<div class="status">Ready</div><div class="muted">Run an inspection to produce a hosted verdict page, JSON report, Markdown summary, launch kit, social card, and PDF brief.</div>';
+	          results.innerHTML = '<div class="status">Ready</div><div class="muted">Run an inspection to produce a visual proof dossier, PDF proof, UI mockup, local share page, social card, and launch kit.</div>';
     }});
 
     async function runAnalysis() {{
@@ -835,7 +898,7 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
       analyzeButton.disabled = true;
       const originalLabel = analyzeButton.textContent;
       analyzeButton.textContent = 'Generating...';
-	      results.innerHTML = '<div class="status">Working</div><div class="muted">Generating verdict and export bundle...</div>';
+	      results.innerHTML = '<div class="status">Working</div><div class="muted">Generating visual dossier, PDF proof, UI mockup, and export bundle...</div>';
 
       try {{
         const response = await fetch("/api/analyze", {{
@@ -865,7 +928,7 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
 	          '<div class="result-summary">',
 	          '<div class="result-topline"><span class="bundle-pill">' + topSeverity + '</span><span class="bundle-pill">Top score ' + (top ? top.risk_score : 0) + '</span></div>',
 	          '<h3 class="result-title">' + (title.value.trim() || 'Honeypot Med Threat Snapshot') + '</h3>',
-	          '<div class="result-copy">Use the exported bundle as a buyer-facing proof artifact or internal launch review packet.</div>',
+	          '<div class="result-copy">Use the exported bundle as a visual proof artifact, design mockup, or internal launch review packet.</div>',
 	          '</div>',
 	          '<div class="metrics">',
 	          '<div class="metric"><div class="metric-value">' + data.report.total_prompts + '</div><div class="metric-label">Prompts</div></div>',
@@ -875,8 +938,11 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
 	          topMarkup,
 	          findingMarkup,
 	          '<div class="artifact-grid">',
+	          '<div class="artifact-card"><strong>Visual dossier</strong><span>Aesthetic proof surface with print-friendly layout.</span><a href="' + data.bundle.proof_dossier_url + '" target="_blank" rel="noreferrer">Open dossier</a></div>',
+	          '<div class="artifact-card"><strong>PDF proof</strong><span>Attachment-ready no-API proof document.</span><a href="' + data.bundle.proof_pdf_url + '" target="_blank" rel="noreferrer">Open PDF</a></div>',
+	          '<div class="artifact-card"><strong>UI mockup</strong><span>Static product mockup generated from this run.</span><a href="' + data.bundle.ui_mockup_url + '" target="_blank" rel="noreferrer">Open mockup</a></div>',
 	          '<div class="artifact-card"><strong>Share page</strong><span>Clean verdict surface for buyers and teammates.</span><a href="' + data.bundle.view_url + '" target="_blank" rel="noreferrer">Open HTML</a></div>',
-	          '<div class="artifact-card"><strong>PDF brief</strong><span>Quick summary for launch reviews and attachments.</span><a href="' + data.bundle.pdf_url + '" target="_blank" rel="noreferrer">Open PDF</a></div>',
+	          '<div class="artifact-card"><strong>Executive PDF</strong><span>Quick summary for launch reviews and attachments.</span><a href="' + data.bundle.pdf_url + '" target="_blank" rel="noreferrer">Open brief</a></div>',
 	          '<div class="artifact-card"><strong>Social card</strong><span>Visual asset for public launch posts and docs.</span><a href="' + data.bundle.social_card_url + '" target="_blank" rel="noreferrer">Open SVG</a></div>',
 	          '<div class="artifact-card"><strong>Launch kit</strong><span>Copy blocks for posts, email, and release notes.</span><a href="' + data.bundle.launch_markdown_url + '" target="_blank" rel="noreferrer">Open Markdown</a></div>',
 	          '</div>',
@@ -960,10 +1026,20 @@ class HoneypotMedStudioHandler(BaseHTTPRequestHandler):
                 content_type = "application/json"
             elif target.suffix == ".md":
                 content_type = "text/markdown; charset=utf-8"
+            elif target.suffix == ".txt":
+                content_type = "text/plain; charset=utf-8"
+            elif target.suffix == ".csv":
+                content_type = "text/csv; charset=utf-8"
             elif target.suffix == ".svg":
                 content_type = "image/svg+xml"
+            elif target.suffix == ".png":
+                content_type = "image/png"
             elif target.suffix == ".pdf":
                 content_type = "application/pdf"
+            elif target.suffix == ".xml":
+                content_type = "application/xml"
+            elif target.suffix in {".yaml", ".yml"}:
+                content_type = "application/yaml"
             self._send_bytes(HTTPStatus.OK, target.read_bytes(), content_type=content_type)
             return
 

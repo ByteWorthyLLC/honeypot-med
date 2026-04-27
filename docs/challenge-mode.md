@@ -32,6 +32,9 @@ Challenge bundles include:
 - `experiment-plan.md`: Markdown experiment notebook
 - `ablation-ladder.csv`: evidence-depth ladder for proving or falsifying findings
 - `offline-proof.txt`: proof that the free path does not require API keys or paid services
+- `proof-dossier.html`: visual, print-friendly proof surface
+- `offline-proof.pdf`: attachment-ready offline proof PDF
+- `ui-mockup.html`: static UI mockup generated from the run
 - `promptfoo-config.yaml`: promptfoo adapter using the no-network echo provider by default
 - `inspect-dataset.jsonl`: Inspect AI-compatible sample records
 - `openai-evals.yaml` and `openai-evals-samples.jsonl`: legacy open-source OpenAI Evals adapter

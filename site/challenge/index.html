@@ -54,7 +54,7 @@
         <article class="panel page-hero-copy">
           <div class="kicker">Challenge mode</div>
           <h1 class="page-title">Can your healthcare AI survive 10 traps?</h1>
-          <p>Run a local-first healthcare AI prompt-injection challenge, get a survival score, compare against baseline agent profiles, and publish the result as a report, badge, social card, SARIF file, OpenTelemetry log bundle, JSON, and Markdown.</p>
+          <p>Run a local-first healthcare AI prompt-injection challenge, get a survival score, compare against baseline agent profiles, and publish the result as a visual proof dossier, offline proof PDF, generated UI mockup, report, badge, social card, SARIF file, OpenTelemetry log bundle, JSON, and Markdown.</p>
           <div class="hero-actions">
             <a class="button" href="https://github.com/ByteWorthyLLC/honeypot-med#zero-friction-quickstart" target="_blank" rel="noreferrer">Run challenge</a>
             <a class="button-secondary" href="../reports/">Open report gallery</a>
@@ -64,7 +64,7 @@
         <aside class="panel page-hero-side">
           <strong>One command</strong>
           <pre class="command-block">python app.py challenge --outdir reports/challenge</pre>
-          <p>Default output includes <code>index.html</code>, <code>badge.svg</code>, <code>social-card.svg</code>, <code>honeypot-med.sarif</code>, <code>otel-logs.json</code>, <code>report.json</code>, and <code>report.md</code>.</p>
+          <p>Default output includes <code>proof-dossier.html</code>, <code>offline-proof.pdf</code>, <code>ui-mockup.html</code>, <code>index.html</code>, <code>badge.svg</code>, <code>social-card.svg</code>, <code>honeypot-med.sarif</code>, <code>otel-logs.json</code>, <code>report.json</code>, and <code>report.md</code>.</p>
         </aside>
       </div>
     </section>
@@ -90,6 +90,10 @@
           <article class="page-card">
             <h3>Baseline comparison</h3>
             <p>Reports compare against OpenAI-compatible chat, RAG bot, claims copilot, prior-auth agent, and voice-agent baseline profiles.</p>
+          </article>
+          <article class="page-card">
+            <h3>Visual packet</h3>
+            <p>Every challenge also exports <code>proof-dossier.html</code>, <code>offline-proof.pdf</code>, and <code>ui-mockup.html</code> so the result is readable without a terminal.</p>
           </article>
         </div>
       </div>

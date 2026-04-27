@@ -9,6 +9,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from .inquiry import write_inquiry_artifacts
+from .proof_surfaces import build_offline_proof_pdf, build_proof_dossier_html, build_ui_mockup_html
 from .specimens import build_specimen_codex
 
 
@@ -158,15 +159,30 @@ def write_lab_artifacts(report: dict, outdir: str, *, source_label: str, title: 
     ledger_csv_path = target / "trap-ledger.csv"
     field_guide_path = target / "field-guide.md"
     offline_proof_path = target / "offline-proof.txt"
+    proof_dossier_html_path = target / "proof-dossier.html"
+    proof_dossier_pdf_path = target / "offline-proof.pdf"
+    ui_mockup_path = target / "ui-mockup.html"
+    ledger = build_trap_ledger(report)
 
     codex_path.write_text(json.dumps(build_specimen_codex(report), indent=2) + "\n", encoding="utf-8")
-    ledger_json_path.write_text(json.dumps(build_trap_ledger(report), indent=2) + "\n", encoding="utf-8")
+    ledger_json_path.write_text(json.dumps(ledger, indent=2) + "\n", encoding="utf-8")
     ledger_csv_path.write_text(build_trap_ledger_csv(report), encoding="utf-8")
     field_guide_path.write_text(
         build_field_guide_markdown(report, source_label=source_label, title=title),
         encoding="utf-8",
     )
     offline_proof_path.write_text(build_offline_proof(source_label=source_label), encoding="utf-8")
+    proof_dossier_html_path.write_text(
+        build_proof_dossier_html(report, ledger, source_label=source_label, title=title).rstrip() + "\n",
+        encoding="utf-8",
+    )
+    proof_dossier_pdf_path.write_bytes(
+        build_offline_proof_pdf(report, ledger, source_label=source_label, title=title)
+    )
+    ui_mockup_path.write_text(
+        build_ui_mockup_html(report, ledger, source_label=source_label, title=title).rstrip() + "\n",
+        encoding="utf-8",
+    )
     inquiry_artifacts = write_inquiry_artifacts(
         report,
         str(target),
@@ -180,5 +196,8 @@ def write_lab_artifacts(report: dict, outdir: str, *, source_label: str, title: 
         "trap_ledger_csv": str(ledger_csv_path),
         "field_guide": str(field_guide_path),
         "offline_proof": str(offline_proof_path),
+        "proof_dossier_html": str(proof_dossier_html_path),
+        "proof_dossier_pdf": str(proof_dossier_pdf_path),
+        "ui_mockup": str(ui_mockup_path),
         **inquiry_artifacts,
     }

@@ -60,6 +60,9 @@ The project names failure modes as specimens so generated reports feel like fiel
 17. Release-loop
 `honeypot-med release-kit` packages generated report directories into zip files with checksums and release notes.
 
+18. Visual-packet loop
+Every run now surfaces a proof dossier, offline proof PDF, and generated UI mockup so the artifact is immediately legible to non-terminal audiences.
+
 ## Launch Angles
 
 1. "We tested healthcare AI prompts that should never ship."
@@ -86,7 +89,7 @@ The project names failure modes as specimens so generated reports feel like fiel
 16. Generated public report gallery
 17. Contributor quest surface for packs, integrations, report templates, and benchmarks
 18. Specimen Codex and offline Trap Lab artifacts
-19. `honeypot-med lab` command for codex, field guide, trap ledger, and offline proof generation
+19. `honeypot-med lab` command for codex, field guide, trap ledger, visual proof dossier, offline proof PDF, UI mockup, and text proof generation
 20. Field Notes page and `honeypot-med inquire` command for curiosity-first artifacts
 21. `honeypot-med experiment` command for counterfactuals, ablations, question atlas, and experiment plans
 22. `honeypot-med eval-kit` command for promptfoo, Inspect AI, OpenAI Evals, and canonical JSONL adapters
@@ -99,13 +102,11 @@ The project names failure modes as specimens so generated reports feel like fiel
 29. PNG social-card and badge outputs for non-SVG surfaces
 30. `honeypot-med casebook-diff` for local evidence-shift review
 31. `honeypot-med release-kit` for release-ready zipped report bundles with checksums
+32. Visual proof dossier, offline proof PDF, and generated UI mockup surfaced in Studio, share pages, docs, and public site copy
 
 ## What To Prioritize Next
 
-1. Add one-click PNG raster export for badges and social cards.
-2. Add local diff tooling that compares two casebooks and highlights evidence shifts.
-3. Add more specimen archetypes and visual skins for different healthcare workflows.
-4. Publish generated challenge bundles as downloadable artifacts in releases.
-5. Add hosted deployment templates for Fly.io, Railway, and Render instead of Docker-only self-hosting.
-6. Add more adapter inputs for LangChain traces, promptfoo outputs, Inspect AI logs, and plain HTTP agent targets.
-7. Add release-page automation that attaches local bundles to GitHub Releases.
+1. Publish generated challenge bundles as downloadable artifacts in releases.
+2. Add hosted deployment templates for Fly.io, Railway, and Render instead of Docker-only self-hosting.
+3. Add more adapter inputs for LangChain traces, promptfoo outputs, Inspect AI logs, and plain HTTP agent targets.
+4. Add release-page automation that attaches local bundles to GitHub Releases.

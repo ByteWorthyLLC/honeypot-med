@@ -62,7 +62,9 @@ class StudioServerTest(unittest.TestCase):
     def test_root_page_renders(self):
         body = self._get("/", text=True)
         self.assertIn("Honeypot Med Studio", body)
-        self.assertIn("Generate Verdict", body)
+        self.assertIn("Generate Visual Packet", body)
+        self.assertIn("visual proof dossier", body)
+        self.assertIn("UI mockup", body)
         self.assertIn("Ctrl+Enter", body)
         self.assertIn("Open releases", body)
 
@@ -80,15 +82,27 @@ class StudioServerTest(unittest.TestCase):
         )
         self.assertEqual(payload["status"], "ok")
         self.assertIn("view_url", payload["bundle"])
+        self.assertIn("proof_dossier_url", payload["bundle"])
+        self.assertIn("proof_pdf_url", payload["bundle"])
+        self.assertIn("ui_mockup_url", payload["bundle"])
         self.assertIn("launch_markdown_url", payload["bundle"])
 
         share_page = self._get(payload["bundle"]["view_url"], text=True)
         self.assertIn("Honeypot Med Threat Snapshot", share_page)
         self.assertIn("Launch-Ready Copy", share_page)
+        self.assertIn("Open visual proof dossier", share_page)
+
+        proof_page = self._get(payload["bundle"]["proof_dossier_url"], text=True)
+        self.assertIn("Offline proof dossier", proof_page)
+        mockup_page = self._get(payload["bundle"]["ui_mockup_url"], text=True)
+        self.assertIn("Honeypot Med Studio Mockup", mockup_page)
 
         bundles = self._get("/api/bundles")
         self.assertEqual(len(bundles["bundles"]), 1)
         self.assertEqual(bundles["bundles"][0]["id"], payload["bundle"]["id"])
+        self.assertIn("proof_dossier_url", bundles["bundles"][0])
+        self.assertIn("proof_pdf_url", bundles["bundles"][0])
+        self.assertIn("ui_mockup_url", bundles["bundles"][0])
         severity = payload["report"]["severity_counts"]
         expected_verdict = "PASS"
         if severity["critical"] > 0 or severity["high"] > 0:

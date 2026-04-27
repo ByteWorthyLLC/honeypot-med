@@ -56,4 +56,15 @@ docker run --rm honeypot-med:local packs --json
 - The default container mode is `studio`.
 - Health checks are built into the image.
 - The image runs as a non-root user.
+- No backend is required for normal usage. The local CLI, static site, generated reports, PDFs, mockups, and Studio exports all work without Railway, databases, model APIs, or paid services.
 
+## Optional Hosted Demo
+
+If you already have a free or existing Railway account, you can deploy the Dockerized Studio there as a convenience demo. This is optional and should not be treated as the primary path.
+
+Keep the default product promise:
+
+- local-first by default
+- no API keys required for normal usage
+- no hosted database required
+- no paid backend dependency required

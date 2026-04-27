@@ -66,6 +66,9 @@ It writes:
 ## Formats
 
 - HTML: public proof page
+- Visual proof dossier: aesthetic print-friendly HTML for stakeholders
+- Offline proof PDF: no-API proof document generated locally
+- UI mockup: static product surface generated from a run
 - SVG badge: README and docs embeds
 - SVG social card: launch posts and screenshots
 - Specimen codex: memorable report taxonomy for human review
