@@ -99,6 +99,10 @@ html {
   text-rendering: optimizeLegibility;
 }
 
+:where(section, [id]) {
+  scroll-margin-top: 96px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *,
@@ -1473,6 +1477,88 @@ p:last-child { margin-bottom: 0; }
 .rune-card strong {
   color: var(--ink);
   font-weight: 700;
+}
+
+/* Pull-quote / share-bait card */
+.pullquote {
+  position: relative;
+  padding: clamp(28px, 4vw, 48px) clamp(28px, 4vw, 56px);
+  border-radius: var(--r-2xl);
+  background:
+    radial-gradient(ellipse at top right, rgba(198, 67, 42, 0.16), transparent 60%),
+    linear-gradient(180deg, #fdf8ef 0%, #f4ebd6 100%);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-3);
+  overflow: hidden;
+}
+
+.pullquote::before {
+  content: "";
+  position: absolute;
+  top: 16px;
+  left: 24px;
+  font-family: var(--serif);
+  font-size: 120px;
+  line-height: 1;
+  color: var(--accent-tint);
+  pointer-events: none;
+}
+
+.pullquote blockquote {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(1.35rem, 1rem + 1.6vw, 2.2rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  max-width: 32ch;
+}
+
+.pullquote cite {
+  display: block;
+  margin-top: var(--s-4);
+  font-style: normal;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+/* Mini stat row · screenshot-bait big numbers */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--s-4);
+  padding: var(--s-6);
+  border-radius: var(--r-xl);
+  background: var(--panel-strong);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-2);
+}
+
+.stat-row .stat {
+  display: grid;
+  gap: 4px;
+}
+
+.stat-row .stat-num {
+  font-family: var(--serif);
+  font-size: clamp(2.4rem, 1.6rem + 1.6vw, 3.2rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+
+.stat-row .stat-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 /* 404 */
