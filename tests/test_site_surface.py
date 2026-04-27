@@ -39,7 +39,7 @@ class SiteSurfaceTest(unittest.TestCase):
         self.assertIn("UI mockup", html)
         self.assertIn("Challenge mode", html)
         self.assertIn("Every boring finding gets a monster name", html)
-        self.assertIn("Promotion is optional. Questions are the product.", html)
+        self.assertIn("Inquiry mode", html)
         self.assertIn("counterfactual prompts", html)
         self.assertIn("daily dungeon", html)
         self.assertIn("prompt CTF", html)
