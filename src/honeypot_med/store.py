@@ -95,7 +95,3 @@ class JSONLStore:
                 kept_rows.append(row)
 
         return purged_rows, kept_rows
-
-    def purge_older_than(self, days: int) -> tuple[int, int]:
-        purged_rows, kept_rows = self.split_by_age(days)
-        return len(purged_rows), len(kept_rows)

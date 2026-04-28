@@ -239,6 +239,32 @@ function markCurrentNav() {
 wireCopyButtons();
 wireScrollHeader();
 wireScrollReveal();
+function wireInstallStrip() {
+  const tabs = document.querySelectorAll("[data-install-tab]");
+  const panes = document.querySelectorAll("[data-install-pane]");
+  if (!tabs.length || !panes.length) return;
+  tabs.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const target = btn.dataset.installTab;
+      tabs.forEach((t) => {
+        const match = t.dataset.installTab === target;
+        t.classList.toggle("is-active", match);
+        t.setAttribute("aria-selected", String(match));
+      });
+      panes.forEach((p) => {
+        const match = p.dataset.installPane === target;
+        p.classList.toggle("is-active", match);
+        if (match) {
+          p.removeAttribute("hidden");
+        } else {
+          p.setAttribute("hidden", "");
+        }
+      });
+    });
+  });
+}
+
 markCurrentNav();
 hydrateRepoPulse();
 hydrateReleaseSurface();
+wireInstallStrip();
