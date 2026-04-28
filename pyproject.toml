@@ -34,8 +34,12 @@ Repository = "https://github.com/ByteWorthyLLC/honeypot-med"
 Issues = "https://github.com/ByteWorthyLLC/honeypot-med/issues"
 Releases = "https://byteworthyllc.github.io/honeypot-med/releases/"
 
+[project.optional-dependencies]
+mcp = ["mcp>=1.0.0"]
+
 [project.scripts]
 honeypot-med = "honeypot_med.cli:main"
+honeypot-med-mcp = "honeypot_med.mcp_server:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
