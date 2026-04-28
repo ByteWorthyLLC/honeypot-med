@@ -33,7 +33,7 @@ If you want the repo to bootstrap itself first:
 Windows:
 
 ```powershell
-.\run.ps1
+.un.ps1
 ```
 
 The fastest path for self-hosting is Docker Compose:
@@ -633,3 +633,7 @@ python -m unittest discover -s tests -p 'test_*.py'
 ## Maintainer
 
 Honeypot Med is built and maintained by [ByteWorthy LLC](https://byteworthy.io) — open-source AI security tools for healthcare and beyond. Issues, PRs, and security disclosures welcome via the GitHub repo.
+
+## Stay updated
+
+Built by [ByteWorthy](https://byteworthy.io). Subscribe at [byteworthy.io/newsletter](https://byteworthy.io/newsletter) for updates on this project and new releases.
