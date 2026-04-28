@@ -1,0 +1,251 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img"
+     aria-label="Illustration: a healthcare AI prompt flows into a honeypot trap and receives a BLOCKED verdict">
+  <defs>
+    <!-- Background grid texture -->
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#14181f" stroke-width="0.5" opacity="0.08"/>
+    </pattern>
+
+    <!-- Isometric transform helpers -->
+    <filter id="soft-shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="6" stdDeviation="12" flood-color="#14181f" flood-opacity="0.18"/>
+    </filter>
+    <filter id="glow-accent" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+
+    <!-- Jar body clip -->
+    <clipPath id="jar-clip">
+      <rect x="500" y="310" width="200" height="270" rx="12"/>
+    </clipPath>
+
+    <!-- Arrow marker -->
+    <marker id="arrow-teal" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1f5f56"/>
+    </marker>
+    <marker id="arrow-rust" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#c6432a" opacity="0.6"/>
+    </marker>
+  </defs>
+
+  <!-- ─── BACKGROUND ─── -->
+  <rect width="1200" height="900" fill="#f4ecdd"/>
+  <!-- Subtle grid overlay -->
+  <rect width="1200" height="900" fill="url(#grid)"/>
+
+  <!-- Warm ambient circle — depth suggestion -->
+  <ellipse cx="600" cy="520" rx="480" ry="200" fill="#c6432a" opacity="0.035"/>
+  <ellipse cx="600" cy="480" rx="340" ry="140" fill="#1f5f56" opacity="0.03"/>
+
+  <!-- ─── ZONE LABELS (faint section markers) ─── -->
+  <text x="168" y="215" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="10"
+        fill="#14181f" opacity="0.28" letter-spacing="2" text-anchor="middle">PROMPT</text>
+  <text x="600" y="215" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="10"
+        fill="#14181f" opacity="0.28" letter-spacing="2" text-anchor="middle">TRAP</text>
+  <text x="1032" y="215" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="10"
+        fill="#14181f" opacity="0.28" letter-spacing="2" text-anchor="middle">VERDICT</text>
+
+  <!-- Zone divider lines -->
+  <line x1="384" y1="200" x2="384" y2="740" stroke="#14181f" stroke-width="1" opacity="0.07" stroke-dasharray="4 6"/>
+  <line x1="816" y1="200" x2="816" y2="740" stroke="#14181f" stroke-width="1" opacity="0.07" stroke-dasharray="4 6"/>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       LEFT: DOCUMENT / PROMPT RECTANGLE
+       ══════════════════════════════════════════════════════ -->
+
+  <!-- Document shadow -->
+  <rect x="82" y="268" width="208" height="272" rx="10" fill="#14181f" opacity="0.09"/>
+
+  <!-- Document body -->
+  <rect x="76" y="260" width="208" height="272" rx="10"
+        fill="#faf6ee" stroke="#14181f" stroke-width="1.5" opacity="1"/>
+
+  <!-- Document header stripe -->
+  <rect x="76" y="260" width="208" height="36" rx="10" fill="#1f5f56"/>
+  <rect x="76" y="284" width="208" height="12" fill="#1f5f56"/>
+
+  <!-- Header label -->
+  <text x="180" y="284" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="11"
+        fill="#f4ecdd" opacity="0.9" text-anchor="middle" font-weight="700">PROMPT REQUEST</text>
+
+  <!-- Document content lines — simulated SARIF/JSON prompt body -->
+  <rect x="100" y="316" width="160" height="8" rx="3" fill="#14181f" opacity="0.12"/>
+  <rect x="100" y="332" width="130" height="8" rx="3" fill="#14181f" opacity="0.09"/>
+  <rect x="100" y="348" width="148" height="8" rx="3" fill="#14181f" opacity="0.12"/>
+  <rect x="100" y="364" width="96" height="8" rx="3" fill="#c6432a" opacity="0.22"/>
+  <rect x="100" y="380" width="138" height="8" rx="3" fill="#14181f" opacity="0.09"/>
+
+  <!-- Injected payload highlight box -->
+  <rect x="96" y="402" width="168" height="48" rx="4"
+        fill="#c6432a" opacity="0.08" stroke="#c6432a" stroke-width="1" stroke-opacity="0.3"/>
+  <rect x="100" y="410" width="120" height="7" rx="3" fill="#c6432a" opacity="0.35"/>
+  <rect x="100" y="424" width="98" height="7" rx="3" fill="#c6432a" opacity="0.25"/>
+
+  <!-- "INJECT" annotation -->
+  <text x="100" y="470" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="9"
+        fill="#c6432a" opacity="0.7">↳ inject_attempt</text>
+
+  <rect x="100" y="476" width="152" height="7" rx="3" fill="#14181f" opacity="0.08"/>
+  <rect x="100" y="490" width="112" height="7" rx="3" fill="#14181f" opacity="0.08"/>
+
+  <!-- Folded corner dog-ear -->
+  <polygon points="284,260 284,278 266,260" fill="#e8dfc8" stroke="#14181f" stroke-width="1" stroke-opacity="0.15"/>
+
+  <!-- ─── FLOW ARROW: Document → Trap ─── -->
+  <line x1="294" y1="400" x2="478" y2="400"
+        stroke="#1f5f56" stroke-width="2" stroke-dasharray="6 4"
+        marker-end="url(#arrow-teal)" opacity="0.6"/>
+
+  <!-- Flow label -->
+  <text x="386" y="391" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="9"
+        fill="#1f5f56" opacity="0.55" text-anchor="middle">evaluate</text>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       CENTRE: SPECIMEN-JAR HONEYPOT TRAP
+       ══════════════════════════════════════════════════════ -->
+
+  <!-- Jar outer shadow -->
+  <ellipse cx="602" cy="598" rx="112" ry="18" fill="#14181f" opacity="0.1"/>
+
+  <!-- Jar glass body -->
+  <rect x="500" y="310" width="200" height="270" rx="18"
+        fill="#faf6ee" stroke="#1f5f56" stroke-width="2.5" filter="url(#soft-shadow)"/>
+
+  <!-- Jar glass sheen (left edge highlight) -->
+  <rect x="504" y="318" width="18" height="254" rx="9"
+        fill="white" opacity="0.22"/>
+
+  <!-- Jar amber fill (honey) -->
+  <rect x="502" y="430" width="196" height="148" rx="0"
+        fill="#c6432a" opacity="0.08" clip-path="url(#jar-clip)"/>
+  <rect x="502" y="430" width="196" height="2"
+        fill="#c6432a" opacity="0.25" clip-path="url(#jar-clip)"/>
+
+  <!-- Honeycomb hex pattern inside jar (suggestive only — 3 hexes) -->
+  <!-- hex 1 -->
+  <polygon points="565,470 580,461 595,470 595,488 580,497 565,488"
+           fill="none" stroke="#c6432a" stroke-width="1.2" opacity="0.28"/>
+  <!-- hex 2 -->
+  <polygon points="595,450 610,441 625,450 625,468 610,477 595,468"
+           fill="none" stroke="#c6432a" stroke-width="1.2" opacity="0.20"/>
+  <!-- hex 3 -->
+  <polygon points="535,490 550,481 565,490 565,508 550,517 535,508"
+           fill="none" stroke="#c6432a" stroke-width="1.2" opacity="0.16"/>
+
+  <!-- Web strand lines from inside jar (trap metaphor) -->
+  <line x1="600" y1="380" x2="530" y2="440" stroke="#1f5f56" stroke-width="0.8" opacity="0.18"/>
+  <line x1="600" y1="380" x2="600" y2="460" stroke="#1f5f56" stroke-width="0.8" opacity="0.18"/>
+  <line x1="600" y1="380" x2="670" y2="440" stroke="#1f5f56" stroke-width="0.8" opacity="0.18"/>
+  <line x1="530" y1="440" x2="670" y2="440" stroke="#1f5f56" stroke-width="0.8" opacity="0.12"/>
+  <line x1="530" y1="440" x2="600" y2="460" stroke="#1f5f56" stroke-width="0.8" opacity="0.12"/>
+  <line x1="670" y1="440" x2="600" y2="460" stroke="#1f5f56" stroke-width="0.8" opacity="0.12"/>
+
+  <!-- Jar lid / cap -->
+  <rect x="488" y="296" width="224" height="28" rx="8"
+        fill="#1f5f56" stroke="#14181f" stroke-width="1" stroke-opacity="0.2"/>
+  <rect x="532" y="286" width="136" height="14" rx="5"
+        fill="#14181f" opacity="0.55"/>
+
+  <!-- Lid label text -->
+  <text x="600" y="315" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="10"
+        fill="#f4ecdd" opacity="0.85" text-anchor="middle" letter-spacing="1">honeypot-med</text>
+
+  <!-- Jar label band -->
+  <rect x="500" y="530" width="200" height="36" rx="0"
+        fill="#1f5f56" opacity="0.12"/>
+  <text x="600" y="553" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="9"
+        fill="#1f5f56" opacity="0.7" text-anchor="middle">SPECIMEN · CONTAINED</text>
+
+  <!-- Jar bottom curve suggestion -->
+  <ellipse cx="600" cy="580" rx="100" ry="10" fill="#1f5f56" opacity="0.06"/>
+
+  <!-- ─── FLOW ARROW: Trap → Verdict ─── -->
+  <line x1="722" y1="400" x2="896" y2="400"
+        stroke="#c6432a" stroke-width="2" stroke-dasharray="6 4"
+        marker-end="url(#arrow-rust)" opacity="0.55"/>
+
+  <!-- Flow label -->
+  <text x="809" y="391" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="9"
+        fill="#c6432a" opacity="0.5" text-anchor="middle">verdict</text>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       RIGHT: BLOCK STAMP / VERDICT
+       ══════════════════════════════════════════════════════ -->
+
+  <!-- PASS ghost (alternate timeline, faded behind) -->
+  <g opacity="0.13">
+    <rect x="880" y="310" width="240" height="100" rx="12"
+          fill="none" stroke="#1f5f56" stroke-width="4"/>
+    <text x="1000" y="376" font-family="'Fraunces', Georgia, serif" font-size="52"
+          fill="#1f5f56" text-anchor="middle" font-weight="900"
+          letter-spacing="4">PASS</text>
+  </g>
+
+  <!-- BLOCKED stamp body -->
+  <rect x="876" y="370" width="248" height="108" rx="12"
+        fill="#c6432a" opacity="0.96" filter="url(#soft-shadow)"
+        transform="rotate(-3, 1000, 424)"/>
+
+  <!-- Stamp inner border -->
+  <rect x="884" y="378" width="232" height="92" rx="8"
+        fill="none" stroke="#faf6ee" stroke-width="2.5" opacity="0.6"
+        transform="rotate(-3, 1000, 424)"/>
+
+  <!-- BLOCKED text -->
+  <text x="1002" y="438" font-family="'Fraunces', Georgia, serif" font-size="54"
+        fill="#f4ecdd" text-anchor="middle" font-weight="900"
+        letter-spacing="2" transform="rotate(-3, 1000, 424)">BLOCKED</text>
+
+  <!-- Stamp serial / evidence ref -->
+  <text x="1002" y="496" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="10"
+        fill="#c6432a" opacity="0.65" text-anchor="middle">
+    run-id: 4f8a · 10/10 traps fired
+  </text>
+
+  <!-- Verdict accent dot pill (the "BLOCKED" pill with accent dot) -->
+  <rect x="934" y="516" width="136" height="28" rx="14"
+        fill="#c6432a" opacity="0.12" stroke="#c6432a" stroke-width="1.2" stroke-opacity="0.4"/>
+  <circle cx="952" cy="530" r="5" fill="#c6432a"/>
+  <text x="1002" y="535" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="10"
+        fill="#c6432a" text-anchor="middle" font-weight="700">● BLOCKED</text>
+
+  <!-- Teal PASS ghost pill (faded alternate) -->
+  <rect x="934" y="552" width="136" height="28" rx="14"
+        fill="#1f5f56" opacity="0.07" stroke="#1f5f56" stroke-width="1" stroke-opacity="0.2"/>
+  <text x="1002" y="571" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="10"
+        fill="#1f5f56" text-anchor="middle" opacity="0.35">○ PASS</text>
+
+
+  <!-- ══════════════════════════════════════════════════════
+       BOTTOM: EVIDENCE / SARIF / OTel LINES
+       ══════════════════════════════════════════════════════ -->
+
+  <rect x="60" y="660" width="1080" height="1" fill="#14181f" opacity="0.1"/>
+
+  <!-- Evidence lines — simulated SARIF output -->
+  <text x="76" y="688" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="10"
+        fill="#1f5f56" opacity="0.55">
+    {"ruleId":"HPMED-01","level":"error","message":{"text":"Prompt injection attempt detected"}}
+  </text>
+  <text x="76" y="706" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="10"
+        fill="#14181f" opacity="0.35">
+    {"ruleId":"HPMED-04","level":"error","message":{"text":"Prior auth bypass payload in clinical context"}}
+  </text>
+  <text x="76" y="724" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="10"
+        fill="#14181f" opacity="0.25">
+    {"ruleId":"HPMED-07","level":"warning","message":{"text":"Jailbreak framing via role-play prefix"}}
+  </text>
+  <text x="76" y="742" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="10"
+        fill="#14181f" opacity="0.18">
+    → evidence saved · dossier.pdf · 2026-04-27T20:10:00Z · honeypot-med v0.9
+  </text>
+
+  <!-- Bottom right attribution mark -->
+  <text x="1124" y="742" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="9"
+        fill="#14181f" opacity="0.2" text-anchor="end">honeypot-med</text>
+
+</svg>

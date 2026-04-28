@@ -1493,7 +1493,7 @@ p:last-child { margin-bottom: 0; }
 }
 
 .pullquote::before {
-  content: "";
+  content: "\201C";
   position: absolute;
   top: 16px;
   left: 24px;
