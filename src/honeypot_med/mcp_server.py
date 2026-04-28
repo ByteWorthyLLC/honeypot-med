@@ -36,7 +36,6 @@ except ImportError as e:  # pragma: no cover - import guarded for runtime instal
 
 
 SERVER_NAME = "honeypot-med"
-SERVER_VERSION = "0.4.1"
 
 # Static rule explanation table. Maps the rule_ids defined in service.DEFAULT_RULES
 # to their OWASP LLM Top 10 anchor, NIST AI 600-1 control family, and a plain-
@@ -234,7 +233,7 @@ def _explain_finding_tool(rule_id: str) -> dict[str, Any]:
 def _build_server() -> Server:
     server: Server = Server(SERVER_NAME)
 
-    @server.list_tools()
+    @server.list_tools()  # skylos: ignore - registered with MCP runtime via decorator
     async def _list_tools() -> list[Tool]:
         return [
             Tool(
@@ -301,7 +300,7 @@ def _build_server() -> Server:
             ),
         ]
 
-    @server.call_tool()
+    @server.call_tool()  # skylos: ignore - registered with MCP runtime via decorator
     async def _call_tool(name: str, arguments: dict[str, Any]) -> list[TextContent]:
         try:
             if name == "scan_prompt":
