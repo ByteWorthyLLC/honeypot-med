@@ -13,11 +13,11 @@
   <meta property="og:description" content="Run challenge mode, open a visual proof packet, verify launch readiness, and export CI-ready healthcare AI prompt-injection artifacts." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://byteworthyllc.github.io/honeypot-med/" />
-  <meta property="og:image" content="https://byteworthyllc.github.io/honeypot-med/assets/viral-hero.jpg" />
+  <meta property="og:image" content="https://byteworthyllc.github.io/honeypot-med/assets/og-card.png" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Honeypot Med | Can your healthcare AI survive 10 traps?" />
   <meta name="twitter:description" content="Open-source healthcare AI prompt-injection proof lab with visual packets, readiness checks, reports, SARIF, eval kits, and share cards." />
-  <meta name="twitter:image" content="https://byteworthyllc.github.io/honeypot-med/assets/viral-hero.jpg" />
+  <meta name="twitter:image" content="https://byteworthyllc.github.io/honeypot-med/assets/og-card.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="assets/styles.css" />
@@ -32,7 +32,8 @@
         "description": "Prompt-injection evidence for healthcare AI workflows.",
         "publisher": {
           "@type": "Organization",
-          "name": "ByteWorthy LLC"
+          "name": "ByteWorthy LLC",
+          "url": "https://byteworthy.io"
         }
       },
       {
@@ -127,6 +128,24 @@
             <a class="badge-link" href="readiness/">Readiness Check</a>
             <a class="badge-link" href="launch-room/">Launch Room</a>
           </div>
+          <div class="install-strip" role="region" aria-label="Install Honeypot Med">
+            <div class="install-strip-tabs" role="tablist" aria-label="Install path">
+              <button class="install-tab is-active" type="button" role="tab" aria-selected="true" data-install-tab="cli">CLI</button>
+              <button class="install-tab" type="button" role="tab" aria-selected="false" data-install-tab="mcp">Claude Code</button>
+            </div>
+            <article class="copy-card install-pane is-active" data-install-pane="cli">
+              <h3>Install the CLI</h3>
+              <p>Local rule engine, attack packs, and proof bundles. No API keys.</p>
+              <code class="install-code">pip install honeypot-med</code>
+              <button class="copy-button" type="button" data-copy="pip install honeypot-med">Copy</button>
+            </article>
+            <article class="copy-card install-pane" data-install-pane="mcp" hidden>
+              <h3>Install for Claude Code / Cursor</h3>
+              <p>Adds <code>scan_prompt</code>, <code>run_attack_pack</code>, <code>list_packs</code>, and <code>explain_finding</code> as MCP tools in every coding session.</p>
+              <code class="install-code">pip install honeypot-med[mcp]</code>
+              <button class="copy-button" type="button" data-copy="pip install honeypot-med[mcp]">Copy</button>
+            </article>
+          </div>
         </article>
         <aside class="panel hero-proof">
           <div class="hero-art" role="img" aria-label="Stylized brand artwork for Honeypot Med">
@@ -161,6 +180,30 @@
           <div class="stat"><span class="stat-num">0</span><span class="stat-label">API keys required</span></div>
           <div class="stat"><span class="stat-num">1</span><span class="stat-label">command to run</span></div>
         </div>
+      </div>
+    </section>
+
+    <section class="section" id="live-widget">
+      <div class="shell">
+        <div class="section-header">
+          <div>
+            <div class="ribbon">Live widget</div>
+            <h2 class="section-title">Paste a prompt. Get a verdict in your browser.</h2>
+          </div>
+          <p>The same regex pipeline that ships in the CLI runs locally in this tab. Your prompt never leaves the page — only the verdict and the rule ids that fired travel in the share link.</p>
+        </div>
+        <article class="panel">
+          <div class="hpm-widget">
+            <label class="small-caps" for="hpm-widget-input">Prompt to scan</label>
+            <textarea id="hpm-widget-input" placeholder="Paste a healthcare AI prompt here..." aria-describedby="hpm-widget-privacy"></textarea>
+            <div class="hpm-widget-actions">
+              <button id="hpm-widget-run" type="button" class="button">Run scan</button>
+              <span id="hpm-widget-privacy" class="hpm-widget-privacy">No network calls. No telemetry. The prompt stays in this tab.</span>
+            </div>
+            <div id="hpm-widget-result" class="hpm-widget-result" aria-live="polite"></div>
+          </div>
+          <div class="inline-actions" style="margin-top:16px;"><a href="widget-demo/">Open the full live widget page</a></div>
+        </article>
       </div>
     </section>
 
@@ -556,7 +599,7 @@
   <footer class="site-footer">
     <div class="shell footer-grid">
       <div>
-        <p>Honeypot Med is maintained as an open-source security project by ByteWorthy LLC.</p>
+        <p>Honeypot Med is maintained as an open-source security project by <a href="https://byteworthy.io" target="_blank" rel="noreferrer" data-track-action="click" data-track-key="byteworthy-home">ByteWorthy LLC</a>.</p>
         <p><span data-year></span> Honeypot Med. Source on GitHub. Site on GitHub Pages.</p>
       </div>
       <div class="footer-links">
@@ -578,5 +621,6 @@
     </div>
   </footer>
   <script src="assets/app.js"></script>
+  <script type="module" src="assets/widget.js"></script>
 </body>
 </html>
