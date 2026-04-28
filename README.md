@@ -10,6 +10,14 @@ Public site:
 
 `https://byteworthyllc.github.io/honeypot-med/`
 
+## Try it without installing
+
+Paste a healthcare AI prompt into the live widget and get an instant verdict — the rule engine runs in your browser, your prompt never leaves the page, and the shareable link contains only the verdict and the rule ids that fired (never your prompt text):
+
+`https://byteworthyllc.github.io/honeypot-med/widget-demo/`
+
+The same widget is also embedded inline on the homepage under **Live widget**.
+
 The fastest path is now just:
 
 ```bash
@@ -203,6 +211,37 @@ python app.py config set --engine-mode hybrid --remote-url http://localhost:9999
 
 - Skill doc: `skills/honeypot-med/SKILL.md`
 - Integration guide: `docs/skill-integration.md`
+
+## MCP Server (Claude Code / Cursor)
+
+Honeypot Med ships an MCP (Model Context Protocol) stdio server so the local rule engine lives inside every coding session — not just CI. Local-only. No prompts are exfiltrated. No external service is contacted.
+
+Install with the optional extra:
+
+```bash
+pip install honeypot-med[mcp]
+```
+
+Add to your Claude Code MCP config (`~/.claude/mcp.json` for user-wide, or `.mcp.json` at the repo root for per-project):
+
+```json
+{
+  "mcpServers": {
+    "honeypot-med": {
+      "command": "honeypot-med-mcp"
+    }
+  }
+}
+```
+
+Tools exposed in every session:
+
+- `scan_prompt(prompt)` — instant PASS / REVIEW / BLOCK verdict for a single prompt
+- `run_attack_pack(pack_name)` — run an entire healthcare pack (`claims`, `prior-auth`, `triage`, `intake`, `appeals`, `eligibility`, `utilization-management`, `healthcare-challenge`)
+- `list_packs()` — enumerate bundled attack packs with `name`, `attack_count`, and a domain label
+- `explain_finding(rule_id)` — return plain English, the OWASP LLM01:2025 anchor, the NIST AI 600-1 anchor, and a healthcare-appropriate mitigation
+
+Full install + tool reference: `docs/MCP-SERVER.md`.
 
 ## Distribution-Grade Packaging
 
@@ -590,3 +629,7 @@ python -m unittest discover -s tests -p 'test_*.py'
 - `scripts/demo/` demo helper
 - `tests/` unit and integration tests
 - `examples/` fixtures and baselines
+
+## Maintainer
+
+Honeypot Med is built and maintained by [ByteWorthy LLC](https://byteworthy.io) — open-source AI security tools for healthcare and beyond. Issues, PRs, and security disclosures welcome via the GitHub repo.
