@@ -1,5 +1,5 @@
 <div align="center">
-<img src="https://raw.githubusercontent.com/ByteWorthyLLC/honeypot-med/main/.github/assets/honeypot-med-hero.svg" alt="honeypot-med — prompt-injection detection for healthcare AI" width="100%">
+<img src="https://raw.githubusercontent.com/ByteWorthyLLC/honeypot-med/main/.github/assets/honeypot-med-hero.svg" alt="honeypot-med: prompt-injection detection for healthcare AI" width="100%">
 
 # honeypot-med
 
@@ -13,13 +13,13 @@
 
 ---
 
-> **honeypot-med** runs healthcare AI prompts through a detection engine to identify prompt-injection risk. The rule engine runs in your browser — your prompt never leaves the page. Local-first by default (CPU mode, no API key). Generates shareable proof artifacts for CI integration, release gates, and challenge publishing.
+> **honeypot-med** runs healthcare AI prompts through a detection engine to identify prompt-injection risk. The rule engine runs in your browser. Your prompt never leaves the page. Local-first by default (CPU mode, no API key). Generates shareable proof artifacts for CI integration, release gates, and challenge publishing.
 
 ## Try it without installing
 
 > **[Paste any healthcare AI prompt into the live widget →](https://byteworthyllc.github.io/honeypot-med/widget-demo/)**
 >
-> Instant verdict. The shareable link contains only the verdict and rule IDs — never your prompt text.
+> Instant verdict. The shareable link contains only the verdict and rule IDs, never your prompt text.
 >
 > `https://byteworthyllc.github.io/honeypot-med/widget-demo/`
 
@@ -74,7 +74,7 @@ Rule Engine (runs locally in CPU mode)
 Verdict: PASS / REVIEW / BLOCK
     │
     ▼
-Shareable link (verdict + rule IDs only — prompt text never included)
+Shareable link (verdict + rule IDs only, prompt text never included)
 ```
 
 ## Modes
@@ -98,7 +98,7 @@ Each run produces structured, parseable output:
 
 ## CI integration
 
-Wire the exit code into any CI pipeline — the tool returns non-zero on violations:
+Wire the exit code into any CI pipeline. The tool returns non-zero on violations:
 
 ```yaml
 - uses: ByteWorthyLLC/honeypot-med@main
@@ -135,7 +135,7 @@ Add to `~/.claude/mcp.json`:
 }
 ```
 
-Tools exposed: `scan_prompt`, `run_attack_pack`, `list_packs`, `explain_finding`. Local-only — no prompts are exfiltrated.
+Tools exposed: `scan_prompt`, `run_attack_pack`, `list_packs`, `explain_finding`. Local-only: no prompts are exfiltrated.
 
 ## License + contributing
 
