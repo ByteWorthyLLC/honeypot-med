@@ -57,7 +57,7 @@ const RULES = [
     owasp_anchor: "LLM01: Prompt Injection",
     nist_anchor: "NIST AI 600-1 §2.10 Information Security",
     plain_english:
-      "Tries to extract bulk data — eligibility rosters, claims notes, PHI fields, or secrets.",
+      "Tries to extract bulk data: eligibility rosters, claims notes, PHI fields, or secrets.",
   },
   {
     id: "INJ-003",
@@ -269,7 +269,7 @@ const VERDICT_COPY = {
   REVIEW: {
     label: "REVIEW",
     blurb:
-      "One or more suspicious patterns matched. Without tool-call evidence the engine caps at REVIEW — install the CLI to confirm.",
+      "One or more suspicious patterns matched. Without tool-call evidence the engine caps at REVIEW. Install the CLI to confirm.",
   },
   BLOCK: {
     label: "BLOCK",
@@ -427,7 +427,7 @@ function rehydrateShared(data) {
         severity,
         score,
         proven: false,
-        snippet: "(prompt not shared — rule id only)",
+        snippet: "(prompt not shared, rule id only)",
         plain_english: rule.plain_english,
         owasp_anchor: rule.owasp_anchor,
         nist_anchor: rule.nist_anchor,

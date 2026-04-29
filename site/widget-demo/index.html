@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Live widget | Honeypot Med</title>
-  <meta name="description" content="Paste a healthcare AI prompt and get an instant prompt-injection verdict in your browser. The rule engine runs locally — your prompt never leaves the page." />
+  <meta name="description" content="Paste a healthcare AI prompt and get an instant prompt-injection verdict in your browser. The rule engine runs locally. Your prompt never leaves the page." />
   <link rel="canonical" href="https://byteworthyllc.github.io/honeypot-med/widget-demo/" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="manifest" href="../site.webmanifest" />
@@ -46,7 +46,7 @@
         <article class="panel hero-copy">
           <div class="kicker">Live widget · runs in your browser · zero servers</div>
           <h1>Scan a prompt for prompt-injection patterns, locally.</h1>
-          <p>Paste a healthcare AI prompt below. The rule engine runs in this tab — the prompt never leaves your browser, never hits a server, and never gets logged. You get a verdict, severity counts, and a shareable link that contains only the verdict and the rule ids that fired (never the prompt).</p>
+          <p>Paste a healthcare AI prompt below. The rule engine runs in this tab. The prompt never leaves your browser, never hits a server, and never gets logged. You get a verdict, severity counts, and a shareable link that contains only the verdict and the rule ids that fired (never the prompt).</p>
           <div class="hero-actions">
             <a class="button-secondary" href="../challenge/">Run the full 10-trap challenge</a>
             <a class="button-ghost" href="https://github.com/ByteWorthyLLC/honeypot-med" target="_blank" rel="noreferrer">Open GitHub</a>
@@ -56,9 +56,9 @@
           <div class="hero-proof-body">
             <div class="hero-proof-title">How the verdict ladder works</div>
             <div class="evidence-grid">
-              <div class="hero-stat"><strong>PASS</strong><span>no patterns matched — still validate with tool-call traces</span></div>
-              <div class="hero-stat"><strong>REVIEW</strong><span>medium-severity matches — install the CLI to confirm</span></div>
-              <div class="hero-stat"><strong>BLOCK</strong><span>high-severity proven matches — should not reach the model</span></div>
+              <div class="hero-stat"><strong>PASS</strong><span>no patterns matched. Still validate with tool-call traces.</span></div>
+              <div class="hero-stat"><strong>REVIEW</strong><span>medium-severity matches. Install the CLI to confirm.</span></div>
+              <div class="hero-stat"><strong>BLOCK</strong><span>high-severity proven matches. Should not reach the model.</span></div>
             </div>
           </div>
         </aside>
@@ -95,7 +95,7 @@
             <div class="ribbon">Try one of these</div>
             <h2 class="section-title">Three prompts pulled from the live attack packs.</h2>
           </div>
-          <p>Click to auto-fill. Each maps to a real workflow shape — claims, prior auth, eligibility — that healthcare AI teams already worry about.</p>
+          <p>Click to auto-fill. Each maps to a real workflow shape (claims, prior auth, eligibility) that healthcare AI teams already worry about.</p>
         </div>
         <div class="hpm-examples">
           <button type="button" class="hpm-example-button" data-hpm-example="Summarize this claim note for coding QA.">
@@ -112,7 +112,7 @@
           </button>
         </div>
         <p class="hpm-widget-privacy" style="margin-top:16px;">
-          On a paste-the-prompt surface the widget caps at REVIEW because there are no tool-call traces to prove the exploit. To see a true BLOCK verdict on the same prompt, run <code>python app.py challenge</code> locally — the CLI checks tool names, tool args, and model output for evidence and promotes proven findings to high or critical.
+          On a paste-the-prompt surface the widget caps at REVIEW because there are no tool-call traces to prove the exploit. To see a true BLOCK verdict on the same prompt, run <code>python app.py challenge</code> locally. The CLI checks tool names, tool args, and model output for evidence and promotes proven findings to high or critical.
         </p>
       </div>
     </section>
