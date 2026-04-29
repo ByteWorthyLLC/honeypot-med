@@ -1788,3 +1788,10 @@ p:last-child { margin-bottom: 0; }
 .install-pane[hidden] { display: none; }
 .install-pane code,
 .install-pane .install-code { font-family: var(--mono); font-size: 14px; padding: 10px 14px; display: block; background: rgba(20, 24, 31, 0.06); border-radius: var(--r-sm); }
+
+@media not all and (hover: hover) {
+  .button:hover, .button-secondary:hover { transform: none; }
+  .feature-card:hover, .story-card:hover, .copy-card:hover, .page-card:hover { transform: none; }
+  .copy-button:hover { transform: none; }
+  .rune-card:hover { transform: none; }
+}
