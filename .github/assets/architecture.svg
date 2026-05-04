@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" role="img"
+     aria-label="Honeypot Med architecture: a healthcare AI prompt enters the local rule engine, runs against eight rule families, returns a verdict (PASS, REVIEW, or BLOCK) plus structured findings, and exports a shareable proof bundle. The original prompt never leaves the device.">
+  <title>Architecture flow</title>
+  <defs>
+    <style>
+      :root {
+        --bg: #f4ecdd;
+        --bg-strong: #fdf8ef;
+        --ink: #14181f;
+        --ink-soft: #2a313c;
+        --muted: #5a6470;
+        --accent: #c6432a;
+        --accent-soft: rgba(198, 67, 42, 0.10);
+        --teal: #1f5f56;
+        --teal-soft: rgba(31, 95, 86, 0.10);
+        --line: rgba(20, 24, 31, 0.10);
+        --line-strong: rgba(20, 24, 31, 0.18);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #14181f;
+          --bg-strong: #1a1f28;
+          --ink: #fdf8ef;
+          --ink-soft: #d4cdb8;
+          --muted: #9aa1ab;
+          --accent: #ff6a4d;
+          --accent-soft: rgba(255, 106, 77, 0.18);
+          --teal: #5fb5a6;
+          --teal-soft: rgba(95, 181, 166, 0.16);
+          --line: rgba(253, 248, 239, 0.12);
+          --line-strong: rgba(253, 248, 239, 0.22);
+        }
+      }
+      .bg { fill: var(--bg); }
+      .panel { fill: var(--bg-strong); }
+      .ink { fill: var(--ink); }
+      .ink-soft { fill: var(--ink-soft); }
+      .muted { fill: var(--muted); }
+      .accent { fill: var(--accent); }
+      .accent-soft { fill: var(--accent-soft); }
+      .accent-stroke { stroke: var(--accent); }
+      .teal { fill: var(--teal); }
+      .teal-soft { fill: var(--teal-soft); }
+      .teal-stroke { stroke: var(--teal); }
+      .line-stroke { stroke: var(--line); }
+      .line-strong { stroke: var(--line-strong); }
+
+      .display { font-family: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif; }
+      .sans { font-family: "Inter", "Helvetica Neue", "Segoe UI", system-ui, sans-serif; }
+      .mono { font-family: "JetBrains Mono", "SFMono-Regular", "Menlo", "Monaco", "Consolas", monospace; }
+    </style>
+    <filter id="arch-soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="5" flood-color="#14181f" flood-opacity="0.14"/>
+    </filter>
+    <marker id="arch-arrow-ink" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 10 4, 0 8" fill="#14181f"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="420" class="bg"/>
+
+  <!-- Title -->
+  <text x="60" y="58" class="mono muted" font-size="11" font-weight="600"
+        letter-spacing="0.16em">ARCHITECTURE</text>
+  <text x="60" y="92" class="display ink" font-size="32" font-weight="700"
+        letter-spacing="-0.01em">Local engine. Structured output. No exfiltration.</text>
+
+  <!-- ── Box 1: PROMPT INPUT ── -->
+  <g transform="translate(60, 160)">
+    <rect x="0" y="0" width="200" height="148" rx="16" class="panel" filter="url(#arch-soft)"/>
+    <rect x="0" y="0" width="200" height="148" rx="16" fill="none" class="line-stroke" stroke-width="1"/>
+    <text x="20" y="32" class="mono muted" font-size="10" font-weight="600"
+          letter-spacing="0.14em">1 · INPUT</text>
+    <text x="20" y="62" class="display ink" font-size="18" font-weight="700"
+          letter-spacing="-0.01em">Healthcare AI</text>
+    <text x="20" y="84" class="display ink" font-size="18" font-weight="700"
+          letter-spacing="-0.01em">prompt</text>
+    <text x="20" y="112" class="sans muted" font-size="12">claims · prior auth ·</text>
+    <text x="20" y="128" class="sans muted" font-size="12">triage · eligibility ·</text>
+    <text x="20" y="144" class="sans muted" font-size="12">appeals · UM · intake</text>
+  </g>
+
+  <!-- Arrow 1 -->
+  <line x1="270" y1="234" x2="318" y2="234" class="line-strong" stroke-width="2" marker-end="url(#arch-arrow-ink)"/>
+
+  <!-- ── Box 2: ENGINE ── -->
+  <g transform="translate(330, 160)">
+    <rect x="0" y="0" width="240" height="148" rx="16" class="panel" filter="url(#arch-soft)"/>
+    <rect x="0" y="0" width="240" height="148" rx="16" fill="none" class="accent-stroke" stroke-width="1.5"/>
+    <text x="20" y="32" class="mono muted" font-size="10" font-weight="600"
+          letter-spacing="0.14em">2 · ENGINE</text>
+    <text x="20" y="62" class="display ink" font-size="18" font-weight="700"
+          letter-spacing="-0.01em">8 rule families</text>
+    <text x="20" y="86" class="mono ink-soft" font-size="11" font-weight="600">INJ-001  instruction_override</text>
+    <text x="20" y="100" class="mono ink-soft" font-size="11" font-weight="600">INJ-002  data_exfiltration</text>
+    <text x="20" y="114" class="mono ink-soft" font-size="11" font-weight="600">INJ-003  safeguard_bypass</text>
+    <text x="20" y="128" class="mono ink-soft" font-size="11" font-weight="600">HC-PHI-001  phi_exposure</text>
+    <text x="20" y="142" class="mono muted" font-size="10">+ 4 more healthcare-specific rules</text>
+  </g>
+
+  <!-- Arrow 2 -->
+  <line x1="580" y1="234" x2="628" y2="234" class="line-strong" stroke-width="2" marker-end="url(#arch-arrow-ink)"/>
+
+  <!-- ── Box 3: VERDICT ── -->
+  <g transform="translate(640, 160)">
+    <rect x="0" y="0" width="200" height="148" rx="16" class="panel" filter="url(#arch-soft)"/>
+    <rect x="0" y="0" width="200" height="148" rx="16" fill="none" class="line-stroke" stroke-width="1"/>
+    <text x="20" y="32" class="mono muted" font-size="10" font-weight="600"
+          letter-spacing="0.14em">3 · VERDICT</text>
+
+    <!-- Mini PASS pill -->
+    <g transform="translate(20, 50)">
+      <rect x="0" y="0" width="60" height="22" rx="11" class="teal-soft"/>
+      <text x="12" y="15" class="mono teal" font-size="10" font-weight="700"
+            letter-spacing="0.12em">PASS</text>
+    </g>
+    <!-- Mini REVIEW pill -->
+    <g transform="translate(20, 80)">
+      <rect x="0" y="0" width="74" height="22" rx="11" fill="rgba(179,83,18,0.12)"/>
+      <text x="10" y="15" class="mono" font-size="10" font-weight="700"
+            letter-spacing="0.12em" fill="#b35312">REVIEW</text>
+    </g>
+    <!-- Mini BLOCK pill -->
+    <g transform="translate(20, 110)">
+      <rect x="0" y="0" width="60" height="22" rx="11" class="accent-soft"/>
+      <text x="11" y="15" class="mono accent" font-size="10" font-weight="700"
+            letter-spacing="0.12em">BLOCK</text>
+    </g>
+    <text x="100" y="65" class="sans muted" font-size="11">no matches</text>
+    <text x="100" y="95" class="sans muted" font-size="11">medium severity</text>
+    <text x="100" y="125" class="sans muted" font-size="11">high / critical</text>
+  </g>
+
+  <!-- Arrow 3 -->
+  <line x1="850" y1="234" x2="898" y2="234" class="line-strong" stroke-width="2" marker-end="url(#arch-arrow-ink)"/>
+
+  <!-- ── Box 4: SHARE / EXPORT ── -->
+  <g transform="translate(910, 160)">
+    <rect x="0" y="0" width="230" height="148" rx="16" class="panel" filter="url(#arch-soft)"/>
+    <rect x="0" y="0" width="230" height="148" rx="16" fill="none" class="line-stroke" stroke-width="1"/>
+    <text x="20" y="32" class="mono muted" font-size="10" font-weight="600"
+          letter-spacing="0.14em">4 · ARTIFACTS</text>
+    <text x="20" y="62" class="display ink" font-size="18" font-weight="700"
+          letter-spacing="-0.01em">Shareable proof</text>
+    <text x="20" y="86" class="sans ink-soft" font-size="12">visual proof dossier</text>
+    <text x="20" y="102" class="sans ink-soft" font-size="12">offline proof PDF · UI mockup</text>
+    <text x="20" y="118" class="sans ink-soft" font-size="12">SARIF · OTEL · JUnit · JSON</text>
+    <text x="20" y="138" class="mono muted" font-size="10">share link omits prompt text</text>
+  </g>
+
+  <!-- Privacy footer -->
+  <line x1="60" y1="356" x2="1140" y2="356" class="line-stroke" stroke-width="1"/>
+  <g transform="translate(60, 380)">
+    <circle cx="6" cy="-4" r="4" class="teal"/>
+    <text x="20" y="0" class="sans ink-soft" font-size="13" font-weight="600">
+      Prompt text never leaves the device.
+    </text>
+    <text x="244" y="0" class="sans muted" font-size="12">
+      Engine runs locally. Share URL carries only verdict, severity counts, and rule_ids that fired.
+    </text>
+  </g>
+</svg>

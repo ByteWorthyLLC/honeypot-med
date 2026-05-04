@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img"
+     aria-label="Verdict ladder: PASS, REVIEW, BLOCK. Three pills showing how the engine grades a prompt — green-teal for PASS (no patterns matched), warm amber for REVIEW (medium severity), rust for BLOCK (high or critical severity).">
+  <title>Verdict ladder</title>
+  <defs>
+    <style>
+      :root {
+        --bg: #f4ecdd;
+        --bg-strong: #fdf8ef;
+        --ink: #14181f;
+        --ink-soft: #2a313c;
+        --muted: #5a6470;
+        --accent: #c6432a;
+        --accent-soft: rgba(198, 67, 42, 0.10);
+        --warn: #b35312;
+        --warn-soft: rgba(179, 83, 18, 0.12);
+        --teal: #1f5f56;
+        --teal-soft: rgba(31, 95, 86, 0.12);
+        --line: rgba(20, 24, 31, 0.10);
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #14181f;
+          --bg-strong: #1a1f28;
+          --ink: #fdf8ef;
+          --ink-soft: #d4cdb8;
+          --muted: #9aa1ab;
+          --accent: #ff6a4d;
+          --accent-soft: rgba(255, 106, 77, 0.18);
+          --warn: #e89042;
+          --warn-soft: rgba(232, 144, 66, 0.18);
+          --teal: #5fb5a6;
+          --teal-soft: rgba(95, 181, 166, 0.16);
+          --line: rgba(253, 248, 239, 0.12);
+        }
+      }
+      .bg { fill: var(--bg); }
+      .panel { fill: var(--bg-strong); }
+      .ink { fill: var(--ink); }
+      .ink-soft { fill: var(--ink-soft); }
+      .muted { fill: var(--muted); }
+      .accent { fill: var(--accent); }
+      .accent-soft { fill: var(--accent-soft); }
+      .accent-stroke { stroke: var(--accent); }
+      .warn { fill: var(--warn); }
+      .warn-soft { fill: var(--warn-soft); }
+      .warn-stroke { stroke: var(--warn); }
+      .teal { fill: var(--teal); }
+      .teal-soft { fill: var(--teal-soft); }
+      .teal-stroke { stroke: var(--teal); }
+      .line-stroke { stroke: var(--line); }
+
+      .display { font-family: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif; }
+      .sans { font-family: "Inter", "Helvetica Neue", "Segoe UI", system-ui, sans-serif; }
+      .mono { font-family: "JetBrains Mono", "SFMono-Regular", "Menlo", "Monaco", "Consolas", monospace; }
+    </style>
+    <filter id="vl-soft" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#14181f" flood-opacity="0.16"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="360" class="bg"/>
+
+  <!-- Header strip -->
+  <text x="60" y="60" class="mono muted" font-size="11" font-weight="600"
+        letter-spacing="0.16em">VERDICT LADDER</text>
+  <text x="60" y="92" class="display ink" font-size="32" font-weight="700"
+        letter-spacing="-0.01em">PASS · REVIEW · BLOCK</text>
+  <text x="60" y="118" class="sans muted" font-size="14" font-weight="500">
+    Mirrors <tspan class="mono ink-soft" font-size="13">launchkit.bundle_verdict</tspan> 1:1.
+    Severity counts roll up to one of three states.
+  </text>
+
+  <!-- ─── PASS ─── -->
+  <g transform="translate(60, 160)">
+    <rect x="0" y="0" width="346" height="160" rx="20" class="panel" filter="url(#vl-soft)"/>
+    <rect x="0" y="0" width="346" height="160" rx="20" fill="none" class="teal-stroke" stroke-width="1" stroke-opacity="0.4"/>
+
+    <!-- Verdict pill -->
+    <g transform="translate(24, 24)">
+      <rect x="0" y="0" width="92" height="32" rx="16" class="teal-soft"/>
+      <rect x="0" y="0" width="92" height="32" rx="16" fill="none" class="teal-stroke" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="4" class="teal"/>
+      <text x="28" y="21" class="mono teal" font-size="12" font-weight="700"
+            letter-spacing="0.12em">PASS</text>
+    </g>
+
+    <!-- Description -->
+    <text x="24" y="84" class="display ink" font-size="20" font-weight="700"
+          letter-spacing="-0.01em">No patterns matched.</text>
+    <text x="24" y="110" class="sans ink-soft" font-size="13" font-weight="500">
+      Still validate with tool-call traces.
+    </text>
+    <text x="24" y="130" class="sans muted" font-size="12" font-weight="500">
+      A clean paste-the-prompt scan never proves
+    </text>
+    <text x="24" y="146" class="sans muted" font-size="12" font-weight="500">
+      a workflow is safe — only that nothing tripped.
+    </text>
+  </g>
+
+  <!-- ─── REVIEW ─── -->
+  <g transform="translate(427, 160)">
+    <rect x="0" y="0" width="346" height="160" rx="20" class="panel" filter="url(#vl-soft)"/>
+    <rect x="0" y="0" width="346" height="160" rx="20" fill="none" class="warn-stroke" stroke-width="1" stroke-opacity="0.4"/>
+
+    <g transform="translate(24, 24)">
+      <rect x="0" y="0" width="108" height="32" rx="16" class="warn-soft"/>
+      <rect x="0" y="0" width="108" height="32" rx="16" fill="none" class="warn-stroke" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="4" class="warn"/>
+      <text x="28" y="21" class="mono warn" font-size="12" font-weight="700"
+            letter-spacing="0.12em">REVIEW</text>
+    </g>
+
+    <text x="24" y="84" class="display ink" font-size="20" font-weight="700"
+          letter-spacing="-0.01em">Medium-severity matches.</text>
+    <text x="24" y="110" class="sans ink-soft" font-size="13" font-weight="500">
+      Install the CLI to confirm.
+    </text>
+    <text x="24" y="130" class="sans muted" font-size="12" font-weight="500">
+      The browser surface caps at REVIEW; only the
+    </text>
+    <text x="24" y="146" class="sans muted" font-size="12" font-weight="500">
+      CLI sees tool-call traces that promote findings.
+    </text>
+  </g>
+
+  <!-- ─── BLOCK ─── -->
+  <g transform="translate(794, 160)">
+    <rect x="0" y="0" width="346" height="160" rx="20" class="panel" filter="url(#vl-soft)"/>
+    <rect x="0" y="0" width="346" height="160" rx="20" fill="none" class="accent-stroke" stroke-width="1" stroke-opacity="0.4"/>
+
+    <g transform="translate(24, 24)">
+      <rect x="0" y="0" width="92" height="32" rx="16" class="accent-soft"/>
+      <rect x="0" y="0" width="92" height="32" rx="16" fill="none" class="accent-stroke" stroke-width="1.5"/>
+      <circle cx="16" cy="16" r="4" class="accent"/>
+      <text x="28" y="21" class="mono accent" font-size="12" font-weight="700"
+            letter-spacing="0.12em">BLOCK</text>
+    </g>
+
+    <text x="24" y="84" class="display ink" font-size="20" font-weight="700"
+          letter-spacing="-0.01em">High or critical severity.</text>
+    <text x="24" y="110" class="sans ink-soft" font-size="13" font-weight="500">
+      Should not reach the model.
+    </text>
+    <text x="24" y="130" class="sans muted" font-size="12" font-weight="500">
+      Proven findings (verified against tool-call
+    </text>
+    <text x="24" y="146" class="sans muted" font-size="12" font-weight="500">
+      evidence) escalate to high or critical here.
+    </text>
+  </g>
+</svg>

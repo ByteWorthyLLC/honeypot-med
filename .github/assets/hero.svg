@@ -1,0 +1,194 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 320" role="img"
+     aria-label="honeypot-med — prompt-injection evidence for healthcare AI workflows. Animated brand banner with a pulsing BLOCKED verdict pill and a faint honeycomb pattern.">
+  <title>honeypot-med</title>
+  <defs>
+    <style>
+      /* Light mode (default — matches the marketing site's warm cream palette) */
+      :root {
+        --bg: #f4ecdd;
+        --bg-strong: #fdf8ef;
+        --ink: #14181f;
+        --ink-soft: #2a313c;
+        --muted: #5a6470;
+        --accent: #c6432a;
+        --accent-soft: rgba(198, 67, 42, 0.16);
+        --teal: #1f5f56;
+        --teal-soft: rgba(31, 95, 86, 0.12);
+        --line: rgba(20, 24, 31, 0.10);
+        --grid: rgba(20, 24, 31, 0.05);
+      }
+      /* Dark mode — invert surfaces, keep accents readable on ink. */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #14181f;
+          --bg-strong: #1a1f28;
+          --ink: #fdf8ef;
+          --ink-soft: #d4cdb8;
+          --muted: #9aa1ab;
+          --accent: #ff6a4d;
+          --accent-soft: rgba(255, 106, 77, 0.20);
+          --teal: #5fb5a6;
+          --teal-soft: rgba(95, 181, 166, 0.16);
+          --line: rgba(253, 248, 239, 0.12);
+          --grid: rgba(253, 248, 239, 0.05);
+        }
+      }
+      .bg { fill: var(--bg); }
+      .grid-stroke { stroke: var(--grid); }
+      .ink { fill: var(--ink); }
+      .ink-soft { fill: var(--ink-soft); }
+      .muted { fill: var(--muted); }
+      .accent { fill: var(--accent); }
+      .accent-stroke { stroke: var(--accent); }
+      .accent-soft { fill: var(--accent-soft); }
+      .teal { fill: var(--teal); }
+      .teal-soft { fill: var(--teal-soft); }
+      .line-stroke { stroke: var(--line); }
+      .panel { fill: var(--bg-strong); }
+
+      /* Type — falls back to platform serif/mono when Fraunces / JetBrains Mono unavailable. */
+      .display { font-family: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif; }
+      .sans { font-family: "Inter", "Helvetica Neue", "Segoe UI", system-ui, sans-serif; }
+      .mono { font-family: "JetBrains Mono", "SFMono-Regular", "Menlo", "Monaco", "Consolas", monospace; }
+
+      /* Subtle breathing on the verdict dot — single keyframe, reduced-motion safe. */
+      @keyframes hpm-pulse {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.18); opacity: 0.78; }
+      }
+      .pulse {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: hpm-pulse 2.4s ease-in-out infinite;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .pulse { animation: none; }
+      }
+
+      /* One-shot draw on the connecting line, plays once on load. */
+      @keyframes hpm-draw {
+        from { stroke-dashoffset: 360; }
+        to { stroke-dashoffset: 0; }
+      }
+      .connector {
+        stroke-dasharray: 360;
+        stroke-dashoffset: 0;
+        animation: hpm-draw 1.6s ease-out 0.3s 1 both;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .connector { stroke-dashoffset: 0; animation: none; }
+      }
+    </style>
+
+    <!-- Honeycomb pattern — references the honey*pot* metaphor without being literal -->
+    <pattern id="hpm-honey" x="0" y="0" width="56" height="48" patternUnits="userSpaceOnUse">
+      <polygon points="14,4 28,4 35,16 28,28 14,28 7,16"
+               fill="none" class="grid-stroke" stroke-width="1"/>
+      <polygon points="42,28 56,28 63,40 56,52 42,52 35,40"
+               fill="none" class="grid-stroke" stroke-width="1"/>
+    </pattern>
+
+    <!-- Soft drop shadow for the verdict pill -->
+    <filter id="hpm-soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#14181f" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <!-- Surface -->
+  <rect width="1280" height="320" class="bg"/>
+  <!-- Honeycomb texture, faded to upper-right -->
+  <rect width="1280" height="320" fill="url(#hpm-honey)" opacity="0.55"/>
+
+  <!-- ─── Left: brand mark + wordmark + tagline ─── -->
+  <g transform="translate(80, 88)">
+    <!-- Brand-mark square: ink-on-ink monogram -->
+    <rect x="0" y="0" width="64" height="64" rx="14" class="ink"/>
+    <text x="32" y="44" text-anchor="middle"
+          class="display" font-size="22" font-weight="700"
+          fill="#fdf8ef" letter-spacing="0.02em">HM</text>
+
+    <!-- Wordmark: "honeypot-med" in editorial serif -->
+    <text x="84" y="36" class="display ink" font-size="44" font-weight="700"
+          letter-spacing="-0.01em">honeypot-med</text>
+
+    <!-- Tagline -->
+    <text x="84" y="68" class="sans muted" font-size="15" font-weight="500"
+          letter-spacing="0.01em">Prompt-injection evidence for healthcare AI workflows.</text>
+
+    <!-- Anchor row -->
+    <g transform="translate(84, 100)">
+      <!-- OWASP chip -->
+      <rect x="0" y="0" width="148" height="26" rx="13" class="panel"/>
+      <rect x="0" y="0" width="148" height="26" rx="13" fill="none" class="line-stroke" stroke-width="1"/>
+      <circle cx="14" cy="13" r="3" class="accent"/>
+      <text x="24" y="18" class="mono ink-soft" font-size="11" font-weight="600"
+            letter-spacing="0.06em">OWASP LLM01:2025</text>
+
+      <!-- NIST chip -->
+      <rect x="160" y="0" width="118" height="26" rx="13" fill="none" class="line-stroke" stroke-width="1"/>
+      <circle cx="174" cy="13" r="3" class="teal"/>
+      <text x="184" y="18" class="mono ink-soft" font-size="11" font-weight="600"
+            letter-spacing="0.06em">NIST AI 600-1</text>
+
+      <!-- Local-first chip -->
+      <rect x="290" y="0" width="124" height="26" rx="13" fill="none" class="line-stroke" stroke-width="1"/>
+      <circle cx="304" cy="13" r="3" class="ink"/>
+      <text x="314" y="18" class="mono ink-soft" font-size="11" font-weight="600"
+            letter-spacing="0.06em">Local · No API key</text>
+    </g>
+  </g>
+
+  <!-- ─── Right: prompt → engine → verdict micro-narrative ─── -->
+  <g transform="translate(720, 76)">
+    <!-- "Prompt" panel -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="148" height="58" rx="10" class="panel" filter="url(#hpm-soft)"/>
+      <rect x="0" y="0" width="148" height="58" rx="10" fill="none" class="line-stroke" stroke-width="1"/>
+      <text x="14" y="20" class="mono muted" font-size="9" font-weight="600"
+            letter-spacing="0.16em">PROMPT</text>
+      <line x1="14" y1="30" x2="120" y2="30" class="line-stroke" stroke-width="1"/>
+      <line x1="14" y1="40" x2="100" y2="40" class="line-stroke" stroke-width="1"/>
+      <line x1="14" y1="50" x2="86"  y2="50" class="line-stroke" stroke-width="1"/>
+    </g>
+
+    <!-- Connector arrow 1 -->
+    <path d="M 156 29 L 196 29" fill="none" class="accent-stroke connector"
+          stroke-width="2" stroke-linecap="round"/>
+    <polygon points="196,25 204,29 196,33" class="accent"/>
+
+    <!-- "Engine" panel — 8 rules badge -->
+    <g transform="translate(212, 0)">
+      <rect x="0" y="0" width="160" height="58" rx="10" class="panel" filter="url(#hpm-soft)"/>
+      <rect x="0" y="0" width="160" height="58" rx="10" fill="none" class="line-stroke" stroke-width="1"/>
+      <text x="14" y="20" class="mono muted" font-size="9" font-weight="600"
+            letter-spacing="0.16em">ENGINE</text>
+      <text x="14" y="42" class="display ink" font-size="22" font-weight="700">8 rules</text>
+      <text x="78" y="42" class="mono ink-soft" font-size="11" font-weight="500">· local · regex</text>
+    </g>
+
+    <!-- Connector arrow 2 -->
+    <path d="M 380 29 L 420 29" fill="none" class="accent-stroke connector"
+          stroke-width="2" stroke-linecap="round"/>
+    <polygon points="420,25 428,29 420,33" class="accent"/>
+
+    <!-- Animated verdict pill -->
+    <g transform="translate(440, 4)">
+      <rect x="0" y="0" width="48" height="50" rx="25" class="accent-soft"/>
+      <rect x="0" y="0" width="48" height="50" rx="25" fill="none" class="accent-stroke" stroke-width="1.5"/>
+      <circle cx="24" cy="25" r="6" class="accent pulse"/>
+    </g>
+    <g transform="translate(496, 0)">
+      <text x="0" y="22" class="display ink" font-size="20" font-weight="700"
+            letter-spacing="-0.01em">verdict:</text>
+      <text x="0" y="46" class="display accent" font-size="26" font-weight="800"
+            letter-spacing="-0.01em">BLOCK</text>
+    </g>
+  </g>
+
+  <!-- Bottom hairline + meta -->
+  <line x1="80" y1="246" x2="1200" y2="246" class="line-stroke" stroke-width="1"/>
+  <text x="80" y="278" class="mono muted" font-size="11" font-weight="500"
+        letter-spacing="0.06em">claims · prior auth · triage · appeals · eligibility · utilization · intake · healthcare-challenge</text>
+  <text x="80" y="298" class="mono muted" font-size="10" font-weight="500"
+        letter-spacing="0.04em">github.com/ByteWorthyLLC/honeypot-med · maintained by ByteWorthy LLC · MIT</text>
+</svg>
