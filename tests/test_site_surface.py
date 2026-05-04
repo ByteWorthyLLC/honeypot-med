@@ -93,7 +93,9 @@ class SiteSurfaceTest(unittest.TestCase):
         self.assertIn("Product Hunt", {channel["channel"] for channel in launch_kit["channels"]})
         self.assertIn("Show HN", {channel["channel"] for channel in launch_kit["channels"]})
         action = (ROOT / "action.yml").read_text(encoding="utf-8")
-        self.assertIn("github/codeql-action/upload-sarif@v3", action)
+        # Pin the action by name; tolerate dependabot major version bumps.
+        # We assert the SARIF upload step exists, not its exact pinned version.
+        self.assertIn("github/codeql-action/upload-sarif@v", action)
         self.assertIn("honeypot-med challenge", action)
 
     def test_curiosity_and_eval_surfaces_are_linked(self):
