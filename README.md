@@ -33,6 +33,14 @@
 >
 > `honeypot-med` runs an 8-rule prompt-injection engine *locally* — in the browser, in the CLI, or as an MCP server inside Claude Code. **No API keys are required** for the default path. Every detection cites OWASP LLM01:2025 and NIST AI 600-1 anchors, and every run can export a shareable proof bundle (HTML dossier, JSON, SARIF, OTel, JUnit, and a static UI mockup).
 
+## Why this matters
+
+Healthcare AI workflows now sit behind LLMs that read documents and call tools — claims, prior auth, eligibility, triage, intake, appeals, utilization. A single prompt-injection failure in any of those isn't a chatbot bug; it's a buyer-blocking incident with regulatory teeth.
+
+Prompt-injection has been the **#1 LLM risk** on the [OWASP LLM Top 10](https://genai.owasp.org/llmrisk/llm01-prompt-injection/) since 2023. [NIST AI 600-1](https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf) calls for adversarial testing and resilience checks against it. Most teams still ship without any of that — because the existing options are either runtime guardrails (no artifact), giant red-team PDFs (not parseable), or hosted services that ask for a credit card before you've seen what you're buying.
+
+`honeypot-med` is the missing layer: a one-page proof of how a prompt would survive a real attack, generated locally in seconds.
+
 ## Try it without installing
 
 > **[Paste any healthcare AI prompt into the live widget&nbsp;→](https://byteworthyllc.github.io/honeypot-med/widget-demo/)**
@@ -55,6 +63,18 @@ The engine ships **8 rule families**, all referenced by ID in [`src/honeypot_med
 | `HC-TOK-001` | `credential_exfiltration` | API key, payer token, bearer token, secret | LLM01 · §2.10 |
 
 > Sources: §2.6 = NIST AI 600-1 *Information Integrity*. §2.10 = NIST AI 600-1 *Information Security*.
+
+## How it stacks up
+
+| Approach | What it produces | What it doesn't |
+|---|---|---|
+| Prompt guardrails (Llama Guard, Rebuff, …) | Runtime refuse / allow on each call | No durable artifact a buyer or auditor can read |
+| Eval harnesses (promptfoo, Inspect, OpenAI Evals) | Score against a fixed dataset | Doesn't simulate a live healthcare attack flow |
+| Generic red-team report | Long PDF, narrative findings | Not parseable by CI; no SARIF / JUnit / OTel |
+| Hosted prompt-security SaaS | Dashboard + alerts | Asks for a credit card before you've seen the verdict |
+| **`honeypot-med`** | **Local-first proof bundle a buyer reads in 60 seconds** | (a hosted-only mode — local is the default) |
+
+honeypot-med is **complementary** to all of the above. Wire its SARIF output into the same Code Scanning panel that ingests your existing security tooling.
 
 ## How it works
 
@@ -196,12 +216,63 @@ This is a **security and engineering tool for healthcare AI builders**. It does 
 
 Use the verdict and findings as input to your own clinical, compliance, and security review — not as a substitute for any of them. See [`SECURITY.md`](SECURITY.md) for responsible disclosure.
 
-## Related surfaces
+## FAQ
+
+<details>
+<summary><strong>Will honeypot-med read or store any PHI?</strong></summary>
+
+No. The browser widget runs entirely in your tab — your prompt never leaves the page. The CLI processes prompts in memory and writes only the bundle artifacts you ask it to write (verdict, findings, dossier). The decoy capture service is opt-in, never enabled by default, and is intended for trapping AI agents — not for processing real patient data. Don't paste real PHI in either surface; you don't need to in order to evaluate the engine.
+</details>
+
+<details>
+<summary><strong>Is honeypot-med a HIPAA business associate or covered entity?</strong></summary>
+
+No. honeypot-med is a developer tool, not a clinical or processing service. It does not handle PHI, does not sign BAAs, and is not part of any covered-entity workflow. Treat it the way you'd treat a static analyzer or linter — it inspects code and prompts, then exits.
+</details>
+
+<details>
+<summary><strong>How is this different from prompt guardrails like Llama Guard or Rebuff?</strong></summary>
+
+Guardrails refuse classes of input *at runtime*. honeypot-med produces *evidence* — a parseable, shareable proof bundle (HTML dossier, JSON, SARIF, OTel, JUnit, a UI mockup) showing what fired, why, with OWASP / NIST anchors. Guardrails answer "did the model refuse?" — honeypot-med answers "can a buyer or auditor read what happened in 60 seconds?" Use both.
+</details>
+
+<details>
+<summary><strong>Will it work with my Anthropic / OpenAI / Bedrock / local-model workflow?</strong></summary>
+
+Yes — the engine is provider-agnostic. The default rule pipeline is pure regex and runs without any model call. The optional MCP server lives inside Claude Code and Cursor sessions; the SARIF / OTel / JUnit exports plug into any CI that already ingests those formats.
+</details>
+
+<details>
+<summary><strong>Why "honeypot"?</strong></summary>
+
+The decoy-capture surface (FHIR-shaped endpoints, fake tool calls) is a literal honeypot for misbehaving AI agents — anything that follows a baited tool name gets logged with full evidence. The detection engine sits in front of it. The brand is the metaphor.
+</details>
+
+## Related projects · the ByteWorthy ecosystem
+
+honeypot-med is part of a small, open-source family of tools from [ByteWorthy LLC](https://byteworthy.io) built around the same posture: **local-first, no telemetry, plain-English output**.
+
+**For healthcare consumers and curious humans**
+
+- **[vqol](https://github.com/ByteWorthyLLC/vqol)** · Patient-owned VEINES-QOL/Sym tracker. Static local-first PWA, no telemetry, one-file practice fork.
+- **[hightimized](https://github.com/ByteWorthyLLC/hightimized)** · Audit your hospital bill. Generate a dispute letter. Free, private, browser-only.
+- **[outbreaktinder](https://github.com/ByteWorthyLLC/outbreaktinder)** · Swipe through history's outbreaks like dating profiles. Open-source educational tool.
+
+**For AI / security builders**
+
+- **[sovra](https://github.com/ByteWorthyLLC/sovra)** · Open-source multi-tenant infrastructure for AI products. Auth, billing, MCP tools, pgvector search — ship features instead of plumbing.
+- **[byteworthy-defend](https://github.com/ByteWorthyLLC/byteworthy-defend)** · Open-source CLI antivirus for Windows + Linux. JSON output, quarantine policy gates, MIT licensed.
+- **[clynova](https://github.com/ByteWorthyLLC/clynova-public)** · HIPAA-ready healthcare AI boilerplate (PHI encryption, BAA workflows, FHIR R4 + HL7 v2 + X12 EDI). Commercial.
+- **[klienta](https://github.com/ByteWorthyLLC/klienta-public)** · White-label client portal boilerplate for AI agencies. Multi-tenant Next.js + Supabase + Stripe + per-tenant agent runtime. Commercial.
+
+Every public repo follows the same playbook: real product, real code, real OWASP / NIST anchors where they apply, and a README a non-developer can read.
+
+## Other surfaces
 
 - **Live site** — [byteworthyllc.github.io/honeypot-med](https://byteworthyllc.github.io/honeypot-med/) — full studio, gallery, codex, and reports
-- **Specimen Codex** — every named attack archetype (Compliance Mimic, Roster Leech, Policy Poltergeist, …)
-- **Reports** — sample challenge runs with full bundles, including a healthcare-challenge writeup
-- **Comparison pages** — guardrails vs. honeypots, evals vs. proof bundles, generic red-team reports vs. honeypot-med
+- **Specimen Codex** — every named attack archetype (Compliance Mimic, Roster Leech, Policy Poltergeist, Quiet Chart Ghost, …)
+- **Sample reports** — full challenge bundles, including a healthcare-challenge writeup with field guide and proof dossier
+- **Compare pages** — guardrails vs. honeypots · evals vs. proof bundles · generic red-team reports vs. honeypot-med
 
 ## Maintainer
 
